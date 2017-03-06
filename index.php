@@ -26,3 +26,4 @@ else
 require_once 'views/layout.php';
 
 // Test Comment
+// Test Comment 2
