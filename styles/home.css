@@ -1,0 +1,144 @@
+/*=================================================================================
+	1.0 - Home Page
+=================================================================================*/
+.home-main {
+	padding-top: 111px;
+}
+.home-header {
+	position: relative;
+	clear: both;
+	overflow: auto;
+}
+.home-header-text {
+	overflow: hidden;
+}
+.home-header video {
+	position: relative;
+	float: right;
+	width: 100% !important;
+	height: auto !important;
+	display: none;
+}
+.video-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;	
+}
+.home-header-textWrap h1 {
+		margin: 0.5em 0.2em 0.33em;
+}
+.home-header-textWrap div {
+	padding-left: 0.4em;
+	width: 90%;
+}
+.home-header-textWrap p {
+	margin-bottom: 0.5em;
+}
+
+/*=================================================================================
+	2.0 - Media Queries
+=================================================================================*/
+@media only screen and (min-width: 751px) {
+	/*--------------------------------------------
+		751^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header video {
+		width: 40% !important;
+		display: initial;
+	}
+	.home-header {
+		overflow: overlay;
+	}
+	.video-overlay {
+		width: 40%;
+		background-color: rgba(200,200,200, 0.15);
+		background: linear-gradient(to right, 
+					rgba(255,255,255,1) 0%,
+					rgba(255,255,255,.8) 5%,
+					rgba(255,255,255,0) 20%);
+	}
+	.home-header-text {
+		max-width: 85em;
+		margin: 0 auto;
+    	position: absolute;
+    	transform: translateY(-50%);
+    	top: 50%;
+    	width: 60%;
+    	padding-left: 0.5em;
+	}
+	.home-header-textWrap h1 {
+		margin: 0em 0.2em 0.33em;
+	}
+	.home-header-textWrap div {
+		padding-left: 0.4em;
+		width: 100%;
+	}
+	.home-header-textWrap p {
+		margin-bottom: 0.5em;
+	}
+	.home-header-columns {
+		width: 60%;
+		font-size: 60%;
+	}
+	.home-header-columns div {
+		width: 50%;
+		box-sizing: border-box;
+		display: inline-block;
+		margin-right: -4px;
+		padding-right: 3em;
+	}
+	.home-header-textWrap ul {
+		margin-left: 2em;
+		margin-top: 1em;
+		line-height: 1.2;
+	}
+}
+@media only screen and (min-width: 1000px) {
+	/*--------------------------------------------
+		1000^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header-columns {
+		font-size: 80%;
+	}
+	.home-header-textWrap h1 {
+		margin: 0em 0.5em 0.5em;
+	}
+	.home-header-textWrap div {
+		padding-left: 0.667em;
+	}
+	.home-header-textWrap p {
+		margin-bottom: 0.55em;
+	}
+}
+@media only screen and (min-width: 1360px) {
+	/*--------------------------------------------
+		1360^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header-textWrap {
+		width: calc(100% - (40vw - ((100vw - 85em) / 2)));
+	}
+	.home-header-text {
+		overflow: initial;
+		width: 100%;
+ 		max-width: 85em;
+  		left: 50%;
+  	  	transform: translateX(-50%) translateY(-50%);
+	}
+	.home-header-columns {
+		width: 100%;
+		font-size: 100%;
+	}
+	.home-header-textWrap h1 {
+		font-size: 3.75em;
+		margin: 0em 0.33em 0.25em;
+		letter-spacing: -0.05em;
+	}
+	.home-header-textWrap p {
+		font-size: 1em;
+		line-height: 1.2;
+		margin-bottom: 1em;
+	}
+	
+}
