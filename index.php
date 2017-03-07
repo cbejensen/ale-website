@@ -1,4 +1,10 @@
 <?php
+/*
+ * This is the index of the application.
+ * Given a url containing valid arguments, this
+ * file initializes the request.
+ */
+
 require_once 'connection.php';
 
 // Set the page title
