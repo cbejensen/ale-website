@@ -1,12 +1,7 @@
 <main class="home-main">
-	<div class="home-header">
-		<video autoplay muted loop poster="">
-			<source src="https://atlanticlabequipment.com/wp-content/uploads/2017/02/ale2017.mp4" type="video/mp4">
-			<source src="movie.ogg" type="video/ogg">
-		</video>
-		<div class="video-overlay"></div>
+	<section class="home-header">
 		<div class="home-header-text">
-			<div class="home-header-textWrap">
+			
 				<h1>Premium Automation Solutions</h1>
 				<div class="home-header-columns">
 	           		<div>
@@ -30,7 +25,27 @@
 		            	</ul>
 		            </div> 
 	            </div>
-			</div>
+		
 		</div>
-	</div>
+		<video autoplay muted loop poster="">
+			<source src="https://atlanticlabequipment.com/wp-content/uploads/2017/02/ale2017.mp4" type="video/mp4">
+			<source src="movie.ogg" type="video/ogg">
+		</video>
+		<div class="video-overlay"></div>
+	</section>
+	<section class="ads-section">
+	
+	</section>
+	<section class="quote-section">
+	
+	</section>
+	<section class="about-section">
+	
+	</section>
+	<section class="mission-section">
+	
+	</section>
+	<section class="testimonials-section">
+	
+	</section>
 </main>
