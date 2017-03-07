@@ -26,17 +26,16 @@
 	width: 100%;
 	height: 100%;	
 }
-.home-header-textWrap h1 {
+.home-header-text h1 {
 		margin: 0.5em 0.2em 0.33em;
 }
-.home-header-textWrap div {
+.home-header-text div {
 	padding-left: 0.4em;
 	width: 90%;
 }
-.home-header-textWrap p {
+.home-header-text p {
 	margin-bottom: 0.5em;
 }
-
 /*=================================================================================
 	2.0 - Media Queries
 =================================================================================*/
@@ -68,14 +67,14 @@
     	width: 60%;
     	padding-left: 0.5em;
 	}
-	.home-header-textWrap h1 {
+	.home-header-text h1 {
 		margin: 0em 0.2em 0.33em;
 	}
-	.home-header-textWrap div {
+	.home-header-text div {
 		padding-left: 0.4em;
 		width: 100%;
 	}
-	.home-header-textWrap p {
+	.home-header-text p {
 		margin-bottom: 0.5em;
 	}
 	.home-header-columns {
@@ -89,7 +88,7 @@
 		margin-right: -4px;
 		padding-right: 3em;
 	}
-	.home-header-textWrap ul {
+	.home-header-text ul {
 		margin-left: 2em;
 		margin-top: 1em;
 		line-height: 1.2;
@@ -102,13 +101,13 @@
 	.home-header-columns {
 		font-size: 80%;
 	}
-	.home-header-textWrap h1 {
+	.home-header-text h1 {
 		margin: 0em 0.5em 0.5em;
 	}
-	.home-header-textWrap div {
+	.home-header-text div {
 		padding-left: 0.667em;
 	}
-	.home-header-textWrap p {
+	.home-header-text p {
 		margin-bottom: 0.55em;
 	}
 }
@@ -116,7 +115,7 @@
 	/*--------------------------------------------
 		1360^ - Home, Intro/Video Section
 	----------------------------------------------*/
-	.home-header-textWrap {
+	.home-header-text {
 		width: calc(100% - (40vw - ((100vw - 85em) / 2)));
 	}
 	.home-header-text {
@@ -130,12 +129,12 @@
 		width: 100%;
 		font-size: 100%;
 	}
-	.home-header-textWrap h1 {
+	.home-header-text h1 {
 		font-size: 3.75em;
 		margin: 0em 0.33em 0.25em;
 		letter-spacing: -0.05em;
 	}
-	.home-header-textWrap p {
+	.home-header-text p {
 		font-size: 1em;
 		line-height: 1.2;
 		margin-bottom: 1em;
