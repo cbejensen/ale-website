@@ -24,3 +24,5 @@ else
 }
 
 require_once 'views/layout.php';
+
+// Another Test Comment. This time via eclipse.
