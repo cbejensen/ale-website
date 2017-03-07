@@ -58,7 +58,7 @@
 			<label>Email</label>
 			<input type="text" name="email">
 			<label>Message</label>
-			<textarea rows="5" name="message">
+			<textarea rows="5" name="message"></textarea>
 			<input type="submit" value="Submit">
 		</form>
 	</section>
