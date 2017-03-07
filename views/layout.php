@@ -106,7 +106,7 @@
 					</ul>
 				</div>
 				<script>window.onload = createArrow('<?php echo $section; ?>');</script>
-				<div class="searchBar">
+				<div class="searchBar pageContent">
 					<div class="searchBar-subitem searchBar-store"><span>Automation &amp; Robotics</span></div>
 					<input type="text" name="search" placeholder="search the entire site here, or narrow your search with a store category at the left">
 					<div class="searchBar-goButton" id="searchBtn" onclick="">

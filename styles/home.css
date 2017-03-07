@@ -44,14 +44,14 @@
 		751^ - Home, Intro/Video Section
 	----------------------------------------------*/
 	.home-header video {
-		width: 40% !important;
+		width: 45% !important;
 		display: initial;
 	}
 	.home-header {
 		overflow: overlay;
 	}
 	.video-overlay {
-		width: 40%;
+		width: 45%;
 		background-color: rgba(200,200,200, 0.15);
 		background: linear-gradient(to right, 
 					rgba(255,255,255,1) 0%,

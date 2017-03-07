@@ -29,7 +29,7 @@
 		</div>
 		<video autoplay muted loop poster="">
 			<source src="https://atlanticlabequipment.com/wp-content/uploads/2017/02/ale2017.mp4" type="video/mp4">
-			<source src="movie.ogg" type="video/ogg">
+			<!-- <source src="movie.ogg" type="video/ogg"> -->
 		</video>
 		<div class="video-overlay"></div>
 	</section>
