@@ -28,3 +28,5 @@ require_once 'views/layout.php';
 // Another Test Comment. This time via eclipse.
 
 // Yet Another Comment.
+
+// This is a comment on the new branch.
