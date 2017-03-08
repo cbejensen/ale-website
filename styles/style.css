@@ -48,7 +48,7 @@
 	position: relative;
 	z-index: 1;
 }
-/* Main Row */
+/* list items are used here as menu options */
 .navList li {
 	display: inline-block;
 	position: relative;
