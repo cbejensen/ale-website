@@ -9,7 +9,7 @@
 	z-index: 10;
 }
 .logoBar {
-	border-bottom: 0.25em solid #75cf19;
+	border-bottom: 0.25rem solid #75cf19;
 	position: relative;
 	z-index: 2;
 }
@@ -145,8 +145,8 @@ ul.dropDown li a:hover {
 	height: 2rem;
 	vertical-align: top;
 	-moz-box-shadow: 	2px 2px 2px 0px rgba(0,0,0, 0.6);
-	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0, 0.6); //inset 0 0 5px 2px rgba(0,0,0, 0.2), 
-	box-shadow: 		2px 2px 2px 0px rgba(0,0,0, 0.6);
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0, 0.6); /*inset 0 0 5px 2px rgba(0,0,0, 0.2),*/ 
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
 	flex-grow: 2;
 }
 .searchBar input[type="text"] {
@@ -186,7 +186,7 @@ ul.dropDown li a:hover {
 .searchBar-subitem {
 	-moz-box-shadow: 	2px 2px 2px 0px rgba(0,0,0, 0.6);
 	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0, 0.6); /*inset 0 0 5px 2px rgba(0,0,0, 0.2),*/ 
-	box-shadow: 		0px 2px 2px 0px rgba(0,0,0, 0.6);
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
 	display: inline-block;
 	height: 2rem;
 	border-radius: 3px;
