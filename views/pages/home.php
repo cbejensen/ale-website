@@ -1,42 +1,38 @@
 <main class="home-main">
 	<section class="home-header">
-		<div class="home-header-text">
-			
-				<h1>Premium Automation Solutions</h1>
-				<div class="home-header-columns">
-	           		<div>
-	           			<p>Atlantic Lab Equipment&#39;s dynamic product mix, focused on liquid 
-		            	handling, is able to provide premium solutions for a variety of 
-			            applications in the Life Science market.</p>
-			            <p>We&#39;ve aligned with SciRobotics for a multitude of applications 
-		            	around colony picking. ALE&#39;s core technical team has successfully 
-		            	implemented variations of these applications in labs in industry, 
-		            	government and academia.</p>
-			        </div>
-		            <div>
-		            	<p>In both the Clinical and 
-		            	Research segments, we have liquid handling solutions 
-		            	for low to medium throughput applications related to:</p>
-		            	<ul>
-		            		<li>PCR Set Up</li>
-		            		<li>Sample Prep for Mass Spec</li>
-		            		<li>DNA/RNA purification</li>
-		            		<li>Library prep for NGS</li>
-		            	</ul>
-		            </div> 
-	            </div>
-		
-		</div>
 		<video autoplay muted loop poster="">
-			<source src="https://atlanticlabequipment.com/wp-content/uploads/2017/02/ale2017.mp4" type="video/mp4">
+			<source src="images/video/ale_slas2017.mp4" type="video/mp4">
 			<!-- <source src="movie.ogg" type="video/ogg"> -->
 		</video>
 		<div class="video-overlay"></div>
+		<div class="home-header-content-wrap">
+			<h1>Premium Automation Solutions</h1>
+			<p class="subhead-text">We develop integrated systems for a variety of applications in the Life Science market for both the 
+			Clinical and Research segments.</p>
+			<p class="subhead-text subhead-cta">Check out what we can do!</p>
+			<div class="home-header-columns">
+		    	<!-- <a href=""><img scr="" alt=""></a>
+		    	<a href=""><img scr="" alt=""></a>
+		    	<a href=""><img scr="" alt=""></a> -->
+		    	<div class="circle-img" onclick="">
+		    		<img src="images/system_integration.png" alt="">
+		    		<h2>Integration</h2>
+		    	</div>
+		    	<div class="circle-img" onclick="">
+		    		<img src="images/system_installation.png" alt="">
+		    		<h2>Installation</h2>
+		    	</div>
+		    	<div class="circle-img" onclick="">
+		    		<img src="images/applications.png" alt="">
+		    		<h2>Applications</h2>
+		    	</div>
+			</div>
+		</div>
 	</section>
 	<section class="ads-section">
-	
+		<?php //get_featuredAds(); ?>
 	</section>
-	<section class="quote-section">
+	<section class="estimate-section">
 	
 	</section>
 	<section class="about-section">

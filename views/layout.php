@@ -108,7 +108,7 @@
 				<script>window.onload = createArrow('<?php echo $section; ?>');</script>
 				<div class="searchBar pageContent">
 					<div class="searchBar-subitem searchBar-store"><span>Automation &amp; Robotics</span></div>
-					<input type="text" name="search" placeholder="search the entire site here, or narrow your search with a store category at the left">
+					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)">
 					<div class="searchBar-goButton" id="searchBtn" onclick="">
 						<img src="images/interface/67grey_search.png">
 					</div>
