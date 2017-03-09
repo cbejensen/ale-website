@@ -7,13 +7,6 @@
 
 require_once 'connection.php';
 
-// Set the page title
-if (isset($_GET['title'])) 		$title = $_GET['title'];
-else $title = 'Premium Equipment for Less';
-
-// Define the site section
-if (isset($_GET['section'])) 	$section = $_GET['section'];
-else $section = 'none';
 
 // Define the controller/action
 if (isset($_GET['controller']) && isset($_GET['action']))
@@ -25,9 +18,47 @@ else
 {
 	$controller	= 'pages';
 	$action		= 'home';
-	$title		= 'Home';
-	$section	= 'home';
 }
 
-require_once 'views/layout.php';
+
+// Set the page title
+if (isset($_GET['title']))
+{
+	$title = $_GET['title'];
+}
+else $title = 'Home';
+
+
+// Define the site section
+if (isset($_GET['section']))
+{
+	$section = $_GET['section'];
+}
+else
+{
+	// Determine if admin
+	switch ($controller)
+	{
+		case 'admin_pages':
+		case 'admin_lists':
+		case 'admin_inventory':
+		case 'admin_qb':
+			$section = 'al_db';
+			break;
+		default:
+			$section = 'home';
+			break;
+	}
+}
+
+
+// Call appropriate layout
+if ($section != 'al_db')
+{
+	require_once 'views/layout.php';
+}
+else
+{
+	require_once 'views/layout_aldb.php';
+}
 
