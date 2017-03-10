@@ -7,7 +7,9 @@
  */
 
 require_once 'connection.php';
-
+require_once 'lib/functions.php';
+define('AL_DB',		'al_db');
+define('NOV_DB', 	'novartis_qb_integration');
 
 // Define the controller/action
 if (isset($_GET['controller']) && isset($_GET['action']))

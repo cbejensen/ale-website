@@ -11,7 +11,6 @@ class Db
 	{
 		if(!isset(self::$instance))
 		{
-			require_once 'lib/functions.php';
 			self::$instance = db_connect($database);
 		}
 		return self::$instance;

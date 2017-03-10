@@ -31,7 +31,7 @@
 		</div>
 	</section>
 	<section class="ads-section">
-		<?php //get_featuredAds(); ?>
+		<?php //getFeaturedAds(); ?>
 	</section>
 	<section class="estimate-section">
 		<span>Need an Instrument?</span>
@@ -67,7 +67,7 @@
 		<h1>Testimonials</h1>
 		<div class="testimonial">
 			<img src="" alt="">
-			<p>“We purchased a Tecan robotic liquid handler and a PlateLoc plate sealer
+			<p>"We purchased a Tecan robotic liquid handler and a PlateLoc plate sealer
 			through Atlantic Lab Equipment when we expanded our next-generation sequencing
 			capabilities in our lab. Our decision to entrust ALE with our equipment needs
 			was in part due to the cost savings but also because of the extensive technical
@@ -80,26 +80,26 @@
 		<hr class="">
 		<div class="testimonial">
 			<img src="" alt="">
-			<p>“Atlantic Lab Equipment has drastically improved the operational workflow
+			<p>"Atlantic Lab Equipment has drastically improved the operational workflow
 			of our lab, specializing in Toxicology, by fully automating the sample preparation
 			process. Now our lab is able to stand out in this very competitive market by
 			committing to a shorter turnaround time. ALE has provided excellent support in
 			the areas of competitive pricing, excellent quality of equipment purchased, and have
 			stood behind their word in making necessary repairs to meet the promised quality.
 			Their work, commitment, and integrity have been a major factor in my recommendation
-			of ALE to be a solid and reliable vendor and experts in their field of business.”</p>
+			of ALE to be a solid and reliable vendor and experts in their field of business."</p>
 			<span>-Katerina G.</span>
 		</div>
 		<hr class="">
 		<div class="testimonial">
 			<img src="" alt="">
-			<p>“The people at Atlantic Lab Equipment are extremely helpful, knowledgeable, and
+			<p>"The people at Atlantic Lab Equipment are extremely helpful, knowledgeable, and
 			easy to work with. We were able to do an on-site inspection of the instrument we
 			were interested in purchasing, and when we arrived we found the instrument already
 			cleaned, properly maintained, and running demo experiments. It made the evaluation
 			much easier and really strengthened the confidence we had in buying a used liquid
 			handler. One year later, the instrument is still running great, we saved thousands
-			of dollars, and we now have a great relationship with a quality company in ALE.”</p>			
+			of dollars, and we now have a great relationship with a quality company in ALE."</p>			
 			<span>-Joe R.</span>
 		</div>
 	</section>

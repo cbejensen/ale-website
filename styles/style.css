@@ -155,9 +155,12 @@ ul.dropDown li a:hover {
 	border-bottom-right-radius: 0;
 	border-radius: 0;
 	padding-left: 1rem;
-	background: rgba(255,255,255,0.80);
+	background: rgba(255,255,255,0.85);
 	flex-basis: 75%;
 	
+}
+.searchBar input[type="text"]:focus {
+	background: rgba(255,255,255,1);
 }
 .searchBar input[type="text"]:placeholder-shown {
 	font-style: italic;
