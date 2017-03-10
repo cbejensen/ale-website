@@ -12,4 +12,9 @@ class PagesController
 	{
 		require_once 'views/pages/error.php';
 	}
+	
+	public function admin()
+	{
+		require_once 'views/pages/admin/dashboard.php';
+	}
 }

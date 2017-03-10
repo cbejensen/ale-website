@@ -1,7 +1,8 @@
 <?php
 
 // list of controllers and their actions -- allowed values
-$controllers	= array('pages' 	=> ['home', 'products_services', 'contact', 'estimates', 'error']//,
+$controllers	= array('pages' 		=> ['home', 'products_services', 'contact', 'estimates', 'error'],
+						'admin_pages'	=> ['dashboard', 'manage_ads']
 						//''			=> ['', '']
 );
 
@@ -27,6 +28,9 @@ function call($controller, $action)
 	{
 		case 'pages':
 			$controller	= new PagesController();
+			break;
+		case 'admin_pages':
+			$controller = new Admin_PagesController();
 			break;
 	}
 
