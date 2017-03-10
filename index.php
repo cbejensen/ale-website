@@ -56,10 +56,10 @@ else
 // Call appropriate layout
 if ($section != 'al_db')
 {
-	require_once 'views/layout.php';
+	require_once 'views/layout/layout.php';
 }
 else
 {
-	require_once 'views/layout_aldb.php';
+	require_once 'views/layout/layout_aldb.php';
 }
 
