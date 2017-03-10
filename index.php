@@ -2,7 +2,8 @@
 /*
  * This is the index of the application.
  * Given a url containing valid arguments, this
- * file initializes the request.
+ * file initializes the request. If no arguments are present,
+ * the script defaults to the site's homepage.
  */
 
 require_once 'connection.php';
