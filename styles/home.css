@@ -9,6 +9,7 @@
 	clear: both;
 	overflow: hidden;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+	margin-bottom: 10em;
 }
 .home-header h1 {
 	margin: 1rem 0.5rem 0.5rem;
@@ -152,7 +153,7 @@
 		1000^ - Home, Intro/Video Section
 	----------------------------------------------*/
 	.home-header {
-/* 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1); */
+ 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
 	}
 	.home-header video {
 		width: 55% !important;
