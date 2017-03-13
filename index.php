@@ -11,6 +11,12 @@ require_once 'lib/functions.php';
 define('AL_DB',		'al_db');
 define('NOV_DB', 	'novartis_qb_integration');
 
+ini_set('error_reporting', E_ALL);
+ini_set('log_errors', 1);
+ini_set('error_log', 'logs/app-errors.log');
+ini_set('display_errors', 0);
+
+
 // Define the controller/action
 if (isset($_GET['controller']) && isset($_GET['action']))
 {

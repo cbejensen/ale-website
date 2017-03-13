@@ -1,8 +1,9 @@
 <?php
 
 // list of controllers and their actions -- allowed values
-$controllers	= array('pages' 		=> ['home', 'products_services', 'contact', 'estimates', 'error'],
-						'admin_pages'	=> ['dashboard', 'manage_ads']
+$controllers	= array('pages' 		=> ['home', 'products_services', 'contact', 'estimates', 'error', 'test'],
+						'admin_pages'	=> ['dashboard', 'manage_ads'],
+						'inventory'		=> ['addManufacturer']
 						//''			=> ['', '']
 );
 
@@ -32,6 +33,9 @@ function call($controller, $action)
 		case 'admin_pages':
 			$controller = new Admin_PagesController();
 			break;
+		case 'inventory':
+			require_once 'models/inventory_model.php';
+			$controller = new InventoryController();
 	}
 
 	// call the action

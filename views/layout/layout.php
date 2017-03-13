@@ -26,7 +26,7 @@
 		<meta name="description" content="<?php //get_metaDesc($title); ?>">
 		<meta name="author" content="Jack Brown">
 	</head>
-	<body>
+	<body id="ale-body">
 		<header class="site-header">
 			<div class="logoBar">
 				<div id="logoBar_leftBG"></div>

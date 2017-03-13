@@ -17,4 +17,9 @@ class PagesController
 	{
 		require_once 'views/pages/admin/dashboard.php';
 	}
+	
+	public function test()
+	{
+		require_once 'views/pages/test.php';
+	}
 }
