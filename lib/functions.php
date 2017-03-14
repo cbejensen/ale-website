@@ -22,7 +22,9 @@ function db_connect($database)
 			echo json_encode($error_data);
 			exit;
 		} else {
-			die($conn->connect_error); // UPDATE NEEDED: Call an alert informing the user the db connection has erred.
+			$title		=	'Connection Error';
+			$message	=	'The server failed to connect. Please retry.';
+			alertUser($title, $message);
 		}
 	}
 	return $conn;
@@ -31,6 +33,14 @@ function db_connect($database)
 function getFeaturedAds()
 {
 	$conn	=	Db::getInstance(AL_DB);
+}
+
+function alertUser($title, $message) {
+	$alert	= 	[
+			'head'		=>	$title,
+			'message'	=>	$message
+	];
+	require_once 'views/pages/error.php';
 }
 
 function mysql_entities_fix_string($conn, $string)
