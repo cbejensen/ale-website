@@ -1,0 +1,265 @@
+/*=================================================================================
+	1.0 - Header, Premium Automation Solutions 
+=================================================================================*/
+.home-header {
+	position: relative;
+	clear: both;
+	overflow: hidden;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+	margin-bottom: 10em;
+}
+.home-header h1 {
+	margin: 1rem 0.5rem 0.5rem;
+	font-size: 1.667rem;
+	text-align: center;
+	font-weight: bold;
+	text-shadow: 0 2px 5px rgba(0,0,0,0.25), 0 0 1px rgba(0,0,0,0.2);
+}
+.home-header .subhead-text {
+	padding: 0 5%;
+	font-size: 0.9rem;
+	color: #6f6f6f;
+	font-style: italic;
+	margin: 0.33rem auto;
+	max-width: 25rem;
+	text-align: justify;
+}
+.home-header .subhead-cta {
+	font-size: 1rem;
+}
+.home-header video {
+	position: relative;
+	/*float: right;*/
+	width: 100% !important;
+	height: auto !important;
+	display: block;
+	top: 0;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+}
+.video-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;	
+}
+
+/*--------------------------------------------
+	Circular Buttons, Header, Premium Automation Solutions 
+----------------------------------------------*/
+.home-header-columns {
+	margin: 1rem auto;
+	max-width: 28rem;
+}
+.circle-img {
+	width: 33%;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	margin-right: -4px;
+	padding: 0.5rem;
+}
+.circle-img img {
+	width: 100%;
+	border-radius: 50%;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.18), 0 1px 0 1px rgba(0, 0, 0, 0.14);
+}
+.circle-img h2 {
+	font-size: 0.85rem;
+	position: absolute;
+	display: block;
+	width: calc(100% - 1rem); /* Subtract total padding of parent */
+	top: 75%;
+	transform: translateY(-50%);
+	text-align: center;
+	background-color: rgba(255,255,255, 0.80);
+	font-weight: bold;
+	padding: 0.33rem 0;
+}
+
+
+/*=================================================================================
+	2.0 - Featured Ads Section
+=================================================================================*/
+.ads-section {
+	width: 100%;
+	height: 35rem;
+}
+
+
+/*=================================================================================
+	X.0 - Media Queries
+=================================================================================*/
+@media only screen and (min-width: 32rem) { /* 512px */
+	.home-header h1 {
+		font-size: 2.5rem;
+	}
+	.home-header .subhead-text {
+    	max-width: 36rem;
+    	margin-bottom: 1rem;
+	}
+	.home-header .subhead-cta {
+		font-size: 1.1rem;
+	}
+	.home-header-columns {
+		margin: 1rem auto;
+		max-width: 40rem;
+	}
+	.circle-img {
+		padding: 0.5rem 1rem;
+	}
+	.circle-img h2 {
+		width: calc(100% - 2rem);
+	}
+}
+
+
+@media only screen and (min-width: 47rem) { /* 752px */
+	/*--------------------------------------------
+		751^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header h1 {
+		font-size: 3rem;
+		margin: 1.667rem 0 1.25rem;
+	}
+	.home-header .subhead-text {
+		text-align: justify;
+    	max-width: 30rem;
+    	font-size: 1.2rem;
+	}
+	.home-header-columns {
+		max-width: 55rem;
+		width: 90%;
+	}
+	.circle-img {
+		padding: 0.5rem 2rem;
+	}
+	.circle-img h2 {
+		font-size: 1.25rem;
+		width: calc(100% - 4rem); /* Subtract total padding of parent */
+		padding: 0.33em 0;
+	}
+}
+
+
+@media only screen and (min-width: 63rem) { /* 1008px */
+	/*--------------------------------------------
+		1000^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header {
+ 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+	}
+	.home-header video {
+		width: 55% !important;
+		left: 45%;
+		z-index: -2;
+		box-shadow: initial;
+	}
+	.home-header h1 {
+		margin: 4.5rem 0rem 0.5rem 2rem;
+		font-size: 2rem;
+		text-align: left;
+	}
+	.home-header .subhead-text {
+		color: #555;
+		font-size: 0.9rem;
+		padding: 0;
+		margin: 0.33rem 0rem 0.5rem 2rem;
+	}
+	.home-header .subhead-cta {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+	}
+	.video-overlay {
+		z-index: -1;
+		width: 55%;
+		background-color: rgba(200,200,200, 0.15);
+		background: linear-gradient(to right, 
+					rgba(255,255,255,1) 0%,
+					rgba(255,255,255,.8) 5%,
+					rgba(255,255,255,0) 20%);
+	}
+	.home-header-content-wrap {
+		position: absolute;
+    	top: 0;
+    	overflow: hidden;
+    	width: 50%;
+    	top: 50%;
+   		transform: translateY(-50%);
+	}
+	.home-header-columns {
+		margin: 0;
+	}
+	.circle-img {
+		padding: 0.5rem 1.5rem;
+	}
+	.circle-img h2 {
+		font-size: 0.9rem;
+		width: calc(100% - 3rem); /* Subtract total padding of parent */
+	}
+}
+
+
+@media only screen and (min-width: 85rem) { /* 1360px */
+	/*--------------------------------------------
+		1360^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header video {
+		width: 45% !important;
+		left: 55%;
+	}
+	.video-overlay {
+		width: 45%;
+	}
+	.home-header-content-wrap {
+	    width: 100%;
+	    max-width: 85em;
+	    margin: 0 auto;
+	    left: 0;
+	    right: 0;
+	}
+	.home-header h1 {
+		font-size: 2rem;
+	}
+	.home-header-content-wrap div,
+	.home-header-content-wrap p,
+	.home-header-content-wrap h1 {
+/* 		width: 50%; */
+	}
+	.home-header-columns {
+		max-width: 55rem;
+		width: 50%;
+	}
+	.circle-img {
+    	padding: 0.5rem 1.75rem;
+	}
+	.home-header .subhead-text {
+		font-size: 1.2rem;
+		max-width: 40rem;
+	}
+}
+
+@media only screen and (min-width: 100rem) {
+	.home-header video {
+		width: 45% !important;
+		left: 55%;
+	}
+	.video-overlay {
+		width: 45%;
+	}
+	.home-header-content-wrap {
+	    width: 100%;
+	    max-width: 85em;
+	    margin: 0 auto;
+	    left: 0;
+	    right: 0;
+	}
+	.home-header h1 {
+		font-size: 3rem;
+	}
+	.home-header-content-wrap div,
+	.home-header-content-wrap p,
+	.home-header-content-wrap h1 {
+/* 		width: 50%; */
+	}
+}
