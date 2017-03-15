@@ -5,7 +5,6 @@ class WebpagesController
 	public function home()
 	{
 		require_once PAGE_PATH . '/home.php';
-		//require_once 'lib/functions.php';
 	}
 
 	public function error()
@@ -30,12 +29,12 @@ class WebpagesController
 	
 	public function products_services()
 	{
-		if (isset($_GET['page']))
+		if (!isset($_GET['page']))
 		{
+			require_once PAGE_PATH . '/products/index.php';
+		} else {
 			$page	=	htmlentities($_GET['page'], ENT_QUOTES);
 			require_once PAGE_PATH . "/products/$page.php";
-		} else {
-			require_once PAGE_PATH . '/products/index.php';
 		}
 	}
 }
