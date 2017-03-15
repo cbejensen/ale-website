@@ -1,5 +1,0 @@
-[13-Mar-2017 20:53:27 Europe/Berlin] Add Manufacturer: prepare() failed: No database selected
-[13-Mar-2017 20:54:55 Europe/Berlin] Add Manufacturer: prepare() failed: INSERT command denied to user 'guest'@'localhost' for table 'manufacturers'
-[13-Mar-2017 20:55:29 Europe/Berlin] Add Manufacturer: prepare() failed: INSERT command denied to user 'guest'@'localhost' for table 'manufacturers'
-[13-Mar-2017 20:56:19 Europe/Berlin] Add Manufacturer: prepare() failed: INSERT command denied to user 'guest'@'localhost' for table 'manufacturers'
-[13-Mar-2017 21:58:34 Europe/Berlin] Add Manufacturer: execute() failed: Duplicate entry 'AGILENT' for key 'mnfr'
