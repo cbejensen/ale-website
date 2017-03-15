@@ -14,17 +14,20 @@ function db_connect($database)
 	$conn = new mysqli($hn, $un, $pw, $db);
 	if ($conn->connect_error)
 	{
+		ini_set('error_log', 'logs/mysql-errors.log');
+		error_log('MySQL refused to connect. ' . $conn->connect_error);
 		if (isset($_POST['reqIsAjax']))
 		{
 			$error_data		=	array();
-			$error_data[]	=	'An Error Has Occurred';
-			$error_data[]	=	'Please retry your request. Sorry for the inconvenience!';
+			$error_data[]	=	'Connection Error';
+			$error_data[]	=	'The server failed to connect. Please retry your request. If the problem persists, please report this error.';
 			echo json_encode($error_data);
 			exit;
 		} else {
 			$title		=	'Connection Error';
-			$message	=	'The server failed to connect. Please retry.';
+			$message	=	'The server failed to connect. Please retry your request. If the problem persists, please report this error.';
 			alertUser($title, $message);
+			exit;
 		}
 	}
 	return $conn;
@@ -35,11 +38,12 @@ function getFeaturedAds()
 	$conn	=	Db::getInstance(AL_DB);
 }
 
-function alertUser($title, $message) {
+function alertUser($title, $message)
+{
 	$alert	= 	[
-			'head'		=>	$title,
-			'message'	=>	$message
-	];
+					'head'		=>	$title,
+					'message'	=>	$message
+				];
 	require_once 'views/pages/error.php';
 }
 
