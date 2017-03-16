@@ -9,6 +9,9 @@ class PublicController
 	
 	public function __construct()
 	{
+		/* This should be refactored using functions that can be reused between controllers.
+		 * The script should check whether someone's logged in and then act accordingly.
+		 */
 		$this->userData	=	array(	'db'	=>	array(
 									'user'	=>	'guest',
 									'pass'	=>	'default_ale_guest'

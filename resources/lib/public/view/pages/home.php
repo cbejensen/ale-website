@@ -31,7 +31,7 @@
 		</div>
 	</section>
 	<section class="ads-section">
-		<?php //getFeaturedAds(); ?>
+		<?php getFeaturedAds($this->userData); ?>
 	</section>
 	<section class="estimate-section">
 		<span>Need an Instrument?</span>
