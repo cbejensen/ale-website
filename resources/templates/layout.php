@@ -15,7 +15,7 @@
 		<title><?php echo $title; ?> | ale: Premium Lab Equipment for Less</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/default.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/style.css" media="all">
-		<link rel="stylesheet" type="text/css" href="site_content/css/home.css" media="all">
+		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/home.css" media="all">
 		<link rel="icon" type="image/ico" href="favicon_ale.ico">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
