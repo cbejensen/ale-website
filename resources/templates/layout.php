@@ -70,15 +70,15 @@
 						</li>
 						<!-- Begin Products and Services button -->
 						<li id="navBtn_prod" class="<?php if ($section == 'products') echo 'activeNavBtn';?>" onmouseover="moveArrow('products');">
-							<a href="?controller=webpages&action=products_services">Products &amp; Services</a>
+							<a href="?controller=public&action=products_services">Products &amp; Services</a>
 							<div id="navDrop_prod" class="dropDown">
 								<ul class="dropDown">
 									<li>
-										<a href="?controller=webpages&action=products_services&page=automation_solutions">
+										<a href="?controller=public&action=products_services&page=automation_solutions">
 										Premium Automation Solutions</a>
 									</li>
 									<li>
-										<a href="?controller=webpages&action=products_services&page=premium_equipment">
+										<a href="?controller=public&action=products_services&page=premium_equipment">
 										Premium Equipment</a>
 									</li>
 									<li>
@@ -86,25 +86,25 @@
 										Outlet Equipment</a>
 									</li>
 									<li>
-										<a href="?controller=webpages&action=products_services&page=new_arrivals">
+										<a href="?controller=public&action=products_services&page=new_arrivals">
 										Newly-Arrived Equipment</a>
 									</li>
 									<li>
-										<a href="?controller=webpages&action=products_services&page=monthly_specials">
+										<a href="?controller=public&action=products_services&page=monthly_specials">
 										Monthly Specials</a>
 									</li>
 									<li>
-										<a href="?controller=webpages&action=products_services&page=waters_equipment">
+										<a href="?controller=public&action=products_services&page=waters_equipment">
 										WATERS Equipment</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li id="navBtn_cont" class="<?php if ($section == 'contact') echo 'activeNavBtn';?>" onmouseover="moveArrow('contact');">
-							<a href="?controller=webpages&action=contact">Contact Us</a>
+							<a href="?controller=public&action=contact">Contact Us</a>
 						</li>
 						<li id="navBtn_est" class="<?php if ($section == 'estimates') echo 'activeNavBtn';?>" onmouseover="moveArrow('estimates');">
-							<a href="?controller=webpages&action=estimates">Request a Quote</a>
+							<a href="?controller=public&action=estimates">Request a Quote</a>
 						</li>
 					</ul>
 				</div>
