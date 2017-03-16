@@ -12,7 +12,7 @@ define('LIB_PATH', '../resources/lib');
 define('RESOURCES_PATH', '../resources');
 define('TEMPLATE_PATH', '../resources/templates');
 define('INC_PATH', '../resources/inc');
-define('PAGE_PATH', 'site_content/view/pages');
+define('PAGE_PATH', '../resources/lib/public/view/pages');
 
 require_once LIB_PATH . '/functions.php';
 

@@ -17,7 +17,7 @@ if (isset($_GET['controller']) && isset($_GET['action']))
 }
 else
 {
-	$controller	= 'webpages';
+	$controller	= 'public';
 	$action		= 'home';
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 // list of controllers and their actions -- allowed values
-$controllers	= array('webpages' 			=>	[	'home', 	'products_services', 
+$controllers	= array('public' 			=>	[	'home', 	'products_services', 
 													'contact', 	'estimates', 
 													'error', 	'test'
 													],
@@ -29,13 +29,14 @@ else
 
 function call($controller, $action)
 {
-	require_once LIB_PATH . '/controllers/' . $controller . '_controller.php';
+	//require_once LIB_PATH . '/controllers/' . $controller . '_controller.php';
 
 	// create a new instance of the needed controller
 	switch ($controller)
 	{
-		case 'webpages':
-			$controller	= new WebpagesController();
+		case 'public':
+			require_once LIB_PATH . '/public/public_controller.php';
+			$controller	= new PublicController();
 			break;
 		case 'admin_pages':
 			// Validate user before proceeding
