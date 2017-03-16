@@ -1,6 +1,6 @@
 <?php 
 
-function db_connect($database)
+function db_connect($database, $userData)
 {
 	switch ($database)
 	{

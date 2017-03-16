@@ -6,7 +6,8 @@ $controllers	= array('public' 			=>	[	'home', 	'products_services',
 													'error', 	'test'
 													],
 		
-						'admin_pages'		=> 	[	'dashboard',	'manage_ads'
+						'admin_pages'		=> 	[	'dashboard',	'documentation',
+													''
 													],
 		
 						'admin_inventory'	=> 	[	'addManufacturer'
@@ -29,8 +30,6 @@ else
 
 function call($controller, $action)
 {
-	//require_once LIB_PATH . '/controllers/' . $controller . '_controller.php';
-
 	// create a new instance of the needed controller
 	switch ($controller)
 	{
@@ -38,25 +37,32 @@ function call($controller, $action)
 			require_once LIB_PATH . '/public/public_controller.php';
 			$controller	= new PublicController();
 			break;
+			
 		case 'admin_pages':
-			// Validate user before proceeding
+			// Validate user before proceeding - Use Trusted 3rd Party Library
+			require_once LIB_PATH . '/admin/pages/pages_controller.php';
 			$controller = new Admin_PagesController();
 			break;
+			
 		case 'admin_inventory':
 			// Validate user before proceeding
-			require_once 'models/inventory_model.php';
+			require_once LIB_PATH . '/admin/inventory/inventory_controller.php';
+			require_once LIB_PATH . '/admin/inventory/inventory_model.php';
 			$controller = new InventoryController();
 			break;
+			
 		case 'admin_lists':
 			// Validate user before proceeding
-			//require_once '';
-			//$controller = new ListsController();
-			//break;
+			require_once LIB_PATH . '/admin/lists/lists_controller.php';
+			require_once LIB_PATH . '/admin/lists/lists_model.php';
+			$controller = new ListsController();
+			break;
+			
 		case 'admin_qb':
 			// Validate user before proceeding
-			//require_once '';
-			//$controller = new QbController();
-			//break;
+			require_once LIB_PATH . '/admin/qb/qb_controller.php';
+			$controller = new QbController();
+			break;
 	}
 
 	// call the action

@@ -5,6 +5,20 @@
 
 class PublicController
 {
+	private $userData;
+	
+	public function __construct()
+	{
+		$this->userData	=	array(	'db'	=>	array(
+									'user'	=>	'guest',
+									'pass'	=>	'default_ale_guest'
+								),
+								'user'	=>	array(
+									'name'		=>	'Guest'
+								)
+							);
+	}
+	
 	public function home()
 	{
 		require_once PAGE_PATH . '/home.php';
