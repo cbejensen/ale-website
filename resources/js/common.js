@@ -52,15 +52,16 @@ function alertUser(reqResponse)
 {
 	var response 	= JSON.parse(reqResponse);
 	var count		= response.length;
-	var header		= response[0];
-	var message		= response[1];
-	if (count - 2 > 0) 
+	var result		= response[0];
+	var header		= response[1];
+	var message		= response[2];
+	if (count - 3 > 0) 
 	{
 		// If there are predefined actions
 		var actions		= [];
-		for (j = 0 ; j < count - 2 ; j++)
+		for (j = 0 ; j < count - 3 ; j++)
 		{
-			actions[j]	=	response[2][j];
+			actions[j]	=	response[3][j];
 		}
 		buildAlert(header, message, actions);
 	} else {
