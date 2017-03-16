@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($_POST['reqIsAjax']))
+{
+	exit;
+}
+
 require_once '../resources/config.php';
 
 if (isset($_GET['controller']) && isset($_GET['action']))
