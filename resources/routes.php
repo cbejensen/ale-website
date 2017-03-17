@@ -35,7 +35,6 @@ function call($controller, $action)
 	{
 		case 'public':
 			require_once PUBLIC_PATH . '/public_controller.php';
-			require_once PUBLIC_PATH . '/inc/site_functions.php';
 			$controller	= new PublicController();
 			break;
 			

@@ -10,7 +10,7 @@ pay eBay's fees. Channel Advisor could also be removed from the
 equation as well, since we pay them for the ability to post listings 
 en masse on eBay.
 
-The new web application's structure is based on the MVC architecture. 
+The new web application's structure is based on the MVC pattern. 
 It takes all (non-ajax) requests at /index.php, and routes them based 
 on data in the URL. Ajax requests are routed in a very similar manner.
 
@@ -31,3 +31,6 @@ intended for all custom and third-party libraries, the config file(s),
 and other resources used by the application. The majority of files are
 outside the public webroot, since index.php and the AJAX handler are the 
 only files called through the browser.
+
+You can find more component-specific information and documentation in 
+the readmes within the subdirectories.

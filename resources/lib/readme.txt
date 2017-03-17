@@ -7,7 +7,7 @@ Contents:
 admin		-	This library contains a number of modules related to the 
 			administration of the website, inventory, etc. You'll
 			find more in-depth descriptions of these modules in
-			the readme in this directory.
+			the readme within this directory.
 
 controllers	-	This directory will be phased out soon. The current
 			inventory management system keeps all controllers in

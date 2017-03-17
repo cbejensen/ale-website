@@ -37,7 +37,7 @@ function db_query($q, &$conn) {
 	return $result;
 }
 
-function handleError($errorData, &$conn, $source)
+function handleError($errorData, &$conn, $source = 0)
 {
 	// array $errorData, obj $conn, string $source
 	// $errorData must contain at least 3 keys: 'title', 'message', and 'error'

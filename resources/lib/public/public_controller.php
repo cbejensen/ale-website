@@ -6,12 +6,14 @@
 class PublicController
 {
 	private $userData;
+	private $model;
 	
 	public function __construct()
 	{
-		/* This should be refactored using functions that can be reused between controllers.
-		 * The script should check whether someone's logged in and then act accordingly.
-		 */
+		/* The userData assignment should be refactored using functions that can be reused between controllers.
+		 * The script should check whether someone's logged in and then act accordingly, rather
+		 * than assigning these hard-coded values.
+		 */ 
 		$this->userData	=	array(	'db'	=>	array(
 									'user'	=>	'guest',
 									'pass'	=>	'default_ale_guest'
@@ -20,6 +22,10 @@ class PublicController
 									'name'		=>	'Guest'
 								)
 							);
+		
+		// Require the model, create new instance.
+		require_once PUBLIC_PATH . '/public_model.php';
+		$this->model	=	new PublicModel;
 	}
 	
 	public function home()
