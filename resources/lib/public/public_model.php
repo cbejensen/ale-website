@@ -32,7 +32,7 @@ class PublicModel
 		{
 			$r->data_seek($j);
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
-			include PUBLIC_PATH . '/view/inc/featured_ad.php';
+			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
 		}
 	}
 }

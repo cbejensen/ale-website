@@ -309,7 +309,7 @@ ul.dropDown li a:hover {
 	4.0 - Footer
 =================================================================================*/
 .foot-main {
-	background-image: url(../../public_html/img/colorful-microplate.png);
+	background-image: url(../../public_html/img/interface/colorful-microplate.png);
 	color: #fff;
 }
 .foot-section {
@@ -445,7 +445,7 @@ ul.dropDown li a:hover {
 
 @media only screen and (min-width: 751px) {
 	.foot-main {
-		background-image: url(../../public_html/img/tecanEVO-background.png);
+		background-image: url(../../public_html/img/interface/tecanEVO-background.png);
 		background-size: cover;
 	}
 	.foot-main-container {

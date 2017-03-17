@@ -33,11 +33,11 @@
 				<div id="logoBar_rightBG"></div>
 				<div class="logoBar_content pageContent">
 					<img 
-					srcset="img/aleBanner-250w.png 250w,
-							img/aleBanner.png 500w"
+					srcset="img/interface/aleBanner-250w.png 250w,
+							img/interface/aleBanner.png 500w"
 					sizes="(max-width: 524px) 250px,
 							500px"
-					src="img/aleBanner.png" 
+					src="img/interface/aleBanner.png" 
 					alt="ale: Providing refurbished lab equipment, specializing in Laboratory Automation.">
 				</div>
 			</div>
