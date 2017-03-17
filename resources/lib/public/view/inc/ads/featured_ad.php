@@ -4,8 +4,8 @@
  */
 ?>
 <div class="home-featured-ad">
-	<img src="<?php echo $ad['imgSrc']; ?>" alt="<?php echo $ad['imgAlt']; ?>">
-	<h2><?php echo $ad['title']; ?></h2>
+	<img src="<?php echo $ad['url']; ?>" alt="<?php echo $ad['alt']; ?>">
+	<h2><?php echo $title; ?></h2>
 	<p><?php echo $ad['description']; ?></p>
 	<div>
 		<h3>Our Price:</h3>
