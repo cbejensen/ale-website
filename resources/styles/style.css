@@ -456,7 +456,7 @@ ul.dropDown li a:hover {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	max-height: calc(30rem - 600px);
+/* 	height: calc(30rem - 600px); DISABLING THIS FIXED THE FLEXBOX */
 	justify-content: space-between;
 }
 .featAd-content .featAd-text {

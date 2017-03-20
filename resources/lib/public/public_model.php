@@ -16,6 +16,7 @@ class PublicModel
 					general_listings.testing,		general_listings.warranty,
 					general_listings.components,	general_listings.condition_note,
 					manufacturers.mnfr, 			models.model,
+					models.function_desc,
 					brands.brand,					ad_photos.url,
 					ad_photos.alt
 					FROM general_listings
