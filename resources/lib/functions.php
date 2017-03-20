@@ -86,7 +86,7 @@ function alertUser($title, $message)
 					'head'		=>	$title,
 					'message'	=>	$message
 				];
-	require_once 'site_content/view/pages/error.php';
+	require_once PUBLIC_PATH . '/view/pages/error.php';
 }
 
 function mysql_entities_fix_string($conn, $string)

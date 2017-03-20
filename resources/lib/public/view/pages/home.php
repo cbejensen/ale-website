@@ -16,15 +16,15 @@
 		    	<a href=""><img scr="" alt=""></a>
 		    	<a href=""><img scr="" alt=""></a> -->
 		    	<div class="circle-img" onclick="">
-		    		<img src="img/content/system_integration.png" alt="">
+		    		<img class="material" src="img/content/system_integration.png" alt="">
 		    		<h2>Integration</h2>
 		    	</div>
 		    	<div class="circle-img" onclick="">
-		    		<img src="img/content/system_installation.png" alt="">
+		    		<img class="material" src="img/content/system_installation.png" alt="">
 		    		<h2>Installation</h2>
 		    	</div>
 		    	<div class="circle-img" onclick="">
-		    		<img src="img/content/applications.png" alt="">
+		    		<img class="material" src="img/content/applications.png" alt="">
 		    		<h2>Applications</h2>
 		    	</div>
 			</div>

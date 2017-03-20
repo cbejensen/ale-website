@@ -10,30 +10,27 @@ class PublicModel
 	{
 		$conn	=	db_connect(AL_DB, $userData);
 		
-		$q		=	"SELECT 
-					a.mnfr, 		b.model, 		b.function_desc, 	c.brand, 			
-					d.title_extn,	d.description, 	d.price, 			d.item_condition, 	
-					d.testing,		d.warranty,		d.components, 		d.condition_note,
-					f.url,			f.alt,			f.display_order
-					FROM
-					manufacturers a, 		models b, 				brands c,
-					general_listings d, 	adverts_listings e,		ad_photos f
-					WHERE
-					a.id	=	d.mnfrID AND
-					b.id	=	d.modelID AND
-					c.id	=	d.brandID AND
-					d.id	=	e.listingID AND
-					d.id	=	f.listingID AND
-					e.type	=	'featured' AND
-					e.start_date	<=	DATE(NOW()) AND
-					e.end_date		>	DATE(NOW());";
-		
-		/*
-		 * THIS QUERY NEEDS TO BE REFORMED WITH JOINS/UNIONS
-		 */
+		$q		=	"SELECT
+					general_listings.title_extn,	general_listings.description,
+					general_listings.price,			general_listings.item_condition,
+					general_listings.testing,		general_listings.warranty,
+					general_listings.components,	general_listings.condition_note,
+					manufacturers.mnfr, 			models.model,
+					brands.brand,					ad_photos.url,
+					ad_photos.alt
+					FROM general_listings
+					LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+					LEFT JOIN models ON general_listings.modelID = models.id
+					LEFT JOIN brands ON general_listings.brandID = brands.id
+					LEFT JOIN ad_photos ON general_listings.id = ad_photos.listingID 
+					AND ad_photos.display_order = 1
+                    JOIN adverts_listings ON general_listings.id = adverts_listings.listingID 
+					AND adverts_listings.type = 'featured' 
+					AND adverts_listings.start_date <= DATE(NOW()) 
+					AND adverts_listings.end_date > DATE(NOW());";
 		
 		$r		=	db_query($q, $conn);
-		$count	=	10; //$r->num_rows;
+		($r->num_rows < 10) ? $count = $r->num_rows : $count = 10;
 		for ($j = 0 ; $j < $count ; $j++)
 		{
 			$r->data_seek($j);
