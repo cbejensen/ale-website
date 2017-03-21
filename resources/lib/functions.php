@@ -1,6 +1,20 @@
-<?php 
-function db_connect($database, $userData)
+<?php
+function setDefaultUser()
 {
+	$userData	=	array(	'db'	=>	array(
+								'user'	=>	'guest',
+								'pass'	=>	'default_ale_guest'
+							),
+							'user'	=>	array(
+								'name'		=>	'Guest'
+							)
+					);
+	return $userData;
+}
+
+function db_connect($database, $userData = 0)
+{
+	if (!$userData) $userData = setDefaultUser();
 	switch ($database)
 	{
 		case AL_DB:

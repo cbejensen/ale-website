@@ -201,3 +201,6 @@
 [20-Mar-2017 17:51:35 America/New_York] PHP Notice:  Undefined index: function_desc in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 38
 [20-Mar-2017 17:52:01 America/New_York] PHP Notice:  Undefined index: function_desc in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 38
 [20-Mar-2017 17:52:01 America/New_York] PHP Notice:  Undefined index: function_desc in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 38
+[21-Mar-2017 12:00:11 America/New_York] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 42
+[21-Mar-2017 12:00:24 America/New_York] PHP Parse error:  syntax error, unexpected ':', expecting '(' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 39
+[21-Mar-2017 12:00:34 America/New_York] PHP Parse error:  syntax error, unexpected ':', expecting '(' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 39

@@ -271,6 +271,17 @@ ul.dropDown li a:hover {
 .standard-button:active {
 	
 }
+.gradient-button {
+	text-align: center;
+	color: #fff;
+	letter-spacing: 0.05rem;
+	background-color: #2059AB;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#4d86da),color-stop(100%,#2a6bca));
+	background: gradient(linear,left top,left bottom,color-stop(0,#4d86da),color-stop(100%,#2a6bca));
+	border: 1px solid #2867c2;/*#184b94;*/
+    border-bottom-color: #245bac;
+    border-radius: 2px;
+}
 .social-icon {
 	width: 3em;
     height: 3em;
@@ -402,42 +413,52 @@ ul.dropDown li a:hover {
  * A listing is a whole page advertising an item/service.
  */
 .featured-ad {
-	width: 15rem;
+	width: 14rem;
 	background-color: #f5f5f5;
-/* 	border: 1px solid #ccc; */
 	border-radius: 3px;
 	overflow: hidden;
-	padding: 0.75rem;
-	height: 25rem;
-	display: inline-block;
+	padding: 0.5rem;
+	height: 20rem;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: space-between;
 	margin-right: 1rem;
+	position: relative;
+	transition: 0.5s ease;
 } 
 .featured-ad img {
 	display: block;
 	width: 100%; /*calc(100% - 1.5rem);*/
-	padding: 0.333em;
+/* 	padding: 0.333em; */
 	background-color: #fbfbfb;
 	margin-bottom: 0.75rem;
+	flex-basis: auto;
+	flex-grow: 1;
+}
+.featAd-text {
+	flex-basis: calc(20rem - 600px);
+	flex-grow: 2;
 }
 .featured-ad h2 {
-	font-size: 1.15em;
+	white-space: normal;
+	font-size: 0.95rem;
 	font-weight: bold;
 	color: #454545;
-	margin: 0rem 0 0.5rem;
+	margin: 0rem 0 0.25rem;
 }
 .featured-ad p {
-/* 	white-space: nowrap; */
-	color: #555;
+    white-space: normal;
+	color: #656565;
   	overflow: hidden;
  	text-overflow: ellipsis;
  	line-height: 0.9rem;
- 	max-height: 2.7rem;
+ 	max-height: 1.8rem;
  	position: relative;
  	text-align: justify;
- 	margin-right: 1rem;
+ 	margin: 0 1rem 0.25rem 0;
  	font-size: 0.85rem;
 }
-/* No standard multi-line ellipse text-overflow, 
+/* No standard multi-line ellipse text-overflow in CSS, 
  * using this hacky solution instead: 
  */
 .featured-ad p:after {
@@ -452,24 +473,10 @@ ul.dropDown li a:hover {
 				rgba(245,245,245,1) 40%,
 				rgba(245,245,245,0) 60%);
 }
-.featAd-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-/* 	height: calc(30rem - 600px); DISABLING THIS FIXED THE FLEXBOX */
-	justify-content: space-between;
-}
-.featAd-content .featAd-text {
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: calc(25rem - 600px);
-	
-}
-.featAd-content .featAd-cta {
+.featAd-cta {
 	flex-grow: 2;
-	flex-shrink: 2;
-	flex-basis: 5rem;
 	margin: 0.5rem 0;
+	position: relative;
 }
 .adPrice,
 .adCta {
@@ -477,15 +484,31 @@ ul.dropDown li a:hover {
 	width: 50%;
 	margin-right: -4px;
 	position: relative;
-	min-height: 3rem;
+}
+.adPrice {
+	color: #656565;
+	font-size: 0.95rem;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.dollarSign {
+/* 	vertical-align: super; */
+	font-size: 0.70rem;
+}
+.adCta {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 .adCta a {
-	text-align: center;
 	display: inline-block;
-	position: absolute;
-	right: 0.75rem;
-	bottom: 0;
 	font-size: 0.75rem;
+	padding: 0.4rem 0.33rem;
+	position: relative;
+	top: 0;
+    left: 100%;
+    transform: translateX(-105%);
 }
 
 

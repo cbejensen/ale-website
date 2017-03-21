@@ -56,6 +56,7 @@ else
 // Call appropriate layout
 if ($section != 'al_db')
 {
+	require_once PUBLIC_PATH . '/public_model.php';
 	require_once TEMPLATE_PATH . '/layout.php';
 }
 else

@@ -12,7 +12,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo $title; ?> | ale: Premium Lab Equipment for Less</title>
+		<?php if ($section == 'home'): ?>
+		<title>Atlantic Lab Equipment | Premium Equipment &amp; Automation</title>
+		<?php else: ?>
+		<title><?php echo $title; ?> | ALE: Premium Lab Equipment &amp; Automation</title>
+		<?php endif; ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/default.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/style.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/home.css" media="all">
@@ -23,7 +27,7 @@
 		<script type="text/javascript" src="../resources/js/common.js"></script>
 		<meta charset="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php //get_metaDesc($title); ?>">
+		<meta name="description" content="<?php //PublicModel::get_metaDesc($title); ?>">
 		<meta name="author" content="Jack Brown">
 	</head>
 	<body id="ale-body">
@@ -70,15 +74,15 @@
 						</li>
 						<!-- Begin Products and Services button -->
 						<li id="navBtn_prod" class="<?php if ($section == 'products') echo 'activeNavBtn';?>" onmouseover="moveArrow('products');">
-							<a href="?controller=public&action=products_services">Products &amp; Services</a>
+							<a href="?controller=public&action=products_services&title=Products%20%26%20Services&section=products">Products &amp; Services</a>
 							<div id="navDrop_prod" class="dropDown">
 								<ul class="dropDown">
 									<li>
-										<a href="?controller=public&action=products_services&page=automation_solutions">
+										<a href="?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions&section=products">
 										Premium Automation Solutions</a>
 									</li>
 									<li>
-										<a href="?controller=public&action=products_services&page=premium_equipment">
+										<a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products">
 										Premium Equipment</a>
 									</li>
 									<li>
@@ -86,25 +90,25 @@
 										Outlet Equipment</a>
 									</li>
 									<li>
-										<a href="?controller=public&action=products_services&page=new_arrivals">
+										<a href="?controller=public&action=products_services&page=new_arrivals&title=Newly-Arrived%20Equipment&section=products">
 										Newly-Arrived Equipment</a>
 									</li>
 									<li>
-										<a href="?controller=public&action=products_services&page=monthly_specials">
+										<a href="?controller=public&action=products_services&page=monthly_specials&title=Monthly%20Specials&section=products">
 										Monthly Specials</a>
 									</li>
 									<li>
-										<a href="?controller=public&action=products_services&page=waters_equipment">
+										<a href="?controller=public&action=products_services&page=waters_equipment&title=WATERS%20Equipment&section=products">
 										WATERS Equipment</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li id="navBtn_cont" class="<?php if ($section == 'contact') echo 'activeNavBtn';?>" onmouseover="moveArrow('contact');">
-							<a href="?controller=public&action=contact">Contact Us</a>
+							<a href="?controller=public&action=contact&title=Contact%20Us&section=contact">Contact Us</a>
 						</li>
 						<li id="navBtn_est" class="<?php if ($section == 'estimates') echo 'activeNavBtn';?>" onmouseover="moveArrow('estimates');">
-							<a href="?controller=public&action=estimates">Request a Quote</a>
+							<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">Request a Quote</a>
 						</li>
 					</ul>
 				</div>

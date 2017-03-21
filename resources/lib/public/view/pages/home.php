@@ -31,7 +31,11 @@
 		</div>
 	</section>
 	<section class="ads-section">
-		<?php $this->model->getFeaturedAds($this->userData); ?>
+		<span class="left-arrow"></span>
+		<div class="ads-wrap">
+			<?php $this->model->getFeaturedAds($this->userData); ?>
+		</div>
+		<span class="right-arrow"></span>
 	</section>
 	<section class="estimate-section">
 		<span>Need an Instrument?</span>

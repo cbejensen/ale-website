@@ -40,4 +40,10 @@ class PublicModel
 			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
 		}
 	}
+	
+	public static function get_metaDesc($pageTitle)
+	{	
+		$conn	=	db_connect(AL_DB);
+		$q		=	"SELECT description FROM meta_desc WHERE page='$pageTitle';";
+	}
 }

@@ -14,17 +14,18 @@ class PublicController
 		 * The script should check whether someone's logged in and then act accordingly, rather
 		 * than assigning these hard-coded values.
 		 */ 
-		$this->userData	=	array(	'db'	=>	array(
-									'user'	=>	'guest',
-									'pass'	=>	'default_ale_guest'
-								),
-								'user'	=>	array(
-									'name'		=>	'Guest'
-								)
-							);
+		$this->userData	= setDefaultUser();
 		
-		// Require the model, create new instance.
-		require_once PUBLIC_PATH . '/public_model.php';
+		/* As an example of the above comment:
+		 * 
+		 * 	if (!$user->currentUser) $this->userData = setDefaultUser();
+		 *  else {
+		 *  	if ($user->revalidateUser()) $this->userData = $user->userData;
+		 *  	else //alert the user they've been logged out.
+		 *  }
+		 */
+		
+		// Create an instance of the model.
 		$this->model	=	new PublicModel;
 	}
 	
