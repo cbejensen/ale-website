@@ -9,7 +9,7 @@
 	z-index: 10;
 }
 .logoBar {
-	border-bottom: 0.25rem solid #75cf19;
+	border-bottom: 0.25rem solid #3EC70C; /* #75cf19 */
 	position: relative;
 	z-index: 2;
 }
@@ -115,7 +115,7 @@ ul.dropDown li a:hover {
 	height: 0; 
 	border-left: 7px solid transparent;
 	border-right: 7px solid transparent;
-	border-top: 7px solid #75cf19;
+	border-top: 7px solid #3EC70C; /* #75cf19 */
 	position: absolute;
 	vertical-align: top;
 	top: 0;
@@ -249,6 +249,12 @@ ul.dropDown li a:hover {
 .pageContent {
 	max-width: 85rem; /* ~1000px (83em) */
 	margin: 0 auto;
+}
+.section-head {
+	font-weight: bold;
+	text-shadow: 0 2px 5px rgba(0,0,0,0.25), 0 0 1px rgba(0,0,0,0.2);
+	color: #252525;
+	margin: 0 auto 1rem;
 }
 .standard-button {
     background: #93D66D;

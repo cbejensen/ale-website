@@ -1,3 +1,4 @@
+<script src="../resources/lib/public/js/public.js"></script>
 <main class="home-main site-main">
 	<section class="home-header">
 		<video autoplay muted loop poster="">
@@ -6,7 +7,7 @@
 		</video>
 		<div class="video-overlay"></div>
 		<div class="home-header-content-wrap">
-			<h1>Premium Automation Solutions</h1>
+			<h1 class="section-head">Premium Automation Solutions</h1>
 			<p class="subhead-text">We develop integrated systems for a variety of 
 			applications in the Life Science market for both the Clinical and 
 			Research segments.</p>
@@ -30,20 +31,38 @@
 			</div>
 		</div>
 	</section>
-	<section class="ads-section">
-		<span class="left-arrow"></span>
+	<section class="ads-section" onmouseover="changeNavArrows(1);" onmouseleave="changeNavArrows(0);">
+		<h1 class="section-head">This Week's Featured Equipment</h1>
+		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0);">
 		<div class="ads-wrap">
 			<?php $this->model->getFeaturedAds($this->userData); ?>
 		</div>
-		<span class="right-arrow"></span>
+		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1)">
 	</section>
 	<section class="estimate-section">
-		<span>Need an Instrument?</span>
-		<h1>Request a Quote!</h1>
-		<p>Click here to request a quote for any piece of equipment, 
-		even if you don't see it on our site. We'll contact you
-		as soon as possible.</p>
-		<a href="">Go!</a>
+		<div class="pageContent">
+			<div class="estimate-intro">
+				<h1 class="section-head">Get Better Equipment &#8212; For Less</h1>
+				<p class="subhead">We help labs save money on first-rate equipment
+				every day.</p>
+				<!-- <h2>Start a Conversation!</h2> -->
+				<p>Ask a question with the provided form or 
+				<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">request a quote</a>
+				for any instrument, even if you don't see it here.</p>
+			</div>
+			<div class="estimate-cta">
+				<h3 class="material gradient-button">Get Started Today!</h3>
+				<div class="estimate-form material">
+					<input type="text" name="firstName" placeholder="First name *">
+					<input type="text" name="lastName" placeholder="Last name *">
+					<input type="text" name="email" placeholder="Email address *">
+					<span class="hr"></span>
+					<textarea rows="4">Ask a Question Here</textarea>
+					<span class="hr"></span>
+					<span class="button gradient-button">Start a Conversation</span>
+				</div>
+			</div>
+		</div>
 	</section>
 	<section class="about-section">
 		<h1>About Atlantic Lab Equipment</h1>
