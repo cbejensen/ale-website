@@ -29,7 +29,8 @@ class PublicModel
                     JOIN adverts_listings ON general_listings.id = adverts_listings.listingID 
 					AND adverts_listings.type = 'featured' 
 					AND adverts_listings.start_date <= DATE(NOW()) 
-					AND adverts_listings.end_date > DATE(NOW());";
+					AND adverts_listings.end_date > DATE(NOW())
+					ORDER BY RAND();";
 		
 		$r		=	db_query($q, $conn);
 		($r->num_rows < 10) ? $count = $r->num_rows : $count = 10;

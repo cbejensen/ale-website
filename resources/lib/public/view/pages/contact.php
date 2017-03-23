@@ -6,22 +6,22 @@
  * eventually be stored in the site's database.
  */
 ?>
-<main class="contact-main site-main">
-	<h1>Contact Us</h1>
-	<section class="contact-info-section">
+<main class="contact-main site-main pageContent">
+	<h1 class="section-head">Contact Us</h1>
+	<section class="contact-info-section contact-info">
 		<div class="contact-info-subsection">
-			<h2>Phone, Email &amp; Fax</h2>
+			<h2 class="section-head">Phone, Email &amp; Fax</h2>
 			<ul>
-				<li>Phone: (978) 740-2400</li>
-				<li>Toll Free: (866) 484-6031</li>
-				<li class="fax-info">Fax: (978) 740-5678</li>
-				<li class="other-info">atlanticlabequipment.com</li>
-				<li class="other-info">Email: answers@atlanticlabequipemnt.com</li>
+				<li>Phone: <span class="info">(978) 740-2400</span></li>
+				<li>Toll Free: <span class="info">(866) 484-6031</span></li>
+				<li class="fax-info">Fax: <span class="info">(978) 740-5678</span></li>
+				<li class="other-info">Website: <span class="info">atlanticlabequipment.com</span></li>
+				<li class="other-info">Email: <span class="info">answers@atlanticlabequipemnt.com</span></li>
 			</ul>
 		</div>
-		<hr class="subsection-divider">
-		<div class="contact-info-subsection">
-			<h2>Shipping Address</h2>
+		<hr class="section-divider">
+		<div class="contact-info-subsection right-section">
+			<h2 class="section-head">Shipping Address</h2>
 			<address>
 				Atlantic Lab Equipment, Inc.<br>
 				45 Congress St.<br>
@@ -29,37 +29,36 @@
 				Salem, MA 01970<br>
 			</address>
 		</div>
-		<hr class="subsection-divider">
+		<hr class="section-divider">
 		<div class="contact-info-subsection">
-			<h2>Mailing Address</h2>
+			<h2 class="section-head">Mailing Address</h2>
 			<address>
 				Atlanitc Lab Equipment, Inc.<br>
 				P.O. Box &#35;4405<br>
 				Salem, MA 01970-4405
 			</address>
 		</div>		
-		<hr class="subsection-divider">
-		<div class="contact-info-subsection">
-			<h2>Directions to ALE</h2>
+		<hr class="section-divider">
+		<div class="contact-info-subsection right-section">
+			<h2 class="section-head">Directions to ALE</h2>
 			<p>We would be delighted if you came to visit.
 			Please feel free to call us to set up an
 			appointment.</p>
 			<a href="">Get Directions</a>
 		</div>
 	</section>
-	<section class="contact-info-section">
-		<h2>Ask a Question</h2>
-		<p>We're always happy to answer any questions you may have.
-		Please fill out the form below to send us a message. Our goal
-		is to contact you as soon as possible.</p>
-		<form action="/?controller=forms&action=processContactForm" method="post">
-			<label>Name</label>
-			<input type="text" name="name">
-			<label>Email</label>
-			<input type="text" name="email">
-			<label>Message</label>
-			<textarea rows="5" name="message"></textarea>
-			<input type="submit" value="Submit">
-		</form>
+	<section class="contact-info-section form-section">
+		<div class="estimate-cta">
+				<h3 class="material gradient-button">Ask us a Question</h3>
+				<div class="estimate-form material">
+					<input type="text" name="firstName" placeholder="First name *">
+					<input type="text" name="lastName" placeholder="Last name *">
+					<input type="text" name="email" placeholder="Email address *">
+					<span class="hr"></span>
+					<textarea rows="10" placeholder="Ask your question here"></textarea>
+					<span class="hr"></span>
+					<span class="button gradient-button">Start a Conversation</span>
+				</div>
+			</div>
 	</section>
 </main>

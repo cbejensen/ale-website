@@ -204,3 +204,11 @@
 [21-Mar-2017 12:00:11 America/New_York] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 42
 [21-Mar-2017 12:00:24 America/New_York] PHP Parse error:  syntax error, unexpected ':', expecting '(' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 39
 [21-Mar-2017 12:00:34 America/New_York] PHP Parse error:  syntax error, unexpected ':', expecting '(' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 39
+[23-Mar-2017 11:36:12 America/New_York] PHP Fatal error:  Call to a member function error() on string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 69
+[23-Mar-2017 11:36:13 America/New_York] PHP Fatal error:  Call to a member function error() on string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 69
+[23-Mar-2017 15:48:48 America/New_York] PHP Strict Standards:  Only variables should be passed by reference in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 34
+[23-Mar-2017 15:48:48 America/New_York] PHP Warning:  shuffle() expects parameter 1 to be array, object given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 34
+[23-Mar-2017 15:48:48 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 35
+[23-Mar-2017 15:48:48 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 35
+[23-Mar-2017 15:49:15 America/New_York] PHP Warning:  shuffle() expects parameter 1 to be array, object given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 36
+[23-Mar-2017 15:49:22 America/New_York] PHP Warning:  shuffle() expects parameter 1 to be array, object given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 36

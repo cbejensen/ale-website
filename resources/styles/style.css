@@ -35,6 +35,45 @@
 	position: relative;
 	z-index: 2;
 }
+.header-info {
+	position: absolute;
+	max-height: 70px;
+/* 	border: 1px solid blue; */
+	right: 0;
+	bottom: 0.33rem;
+}
+.header-info span {
+	display: block;
+	margin-bottom: 0.333rem;
+	font-weight: bold;
+	font-style: italic;
+	color: #555;
+	position: relative;
+}
+.header-info .phone {
+	font-size: 1.2rem;
+/* 	text-align: right; */
+}
+.header-info .phone:before,
+.header-info .email:before {
+	content: '';
+	width: 0.95rem;
+	height: 0.95rem;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	left: -1.25rem;
+	top: 0.1rem;
+}
+.header-info .phone:before {
+	background-image: url(../../public_html/img/interface/phone-icon.png);
+	transform: rotate(-30deg);
+	top: 0.2rem;
+}
+.header-info .email:before {
+	background-image: url(../../public_html/img/interface/mail-icon.png);
+}
 
 
 /*=================================================================================
@@ -287,6 +326,14 @@ ul.dropDown li a:hover {
 	border: 1px solid #2867c2;/*#184b94;*/
     border-bottom-color: #245bac;
     border-radius: 2px;
+}
+.section-divider {
+	background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    border: 0px solid white;
+    height: 1px;
 }
 .social-icon {
 	width: 3em;

@@ -1,0 +1,63 @@
+/*=================================================================================
+	1.0 - Contact Page
+=================================================================================*/
+.contact-main {
+/* 	max-width: 65rem; */
+}
+.contact-main hr {
+	display: none;
+}
+.contact-main h1 {
+	margin: 6rem 0 3rem;
+	font-size: 3rem;
+}
+.contact-main section {
+	margin-right: -4px;
+	display: inline-block;
+	width: 45%;
+	position: relative;
+}
+.contact-main h2 {
+	font-size: 1.33rem;
+}
+.contact-main li {
+/* 	font-weight: bold; */
+	line-height: 1.33;
+	position: relative;
+	list-style-type: none;
+}
+.contact-main .info {
+	position: absolute;
+	left: 30%;
+}
+.contact-main .fax-info {
+	margin-bottom: 1rem;
+}
+.contact-main .section-divider {
+	margin: 2rem 0;
+}
+.form-section {
+	position: relative;
+	left: 10%;
+	top: -5rem;
+}
+.form-section .estimate-cta {
+	width: 100%;
+	left: 0;
+}
+.contact-info {
+	margin-bottom: 3rem;
+/* 	padding: 0 1rem; */
+	
+}
+.contact-info-subsection {
+	display: inline-block;
+	width: 50%;
+	padding-right: 2rem;
+	margin: 0 -4px 3rem 0;
+}
+.contact-main .right-section {
+	position: relative;
+	left: 4rem;
+	width: calc(50% - 4rem);
+}

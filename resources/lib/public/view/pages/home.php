@@ -64,32 +64,45 @@
 			</div>
 		</div>
 	</section>
+	<hr class="section-divider">
+	<a name="about"></a>
 	<section class="about-section">
-		<h1>About Atlantic Lab Equipment</h1>
-		<p>Atlantic Lab Equipment provides Premium Automation Solutions with refurbished
-		liquid handling, automation, HPLC, GCMS, LCMS, and other biotech equipment.
-		Based in Salem, Massachusetts, Atlantic Lab Equipment has served labs locally,
-		across the country, and internationally for over 14 years.</p>
-		<p>Please call or email ALE when you need help with automation and liquid
-		handling or simply need to buy excellent equipment for less. Our customers
-		include some of the largest universities, biotech, pharmaceutical, chemical,
-		research, and analytical laboratories in North America, as well as start-ups,
-		small businesses, and international laboratories.</p>
-		<p>Altantic Lab Equipment provides reliable products backed by outstanding service.
-		Our extensive inventory includes liquid handlers, laboratory automation instruments,
-		analytical systems, thermal cyclers, PCR systems, DNA sequencers, imaging systems, microplate
-		readers &amp; washers, and other bench-top lab equipment to meet your needs.</p>
+		<div class="wrapper pageContent">
+			<div class="about-wrapper">
+				<h1 class="section-head">About Atlantic Lab Equipment</h1>
+				<p>Atlantic Lab Equipment provides 
+				<a href="?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions&section=products">Premium Automation Solutions</a> 
+				with refurbished
+				liquid handling, automation, HPLC, GCMS, LCMS, and other biotech equipment.
+				Based in Salem, Massachusetts, Atlantic Lab Equipment has served labs locally,
+				across the country, and internationally for over 14 years.</p>
+				<p>Please call or email ALE when you need help with <a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products">automation and liquid
+				handling</a> or simply need to buy excellent equipment for less. Our customers
+				include some of the largest universities, biotech, pharmaceutical, chemical,
+				research, and analytical laboratories in North America, as well as start-ups,
+				small businesses, and international laboratories.</p>
+				<p>Altantic Lab Equipment provides <a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products">reliable products backed by outstanding service</a>.
+				Our extensive inventory includes liquid handlers, laboratory automation instruments,
+				analytical systems, thermal cyclers, PCR systems, DNA sequencers, imaging systems, microplate
+				readers &amp; washers, and other bench-top lab equipment to meet your needs.</p>
+			</div>
+			<a name="mission"></a>
+			<div class="mission-wrapper">
+				<div class="bg"></div>
+				<h1 class="section-head">Mission Statement</h1>
+				<p style="font-weight: normal">Atlantic Lab Equipment helps labs save money by providing premium automation
+				solutions with first-rate refurbished robots. We also buy surplus.</p>
+				<p>Our mission
+				is to remove the risk from buying previously owned instrumentation.</p>
+			</div>
+		</div>
 	</section>
-	<section class="mission-section">
-		<h1>Mission Statement</h1>
-		<p>Atlantic Lab Equipment helps labs save money by providing premium automation
-		solutions with first-rate refurbished robots. We also buy surplus. Our mission
-		is to remove the risk from buying previously owned instrumentation.</p>
-	</section>
-	<section class="testimonials-section">
-		<h1>Testimonials</h1>
+	<hr class="section-divider">
+	<div id="testimonials"></div>
+	<section class="testimonials-section pageContent">
+		<h1 class="section-head">Testimonials</h1>
 		<div class="testimonial">
-			<img src="" alt="">
+			<img src="img/content/liz-f.png" alt="Liz F." class="material">
 			<p>"We purchased a Tecan robotic liquid handler and a PlateLoc plate sealer
 			through Atlantic Lab Equipment when we expanded our next-generation sequencing
 			capabilities in our lab. Our decision to entrust ALE with our equipment needs
@@ -102,7 +115,7 @@
 		</div>
 		<hr class="">
 		<div class="testimonial">
-			<img src="" alt="">
+			<img src="img/content/katerina-g.png" alt="Katerina G." class="material">
 			<p>"Atlantic Lab Equipment has drastically improved the operational workflow
 			of our lab, specializing in Toxicology, by fully automating the sample preparation
 			process. Now our lab is able to stand out in this very competitive market by
@@ -115,7 +128,7 @@
 		</div>
 		<hr class="">
 		<div class="testimonial">
-			<img src="" alt="">
+			<img src="img/content/joe-r.png" alt="Joe R." class="material">
 			<p>"The people at Atlantic Lab Equipment are extremely helpful, knowledgeable, and
 			easy to work with. We were able to do an on-site inspection of the instrument we
 			were interested in purchasing, and when we arrived we found the instrument already

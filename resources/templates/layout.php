@@ -20,6 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/default.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/style.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/home.css" media="all">
+		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/contact.css" media="all">
 		<link rel="icon" type="image/ico" href="favicon_ale.ico">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
@@ -37,12 +38,17 @@
 				<div id="logoBar_rightBG"></div>
 				<div class="logoBar_content pageContent">
 					<img 
-					srcset="img/interface/aleBanner-250w.png 250w,
-							img/interface/aleBanner.png 500w"
+					srcset="img/interface/aleBanner-tagline-250w.png 250w,
+							img/interface/aleBanner-tagline.png 500w"
 					sizes="(max-width: 524px) 250px,
 							500px"
 					src="img/interface/aleBanner.png" 
 					alt="ale: Providing refurbished lab equipment, specializing in Laboratory Automation.">
+					<div class="header-info">
+						<span class="phone">Call us toll-free at (866) 484-6031!</span>
+						<!-- <span>45 Congress St. Salem, MA</span> -->
+						<span class="email">Email us at answers@atlanticlabequipment.com</span>
+					</div>
 				</div>
 			</div>
 			<nav class="topNavBar">
@@ -57,16 +63,16 @@
 										<a href="index.php">Top of Homepage</a>
 									</li>
 									<li>
-										<a href="http://atlanticlabequipment.com/#about">About</a>
+										<a href="index.php/#about">About</a>
 									</li>
 									<li>
 										<a href="http://atlanticlabequipment.com/newsletters">Newsletters</a>
 									</li>
 									<li>
-										<a href="http://atlanticlabequipment.com/#mission">Mission Statement</a>
+										<a href="index.php/#mission">Mission Statement</a>
 									</li>
 									<li>
-										<a href="http://atlanticlabequipment.com/#testimonials">Testimonials</a>
+										<a href="index.php?controller=public&action=home&section=home#testimonials">Testimonials</a>
 									</li>
 								</ul>
 							</div><!-- End Home drop menu -->
