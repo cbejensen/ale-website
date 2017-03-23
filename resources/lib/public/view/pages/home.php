@@ -40,13 +40,13 @@
 		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1)">
 	</section>
 	<section class="estimate-section">
-		<div class="pageContent">
+		<div class="pageContent estimate-wrapper">
 			<div class="estimate-intro">
 				<h1 class="section-head">Get Better Equipment &#8212; For Less</h1>
-				<p class="subhead">We help labs save money on first-rate equipment
+				<p class="section-head">We help labs save money on first-rate equipment
 				every day.</p>
 				<!-- <h2>Start a Conversation!</h2> -->
-				<p>Ask a question with the provided form or 
+				<p class="subhead">Ask a question with the provided form or 
 				<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">request a quote</a>
 				for any instrument, even if you don't see it here.</p>
 			</div>
@@ -57,7 +57,7 @@
 					<input type="text" name="lastName" placeholder="Last name *">
 					<input type="text" name="email" placeholder="Email address *">
 					<span class="hr"></span>
-					<textarea rows="4">Ask a Question Here</textarea>
+					<textarea rows="4" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
 					<span class="button gradient-button">Start a Conversation</span>
 				</div>

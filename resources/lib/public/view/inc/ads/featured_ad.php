@@ -23,7 +23,7 @@
 			<?php endif; ?>
 		</div>
 		<div class="adCta">
-			<a class="gradient-button" href="<?php echo $ad['url']; ?>">View Details</a>
+			<a class="gradient-button" href="<?php echo $url; ?>">View Details</a>
 		</div>
 	</div>
 </div>

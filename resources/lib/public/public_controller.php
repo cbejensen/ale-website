@@ -64,4 +64,14 @@ class PublicController
 			require_once PAGE_PATH . "/products/$page.php";
 		}
 	}
+	
+	public function listing() {
+		if (!isset($_GET['id']))
+		{
+			require_once PAGE_PATH . '/products/index.php';
+			} else {
+				$id	=	htmlentities($_GET['id'], ENT_QUOTES);
+				require_once PAGE_PATH . "/listing.php";
+			}
+	}
 }

@@ -138,9 +138,15 @@
 	background-size: contain;
 /* 	height: 30rem; */
 	border-bottom: 1px dashed red;
+	position: relative;
+}
+.estimate-wrapper {
+	position: relative;
 }
 .estimate-section h1 {
-	margin-bottom: 0.5rem;
+	max-width: 85%;
+	font-size: 2.5rem;
+	margin: 0 auto 2.75rem;
 }
 .estimate-intro,
 .estimate-cta {
@@ -149,13 +155,29 @@
 	margin-right: -4px;
 /* 	border: 1px dotted grey; */
 }
+.estimate-intro {
+	position: absolute;
+	top: 50%;
+  	-webkit-transform: translateY(-50%);
+ 	-ms-transform: translateY(-50%);
+ 	transform: translateY(-50%);
+}
 .estimate-intro p {
-	max-width: 75%;
+	max-width: 85%;
+	margin: 0 auto;
+}
+.estimate-intro p.section-head {
+	font-size: 1.75rem;
+	margin: 0 auto 1.75rem;
 }
 .estimate-intro .subhead {
-	font-size: 1.15rem;
+	font-size: 1.25rem;
 	color: #656565;
 	font-style: italic;
+}
+.estimate-cta {
+	position: relative;
+    left: 50%;
 }
 .estimate-cta h3,
 .estimate-form {

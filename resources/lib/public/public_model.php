@@ -11,6 +11,7 @@ class PublicModel
 		$conn	=	db_connect(AL_DB, $userData);
 		
 		$q		=	"SELECT
+					general_listings.id,
 					general_listings.title_extn,	general_listings.description,
 					general_listings.price,			general_listings.item_condition,
 					general_listings.testing,		general_listings.warranty,
@@ -36,7 +37,8 @@ class PublicModel
 		{
 			$r->data_seek($j);
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
-			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}"; 
+			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
+			$url	=	"?controller=public&action=listing&section=products&title=$title&id={$ad['id']}";
 			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
 		}
 	}
