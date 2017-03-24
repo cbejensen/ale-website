@@ -56,7 +56,7 @@
 					<input class="lname" type="text" id="lname" placeholder="Last name *">
 					<input class="email" type="text" id="email" placeholder="Email address *">
 					<span class="hr"></span>
-					<textarea rows="10" placeholder="Ask your question here"></textarea>
+					<textarea rows="10" id="msg" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
 					<span class="button gradient-button" onclick="submitQuestion()">Start a Conversation</span>
 				</div>
