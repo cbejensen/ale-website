@@ -6,6 +6,7 @@
  * eventually be stored in the site's database.
  */
 ?>
+<script src="<?php echo PUBLIC_PATH; ?>/js/public.js"></script>
 <main class="contact-main site-main pageContent">
 	<h1 class="section-head">Contact Us</h1>
 	<section class="contact-info-section contact-info">
@@ -51,13 +52,13 @@
 		<div class="estimate-cta">
 				<h3 class="material gradient-button">Ask us a Question</h3>
 				<div class="question-form material">
-					<input class="fname" type="text" name="firstName" placeholder="First name *">
-					<input class="lname" type="text" name="lastName" placeholder="Last name *">
-					<input class="email" type="text" name="email" placeholder="Email address *">
+					<input class="fname" type="text" id="fname" placeholder="First name *">
+					<input class="lname" type="text" id="lname" placeholder="Last name *">
+					<input class="email" type="text" id="email" placeholder="Email address *">
 					<span class="hr"></span>
 					<textarea rows="10" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
-					<span class="button gradient-button">Start a Conversation</span>
+					<span class="button gradient-button" onclick="submitQuestion()">Start a Conversation</span>
 				</div>
 			</div>
 	</section>
