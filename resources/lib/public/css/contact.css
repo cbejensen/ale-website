@@ -4,9 +4,6 @@
 .contact-main {
 /* 	max-width: 65rem; */
 }
-.contact-main hr {
-	display: none;
-}
 .contact-main h1 {
 	margin: 6rem 0 3rem;
 	font-size: 3rem;
@@ -17,11 +14,25 @@
 	width: 45%;
 	position: relative;
 }
+.contact-info-subsection {
+	display: inline-block;
+	width: 50%;
+	padding-right: 2rem;
+	margin: 0 -4px 3rem 0;
+}
+/*--------------------------------------------
+	Left Column
+----------------------------------------------*/
+.contact-main hr {
+	display: none;
+}
+.contact-main .section-divider {
+	margin: 2rem 0;
+}
 .contact-main h2 {
 	font-size: 1.33rem;
 }
-.contact-main li {
-/* 	font-weight: bold; */
+.contact-info li {
 	line-height: 1.33;
 	position: relative;
 	list-style-type: none;
@@ -33,9 +44,19 @@
 .contact-main .fax-info {
 	margin-bottom: 1rem;
 }
-.contact-main .section-divider {
-	margin: 2rem 0;
+.contact-info {
+	margin-bottom: 3rem;
 }
+.directions {
+	position: relative;
+	display: inline-block;
+	padding: 0.33rem 0.5rem;
+	font-size: 0.9rem;
+	margin-top: 1rem;
+}
+/*--------------------------------------------
+	Right Column - Form Section
+----------------------------------------------*/
 .form-section {
 	position: relative;
 	left: 10%;
@@ -45,17 +66,7 @@
 	width: 100%;
 	left: 0;
 }
-.contact-info {
-	margin-bottom: 3rem;
-/* 	padding: 0 1rem; */
-	
-}
-.contact-info-subsection {
-	display: inline-block;
-	width: 50%;
-	padding-right: 2rem;
-	margin: 0 -4px 3rem 0;
-}
+
 .contact-main .right-section {
 	position: relative;
 	left: 4rem;

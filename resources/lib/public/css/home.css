@@ -82,8 +82,8 @@
 =================================================================================*/
 .ads-section {
 	width: 100%;
-	height: 27rem;
-	padding: 2rem 0rem;
+	height: 34rem;
+	padding: 4.5rem 0rem 4rem;
 	overflow: hidden;
 	white-space: nowrap;
 	position: relative;
@@ -179,14 +179,14 @@
     left: 50%;
 }
 .estimate-cta h3,
-.estimate-form {
+.question-form {
 	max-width: 80%;
 	margin: 0 auto;
 /* 	border: 1px dashed #ccc; */
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
 }
-.estimate-form {
+.question-form {
 	padding: 2rem 3rem 1.5rem;	
 }
 .estimate-cta h3 {
@@ -196,15 +196,15 @@
 	font-size: 0.85rem;
 	padding: 0.95rem 0;
 }
-.estimate-form input, 
-.estimate-form textarea {
+.question-form input, 
+.question-form textarea {
 	background-color: #eaeaea;
 	font-size: 12px;
 	border: 0;
 	margin-bottom: 1.25rem;
 	padding: 1.25rem;
 }
-.estimate-form input[name*='Name'] {
+.question-form input[class*='name'] {
 	display: inline-block;
 /* 	margin: 1rem 0.5rem 0.5rem; */
 	position: relative;
@@ -212,21 +212,21 @@
 	margin-right: -4px;
 	width: 48%;
 }
-.estimate-form input[name='lastName'] {
+.question-form .lname {
 	position: relative;
     left: 4%;
 }
-.estimate-form input[name='email'] {
+.question-form .email {
 	width: 100%;	
 }
-.estimate-form .hr {
+.question-form .hr {
 	width: 100%;
 	margin: 0 auto 1.25rem;
 	display: block;
 	background-color: #ddd;
 	height: 1px;
 }
-.estimate-form textarea {
+.question-form textarea {
 	padding: 0.5rem 1.25rem;
 	width: calc(100% - 2.5rem);
 	font-family: calibri, arial, sans-serif;
@@ -234,10 +234,10 @@
 	resize: none;
 	border-radius: 3px;
 }
-.estimate-form textarea:focus {
+.question-form textarea:focus {
 	color: #333;
 }
-.estimate-form .button {
+.question-form .button {
 /* 	background-color: #62DE35; */
     padding: 0.5rem 3rem;
 /*     color: #fff; */

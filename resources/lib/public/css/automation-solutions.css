@@ -1,0 +1,68 @@
+/*=================================================================================
+	1.0 - Prem. Automation Solutions Page
+=================================================================================*/
+.automation-solutions-main header {
+	margin: 6rem 0 4rem;
+}
+.automation-solutions-main header h1 {
+	font-size: 3rem;
+}
+.automation-solutions-main header p {
+	width: 50%;
+	font-size: 1.25rem;
+	color: #656565;
+	font-style: italic;
+	margin-bottom: 0.75rem;
+/* 	text-align: justify; */
+}
+
+/*--------------------------------------------
+	Integrated Automation
+----------------------------------------------*/
+.automation-section {
+	margin-bottom: 8rem;
+	position: relative;
+}
+.automation-section .subsection {
+	display: inline-block;
+	width: 50%;
+	margin-right: -4px;
+}
+.automation-section p {
+	width: 80%;
+	margin-bottom: 1rem;
+}
+.automation-section ul {
+	margin-bottom: 1.5rem;
+}
+.automation-section li {
+	list-style-type: circle;
+	margin-left: 2rem;
+	line-height: 1.25;
+}
+.automation-section figure {
+	width: 75%;
+	display: block;
+	margin: 0 auto;
+}
+.automation-section video,
+.automation-section img {
+	padding: 0.5rem;
+	width: 100%;
+}
+.automation-section figcaption {
+	color: #777;
+	font-style: italic;
+	font-size: 0.88rem;
+	margin-top: 0.33rem;
+	width: 90%;
+}
+.automation-section .info {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.automation-section .figure {
+	position: relative;
+	left: 50%;
+}

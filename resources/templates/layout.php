@@ -21,6 +21,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/style.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/home.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/contact.css" media="all">
+		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/estimates.css" media="all">
+		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/automation-solutions.css" media="all">
 		<link rel="icon" type="image/ico" href="favicon_ale.ico">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">

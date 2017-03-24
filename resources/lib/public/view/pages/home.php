@@ -52,10 +52,10 @@
 			</div>
 			<div class="estimate-cta">
 				<h3 class="material gradient-button">Get Started Today!</h3>
-				<div class="estimate-form material">
-					<input type="text" name="firstName" placeholder="First name *">
-					<input type="text" name="lastName" placeholder="Last name *">
-					<input type="text" name="email" placeholder="Email address *">
+				<div class="question-form material">
+					<input class="fname" type="text" name="firstName" placeholder="First name *">
+					<input class="lname" type="text" name="lastName" placeholder="Last name *">
+					<input class="email" type="text" name="email" placeholder="Email address *">
 					<span class="hr"></span>
 					<textarea rows="4" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
@@ -111,7 +111,7 @@
 			handlers, having access to highly trained support specialists like Jenn at ALE
 			is critical. They have made good on their commitment to our technical needs by
 			being ever ready to assist us with questions that invariably arise."</p>
-			<span>-Liz F.</span>
+			<span>&#8212; Liz F.</span>
 		</div>
 		<hr class="">
 		<div class="testimonial">
@@ -124,7 +124,7 @@
 			stood behind their word in making necessary repairs to meet the promised quality.
 			Their work, commitment, and integrity have been a major factor in my recommendation
 			of ALE to be a solid and reliable vendor and experts in their field of business."</p>
-			<span>-Katerina G.</span>
+			<span>&#8212; Katerina G.</span>
 		</div>
 		<hr class="">
 		<div class="testimonial">
@@ -136,7 +136,7 @@
 			much easier and really strengthened the confidence we had in buying a used liquid
 			handler. One year later, the instrument is still running great, we saved thousands
 			of dollars, and we now have a great relationship with a quality company in ALE."</p>			
-			<span>-Joe R.</span>
+			<span>&#8212; Joe R.</span>
 		</div>
 	</section>
 </main>

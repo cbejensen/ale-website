@@ -335,6 +335,12 @@ ul.dropDown li a:hover {
     border: 0px solid white;
     height: 1px;
 }
+.required:after {
+	content: '*';
+	color: red;
+	margin-left: 0.1rem;
+	font-size: 0.8rem;
+}
 .social-icon {
 	width: 3em;
     height: 3em;

@@ -44,16 +44,16 @@
 			<p>We would be delighted if you came to visit.
 			Please feel free to call us to set up an
 			appointment.</p>
-			<a href="">Get Directions</a>
+			<a class="material gradient-button directions" href="">Get Directions</a>
 		</div>
 	</section>
 	<section class="contact-info-section form-section">
 		<div class="estimate-cta">
 				<h3 class="material gradient-button">Ask us a Question</h3>
-				<div class="estimate-form material">
-					<input type="text" name="firstName" placeholder="First name *">
-					<input type="text" name="lastName" placeholder="Last name *">
-					<input type="text" name="email" placeholder="Email address *">
+				<div class="question-form material">
+					<input class="fname" type="text" name="firstName" placeholder="First name *">
+					<input class="lname" type="text" name="lastName" placeholder="Last name *">
+					<input class="email" type="text" name="email" placeholder="Email address *">
 					<span class="hr"></span>
 					<textarea rows="10" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>

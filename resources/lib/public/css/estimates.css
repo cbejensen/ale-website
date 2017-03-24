@@ -1,0 +1,108 @@
+/*=================================================================================
+	1.0 - Estimates Page
+=================================================================================*/
+.estimates-main {
+/* 	max-width: 65rem; */
+}
+.estimates-main h1 {
+	margin: 6rem 0 2rem;
+	font-size: 3rem;
+}
+.estimates-main section {
+	margin-right: -4px;
+	display: inline-block;
+	width: 45%;
+	position: relative;
+}
+.contact-info-subsection {
+	display: inline-block;
+	width: 50%;
+	padding-right: 2rem;
+	margin: 0 -4px 3rem 0;
+}
+/*--------------------------------------------
+	Left Column - Form Section
+----------------------------------------------*/
+.estimate-form {
+	padding-right: 5rem;
+	color: #656565;
+	margin-bottom: 5rem;
+}
+.estimate-form hr {
+	margin: 1.5rem 0;
+}
+.estimate-form input,
+.estimate-form select {
+	border: 0;
+	background-color: #eaeaea;
+	width: 100%;
+	margin: 0.15rem 0 1rem;
+	font-size: 12px;
+}
+.estimate-form input[type="text"]:placeholder-shown {
+	font-style: italic;
+	font-family: calibri, helvetica, arial, sans-serif;
+}
+.estimate-form select {
+	padding: 0.5rem;
+	font-style: italic;
+	font-family: calibri, helvetica, arial, sans-serif;
+	color: #656565;
+}
+.estimate-form div[class*='Half'] {
+	display: inline-block;
+	width: 48%;
+	margin-right: -4px;
+}
+.estimate-form .lastHalf {
+	position: relative;
+	left: 4%;
+}
+.estimate-form p {
+	margin-bottom: 2rem;
+	font-style: italic;
+	
+	padding-right: 5rem;
+}
+.estimate-form textarea {
+	display: block;
+	width: calc(100% - 1rem);
+	border: 0;
+	background-color: #eaeaea;
+	margin-bottom: 1.5rem;
+	margin-top: 0.15rem;
+	padding: 0.33rem 0.5rem;
+	border-radius: 2px;
+	font-family: calibri, helvetica, arial, sans-serif;
+}
+.estimate-form textarea:placeholder-shown {
+	font-style: italic;
+	font-family: calibri, helvetica, arial, sans-serif;
+	font-size: 14px;
+}
+.estimate-form input[type="submit"] {
+	width: 45%;
+}
+
+/*--------------------------------------------
+	Right Column - Contact Info Section
+----------------------------------------------*/
+.estimate-contact-info h2 {
+	font-size: 1.5rem;
+}
+.estimate-contact-info hr {
+	display: none;
+}
+.estimate-info-subsection {
+	margin: 0 0 3rem;
+}
+.estimate-info-subsection li {
+	position: relative;
+}
+.estimate-info-subsection li span {
+	position: absolute;
+	left: 25%;
+}
+.estimate-info-subsection .fax-info {
+	margin-bottom: 1rem;
+}

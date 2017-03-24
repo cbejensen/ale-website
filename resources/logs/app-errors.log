@@ -212,3 +212,4 @@
 [23-Mar-2017 15:48:48 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 35
 [23-Mar-2017 15:49:15 America/New_York] PHP Warning:  shuffle() expects parameter 1 to be array, object given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 36
 [23-Mar-2017 15:49:22 America/New_York] PHP Warning:  shuffle() expects parameter 1 to be array, object given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 36
+[24-Mar-2017 11:06:09 America/New_York] PHP Fatal error:  Call to a member function error() on string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 69
