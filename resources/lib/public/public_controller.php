@@ -60,11 +60,17 @@ class PublicController
 		{
 			$subsection		=	htmlentities($_GET['subsection'], ENT_QUOTES);
 		}
-		if ($ajax === true)
+		elseif (isset($_POST['subsection']))
 		{
-			require_once PAGE_PATH . "/products/$subsection.php";
+			$subsection		=	htmlentities($_POST['subsection'], ENT_QUOTES);
+		}
+		
+		if (isset($_POST['reqIsAjax']) && $_POST['reqIsAjax'] == 1)
+		{
+			require_once PUBLIC_PATH . "/view/inc/prem_equip/$subsection.php";
 			exit;
 		}
+		
 		if (!isset($_GET['page']))
 		{
 			require_once PAGE_PATH . '/products/index.php';

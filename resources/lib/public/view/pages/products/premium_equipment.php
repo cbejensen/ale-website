@@ -22,7 +22,7 @@
 	and we're happy to provide these items individually, as well.</p>
 	<p class="section-intro">Within each of the subsections you'll find links to the appropriate listings
 	of our catalog where you can find more information on specific instruments.</p>
-	<p class="section-intro">Alternatively, you can view our catalog in its entirety <a href="">here</a>.</p>
+	<!-- <p class="section-intro">Alternatively, you can view our catalog in its entirety <a href="">here</a>.</p> -->
 	<div class="equipment-array">
 		<div class="equipment-category">
 			<a href="">
