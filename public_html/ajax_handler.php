@@ -17,4 +17,5 @@ else
 	exit;
 }
 
-require_once RESOURCES_PATH . 'routes.php';
+require_once PUBLIC_PATH . '/public_model.php';
+require_once RESOURCES_PATH . '/routes.php';

@@ -17,6 +17,7 @@
 		<?php else: ?>
 		<title><?php echo $title; ?> | ALE: Premium Lab Equipment &amp; Automation</title>
 		<?php endif; ?>
+		<!-- Separate stylesheets for development -->
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/default.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/style.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/home.css" media="all">
@@ -50,7 +51,7 @@
 					<div class="header-info">
 						<span class="phone">Call us toll-free at (866) 484-6031!</span>
 						<!-- <span>45 Congress St. Salem, MA</span> -->
-						<span class="email">Email us at answers@atlanticlabequipment.com</span>
+						<span class="email"><a href="mailto:answers@atlanticlabequipment.com">answers@atlanticlabequipment.com</a></span>
 					</div>
 				</div>
 			</div>

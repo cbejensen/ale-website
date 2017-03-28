@@ -54,6 +54,9 @@
 	font-size: 1.2rem;
 /* 	text-align: right; */
 }
+.header-info .email a {
+	color: #555;
+}
 .header-info .phone:before,
 .header-info .email:before {
 	content: '';
