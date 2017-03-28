@@ -56,6 +56,15 @@ class PublicController
 	
 	public function products_services()
 	{
+		if (isset($_GET['subsection']))
+		{
+			$subsection		=	htmlentities($_GET['subsection'], ENT_QUOTES);
+		}
+		if ($ajax === true)
+		{
+			require_once PAGE_PATH . "/products/$subsection.php";
+			exit;
+		}
 		if (!isset($_GET['page']))
 		{
 			require_once PAGE_PATH . '/products/index.php';
