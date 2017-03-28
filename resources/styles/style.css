@@ -341,6 +341,9 @@ ul.dropDown li a:hover {
 	margin-left: 0.1rem;
 	font-size: 0.8rem;
 }
+.circle {
+	border-radius: 50%;
+}
 .social-icon {
 	width: 3em;
     height: 3em;
