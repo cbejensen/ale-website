@@ -92,6 +92,9 @@
 	max-width: 87rem;
 	margin: 0 auto 1rem;
 }
+.ads-section h2 {
+	margin: 0 auto 0.5rem;
+}
 .ads-wrap {
 	overflow-x: hidden;
 	overflow-y: visible;
@@ -131,8 +134,8 @@
 	3.0 - Estimate Section (Call to Action)
 =================================================================================*/
 .estimate-section {
-	box-shadow: 0 -1px 1px 0 rgba(0,0,0,0.2);
-	border-top: 1px solid rgba(0,0,0,0.35);
+/* 	box-shadow: 0 -1px 1px 0 rgba(0,0,0,0.2); */
+/* 	border-top: 1px solid rgba(0,0,0,0.35); */
 	padding: 4rem 0;
 /* 	background-image: url(../../../../public_html/img/interface/tecan_cta_bg3.png); */
 	background-size: contain;

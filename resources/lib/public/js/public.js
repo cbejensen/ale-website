@@ -24,28 +24,33 @@ function changeNavArrows(mode)
 	}
 }
 
-function moveFeaturedAds(mode)
+function moveFeaturedAds(mode, ad_iteration)
 {
 	// Change each ad such that it moves down one ad-length
-	var i = 0;
-	while (document.getElementById('featAd_' + i))
+	var i 		=	0;
+	var ad_i	=	ad_iteration;
+	while (document.getElementById('featAd_' + ad_i + '_' + i))
 	{
-		console.log('Moving Ad #' + i);
-		var ad			=	document.getElementById('featAd_' + i);
-		var curPos		=	ad.style.left || '0rem';
-		console.log(ad.style.left);
-		console.log(curPos);
+		var ad			=	document.getElementById('featAd_' + ad_i + '_' + i);
+		var curPos		=	ad.style.left || '0em';
+		curPos			=	curPos.slice(0, curPos.length - 2);
 		i++;
-		ad.style.left		=	curPos;
+		ad.style.left		=	curPos.toString() + 'em';
 		switch (mode)
 		{
 			case 0:
 			case 'left':
-				ad.style.left	=	'calc(' + curPos + ' + 15rem)';
+				var newPos		=	Number(curPos) + 15;
+				newPos			=	newPos.toString() + 'em';
+				ad.style.left	=	newPos;
+				console.log("New Position " + newPos);
 				break;
 			case 1:
 			case 'right':
-				ad.style.left	=	'calc(' + curPos + ' - 15rem)';
+				var newPos		=	Number(curPos) - 15;
+				newPos			=	newPos.toString() + 'em';
+				ad.style.left	=	newPos;
+				console.log("New Position " + newPos);
 				break;
 		}
 	}

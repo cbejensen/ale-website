@@ -17,28 +17,28 @@
 		    	<a href=""><img scr="" alt=""></a>
 		    	<a href=""><img scr="" alt=""></a> -->
 		    	<div class="circle-img" onclick="">
-		    		<img class="material" src="img/content/system_integration.png" alt="">
+		    		<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
 		    		<h2>Integration</h2>
 		    	</div>
 		    	<div class="circle-img" onclick="">
-		    		<img class="material" src="img/content/system_installation.png" alt="">
+		    		<img class="material" src="img/content/system_installation.png" alt="Installation of an automated Liquid Handling workstation for biological applications">
 		    		<h2>Installation</h2>
 		    	</div>
 		    	<div class="circle-img" onclick="">
-		    		<img class="material" src="img/content/applications.png" alt="">
+		    		<img class="material" src="img/content/applications.png" alt="A Mass Spectrometer as part of an itegrated system developed for proteomic applications">
 		    		<h2>Applications</h2>
 		    	</div>
 			</div>
 		</div>
 	</section>
-	<section class="ads-section" onmouseover="changeNavArrows(1);" onmouseleave="changeNavArrows(0);">
+	<!-- <section class="ads-section" onmouseover="changeNavArrows(1);" onmouseleave="changeNavArrows(0);">
 		<h1 class="section-head">This Week's Featured Equipment</h1>
 		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0);">
 		<div class="ads-wrap">
 			<?php $this->model->getFeaturedAds($this->userData); ?>
 		</div>
 		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1)">
-	</section>
+	</section> -->
 	<section class="estimate-section">
 		<div class="pageContent estimate-wrapper">
 			<div class="estimate-intro">
