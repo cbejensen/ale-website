@@ -3,7 +3,7 @@
  * This file is included for each ad featured on the homepage
  */
 ?>
-<div id="featAd_<?php echo $j; ?>" class="featured-ad material" style="left: 0rem;">
+<div id="featAd_<?php echo $ad_i . '_' . $i; ?>" class="featured-ad material" style="left: 0em;">
 	<img class="material" src="<?php echo $ad['url']; ?>" alt="<?php echo $ad['alt']; ?>">
 	<div class="featAd-text">
 		<h2><?php echo $title; ?></h2>

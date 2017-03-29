@@ -18,10 +18,13 @@ function db_connect($database, $userData = 0)
 	switch ($database)
 	{
 		case AL_DB:
-			require_once INC_PATH . '/db_login.php';
+			require INC_PATH . '/db_login.php';
 			break;
 		case NOV_DB:
-			require_once INC_PATH . '/db_login_novartis.php';
+			require INC_PATH . '/db_login_novartis.php';
+			break;
+		default: 
+			require INC_PATH . '/db_login.php';
 			break;
 	}
 	$conn = new mysqli($hn, $un, $pw, $db);

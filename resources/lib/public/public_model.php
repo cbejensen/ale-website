@@ -6,6 +6,8 @@
 
 class PublicModel
 {	
+	//private static $adBarIteration = 0;
+	
 	public function getFeaturedAds($userData)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
@@ -34,6 +36,8 @@ class PublicModel
 		
 		$r		=	db_query($q, $conn);
 		($r->num_rows < 10) ? $count = $r->num_rows : $count = 10;
+		$i = 0;
+		static $ad_i = 0;
 		for ($j = 0 ; $j < $count ; $j++)
 		{
 			$r->data_seek($j);
@@ -41,7 +45,12 @@ class PublicModel
 			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
 			$url	=	"?controller=public&action=listing&section=products&title=$title&id={$ad['id']}";
 			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
+			$i++;
+			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
+			$i++;
 		}
+		$ad_i++;
+		$conn->close();
 	}
 	
 	public static function get_metaDesc($pageTitle)
