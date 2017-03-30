@@ -35,7 +35,7 @@
 		<h1 class="section-head">This Week's Featured Equipment</h1>
 		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0);">
 		<div class="ads-wrap">
-			<?php $this->model->getFeaturedAds($this->userData); ?>
+			<?php //$this->model->getFeaturedAds($this->userData); ?>
 		</div>
 		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1)">
 	</section> -->

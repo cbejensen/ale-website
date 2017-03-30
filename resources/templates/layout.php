@@ -26,6 +26,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/automation-solutions.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/premium-equipment.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/products_services.css" media="all">
+		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/lists.css" media="all">
 		<link rel="icon" type="image/ico" href="favicon_ale.ico">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">

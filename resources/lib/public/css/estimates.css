@@ -67,6 +67,7 @@
 .estimate-form textarea {
 	display: block;
 	width: calc(100% - 1rem);
+	max-width: calc(100% - 1rem);
 	border: 0;
 	background-color: #eaeaea;
 	margin-bottom: 1.5rem;

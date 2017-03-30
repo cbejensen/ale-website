@@ -114,3 +114,28 @@
 .products-main .waters-equipment-section {
 	z-index: 3;
 }
+
+/*--------------------------------------------
+	1.4 - Outlet Sections
+----------------------------------------------*/
+.outlet-ad-section {
+	margin: 3.5rem auto 4rem;
+}
+.outlet-ad-section h2 {
+
+}
+.outlet-ad-section span {
+	margin: 1rem 0 1.5rem;
+	color: #555;
+	font-style: italic;
+	font-size: 1.25rem;
+	display: block;
+}
+.outlet-ad-section p {
+	margin: 1rem 0 2rem;
+	width: 62%;
+	color: #333;
+}
+.outlet-ad-section a {
+	padding: 0.33rem 0.5rem;
+}

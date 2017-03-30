@@ -14,7 +14,7 @@
 <script src="../resources/lib/public/js/public.js"></script>
 <main class="products-main site-main">
 	<h1 class="section-head pageContent">Products &amp; Services</h1>
-	<p class="subhead page-subtitle pageContent">We offer a wide range of products and services, including our specialty services,
+	<p class="subhead page-subtitle pageContent">We offer a wide range of products and services, including our specialty service,
 	developing premium Automation Solutions for laboratories to help improve their throughput, effieciency,
 	and reproducibility. We also have a large, dynamic selection of specialized laboratory equipment, as well as more
 	general lab apparatus.</p>
@@ -79,7 +79,7 @@
 			<?php //getFeaturedEquipment(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 0);">
 			<div class="ads-wrap">
-				<?php $this->model->getFeaturedAds($this->userData); ?>
+				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 0)">
 		</div>
@@ -98,7 +98,7 @@
 			<?php //getNewArrivals(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 1);">
 			<div class="ads-wrap">
-				<?php $this->model->getFeaturedAds($this->userData); ?>
+				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
 		</div>
@@ -109,7 +109,7 @@
 			<?php //getMontlySpecials(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">
 			<div class="ads-wrap">
-				<?php $this->model->getFeaturedAds($this->userData); ?>
+				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">
 		</div>
@@ -120,12 +120,12 @@
 			<?php //getWatersEquipment(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 3);">
 			<div class="ads-wrap">
-				<?php $this->model->getFeaturedAds($this->userData); ?>
+				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 3)">
 		</div>
 	</section>
-	<section class="outlet-ad-section material pageContent">
+	<section class="outlet-ad-section pageContent">
 		<img src="" alt="">
 		<h2 class="section-head">Outlet Equipment</h2>
 		<span>As-Is instrumentation on our eBay store.</span>
@@ -134,6 +134,6 @@
 		feature fully tested, functional equipment, and we offer units
 		"as-is" and "for parts" at discounted prices. We also carry
 		lab supplies and consumables.</p>
-		<a href="">View Catalog</a>
+		<a href="" class="gradient-button">View Catalog</a>
 	</section>
 </main>

@@ -8,32 +8,12 @@ class PublicModel
 {	
 	//private static $adBarIteration = 0;
 	
-	public function getFeaturedAds($userData)
+	public function getAds($userData, $adType, $dspType)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
-		
-		$q		=	"SELECT
-					general_listings.id,
-					general_listings.title_extn,	general_listings.description,
-					general_listings.price,			general_listings.item_condition,
-					general_listings.testing,		general_listings.warranty,
-					general_listings.components,	general_listings.condition_note,
-					manufacturers.mnfr, 			models.model,
-					models.function_desc,
-					brands.brand,					ad_photos.url,
-					ad_photos.alt
-					FROM general_listings
-					LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
-					LEFT JOIN models ON general_listings.modelID = models.id
-					LEFT JOIN brands ON general_listings.brandID = brands.id
-					LEFT JOIN ad_photos ON general_listings.id = ad_photos.listingID 
-					AND ad_photos.display_order = 1
-                    JOIN adverts_listings ON general_listings.id = adverts_listings.listingID 
-					AND adverts_listings.type = 'featured' 
-					AND adverts_listings.start_date <= DATE(NOW()) 
-					AND adverts_listings.end_date > DATE(NOW())
-					ORDER BY RAND();";
-		
+			
+		require	PUBLIC_PATH . '/inc/ad_query.php';
+						
 		$r		=	db_query($q, $conn);
 		($r->num_rows < 10) ? $count = $r->num_rows : $count = 10;
 		$i = 0;
@@ -44,10 +24,36 @@ class PublicModel
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
 			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
 			$url	=	"?controller=public&action=listing&section=products&title=$title&id={$ad['id']}";
-			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
-			$i++;
-			include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
-			$i++;
+			// Repeats for development purposes.
+			for ($k = 0 ; $k < 2 ; $k++) 
+			{
+				switch ($adType)
+				{
+					case 'featured':
+						switch ($dspType)
+						{
+							case 'banner':
+								include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
+								break;
+							case 'list':
+								include '';
+								break;
+						}
+					break;
+					case 'waters':
+						switch ($dspType)
+						{
+							case 'banner':
+								include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
+								break;
+							case 'list':
+								include PUBLIC_PATH . '/view/inc/ads/list_item.php';
+								break;
+						}
+					break;
+				}
+				$i++;
+			}
 		}
 		$ad_i++;
 		$conn->close();
