@@ -20,7 +20,7 @@ function createArrow(section)
 	downArrow.id		= 'dwn';
 	positionArrow(section, downArrow);
 	parent.appendChild(downArrow);
-	console.log('done?');
+	//console.log('done?');
 }
 
 function moveArrow(section)
@@ -72,6 +72,8 @@ function alertUser(reqResponse)
 
 function buildAlert(title, message, actions)
 {
+	// Currently does not support additional user actions, other than 'Accept'
+	
 	var actions		= 	actions || 0;
 	var body		=	document.getElementById('ale-body');
 	
@@ -103,6 +105,7 @@ function buildAlert(title, message, actions)
 	
 	// Add Button(s)
 	var input		=	document.createElement('input');
+	input.setAttribute('class', 'gradient-button');
 	input.setAttribute('type', 'button');
 	input.setAttribute('id', 'acceptBtn');
 	input.setAttribute('value', 'Accept');
@@ -110,4 +113,15 @@ function buildAlert(title, message, actions)
 	alertBox.appendChild(input);
 	
 	body.appendChild(alertBox);
+}
+
+function toggleMenu()
+{
+	var menu		=	document.getElementById('ale-main-menu');
+	if (menu.className == 'topNavBar topNavBar-hide') 
+	{
+		menu.className	=	'topNavBar topNavBar-show';
+	} else {
+		menu.className	=	'topNavBar topNavBar-hide';
+	}
 }

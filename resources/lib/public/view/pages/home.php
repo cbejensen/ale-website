@@ -53,13 +53,13 @@
 			<div class="estimate-cta">
 				<h3 class="material gradient-button">Get Started Today!</h3>
 				<div class="question-form material">
-					<input class="fname" type="text" name="firstName" placeholder="First name *">
-					<input class="lname" type="text" name="lastName" placeholder="Last name *">
-					<input class="email" type="text" name="email" placeholder="Email address *">
+					<input class="fname" type="text" id="fname" placeholder="First name *">
+					<input class="lname" type="text" id="lname" placeholder="Last name *">
+					<input class="email" type="text" id="email" placeholder="Email address *">
 					<span class="hr"></span>
-					<textarea rows="4" placeholder="Ask your question here"></textarea>
+					<textarea rows="4" id="msg" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
-					<span class="button gradient-button">Start a Conversation</span>
+					<span class="button gradient-button" onclick="submitQuestion()">Start a Conversation</span>
 				</div>
 			</div>
 		</div>

@@ -29,7 +29,6 @@
 }
 .home-header video {
 	position: relative;
-	/*float: right;*/
 	width: 100% !important;
 	height: auto !important;
 	display: block;
@@ -106,7 +105,6 @@
 .right-arrow {
 	position: absolute;
 	width: 1.667rem;
-/* 	height: 22px; */
 	top: 50%;
 	transform: translateY(-50%);
 	background-size: contain;
@@ -117,16 +115,13 @@
 }
 .left-arrow {
 	left: 0;
-/* 	margin-left: 0.5rem; */
 }
 .right-arrow {
 	right: 0;
-/* 	margin-right: 0.5rem; */
 }
 .ads-section:hover .left-arrow,
 .ads-section:hover .right-arrow {
 	width: 2.33rem;
-/* 	height: 44px; */
 }
 
 
@@ -134,12 +129,8 @@
 	3.0 - Estimate Section (Call to Action)
 =================================================================================*/
 .estimate-section {
-/* 	box-shadow: 0 -1px 1px 0 rgba(0,0,0,0.2); */
-/* 	border-top: 1px solid rgba(0,0,0,0.35); */
 	padding: 4rem 0;
-/* 	background-image: url(../../../../public_html/img/interface/tecan_cta_bg3.png); */
 	background-size: contain;
-/* 	height: 30rem; */
 	position: relative;
 }
 .estimate-wrapper {
@@ -147,45 +138,33 @@
 }
 .estimate-section h1 {
 	max-width: 85%;
-	font-size: 2.5rem;
-	margin: 0 auto 2.75rem;
+	font-size: 1.75rem;
+	margin: 0 auto 1.5rem;
 }
 .estimate-intro,
 .estimate-cta {
-	display: inline-block;
-	width: 50%;
-	margin-right: -4px;
-/* 	border: 1px dotted grey; */
-}
-.estimate-intro {
-	position: absolute;
-	top: 50%;
-  	-webkit-transform: translateY(-50%);
- 	-ms-transform: translateY(-50%);
- 	transform: translateY(-50%);
+	display: block;
 }
 .estimate-intro p {
 	max-width: 85%;
 	margin: 0 auto;
 }
 .estimate-intro p.section-head {
-	font-size: 1.75rem;
+	font-size: 1.15rem;
 	margin: 0 auto 1.75rem;
 }
 .estimate-intro .subhead {
-	font-size: 1.25rem;
+	font-size: 1rem;
 	color: #656565;
 	font-style: italic;
 }
 .estimate-cta {
-	position: relative;
-    left: 50%;
+	margin-top: 2rem;
 }
 .estimate-cta h3,
 .question-form {
 	max-width: 80%;
 	margin: 0 auto;
-/* 	border: 1px dashed #ccc; */
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
 }
@@ -193,9 +172,6 @@
 	padding: 2rem 3rem 1.5rem;	
 }
 .estimate-cta h3 {
-/* 	text-align: center; */
-/* 	background-color: #3EC70C; */
-/* 	color: #fff; */
 	font-size: 0.85rem;
 	padding: 0.95rem 0;
 }
@@ -209,9 +185,7 @@
 }
 .question-form input[class*='name'] {
 	display: inline-block;
-/* 	margin: 1rem 0.5rem 0.5rem; */
 	position: relative;
-/* 	left: 5%; */
 	margin-right: -4px;
 	width: 48%;
 }
@@ -241,11 +215,8 @@
 	color: #333;
 }
 .question-form .button {
-/* 	background-color: #62DE35; */
     padding: 0.5rem 3rem;
-/*     color: #fff; */
     display: inline-block;
-/*     text-align: center; */
     border-radius: 3px;
 }
 
@@ -263,24 +234,21 @@
 }
 .about-wrapper,
 .mission-wrapper {
-	width: 45%;
-/* 	border: 1px solid #ddd; */
+	width: 100%;
 	border-radius: 2px;
 	padding: 2rem 1.33rem;
-	display: inline-block;
-	margin: 2rem -4px 0 0;
+	display: block;
+	margin: 2rem 0 0 0;
 	position: relative;
 }
 .about-wrapper {
-/* 	background-color: #f5f5f5; */
 }
 .about-wrapper p {
 	margin-top: 1rem;
 	color: #444;
 }
 .mission-wrapper {
-	left: 10%;
-/* 	color:#fff; */
+	left: 0%;
 }
 .mission-wrapper .bg {
 /* 	background-image: url(../../../../public_html/img/interface/tecan_cta_bg5.png); */
@@ -307,7 +275,7 @@
 .mission-wrapper p {
 	font-size: 1.5rem;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-		z-index: 5;
+	z-index: 5;
 	position: relative;
 	margin-bottom: 1rem;
 	font-weight: bold;
@@ -329,9 +297,8 @@
 	display: none;
 }
 .testimonial {
-	display: inline-block;
-	width: 33.33%;
-	margin-right: -4px;
+	display: block;
+	width: 100%;
 	padding: 0 3rem;
 }
 .testimonial img {
@@ -344,13 +311,17 @@
 .testimonial p {
 	text-align: justify;
 	color: #444;
+	max-width: 350px;
+	margin: 0 auto;
 }
 .testimonial span {
 	font-size: 1.2rem;
 	font-style: italic;
 	color: #555;
-	display: inline-block;
+	display: block;
 	margin-top: 1.33rem;
+	max-width: 350px;
+	margin: 1.33rem auto 0;
 }
 
 
@@ -383,7 +354,7 @@
 
 @media only screen and (min-width: 47rem) { /* 752px */
 	/*--------------------------------------------
-		751^ - Home, Intro/Video Section
+		752^ - Home, Intro/Video Section
 	----------------------------------------------*/
 	.home-header h1 {
 		font-size: 3rem;
@@ -406,12 +377,57 @@
 		width: calc(100% - 4rem); /* Subtract total padding of parent */
 		padding: 0.33em 0;
 	}
+	
+	/*--------------------------------------------
+		752^ - Contact/Estimate CTA
+	----------------------------------------------*/
+	.estimate-section h1 {
+		font-size: 2.5rem;
+		margin: 0 auto 2.75rem;
+	}
+	.estimate-intro p.section-head {
+		font-size: 1.75rem;
+	}
+	.estimate-intro .subhead {
+		font-size: 1.25rem;
+	}
+	.estimate-intro,
+	.estimate-cta {
+		display: inline-block;
+		width: 50%;
+		margin-right: -4px;
+	}
+	.estimate-intro {
+		position: absolute;
+		top: 50%;
+	  	-webkit-transform: translateY(-50%);
+	 	-ms-transform: translateY(-50%);
+	 	transform: translateY(-50%);
+	}
+	.estimate-cta {
+		position: relative;
+	    left: 50%;
+	    margin-top: 0;
+	}
+	
+	/*--------------------------------------------
+		752^ - About/Mission
+	----------------------------------------------*/
+	.about-wrapper,
+	.mission-wrapper {
+		width: 45%;
+		display: inline-block;
+		margin: 2rem -4px 0 0;
+	}
+	.mission-wrapper {
+		left: 10%;
+	}
 }
 
 
 @media only screen and (min-width: 63rem) { /* 1008px */
 	/*--------------------------------------------
-		1000^ - Home, Intro/Video Section
+		1008^ - Home, Intro/Video Section
 	----------------------------------------------*/
 	.home-header {
  		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
@@ -464,6 +480,31 @@
 		font-size: 0.9rem;
 		width: calc(100% - 3rem); /* Subtract total padding of parent */
 	}
+	
+	/*--------------------------------------------
+		1008^ - Testimonials
+	----------------------------------------------*/
+	.testimonial {
+		display: inline-block;
+		width: 33.33%;
+		margin-right: -4px;
+		padding: 0 3rem;
+	}
+	.testimonial p {
+		text-align: justify;
+		color: #444;
+		max-width: initial;
+		margin: initial;
+	}
+	.testimonial span {
+		font-size: 1.2rem;
+		font-style: italic;
+		color: #555;
+		display: block;
+		margin: initial;
+		margin-top: 1.33rem;
+		max-width: initial;
+	}
 }
 
 
@@ -488,11 +529,6 @@
 	.home-header h1 {
 		font-size: 2rem;
 	}
-	.home-header-content-wrap div,
-	.home-header-content-wrap p,
-	.home-header-content-wrap h1 {
-/* 		width: 50%; */
-	}
 	.home-header-columns {
 		max-width: 55rem;
 		width: 50%;
@@ -507,6 +543,9 @@
 }
 
 @media only screen and (min-width: 100rem) {
+	/*--------------------------------------------
+		1600^ - Home, Intro/Video Section
+	----------------------------------------------*/
 	.home-header video {
 		width: 45% !important;
 		left: 55%;
@@ -523,10 +562,5 @@
 	}
 	.home-header h1 {
 		font-size: 3rem;
-	}
-	.home-header-content-wrap div,
-	.home-header-content-wrap p,
-	.home-header-content-wrap h1 {
-/* 		width: 50%; */
 	}
 }

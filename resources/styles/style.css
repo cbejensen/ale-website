@@ -35,7 +35,12 @@
 	position: relative;
 	z-index: 2;
 }
+
+/*--------------------------------------------
+	1.1 - Header Contact Info
+----------------------------------------------*/
 .header-info {
+	display: none;
 	position: absolute;
 	max-height: 70px;
 /* 	border: 1px solid blue; */
@@ -82,6 +87,29 @@
 	background-image: url(../../public_html/img/interface/mail-icon.png);
 }
 
+/*--------------------------------------------
+	1.2 - Menu Access Button
+----------------------------------------------*/
+.menu-access {
+	display: inline-block;
+	width: 1.25rem;
+	height: 1.25rem;
+	position: absolute;
+	right: 1.5rem;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.menu-access img {
+	display: block;
+	margin: 0 auto;
+	width: 62%;
+	vertical-align: middle;
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+	
+
 
 /*=================================================================================
 	2.0 - Top/Primary Navigation Bar
@@ -91,12 +119,20 @@
 	-moz-box-shadow: 	0px 0px 7px 2px rgba(0, 0, 0, 0.30);
 	-webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.30);
 	box-shadow: 		0px 0px 7px 2px rgba(0, 0, 0, 0.30);
-	position: relative;
+	position: absolute;
 	z-index: 1;
+	width: 100%;
+	transition: 0.33s ease;
+}
+.topNavBar-hide {
+	top: -305%;
+}
+.topNavBar-show {
+	top: 100%;
 }
 /* list items are used here as menu options */
 .navList li {
-	display: inline-block;
+	display: block;
 	position: relative;
 	margin-right: -4px;
 }
@@ -128,9 +164,9 @@ li.activeNavBtn {
 ----------------------------------------------*/
 div.dropDown {
 	display: none;
-	position: absolute;
+	position: relative;
 	left: 0;
-	top: 2.333em;
+/* 	top: 2.333em; */
 	background-color: #cfcfcf;
 	min-width: 12em;
 	-moz-box-shadow: 	0px 0px 7px 2px rgba(0, 0, 0, 0.30);
@@ -157,6 +193,7 @@ ul.dropDown li a:hover {
 	display: block;
 }
 .arrow-down {
+	display: none;
 	width: 0; 
 	height: 0; 
 	border-left: 7px solid transparent;
@@ -290,7 +327,7 @@ ul.dropDown li a:hover {
 	3.0 - Page Content Formatting
 =================================================================================*/
 .site-main {
-	padding-top: calc(35px + 2.333rem + 0.25rem)
+	padding-top: calc(35px + 0.25rem)
 }
 .pageContent {
 	max-width: 85rem; /* ~1000px (83em) */
@@ -605,17 +642,46 @@ ul.dropDown li a:hover {
 	Alert Box
 ----------------------------------------------*/
 .alertBox {
-	width: 10%;
-	min-width: 10rem;
-	max-width: 20rem;
+	width: auto;
+	min-width: 25rem;
+	max-width: 50rem;
 	border: 1px solid #aaa;
-	background-color: #ddd;
+	background-color: #eee;
 	border-radius: 3px;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	z-index: 20;
+	padding: 2rem 1rem;
+}
+.alertBox h2 {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.alertBox p {
+	margin: 1rem 0 2.5rem;
+	padding-right: 2rem;
+}
+.alertBox input {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	font-size: 0.8rem;
+	padding: 0.15rem 0.25rem;
+	border-radius: 2px;
+}
+.closeBtn {
+	position: absolute;
+    right: 0;
+    top: 0;
+    color: #ddd;
+    background-color: #B22222;
+    line-height: 1.25rem;
+    font-size: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    text-align: center;
 }
 /*--------------------------------------------
 	Page Material (Boxes, Ads, Images, etc.)
@@ -627,18 +693,36 @@ ul.dropDown li a:hover {
 /*=================================================================================
 	X.0 - Media Queries
 =================================================================================*/
-@media only screen and (min-width: 32rem) {
+@media only screen and (min-width: 32.8125rem) { /* 525px */
 	/*--------------------------------------------
 		Page Content Formatting
 	----------------------------------------------*/
 	.site-main {
-		padding-top: calc(70px + 2.333rem + 0.25rem);
+		padding-top: calc(70px + 0.25rem);
+	}
+	/*--------------------------------------------
+		Menu/Logo Bar
+	----------------------------------------------*/
+	.menu-access {
+/* 		display: inline-block; */
+		width: 2rem;
+		height: 2rem;
+/* 		position: absolute; */
+/* 		right: 1.5rem; */
+/* 		top: 50%; */
+/* 		transform: translateY(-50%); */
+	}
+	.topNavBar-hide {
+		top: -105%;
 	}
 }
 
 
 
-@media only screen and (min-width: 751px) {
+@media only screen and (min-width: 47rem) { /* 752px */
+	/*--------------------------------------------
+		752^ Footer
+	----------------------------------------------*/
 	.foot-main {
 		background-image: url(../../public_html/img/interface/tecanEVO-background.png);
 		background-size: cover;
@@ -658,4 +742,67 @@ ul.dropDown li a:hover {
 	.foot-social-icons img {
 		width: 2em;
 	}
+	
+	/*--------------------------------------------
+		752^ Logo/Menu
+	----------------------------------------------*/
+	.header-info {
+		display: block;
+		position: absolute;
+		max-height: 70px;
+	/* 	border: 1px solid blue; */
+		right: 0;
+		bottom: 0.33rem;
+	}
+	.menu-access {
+		display: none;
+	}
+	.arrow-down {
+		display: initial;
+	}
+	.navList li {
+		display: inline-block;
+/* 		position: relative; */
+/* 		margin-right: -4px; */
+	}
+	.site-main {
+		padding-top: calc(70px + 2.333rem + 0.25rem)
+	}
+	.topNavBar {
+		background-color: #ddd;
+		-moz-box-shadow: 	0px 0px 7px 2px rgba(0, 0, 0, 0.30);
+		-webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.30);
+		box-shadow: 		0px 0px 7px 2px rgba(0, 0, 0, 0.30);
+		position: relative;
+		z-index: 1;
+		top: 100%;
+	}
+	div.dropDown {
+		display: none;
+		position: absolute;
+		left: 0;
+		top: 2.333em;
+		background-color: #cfcfcf;
+		min-width: 12em;
+		-moz-box-shadow: 	0px 0px 7px 2px rgba(0, 0, 0, 0.30);
+		-webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.30);
+		box-shadow: 		2px 2px 5px 0px rgba(0, 0, 0, 0.35);
+	}
+}
+
+
+@media only screen and (min-width: 63rem) { /* 1008px */
+
+}
+
+
+
+@media only screen and (min-width: 85rem) { /* 1360px */
+
+}
+
+
+
+@media only screen and (min-width: 100rem) { /* 1600px */
+
 }

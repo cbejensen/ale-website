@@ -20,7 +20,7 @@
 	general lab apparatus.</p>
 	<section class="auto-solutions-section">
 		<div class="auto-solutions-wrap pageContent">
-			<h2 class="section-head">Premium Automation Solutions</h2>
+			<h2 class="section-head prem-auto-head">Premium Automation Solutions</h2>
 			<div class="auto-solutions-column">
 				<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
 				<h3 class="section-head">Integrated Automation</h3>

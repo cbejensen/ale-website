@@ -28,9 +28,9 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/products_services.css" media="all">
 		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/lists.css" media="all">
 		<link rel="icon" type="image/ico" href="favicon_ale.ico">
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet"> -->
 		<script type="text/javascript" src="../resources/js/common.js"></script>
 		<meta charset="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,9 +55,12 @@
 						<!-- <span>45 Congress St. Salem, MA</span> -->
 						<span class="email"><a href="mailto:answers@atlanticlabequipment.com">answers@atlanticlabequipment.com</a></span>
 					</div>
+					<div class="menu-access gradient-button" onclick="toggleMenu()">
+						<img src="img/interface/menu-button.png" alt="Main Menu">
+					</div>
 				</div>
 			</div>
-			<nav class="topNavBar">
+			<nav class="topNavBar topNavBar-hide" id="ale-main-menu">
 				<div class="pageContent">
 					<ul class="navList" onmouseleave="moveArrow('<?php echo $section; ?>')">
 	                	<!-- Begin Home button -->
@@ -157,7 +160,7 @@
 						<label>Email Address:</label>
 						<input type="text" name="email">
 						<input id="website" name="website" type="text" value="" class="sticky-field">
-						<input type="submit" value="Sign Up" class="standard-button">
+						<input type="button" value="Sign Up" onclick="" class="standard-button">
 						<input type="button" value="View Archive" onclick="" class="standard-button">
 					</form>
 				</div>

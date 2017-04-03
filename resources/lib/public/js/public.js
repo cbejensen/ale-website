@@ -63,41 +63,66 @@ function submitQuestion()
 	var email		=	document.getElementById('email').value;
 	var msg			=	document.getElementById('msg').value;
 	
-	(function()
+	var fail		=	validateQuestion(firstName, lastName, email, msg);
+	
+	if (fail.length != 0)
 	{
-		var req;
-		makeRequest('ajax_handler.php?controller=public&action=submitQuestion', firstName, lastName, email, msg);
-
-		function makeRequest(url, firstName, lastName, email, msg)
+		var title	=	'Missing Information';
+		var message	=	'Please enter your ';
+		for (j = 1 ; j <= fail.length ; j++)
 		{
-			req = new XMLHttpRequest();
-
-				if (!req)
-				{
-					alert('Sorry! We couldn\'t connect you to the server right now, please try submitting the form again.');
-					return false;
-				}
-				req.onreadystatechange = alertContents;
-				req.open('POST', url);
-				req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				req.send('fname=' + firstName + "&lname=" + lastName + '&email=' + email + '&msg=' + msg);
-				console.log("Request sent.")
+			if (j != 1 && j != fail.length) message += ', ';
+			if (j == fail.length) message += ' and ';
+			message += fail[(j - 1)];
 		}
-
-		function alertContents()
+		buildAlert(title, message)
+	} else {
+		(function()
 		{
-			if (req.readyState === XMLHttpRequest.DONE)
+			var req;
+			makeRequest('ajax_handler.php?controller=public&action=submitQuestion', firstName, lastName, email, msg);
+	
+			function makeRequest(url, firstName, lastName, email, msg)
 			{
-				if (req.status === 200)
+				req = new XMLHttpRequest();
+	
+					if (!req)
+					{
+						alert('Sorry! We couldn\'t connect you to the server right now, please try submitting the form again.');
+						return false;
+					}
+					req.onreadystatechange = alertContents;
+					req.open('POST', url);
+					req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					req.send('fname=' + firstName + "&lname=" + lastName + '&email=' + email + '&msg=' + msg + '&reqIsAjax=true');
+					console.log("Request sent.")
+			}
+	
+			function alertContents()
+			{
+				if (req.readyState === XMLHttpRequest.DONE)
 				{
-					// If success, alert the user.
-					alertUser(req.responseText);
-				}
-				else
-				{
-				alert('We\'re sorry! There was a problem with the request. Please try your submission again. If the problem persists, please report this bug.');
+					if (req.status === 200)
+					{
+						// If success, alert the user.
+						alertUser(req.responseText);
+					}
+					else
+					{
+					alert('We\'re sorry! There was a problem with the request. Please try your submission again. If the problem persists, please report this bug.');
+					}
 				}
 			}
-		}
-	})();
+		})();
+	}
+}
+
+function validateQuestion(firstName, lastName, email, msg)
+{
+	var fail = [];
+	if (firstName == '')	fail.push('first name');
+	if (lastName == '') 	fail.push('last name');
+	if (email == '')		fail.push('email');
+	if (msg == '')			fail.push('message');
+	return fail;
 }

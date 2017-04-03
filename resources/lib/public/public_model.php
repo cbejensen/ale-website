@@ -24,36 +24,17 @@ class PublicModel
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
 			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
 			$url	=	"?controller=public&action=listing&section=products&title=$title&id={$ad['id']}";
-			// Repeats for development purposes.
-			for ($k = 0 ; $k < 2 ; $k++) 
+			if (!isset($ad['url'])) continue;
+			switch ($dspType)
 			{
-				switch ($adType)
-				{
-					case 'featured':
-						switch ($dspType)
-						{
-							case 'banner':
-								include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
-								break;
-							case 'list':
-								include '';
-								break;
-						}
+				case 'banner':
+					include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
 					break;
-					case 'waters':
-						switch ($dspType)
-						{
-							case 'banner':
-								include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
-								break;
-							case 'list':
-								include PUBLIC_PATH . '/view/inc/ads/list_item.php';
-								break;
-						}
+				case 'list':
+					include PUBLIC_PATH . '/view/inc/ads/list_item.php';
 					break;
-				}
-				$i++;
 			}
+			$i++;
 		}
 		$ad_i++;
 		$conn->close();

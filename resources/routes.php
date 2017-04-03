@@ -3,7 +3,8 @@
 // list of controllers and their actions -- allowed values
 $controllers	= array('public' 			=>	[	'home', 	'products_services', 
 													'contact', 	'estimates', 
-													'error', 	'test'
+													'error', 	'test',
+													'submitQuestion'
 													],
 		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',
