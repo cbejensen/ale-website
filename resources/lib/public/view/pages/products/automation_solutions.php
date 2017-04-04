@@ -15,7 +15,6 @@
 		of these applications in labs in industry, government, and academia.</p>
 	</header>
 	<section class="automation-section">
-		<!-- This section contains a video on the current site. Add it? -->
 		<div class="subsection info">
 			<h1 class="section-head">Integrated Automation</h1>
 			<p>ALE is cabable of integrating multiple devices to the Tecan liquid handling
@@ -48,7 +47,6 @@
 	</section>	
 	<section class="automation-section">
 		<div class="subsection info">
-			<!-- Historically, this section has not featured any visual elements, but some should be added -->
 			<h1 class="section-head">Installation &amp; Training</h1>
 			<p>ALE is able to provide the installation and training of Tecan systems per
 			the manufacturer’s documentation. Typically, three days are itemized with the
@@ -69,8 +67,6 @@
 	</section>
 	<section class="automation-section">
 		<div class="subsection info">
-			<!-- This section also contains a video on the current site, so it should be added, as long as the
-			quality is acceptable. -->
 			<h1 class="section-head">Application Development &amp; Service</h1>
 			<p>Having considerable experience with Tecan automation, ALE is capable of
 			providing application development services to our customers who desire it.</p>

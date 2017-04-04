@@ -1,6 +1,9 @@
 /*=================================================================================
 	1.0 - Prem. Automation Solutions Page
 =================================================================================*/
+.automation-solutions-main {
+	padding: 6rem 1rem;
+}
 .automation-solutions-main header {
 	margin: 6rem 0 4rem;
 }
@@ -8,7 +11,7 @@
 	font-size: 3rem;
 }
 .automation-solutions-main header p {
-	width: 50%;
+	width: 100%;
 	font-size: 1.25rem;
 	color: #656565;
 	font-style: italic;
@@ -24,9 +27,9 @@
 	position: relative;
 }
 .automation-section .subsection {
-	display: inline-block;
-	width: 50%;
-	margin-right: -4px;
+	display: block;
+	width: 100%;
+/* 	margin-right: -4px; */
 }
 .automation-section p {
 	width: 80%;
@@ -58,11 +61,66 @@
 	width: 90%;
 }
 .automation-section .info {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+	position: relative;
+	width: 75%;
+	margin: 0 auto;
+/* 	top: 50%; */
+/* 	transform: translateY(-50%); */
 }
 .automation-section .figure {
 	position: relative;
-	left: 50%;
+/* 	left: 50%; */
+}
+
+/*=================================================================================
+	X.0 - Media Queries
+=================================================================================*/
+@media only screen and (min-width: 32.8125rem) { /*525px*/
+
+}
+
+
+
+@media only screen and (min-width: 47rem) { /*752px*/
+	.automation-solutions-main header p {
+		width: 50%;
+	}
+	.automation-section .subsection {
+		display: inline-block;
+		width: 50%;
+		margin-right: -4px;
+	}
+	.automation-section .info {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		padding-top: 8rem;
+	}
+	.automation-section .figure {
+		position: relative;
+		left: 50%;
+	}
+}
+
+
+
+@media only screen and (min-width: 63rem) { /*1008px*/
+	.automation-section .info {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			padding-top: initial;
+		}
+}
+
+
+
+@media only screen and (min-width: 85rem) { /*1360px*/
+
+}
+
+
+
+@media only screen and (min-width: 100rem) { /*1600px*/
+
 }

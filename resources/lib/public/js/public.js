@@ -29,29 +29,34 @@ function moveFeaturedAds(mode, ad_iteration)
 	// Change each ad such that it moves down one ad-length
 	var i 		=	0;
 	var ad_i	=	ad_iteration;
-	while (document.getElementById('featAd_' + ad_i + '_' + i))
+	if (document.getElementById('featAd_' + ad_i + '_0').style.left == '0em' && mode == 0) 
 	{
-		var ad			=	document.getElementById('featAd_' + ad_i + '_' + i);
-		var curPos		=	ad.style.left || '0em';
-		curPos			=	curPos.slice(0, curPos.length - 2);
-		i++;
-		ad.style.left		=	curPos.toString() + 'em';
-		switch (mode)
+		// don't browse left if the left-most ad is displayed
+	} else {
+		while (document.getElementById('featAd_' + ad_i + '_' + i))
 		{
-			case 0:
-			case 'left':
-				var newPos		=	Number(curPos) + 15;
-				newPos			=	newPos.toString() + 'em';
-				ad.style.left	=	newPos;
-				console.log("New Position " + newPos);
-				break;
-			case 1:
-			case 'right':
-				var newPos		=	Number(curPos) - 15;
-				newPos			=	newPos.toString() + 'em';
-				ad.style.left	=	newPos;
-				console.log("New Position " + newPos);
-				break;
+			var ad			=	document.getElementById('featAd_' + ad_i + '_' + i);
+			var curPos		=	ad.style.left || '0em';
+			curPos			=	curPos.slice(0, curPos.length - 2);
+			i++;
+			ad.style.left		=	curPos.toString() + 'em';
+			switch (mode)
+			{
+				case 0:
+				case 'left':
+					var newPos		=	Number(curPos) + 15;
+					newPos			=	newPos.toString() + 'em';
+					ad.style.left	=	newPos;
+					console.log("New Position " + newPos);
+					break;
+				case 1:
+				case 'right':
+					var newPos		=	Number(curPos) - 15;
+					newPos			=	newPos.toString() + 'em';
+					ad.style.left	=	newPos;
+					console.log("New Position " + newPos);
+					break;
+			}
 		}
 	}
 }
