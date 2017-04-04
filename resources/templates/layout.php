@@ -131,12 +131,12 @@
 				<div class="searchBar pageContent">
 					<div class="searchBar-subitem searchBar-store"><span>Automation &amp; Robotics</span></div>
 					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)">
-					<div class="searchBar-goButton" id="searchBtn" onclick="">
-						<img src="img/interface/67grey_search.png">
+					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="">
+						<img src="img/interface/white-search.png">
 					</div>
-					<div class="searchBar-subitem searchBar-cart">
+					<!-- <div class="searchBar-subitem searchBar-cart">
 						<img src="img/interface/shopping_cart.png" alt="shopping cart">
-					</div>
+					</div> -->
 				</div>
 			</nav>
 		</header>

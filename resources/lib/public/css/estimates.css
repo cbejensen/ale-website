@@ -5,13 +5,14 @@
 /* 	max-width: 65rem; */
 }
 .estimates-main h1 {
-	margin: 6rem 0 2rem;
-	font-size: 3rem;
+	margin: 5rem auto 1rem;
+	font-size: 2rem;
+	width: 90%;
 }
 .estimates-main section {
-	margin-right: -4px;
-	display: inline-block;
-	width: 45%;
+	margin: 0 auto 3rem;
+	display: block;
+	width: 90%;
 	position: relative;
 }
 .contact-info-subsection {
@@ -24,7 +25,7 @@
 	Left Column - Form Section
 ----------------------------------------------*/
 .estimate-form {
-	padding-right: 5rem;
+/* 	padding-right: 5rem; */
 	color: #656565;
 	margin-bottom: 5rem;
 }
@@ -61,8 +62,7 @@
 .estimate-form p {
 	margin-bottom: 2rem;
 	font-style: italic;
-	
-	padding-right: 5rem;
+/* 	padding-right: 5rem; */
 }
 .estimate-form textarea {
 	display: block;
@@ -106,4 +106,58 @@
 }
 .estimate-info-subsection .fax-info {
 	margin-bottom: 1rem;
+}
+
+/*=================================================================================
+	X.0 - Media Queries
+=================================================================================*/
+@media only screen and (min-width: 32.8125rem) { /*525px*/
+
+}
+
+
+
+@media only screen and (min-width: 47rem) { /*752px*/
+	.estimates-main h1 {
+		margin: 6rem 0 2rem;
+		font-size: 3rem;
+		width: 100%;
+		padding-left: 1rem;
+	}
+	.estimates-main section {
+		margin: initial;
+		margin-right: -4px;
+		display: inline-block;
+		width: 45%;
+		position: relative;
+		padding: 0 1rem;
+	}
+	.estimate-form {
+		padding-right: 3rem;
+	}
+	.estimate-form p {
+	/* 	margin-bottom: 2rem; */
+	/* 	font-style: italic; */
+		padding-right: 5rem;
+	}
+}
+
+
+
+@media only screen and (min-width: 63rem) { /*1008px*/
+	section.estimate-contact-info {
+		padding-left: 5rem;
+	}
+}
+
+
+
+@media only screen and (min-width: 85rem) { /*1360px*/
+
+}
+
+
+
+@media only screen and (min-width: 100rem) { /*1600px*/
+
 }

@@ -10,7 +10,7 @@
 <main class="contact-main site-main pageContent">
 	<h1 class="section-head">Contact Us</h1>
 	<section class="contact-info-section contact-info">
-		<div class="contact-info-subsection">
+		<div class="info-subsection">
 			<h2 class="section-head">Phone, Email &amp; Fax</h2>
 			<ul>
 				<li>Phone: <span class="info">(978) 740-2400</span></li>
@@ -21,7 +21,7 @@
 			</ul>
 		</div>
 		<hr class="section-divider">
-		<div class="contact-info-subsection right-section">
+		<div class="info-subsection right-section">
 			<h2 class="section-head">Shipping Address</h2>
 			<address>
 				Atlantic Lab Equipment, Inc.<br>
@@ -31,7 +31,7 @@
 			</address>
 		</div>
 		<hr class="section-divider">
-		<div class="contact-info-subsection">
+		<div class="info-subsection">
 			<h2 class="section-head">Mailing Address</h2>
 			<address>
 				Atlanitc Lab Equipment, Inc.<br>
@@ -40,7 +40,7 @@
 			</address>
 		</div>		
 		<hr class="section-divider">
-		<div class="contact-info-subsection right-section">
+		<div class="info-subsection right-section">
 			<h2 class="section-head">Directions to ALE</h2>
 			<p>We would be delighted if you came to visit.
 			Please feel free to call us to set up an

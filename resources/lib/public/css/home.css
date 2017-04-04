@@ -184,14 +184,14 @@
 	padding: 1.25rem;
 }
 .question-form input[class*='name'] {
-	display: inline-block;
+	display: block;
 	position: relative;
-	margin-right: -4px;
-	width: 48%;
+/* 	margin-right: -4px; */
+	width: 100%;
 }
 .question-form .lname {
 	position: relative;
-    left: 4%;
+/*     left: 4%; */
 }
 .question-form .email {
 	width: 100%;	
@@ -479,6 +479,20 @@
 	.circle-img h2 {
 		font-size: 0.9rem;
 		width: calc(100% - 3rem); /* Subtract total padding of parent */
+	}
+	
+	/*--------------------------------------------
+		1008^ - Contact Form
+	----------------------------------------------*/
+	.question-form input[class*='name'] {
+		display: inline-block;
+		position: relative;
+		margin-right: -4px;
+		width: 48%;
+	}
+	.question-form .lname {
+/* 		position: relative; */
+	    left: 4%;
 	}
 	
 	/*--------------------------------------------
