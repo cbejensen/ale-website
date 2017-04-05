@@ -6,7 +6,6 @@
  * eventually be stored in the site's database.
  */
 ?>
-<script src="<?php echo PUBLIC_PATH; ?>/js/public.js"></script>
 <main class="contact-main site-main pageContent">
 	<h1 class="section-head">Contact Us</h1>
 	<section class="contact-info-section contact-info">

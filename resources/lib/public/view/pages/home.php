@@ -1,4 +1,3 @@
-<script src="../resources/lib/public/js/public.js"></script>
 <main class="home-main site-main">
 	<section class="home-header">
 		<video autoplay muted loop poster="">

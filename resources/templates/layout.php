@@ -32,6 +32,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
 		<!-- <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet"> -->
 		<script type="text/javascript" src="../resources/js/common.js"></script>
+		<script src="<?php echo PUBLIC_PATH; ?>/js/public.js"></script>
 		<meta charset="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<?php //PublicModel::get_metaDesc($title); ?>">
@@ -128,8 +129,31 @@
 					</ul>
 				</div>
 				<script>window.onload = createArrow('<?php echo $section; ?>');</script>
-				<div class="searchBar pageContent">
-					<div class="searchBar-subitem searchBar-store"><span>Automation &amp; Robotics</span></div>
+				<div class="searchBar">
+					<div class="searchBar-subitem searchBar-store" onclick="showStoreCategories()">
+						<span id="category-label" data-name="all">All</span>
+						<div id="s_categories" class="searchBar-dropdown material">
+							<div class="arrow-up"></div>
+							<h2 class="section-head category-head">Equipment Categories</h2>
+							<ul>
+								<li data-name="all" onclick="switchCategory();">All Categories</li>
+								<li data-name="analytical" onclick="switchCategory();">Analytical Instruments</li>
+								<li data-name="automation" onclick="switchCategory();">Automation &amp; Robotics</li>
+								<li data-name="centrifuges" onclick="switchCategory();">Centrifuges</li>
+								<li data-name="cooling" onclick="switchCategory();">Cooling Devices</li>
+								<li data-name="electrophoresis" onclick="switchCategory();">Electrophoresis</li>
+								<li data-name="heating" onclick="switchCategory();">Heating Devices</li>
+								<li data-name="imaging" onclick="switchCategory();">Imaging</li>
+								<li data-name="supplies" onclick="switchCategory();">Lab Supplies</li>
+								<li data-name="microscopes" onclick="switchCategory();">Microscopes</li>
+								<li data-name="mixers" onclick="switchCategory();">Mixers &amp; Stirrers</li>
+								<li data-name="other" onclick="switchCategory();">Other Lab Equipment</li>
+								<li data-name="pcr" onclick="switchCategory();">PCR DNA Thermal Cyclers</li>
+								<li data-name="pumps" onclick="switchCategory();">Pumps</li>
+								<li data-name="scales" onclick="switchCategory();">Scales &amp; Balances</li>
+							</ul>
+						</div>
+					</div>
 					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)">
 					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="">
 						<img src="img/interface/white-search.png">
