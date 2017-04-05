@@ -91,37 +91,13 @@ class PublicController
 		}
 	}
 	
-	public function submitQuestion() 
+	public function submitQuestion()
 	{
-		$conn	=	db_connect(AL_DB, $this->userData);
-		$data	=	array();
-		$params	=	array('fname', 'lname', 'email', 'msg');
-		for ($j = 0 ; $j < 4 ; $j++)
-		{
-			if (isset($_POST[$params[$j]]))
-			{
-				$data[$params[$j]]	=	mysql_entities_fix_string($conn, $_POST[$params[$j]]);
-			} else {
-				// send back error message
-				exit;
-			}
-		}
-		$subject	=	"{$data['fname']} {$data['lname']} asked a question";
-		//$recip		=	'answers@atlanticlabequipment.com, jack@atlanticlabequipment.com, kelly@atlanticlabequipment.com';
-		$recip		=	'jack@atlanticlabequipment.com';
-		$headers	= 	'From: jack@atlanticlabequipment.com';
-		if (!mail($recip, $subject, $data['msg'], $headers))
-		{
-			// Send error to user, log
-			exit;
-		} else {
-			$subject	=	'ALE | Thanks for your question!';
-			$message	=	'Thank you for submitting a question. We\'ll contact you as soon as possible with a solution!';
-			if (!mail($data['email'], $subject, $message, $headers))
-			{
-				// Send error to user, log
-				exit;
-			}
-		}
+		$formData	=	PublicModel::parseContactForm($this->userData);
+// 		if (!PublicModel::saveLeadInfo($this->userData, $formData))
+// 		{
+			// Send error email?
+// 		}
+		PublicModel::sendMail($formData['recipients'], $formData['email'], $formData['subject'], $formData['message'], $formData['headers']);		
 	}
 }

@@ -46,3 +46,7 @@
 [29-Mar-2017 11:33:14 America/New_York] Database Query Failed. No database selected
 [29-Mar-2017 11:37:26 America/New_York] Database Query Failed. No database selected
 [04-Apr-2017 21:31:10 Europe/Berlin] Database Query Failed. Too big precision 14 specified for 'time'. Maximum is 6.
+[05-Apr-2017 16:14:31 America/New_York] Message Failed to Send mail(): SMTP server response: 553 We do not relay non-local mail, sorry.
+[05-Apr-2017 16:15:52 America/New_York] Message Failed to Send mail(): SMTP server response: 553 We do not relay non-local mail, sorry.
+[05-Apr-2017 17:16:08 America/New_York] Message Failed to Send mail(): SMTP server response: 553 We do not relay non-local mail, sorry.
+[05-Apr-2017 17:36:12 America/New_York] Message Failed to Send mail(): SMTP server response: 553 We do not relay non-local mail, sorry.

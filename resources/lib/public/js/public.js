@@ -131,3 +131,83 @@ function validateQuestion(firstName, lastName, email, msg)
 	if (msg == '')			fail.push('message');
 	return fail;
 }
+
+function showStoreCategories()
+{
+	var dropdown			=	document.getElementById('s_categories');
+	if (dropdown.style.display == '' || dropdown.style.display	== 'none')
+	{
+		dropdown.style.display	=	'block';
+	} else {
+		dropdown.style.display	=	'none';
+	}
+}
+
+function switchCategory()
+{
+//	console.log('running');
+	console.log(event.target.dataset.name);
+	var name	=	event.target.dataset.name
+	var label	=	mapCategories(name);
+	var button	=	document.getElementById('category-label');
+	while (button.firstChild) {
+		button.removeChild(button.firstChild);
+	}
+	var text	=	document.createTextNode(label);
+	button.appendChild(text);
+	button.dataset.name	=	name;
+}
+
+function mapCategories(dataName)
+{
+	var catName	=	'';
+	switch (dataName)
+	{
+		case 'all':
+			catName	=	'All';
+			break;
+		case 'analytical':
+			catName	=	'Analytical Instruments';
+			break;
+		case 'automation':
+			catName	=	'Automation & Robotics';
+			break;
+		case 'centrifuges':
+			catName	=	'Centrifuges';
+			break;
+		case 'cooling':
+			catName	=	'Cooling Devices';
+			break;
+		case 'electrophoresis':
+			catName	=	'Electrophoresis';
+			break;
+		case 'heating':
+			catName	=	'Heating Devices';
+			break;
+		case 'imaging':
+			catName	=	'Imaging';
+			break;
+		case 'supplies':
+			catName	=	'Lab Supplies';
+			break;
+		case 'microscopes':
+			catName	=	'Microscopes';
+			break;
+		case 'mixers':
+			catName	=	'Mixers & Stirrers';
+			break;
+		case 'other':
+			catName	=	'Other Lab Equipment';
+			break;
+		case 'pcr':
+			catName	=	'PCR DNA Thermal Cyclers';
+			break;
+		case 'pumps':
+			catName	=	'Pumps';
+			break;
+		case 'scales':
+			catName	=	'Scales & Balances';
+			break;
+	}
+	return catName;
+}
