@@ -4,7 +4,9 @@
 $controllers	= array('public' 			=>	[	'home', 	'products_services', 
 													'contact', 	'estimates', 
 													'error', 	'test',
-													'submitQuestion'
+													'submitQuestion',
+													'submitEstimateForm',
+													'listing'
 													],
 		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',

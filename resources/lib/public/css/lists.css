@@ -2,8 +2,13 @@
 	1.0 - List Pages
 =================================================================================*/
 .list-main h1 {
-	margin: 6rem 0 1rem;	
+	margin: 7rem 0 1rem;	
 	font-size: 3rem;
+}
+.list-main .subtitle {
+	font-size: 1.15rem;
+	color: #555;
+	width: 62%;
 }
 .list-main .subhead {
 	font-size: 1.25rem;
@@ -48,7 +53,7 @@
 	flex-grow: 2;
 }
 .list-item .list_description h2 {
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 }
 .list-item .desc_subsection {
 	padding: 0 1.5rem;	

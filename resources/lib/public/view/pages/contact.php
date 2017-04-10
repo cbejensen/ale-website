@@ -8,6 +8,7 @@
 ?>
 <main class="contact-main site-main pageContent">
 	<h1 class="section-head">Contact Us</h1>
+	<!-- <p>Need technical support with one of our instruments? Looking for a specific item? We're happy to answer any questions you may have for us.</p>-->
 	<section class="contact-info-section contact-info">
 		<div class="info-subsection">
 			<h2 class="section-head">Phone, Email &amp; Fax</h2>
@@ -16,7 +17,7 @@
 				<li>Toll Free: <span class="info">(866) 484-6031</span></li>
 				<li class="fax-info">Fax: <span class="info">(978) 740-5678</span></li>
 				<li class="other-info">Website: <span class="info">atlanticlabequipment.com</span></li>
-				<li class="other-info">Email: <span class="info">answers@atlanticlabequipemnt.com</span></li>
+				<li class="other-info">Email: <span class="info">answers@atlanticlabequipment.com</span></li>
 			</ul>
 		</div>
 		<hr class="section-divider">
@@ -54,6 +55,7 @@
 					<input class="fname" type="text" id="fname" placeholder="First name *">
 					<input class="lname" type="text" id="lname" placeholder="Last name *">
 					<input class="email" type="text" id="email" placeholder="Email address *">
+					<input class="f-phone" type="text" id="f-phone" placeholder="Phone Number *">
 					<span class="hr"></span>
 					<textarea rows="10" id="msg" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>

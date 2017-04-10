@@ -15,11 +15,11 @@
 		requested. Required fields are marked with an asterisk.</p>
 		<form action="/?controller=forms&action=processEstimateForm" method="post">
 			<label class="required">Instrument of Interest</label>
-			<input type="text" name="instrument" placeholder="e.g. Tecan EVO 200 Automated Liquid Handler">
+			<input id="instrument" type="text" name="instrument" placeholder="e.g. Tecan EVO 200 Automated Liquid Handler">
 			<label class="required">Information Requested</label>
 			<!-- Radio Buttons are a better solution here.
 			When a user selects "Other" create another text input, labelled "Please Describe" -->
-			<select name="info-requested">
+			<select id="info_req" name="info-requested">
 				<option selected disabled>Please select an option</option>
 				<option value="pricing">Pricing Information</option>
 				<option value="details">Instrument Details</option>
@@ -30,23 +30,24 @@
 			<hr class="section-divider">
 			<div class="firstHalf">
 				<label class="required">First Name</label>
-				<input type="text" name="firstName">
+				<input id="fname" type="text" name="firstName">
 			</div>
 			<div class="lastHalf">
 				<label class="required">Last Name</label>
-				<input type="text" name="lastName">
+				<input id="lname" type="text" name="lastName">
 			</div>
 			<div class="firstHalf">
 				<label class="required">Email</label>
-				<input type="text" name="email">
+				<input id="email" type="text" name="email">
 			</div>
 			<div class="lastHalf">
 				<label>Phone</label>
-				<input type="text" name="phone">
+				<input id="phone" type="text" name="phone">
 			</div>
+			<input id="website" class="f-website" type="text" name="website">
 			<hr class="section-divider">
 			<label>How did you hear about Atlantic Lab Equipment?</label>
-			<select name="referredBy">
+			<select id="referrer" name="referredBy">
 				<option selected disabled>Please select an option</option>
 				<option value="existingCustomer">I am an existing customer</option>
 				<option value="googleAd">Google Ad</option>
@@ -57,13 +58,13 @@
 				<option value="other">Other</option>
 			</select>
 			<label>Would you like to receive inventory updates?</label>
-			<select name="getUpdates">
-				<option value="yes">Yes, I would like to receive monthly inventory updates via email.</option>
-				<option value="no">No, I would not like to receive inventory updates.</option>
+			<select id="newsletter" name="getUpdates">
+				<option value="1">Yes, I would like to receive monthly inventory updates via email.</option>
+				<option value="0">No, I would not like to receive inventory updates.</option>
 			</select>
 			<label>Comments or Additional Questions</lable>
-			<textarea rows="5" name="commnets" placeholder="We appreciate your input!"></textarea>
-			<input class="material gradient-button" type="submit" value="Submit" onclick="">
+			<textarea id="msg" rows="5" name="commnets" placeholder="We appreciate your input!"></textarea>
+			<input class="material gradient-button" type="button" name="submit" value="Submit" onclick="submitEstimateForm()">
 		</form>
 	</section>
 	<section class="estimates-section contact-info estimate-contact-info">
@@ -74,7 +75,7 @@
 				<li>Toll Free: <span class="info">(866) 484-6031</span></li>
 				<li class="fax-info">Fax: <span class="info">(978) 740-5678</span></li>
 				<li class="other-info">Website: <span class="info">atlanticlabequipment.com</span></li>
-				<li class="other-info">Email: <span class="info">answers@atlanticlabequipemnt.com</span></li>
+				<li class="other-info">Email: <span class="info">answers@atlanticlabequipment.com</span></li>
 			</ul>
 		</div>
 		<hr class="subsection-divider">

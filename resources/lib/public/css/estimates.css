@@ -81,8 +81,12 @@
 	font-family: calibri, helvetica, arial, sans-serif;
 	font-size: 14px;
 }
-.estimate-form input[type="submit"] {
+.estimate-form input[name="submit"] {
 	width: 45%;
+	margin-bottom: 3rem;
+}
+.estimate-form .f-website {
+	display: none;
 }
 
 /*--------------------------------------------

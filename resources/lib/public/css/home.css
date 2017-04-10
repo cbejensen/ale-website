@@ -42,6 +42,12 @@
 	width: 100%;
 	height: 100%;	
 }
+#about,
+#testimonials,
+#mission {
+position: absolute;
+	top: -12rem;
+}
 
 /*--------------------------------------------
 	Circular Buttons, Header, Premium Automation Solutions 
@@ -58,9 +64,30 @@
 	margin-right: -4px;
 	padding: 0.5rem;
 }
+.circle-img a {
+	color: #333;
+}
+/* .circle-img .img-overlay { */
+/* 	opacity: 0; */
+/* 	box-shadow:	inset 0 0 20px 30px rgba(255,255,255,0.33); */
+/* 	border-radius: 50%; */
+/* 	width: 100%; */
+/* 	height: 10rem; */
+/*  	background-color: #fff;  */
+/* 	position: absolute; */
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	transition: 0.5s ease; */
+/* } */
 .circle-img img {
 	width: 100%;
 	border-radius: 50%;
+	transition: 0.25s ease;
+	opacity: 1;
+}
+.circle-img img:hover {
+	opacity: 0.67;
+	cursor: pointer;
 }
 .circle-img h2 {
 	font-size: 0.85rem;
@@ -219,6 +246,9 @@
     display: inline-block;
     border-radius: 3px;
 }
+.f-phone {
+	display: none;
+}
 
 
 /*=================================================================================
@@ -229,6 +259,7 @@
 	display: block;
 	margin: 3rem auto;
 }
+.about-section,
 .about-section .wrapper {
 	position: relative;
 }
@@ -287,6 +318,7 @@
 	5.0 - Testimonial Section
 =================================================================================*/
 .testimonials-section {
+	position: relative;
 	margin: 5rem auto;
 }
 .testimonials-section h1 {
@@ -362,7 +394,7 @@
 	}
 	.home-header .subhead-text {
 		text-align: justify;
-    	max-width: 30rem;
+    	max-width: 42rem;
     	font-size: 1.2rem;
 	}
 	.home-header-columns {

@@ -71,6 +71,13 @@
 	position: relative;
 /* 	left: 50%; */
 }
+#integration,
+#installation,
+#applications {
+	position: relative;
+	top: -12rem;
+}
+
 
 /*=================================================================================
 	X.0 - Media Queries

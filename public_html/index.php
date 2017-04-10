@@ -27,6 +27,15 @@ if (isset($_GET['title']))
 {
 	$title = htmlentities($_GET['title'], ENT_QUOTES);
 }
+elseif ($_GET['action'] == 'listing')
+{
+	$id		=	htmlentities($_GET['id'], ENT_QUOTES);
+	$title	=	getListingTitle($id);
+	if (empty($title)) {
+		// send warning to log
+		$title = 'Bum';
+	}
+}
 else $title = 'Home';
 
 

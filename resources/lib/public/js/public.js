@@ -67,6 +67,8 @@ function submitQuestion()
 	var lastName	=	document.getElementById('lname').value;
 	var email		=	document.getElementById('email').value;
 	var msg			=	document.getElementById('msg').value;
+	var phone		=	document.getElementById('f-phone').value;
+	//console.log(phone);
 	
 	var fail		=	validateQuestion(firstName, lastName, email, msg);
 	
@@ -85,9 +87,9 @@ function submitQuestion()
 		(function()
 		{
 			var req;
-			makeRequest('ajax_handler.php?controller=public&action=submitQuestion', firstName, lastName, email, msg);
+			makeRequest('ajax_handler.php?controller=public&action=submitQuestion', firstName, lastName, email, msg, phone);
 	
-			function makeRequest(url, firstName, lastName, email, msg)
+			function makeRequest(url, firstName, lastName, email, msg, phone)
 			{
 				req = new XMLHttpRequest();
 	
@@ -99,7 +101,7 @@ function submitQuestion()
 					req.onreadystatechange = alertContents;
 					req.open('POST', url);
 					req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-					req.send('fname=' + firstName + "&lname=" + lastName + '&email=' + email + '&msg=' + msg + '&reqIsAjax=true');
+					req.send('fname=' + firstName + "&lname=" + lastName + '&email=' + email + '&message=' + msg + '&phone=' + phone + '&reqIsAjax=true&formType=question');
 					console.log("Request sent.")
 			}
 	
@@ -110,6 +112,7 @@ function submitQuestion()
 					if (req.status === 200)
 					{
 						// If success, alert the user.
+						console.log(req.responseText);
 						alertUser(req.responseText);
 					}
 					else
@@ -129,6 +132,85 @@ function validateQuestion(firstName, lastName, email, msg)
 	if (lastName == '') 	fail.push('last name');
 	if (email == '')		fail.push('email');
 	if (msg == '')			fail.push('message');
+	return fail;
+}
+
+function submitEstimateForm()
+{
+	var firstName	=	document.getElementById('fname').value;
+	var lastName	=	document.getElementById('lname').value;
+	var email		=	document.getElementById('email').value;
+	var msg			=	document.getElementById('msg').value;
+	var phone		=	document.getElementById('phone').value;
+	var inst		=	document.getElementById('instrument').value;
+	var info		=	document.getElementById('info_req').value;
+	var referrer	=	document.getElementById('referrer').value;
+	var newsletter	=	document.getElementById('newsletter').value;
+	var website		=	document.getElementById('website').value;
+	
+	var fail		=	validateEstimateForm(firstName, lastName, email, inst, info);
+	
+	if (fail.length != 0)
+	{
+		var title	=	'Missing Information';
+		var message	=	'Please enter your ';
+		for (j = 1 ; j <= fail.length ; j++)
+		{
+			if (j != 1 && j != fail.length) message += ', ';
+			if (j == fail.length) message += ' and ';
+			message += fail[(j - 1)];
+		}
+		buildAlert(title, message)
+	} else {
+		(function()
+		{
+			var req;
+			makeRequest('ajax_handler.php?controller=public&action=submitForm', firstName, lastName, email, msg, phone, inst, info, referrer, newsletter, website);
+	
+			function makeRequest(url, firstName, lastName, email, msg, phone, inst, info, referrer, newsletter, website)
+			{
+				req = new XMLHttpRequest();
+	
+					if (!req)
+					{
+						alert('Sorry! We couldn\'t connect you to the server right now, please try submitting the form again.');
+						return false;
+					}
+					req.onreadystatechange = alertContents;
+					req.open('POST', url);
+					req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					req.send('fname=' + firstName + "&lname=" + lastName + '&email=' + email + '&message=' + msg + '&phone=' + phone + '&instrument=' + inst + '&info_req=' + info + '&referrer=' + referrer + '&newsletter=' + newsletter + '&website=' + website + '&reqIsAjax=true&formType=estimate');
+					console.log("Request sent.")
+			}
+	
+			function alertContents()
+			{
+				if (req.readyState === XMLHttpRequest.DONE)
+				{
+					if (req.status === 200)
+					{
+						// If success, alert the user.
+						console.log(req.responseText);
+						alertUser(req.responseText);
+					}
+					else
+					{
+					alert('We\'re sorry! There was a problem with the request. Please try your submission again. If the problem persists, please report this bug.');
+					}
+				}
+			}
+		})();
+	}
+}
+
+function validateEstimateForm(firstName, lastName, email, inst, info)
+{
+	var fail = [];
+	if (firstName == '')	fail.push('first name');
+	if (lastName == '') 	fail.push('last name');
+	if (email == '')		fail.push('email');
+	if (inst == '')			fail.push('instrument of interest');
+	if (info == 'Please select an option')	fail.push('requested information type');
 	return fail;
 }
 

@@ -80,7 +80,7 @@ function buildAlert(title, message, actions)
 	// Create Alert Box
 	var alertBox	=	document.createElement('div');
 	alertBox.setAttribute('id', 'alertBox');
-	alertBox.setAttribute('class', 'alertBox');
+	alertBox.setAttribute('class', 'alertBox material');
 	
 	// Add Close Button
 	var closeButton	= document.createElement('span');

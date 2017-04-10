@@ -14,6 +14,7 @@
 		<p>ALE's core technical team has successfully implemented variations
 		of these applications in labs in industry, government, and academia.</p>
 	</header>
+	<div id="integration"></div>
 	<section class="automation-section">
 		<div class="subsection info">
 			<h1 class="section-head">Integrated Automation</h1>
@@ -44,7 +45,8 @@
 				</figcaption>
 			</figure>
 		</div>
-	</section>	
+	</section>
+	<div id="installation"></div>
 	<section class="automation-section">
 		<div class="subsection info">
 			<h1 class="section-head">Installation &amp; Training</h1>
@@ -65,6 +67,7 @@
 			</figure>
 		</div>
 	</section>
+	<div id="applications"></div>
 	<section class="automation-section">
 		<div class="subsection info">
 			<h1 class="section-head">Application Development &amp; Service</h1>

@@ -54,10 +54,10 @@ function db_query($q, &$conn) {
 	return $result;
 }
 
-function handleError($errorData, &$conn, $source = 0)
+function handleError($errorData, &$conn, $source = 0, $mode = 1)
 {
-	// array $errorData, obj $conn, string $source
 	// $errorData must contain at least 3 keys: 'title', 'message', and 'error'
+	// mode: 1 -> Send alert to user.	0 -> Don't send alert to user
 	switch ($source)
 	{
 		case 'mysql':
@@ -72,17 +72,18 @@ function handleError($errorData, &$conn, $source = 0)
 	}
 	ini_set('error_log', $log);
 	error_log($errorData['title'] . ' ' . $errorData['error']);
-	if (isset($_POST['reqIsAjax']))
+	
+	// If the request originated via Ajax, send the user a response
+	if (isset($_POST['reqIsAjax']) && $mode == 1)
 	{
 		$result		=	0;
 		$title		=	$errorData['title'];
 		$message	=	$errorData['message'];
 		ajaxResponse_alert($result, $title, $message);
-		exit;
-	} else {
+	} elseif (!isset($_POST['reqIsAjax']) && $mode == 1) {
 		alertUser($errorData['title'], $errorData['message']);
 		// For a page request, exiting the script may not be the appropriate action.
-		exit;
+		//exit;
 	}
 }
 
@@ -104,6 +105,20 @@ function alertUser($title, $message)
 					'message'	=>	$message
 				];
 	require_once PUBLIC_PATH . '/view/pages/error.php';
+}
+
+function getListingTitle($id)
+{
+	$userData 	=	setDefaultUser();
+	$conn		=	db_connect(AL_DB, $userData);
+	require PUBLIC_PATH . '/listing.php';
+	try {
+	$listing	=	new Listing($id, $conn);
+	} catch (Exception $e) {
+		// error	
+	}
+	$conn->close();
+	return $listing->title;
 }
 
 function mysql_entities_fix_string($conn, $string)

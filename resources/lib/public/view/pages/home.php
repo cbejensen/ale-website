@@ -15,17 +15,23 @@
 		    	<!-- <a href=""><img scr="" alt=""></a>
 		    	<a href=""><img scr="" alt=""></a>
 		    	<a href=""><img scr="" alt=""></a> -->
-		    	<div class="circle-img" onclick="">
-		    		<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
-		    		<h2>Integration</h2>
+		    	<div class="circle-img">
+		    		<a href="index.php?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions#integration">
+			    		<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
+			    		<h2>Integration</h2>
+		    		</a>
 		    	</div>
-		    	<div class="circle-img" onclick="">
-		    		<img class="material" src="img/content/system_installation.png" alt="Installation of an automated Liquid Handling workstation for biological applications">
-		    		<h2>Installation</h2>
+		    	<div class="circle-img">
+		    		<a href="index.php?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions#installation">
+			    		<img class="material" src="img/content/system_installation.png" alt="Installation of an automated Liquid Handling workstation for biological applications">
+			    		<h2>Installation</h2>
+			    	</a>
 		    	</div>
-		    	<div class="circle-img" onclick="">
-		    		<img class="material" src="img/content/applications.png" alt="A Mass Spectrometer as part of an itegrated system developed for proteomic applications">
-		    		<h2>Applications</h2>
+		    	<div class="circle-img">
+		    		<a href="index.php?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions#applications">
+		    			<img class="material" src="img/content/applications.png" alt="A Mass Spectrometer as part of an itegrated system developed for proteomic applications">
+		    			<h2>Applications</h2>
+		    		</a>
 		    	</div>
 			</div>
 		</div>
@@ -64,8 +70,8 @@
 		</div>
 	</section>
 	<hr class="section-divider">
-	<a name="about"></a>
 	<section class="about-section">
+		<div id="about"></div>
 		<div class="wrapper pageContent">
 			<div class="about-wrapper">
 				<h1 class="section-head">About Atlantic Lab Equipment</h1>
@@ -85,8 +91,8 @@
 				analytical systems, thermal cyclers, PCR systems, DNA sequencers, imaging systems, microplate
 				readers &amp; washers, and other bench-top lab equipment to meet your needs.</p>
 			</div>
-			<a name="mission"></a>
 			<div class="mission-wrapper">
+				<div id="mission"></div>
 				<div class="bg"></div>
 				<h1 class="section-head">Mission Statement</h1>
 				<p style="font-weight: normal">Atlantic Lab Equipment helps labs save money by providing premium automation
@@ -97,8 +103,8 @@
 		</div>
 	</section>
 	<hr class="section-divider">
-	<div id="testimonials"></div>
 	<section class="testimonials-section pageContent">
+		<div id="testimonials"></div>
 		<h1 class="section-head">Testimonials</h1>
 		<div class="testimonial">
 			<img src="img/content/liz-f.png" alt="Liz F." class="material">

@@ -7,6 +7,7 @@ class PublicController
 {
 	private $userData;
 	private $model;
+	//private $conn;
 	
 	public function __construct()
 	{
@@ -27,6 +28,9 @@ class PublicController
 		
 		// Create an instance of the model.
 		$this->model	=	new PublicModel;
+		
+		// Create a connection to the database
+		//$this->conn		=	db_connect(AL_DB, $this->userData);
 	}
 	
 	public function home()
@@ -91,13 +95,28 @@ class PublicController
 		}
 	}
 	
-	public function submitQuestion()
+	public function submitForm()
 	{
-		$formData	=	PublicModel::parseContactForm($this->userData);
-// 		if (!PublicModel::saveLeadInfo($this->userData, $formData))
-// 		{
-			// Send error email?
-// 		}
-		PublicModel::sendMail($formData['recipients'], $formData['email'], $formData['subject'], $formData['message'], $formData['headers']);		
+		if (!isset($_POST['formType']))
+		{
+			// Error
+			return;
+		}
+		$formType	=	htmlentities($_POST['formType']);
+		switch ($formType)
+		{
+			case 'question':
+				$this->model->submitQuestion($this->userData);
+				break;
+			case 'estimate':
+				$this->model->submitEstimateForm($this->userData);
+				break;
+			case 'newsletter':
+				$this->model->submitNewsletterSignup($this->userData);
+				break;
+			default:
+				// error
+				break;
+		}
 	}
 }

@@ -73,13 +73,13 @@
 										<a href="index.php">Top of Homepage</a>
 									</li>
 									<li>
-										<a href="index.php/#about">About</a>
+										<a href="index.php?#about">About</a>
 									</li>
 									<li>
 										<a href="http://atlanticlabequipment.com/newsletters">Newsletters</a>
 									</li>
 									<li>
-										<a href="index.php/#mission">Mission Statement</a>
+										<a href="index.php?#mission">Mission Statement</a>
 									</li>
 									<li>
 										<a href="index.php?controller=public&action=home&section=home#testimonials">Testimonials</a>
@@ -106,8 +106,8 @@
 										Outlet Equipment</a>
 									</li>
 									<li>
-										<a href="?controller=public&action=products_services&page=new_arrivals&title=Newly-Arrived%20Equipment&section=products">
-										Newly-Arrived Equipment</a>
+										<a href="?controller=public&action=products_services&page=new_arrivals&title=New%20Arrivals&section=products">
+										New Arrivals</a>
 									</li>
 									<li>
 										<a href="?controller=public&action=products_services&page=monthly_specials&title=Monthly%20Specials&section=products">
