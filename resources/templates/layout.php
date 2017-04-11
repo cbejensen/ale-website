@@ -223,22 +223,22 @@
 								<a href="https://atlanticlabequipment.com">Top of Home Page</a>
 							</li>
 							<li>
-								<a href="https://atlanticlabequipment.com/#about">About</a>
+								<a href="index.php?#about">About</a>
 							</li>
 							<li>
-								<a href="https://atlanticlabequipment.com/products-and-services">Products &amp; Services</a>
+								<a href="?controller=public&action=products_services&title=Products%20%26%20Services&section=products">Products &amp; Services</a>
 							</li>
 							<li>
-								<a href="https://atlanticlabequipment.com/premium-equipment">Premium Equipment</a>
+								<a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products">Premium Equipment</a>
 							</li>
 							<li>
 								<a href="http://stores.ebay.com/ale-lab-equipment-outlet">Outlet Equipment</a>
 							</li>
 							<li>
-								<a href="https://atlanticlabequipment.com/contact">Contact Us</a>
+								<a href="?controller=public&action=contact&title=Contact%20Us&section=contact">Contact Us</a>
 							</li>
 							<li>
-								<a href="https://atlanticlabequipment.com/estimates">Request a Quote</a>
+								<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">Request a Quote</a>
 							</li>
 			            </ul>	
 					</nav>
