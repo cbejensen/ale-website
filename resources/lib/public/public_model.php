@@ -1,7 +1,7 @@
 <?php
 /*
- * The Public model manipulates the state of the application as it relates 
- * to the public webpages.
+ * The Public model manipulates the state of the application for
+ * the public webpages.
  */
 
 class PublicModel
@@ -47,10 +47,12 @@ class PublicModel
 		$conn	=	db_connect(AL_DB, $userData);
 		try {
 			$this->listing	=	new Listing($id, $conn);
+			$r	=	true;
 		} catch (Exception $e) {
 			// Failed to set listing
+			$r	=	false;
 		}
-		
+		return $r;
 	}
 	
 	public function submitQuestion($userData)
@@ -179,7 +181,7 @@ class PublicModel
 		$q		=	"SELECT description FROM meta_desc WHERE page='$pageTitle';";
 	}
 	
-	public static function parseContactForm($userData)
+	private static function parseContactForm($userData)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
 		
@@ -211,7 +213,7 @@ class PublicModel
 		return $data;
 	}
 	
-	public static function parseEstimateForm($userData)
+	private static function parseEstimateForm($userData)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
 	
@@ -250,7 +252,7 @@ class PublicModel
 		return $data;
 	}
 	
-	public static function saveLeadInfo($userData, $formData)
+	private static function saveLeadInfo($userData, $formData)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
 		$q		=	"SELECT id FROM leads WHERE email='{$formData['email']}'";
@@ -302,46 +304,81 @@ class PublicModel
 		return $id;
 	}
 	
-	public static function updateLead($id, $formData, &$conn)
+	private static function updateLead($id, $formData, &$conn)
 	{
-		$q	=	"UPDATE leads SET fname=?, lname=?, phone=?, street_addr=?, city=?, state=?, postal_code=?, country=?, last_update=? WHERE id=?";
-		try
+		$paramNames		=	array('fname', 'lname', 'phone', 'street_addr', 'city', 'state', 'postal_code', 'country', 'last_update');
+		$params			=	array();
+		$type			=	'';
+		foreach ($paramNames as $name)
 		{
-			$stmt	=	$conn->prepare($q);
-			if ($stmt === false)
+			if (isset($formData[$name]) && !empty($formData[$name]))
 			{
-				throw new Exception('prepare() failed: ' . htmlspecialchars($conn->error));
+				$params[$name]	=	$formData[$name];
 			}
-			// Bind Parameters
-			$date	=	date('Y-m-d H:i:s');
-			$rc		=	$stmt->bind_param("ssssiisisi", $formData['fname'], $formData['lname'], 		
-														$formData['phone'], $formData['street_addr'], 	$formData['city'],
-														$formData['state'], $formData['postal_code'], 	$formData['country'],
-														$date, 				$id);
-			if ($rc === false)
-			{
-				$err	=	error_get_last();
-				throw new Exception('bind_param() failed: ' . htmlspecialchars($err['message']) . ' | ' . htmlspecialchars($stmt->error));
-			}
-			// Execute
-			$rc		=	$stmt->execute();
-			if ($rc === false)
-			{
-				throw new Exception('execute() failed: ' . htmlspecialchars($stmt->error));
-			}
-			$r	=	true;
-		} catch (Exception $e) {
-			$r		= 	false;
-			$errorData	=	array(	'title'		=>	'Failed to update lead data.',
-									'message'	=>	'Failed to update lead data',
-									'error'		=>	"Lead data failed to update: { {$formData['fname']}, {$formData['lname']}, {$formData['email']} }" . $e->getMessage()
-							);
-			handleError($errorData, $conn, 'mysql', 0);
 		}
-		return $r;
+		if (count($params))
+		{
+			$q		=	"UPDATE leads SET ";
+			foreach ($params as $key => $value)
+			{
+				$q	.=	"$key=?, ";
+				switch ($key)
+				{
+					case 'fname':
+					case 'lname':
+					case 'phone':
+					case 'street_addr':
+					case 'postal_code':
+					case 'last_update':
+						$type	.=	's';
+						break;
+					case 'city':
+					case 'state':
+					case 'country':
+						$type	.=	'i';
+						break;
+				}
+			}
+			$q		.=	'last_update=? WHERE id=?';
+			$type	.=	'si';
+			$params['last_update']	=	date('Y-m-d H:i:s');
+			$params['id']			=	$id;
+			
+			try
+			{
+				$stmt	=	$conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('prepare() failed: ' . htmlspecialchars($conn->error));
+				}
+				// Bind parameters
+				$params =	array_merge(array($type), array_values($params));
+				$rc		=	call_user_func_array(array(&$stmt, 'bind_param'), refValues($params));
+				if ($rc === false)
+				{
+					$err	=	error_get_last();
+					throw new Exception('bind_param() failed: ' . htmlspecialchars($err['message']) . ' | ' . htmlspecialchars($stmt->error));
+				}
+				// Execute
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$r	=	true;
+			} catch (Exception $e) {
+				$r		= 	false;
+				$errorData	=	array(	'title'		=>	'Failed to update lead data.',
+										'message'	=>	'Failed to update lead data',
+										'error'		=>	"Lead data failed to update: { {$formData['fname']}, {$formData['lname']}, {$formData['email']} }" . $e->getMessage()
+								);
+				handleError($errorData, $conn, 'mysql', 0);
+			}
+			return $r;
+		}
 	}
 	
-	public static function submitTicket($leadID, $type, $formData, $userData)
+	private static function submitTicket($leadID, $type, $formData, $userData)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
 		
@@ -379,7 +416,7 @@ class PublicModel
 		return $id;
 	}
 	
-	public static function sendMail($recip, $subject, $msg, $header = '')
+	private static function sendMail($recip, $subject, $msg, $header = '')
 	{
 		if (!mail($recip, $subject, $msg, $header))
 		{

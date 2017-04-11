@@ -87,7 +87,7 @@ function submitQuestion()
 		(function()
 		{
 			var req;
-			makeRequest('ajax_handler.php?controller=public&action=submitQuestion', firstName, lastName, email, msg, phone);
+			makeRequest('ajax_handler.php?controller=public&action=submitForm', firstName, lastName, email, msg, phone);
 	
 			function makeRequest(url, firstName, lastName, email, msg, phone)
 			{

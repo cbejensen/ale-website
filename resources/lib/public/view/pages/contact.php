@@ -34,8 +34,8 @@
 		<div class="info-subsection">
 			<h2 class="section-head">Mailing Address</h2>
 			<address>
-				Atlanitc Lab Equipment, Inc.<br>
-				P.O. Box &#35;4405<br>
+				Atlantic Lab Equipment, Inc.<br>
+				P.O. Box 4405<br>
 				Salem, MA 01970-4405
 			</address>
 		</div>		
