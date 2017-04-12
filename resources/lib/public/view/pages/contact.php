@@ -11,7 +11,7 @@
 	<!-- <p>Need technical support with one of our instruments? Looking for a specific item? We're happy to answer any questions you may have for us.</p>-->
 	<section class="contact-info-section contact-info">
 		<div class="info-subsection">
-			<h2 class="section-head">Phone, Email &amp; Fax</h2>
+			<h2 class="section-head">Phone, Fax &amp; Email</h2>
 			<ul>
 				<li>Phone: <span class="info">(978) 740-2400</span></li>
 				<li>Toll Free: <span class="info">(866) 484-6031</span></li>
@@ -50,7 +50,7 @@
 	</section>
 	<section class="contact-info-section form-section">
 		<div class="estimate-cta">
-				<h3 class="material gradient-button">Ask us a Question</h3>
+				<h3 class="material gradient-header">Ask us a Question</h3>
 				<div class="question-form material">
 					<input class="fname" type="text" id="fname" placeholder="First name *">
 					<input class="lname" type="text" id="lname" placeholder="Last name *">

@@ -112,7 +112,7 @@ class PublicController
 				$this->model->submitEstimateForm($this->userData);
 				break;
 			case 'newsletter':
-				$this->model->submitNewsletterSignup($this->userData);
+				$this->model->submitNewsletterForm($this->userData);
 				break;
 			default:
 				// error

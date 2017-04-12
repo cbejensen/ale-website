@@ -11,7 +11,6 @@
 	<div class="list">
 		<p class="list-head"></p>
 		<ul>
-			<li></li>
 		</ul>
 	</div>
 	<div class="more-info">

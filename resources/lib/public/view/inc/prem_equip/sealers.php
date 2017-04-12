@@ -1,5 +1,5 @@
 <div class="description">
-	<h2 class="section-head">Plate Washers</h2>
+	<h2 class="section-head">Plate Sealers</h2>
 	<p class="subhead"></p>
 	<div class="list">
 		<p class="list-head">Systems Include:</p>
@@ -11,7 +11,6 @@
 	<div class="list">
 		<p class="list-head"></p>
 		<ul>
-			<li></li>
 		</ul>
 	</div>
 	<div class="more-info">

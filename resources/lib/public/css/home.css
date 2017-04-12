@@ -246,6 +246,9 @@ position: absolute;
     display: inline-block;
     border-radius: 3px;
 }
+.question-form .button:hover {
+	cursor: default;
+}
 .f-phone {
 	display: none;
 }
@@ -309,7 +312,6 @@ position: absolute;
 	z-index: 5;
 	position: relative;
 	margin-bottom: 1rem;
-	font-weight: bold;
 	color: #444;
 }
 

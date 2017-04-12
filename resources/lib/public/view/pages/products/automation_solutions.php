@@ -18,7 +18,7 @@
 	<section class="automation-section">
 		<div class="subsection info">
 			<h1 class="section-head">Integrated Automation</h1>
-			<p>ALE is cabable of integrating multiple devices to the Tecan liquid handling
+			<p>ALE is capable of integrating multiple devices to the Tecan liquid handling
 			robotic system, providing a fully automated solution to the customer.</p>
 			<p>To date, ALE has integrated:</p>
 			<ul>
@@ -31,7 +31,7 @@
 			</ul>
 			<p>We also have the capability of developing and implementing other
 			automation-friendly devices to the Tecan platform if desired, thus
-			improving the process flow and throughput in the lab.</p>
+			improving the process flow and throughput in your lab.</p>
 		</div>
 		<div class="subsection figure">
 			<figure>
@@ -74,7 +74,7 @@
 			<p>Having considerable experience with Tecan automation, ALE is capable of
 			providing application development services to our customers who desire it.</p>
 			<p>Our trained staff’s objective is to provide quality templates in a timely
-			manner, thus reducing time to first result for the lab. Our engineering team
+			manner, thus reducing the time to first result for the lab. Our engineering team
 			works both remotely and on-site to resolve hardware and software-related issues 
 			while also offering full service contracts and Preventive Maintenance (PM)
 			agreements for the Tecan solutions.</p>

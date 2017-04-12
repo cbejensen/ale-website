@@ -55,6 +55,28 @@ class PublicModel
 		return $r;
 	}
 	
+	public function submitNewsletterForm($userData)
+	{
+		if (!PublicModel::honeypotCheck('phone')) {
+			return;
+		}
+		$formData	=	PublicModel::parseNewsletterForm($userData);
+		if (!$formData)
+		{
+			return;
+		}
+		$leadID		=	PublicModel::saveLeadInfo($userData, $formData);
+		if (!$leadID)
+		{
+			return;
+		}
+		$r			=	PublicModel::addNewsSubscriber($leadID, $formData, $userData);
+		if (!$ticket)
+		{
+			return;
+		}
+	}
+	
 	public function submitQuestion($userData)
 	{
 		if (!PublicModel::honeypotCheck('phone')) {
@@ -181,6 +203,38 @@ class PublicModel
 		$q		=	"SELECT description FROM meta_desc WHERE page='$pageTitle';";
 	}
 	
+	private static function parseNewsletterForm($userData)
+	{
+		$conn	=	db_connect(AL_DB, $userData);
+		
+		$data	=	array();
+		// Unused fields
+		$params =	array('referrer', 'instrument', 'info_req', 'phone', 'message');
+		for ($j = 0 ; $j < 5 ; $j++)
+		{
+			$data[$params[$j]]	=	null;
+		}
+		$data['newsletter']	=	1;
+		// Required Fields
+		$params	=	array('fname', 'lname', 'email');
+		for ($j = 0 ; $j < 3 ; $j++)
+		{
+			if ($_POST[$params[$j]] != '')
+			{
+				$data[$params[$j]]	=	mysql_entities_fix_string($conn, $_POST[$params[$j]]);
+			} else {
+				$data		=	false;
+				$errorData	=	array(	'title'		=>	'Missing Data',
+						'message'	=>	'Please ensure all required fields have been filled.',
+						'error'		=>	'Missing Parameter from Contact Form'
+				);
+				handleError($errorData, $conn);
+				break;
+			}
+		}
+		return $data;
+	}
+	
 	private static function parseContactForm($userData)
 	{
 		$conn	=	db_connect(AL_DB, $userData);
@@ -268,7 +322,7 @@ class PublicModel
 				// Error already logged.
 			}
 		} else {
-			$q		=	"INSERT INTO leads (fname, lname, email, phone, street_addr, city, state, postal_code, country) VALUES (?,?,?,?,?,?,?,?,?)";
+			$q		=	"INSERT INTO leads (fname, lname, email, phone, street_addr, city, state, postal_code, country, newsletter) VALUES (?,?,?,?,?,?,?,?,?,?)";
 			try
 			{
 				$stmt	=	$conn->prepare($q);
@@ -277,9 +331,10 @@ class PublicModel
 					throw new Exception('prepare() failed: ' . htmlspecialchars($conn->error));
 				}
 				// Bind Parameters
-				$rc		=	$stmt->bind_param("sssssiisi", 	$formData['fname'], $formData['lname'], 		$formData['email'],
-															$formData['phone'], $formData['street_addr'], 	$formData['city'], 
-															$formData['state'], $formData['postal_code'], 	$formData['country']);
+				$rc		=	$stmt->bind_param("sssssiisii", 	$formData['fname'], $formData['lname'], 		$formData['email'],
+																$formData['phone'], $formData['street_addr'], 	$formData['city'], 
+																$formData['state'], $formData['postal_code'], 	$formData['country'],
+																$formData['newsletter']);
 				if ($rc === false)
 				{
 					throw new Exception('bind_param() failed: ' . htmlspecialchars($stmt->error));
@@ -306,7 +361,7 @@ class PublicModel
 	
 	private static function updateLead($id, $formData, &$conn)
 	{
-		$paramNames		=	array('fname', 'lname', 'phone', 'street_addr', 'city', 'state', 'postal_code', 'country', 'last_update');
+		$paramNames		=	array('fname', 'lname', 'phone', 'street_addr', 'city', 'state', 'postal_code', 'country', 'newsletter', 'last_update');
 		$params			=	array();
 		$type			=	'';
 		foreach ($paramNames as $name)
@@ -335,6 +390,7 @@ class PublicModel
 					case 'city':
 					case 'state':
 					case 'country':
+					case 'newsletter':
 						$type	.=	'i';
 						break;
 				}
@@ -382,7 +438,7 @@ class PublicModel
 	{
 		$conn	=	db_connect(AL_DB, $userData);
 		
-		$q		=	"INSERT INTO support_tickets (leadID, type, message, instrument, info_req, referrer, newsletter) VALUES (?,?,?,?,?,?,?)";
+		$q		=	"INSERT INTO support_tickets (leadID, type, message, instrument, info_req, referrer) VALUES (?,?,?,?,?,?)";
 		
 		try
 		{
@@ -392,7 +448,7 @@ class PublicModel
 				throw new Exception('prepare() failed: ' . htmlspecialchars($conn->error));
 			}
 			// Bind Parameters
-			$rc		=	$stmt->bind_param("isssssi", $leadID, $type, $formData['message'], $formData['instrument'], $formData['info_req'], $formData['referrer'], $formData['newsletter']);
+			$rc		=	$stmt->bind_param("isssss", $leadID, $type, $formData['message'], $formData['instrument'], $formData['info_req'], $formData['referrer']);
 			if ($rc === false)
 			{
 				throw new Exception('bind_param() failed: ' . htmlspecialchars($stmt->error));

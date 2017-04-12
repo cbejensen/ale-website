@@ -69,7 +69,7 @@
 	</section>
 	<section class="estimates-section contact-info estimate-contact-info">
 		<div class="estimate-info-subsection">
-			<h2 class="section-head">Phone, Email &amp; Fax</h2>
+			<h2 class="section-head">Phone, Fax &amp; Email</h2>
 			<ul>
 				<li>Phone: <span class="info">(978) 740-2400</span></li>
 				<li>Toll Free: <span class="info">(866) 484-6031</span></li>
@@ -92,7 +92,7 @@
 		<div class="estimate-info-subsection">
 			<h2 class="section-head">Mailing Address</h2>
 			<address>
-				Atlanitc Lab Equipment, Inc.<br>
+				Atlantic Lab Equipment, Inc.<br>
 				P.O. Box &#35;4405<br>
 				Salem, MA 01970-4405
 			</address>

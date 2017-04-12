@@ -4,22 +4,23 @@
 	<div class="list">
 		<p class="list-head">Configurable With:</p>
 		<ul>
+			<li>Pipetting Arm (LiHa) Liquid Filled/Air Based</li>
 			<li>MultiChannel Arm (MCA) 96/384</li>
-			<li>Robotic Manipulator (RoMa) Arm</li>
+			<li>Robotic Manipulator Arm (RoMa)</li>
 			<li>PosID Barcode Reader</li>
-			<li>Pick and Place (PnP) Arm</li>
+			<li>Pick and Place Arm (PnP)</li>
 		</ul>
 	</div>
 	<div class="list">
 		<p class="list-head">Integration with the following:</p>
 		<ul>
-			<li>Velocity11 Vspin</li>
-			<li>PlateLoc</li>
-			<li>Plate Readers</li>
-			<li>Plate Washers</li>
-			<li>Incubators</li>
-			<li>Carousels</li>
-			<li>Biolector</li>
+			<li>Agilent Vspin</li>
+			<li>Agilent PlateLoc</li>
+			<li>Plate Readers (Various)</li>
+			<li>Plate Washers (Various)</li>
+			<li>Incubators (Various)</li>
+			<li>Carousels (Various)</li>
+			<li>m2p Biolector Bioreactor</li>
 		</ul>
 	</div>
 	<div class="more-info">

@@ -61,6 +61,78 @@ function moveFeaturedAds(mode, ad_iteration)
 	}
 }
 
+function submitNewsletterForm()
+{
+	var firstName	=	document.getElementById('fname').value;
+	var lastName	=	document.getElementById('lname').value;
+	var email		=	document.getElementById('email').value;
+	var phone		=	document.getElementById('f-phone').value;
+	//console.log(phone);
+	
+	var fail		=	validateNewsletterForm(firstName, lastName, email);
+	
+	if (fail.length != 0)
+	{
+		var title	=	'Missing Information';
+		var message	=	'Please enter your ';
+		for (j = 1 ; j <= fail.length ; j++)
+		{
+			if (j != 1 && j != fail.length) message += ', ';
+			if (j == fail.length) message += ' and ';
+			message += fail[(j - 1)];
+		}
+		buildAlert(title, message)
+	} else {
+		(function()
+		{
+			var req;
+			makeRequest('ajax_handler.php?controller=public&action=submitForm', firstName, lastName, email, phone);
+	
+			function makeRequest(url, firstName, lastName, email, phone)
+			{
+				req = new XMLHttpRequest();
+	
+					if (!req)
+					{
+						alert('Sorry! We couldn\'t connect you to the server right now, please try submitting the form again.');
+						return false;
+					}
+					req.onreadystatechange = alertContents;
+					req.open('POST', url);
+					req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					req.send('fname=' + firstName + "&lname=" + lastName + '&email=' + email + '&phone=' + phone + '&reqIsAjax=true&formType=newsletter');
+					console.log("Request sent.")
+			}
+	
+			function alertContents()
+			{
+				if (req.readyState === XMLHttpRequest.DONE)
+				{
+					if (req.status === 200)
+					{
+						// If success, alert the user.
+						console.log(req.responseText);
+						alertUser(req.responseText);
+					}
+					else
+					{
+					alert('We\'re sorry! There was a problem with the request. Please try your submission again. If the problem persists, please report this bug.');
+					}
+				}
+			}
+		})();
+	}
+}
+
+function validateNewsletterForm(firstName, lastName, email)
+{
+	var fail = [];
+	if (firstName == '')	fail.push('first name');
+	if (lastName == '') 	fail.push('last name');
+	if (email == '')		fail.push('email');
+	return fail;
+}
+
 function submitQuestion()
 {
 	var firstName	=	document.getElementById('fname').value;
@@ -228,7 +300,7 @@ function showStoreCategories()
 function switchCategory()
 {
 //	console.log('running');
-	console.log(event.target.dataset.name);
+//	console.log(event.target.dataset.name);
 	var name	=	event.target.dataset.name
 	var label	=	mapCategories(name);
 	var button	=	document.getElementById('category-label');

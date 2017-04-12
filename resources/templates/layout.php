@@ -95,15 +95,15 @@
 								<ul class="dropDown">
 									<li>
 										<a href="?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions&section=products">
-										Premium Automation Solutions</a>
+										Premium Automation Solutions & Service</a>
 									</li>
 									<li>
 										<a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products">
 										Premium Equipment</a>
 									</li>
 									<li>
-										<a href="http://stores.ebay.com/ale-lab-equipment-outlet">
-										Outlet Equipment</a>
+										<a href="http://stores.ebay.com/ale-lab-equipment-outlet" target="_blank">
+										Outlet Store</a>
 									</li>
 									<li>
 										<a href="?controller=public&action=products_services&page=new_arrivals&title=New%20Arrivals&section=products">
@@ -115,7 +115,7 @@
 									</li>
 									<li>
 										<a href="?controller=public&action=products_services&page=waters_equipment&title=WATERS%20Equipment&section=products">
-										WATERS Equipment</a>
+										Analytical Equipment</a>
 									</li>
 								</ul>
 							</div>
@@ -175,7 +175,7 @@
 				<div class="foot-section">
 					<h3>Sign Up for our Monthly Newsletter</h3>
 					<p>We keep an archive of all our email newsletters. 
-					To view our past mailers, click the link below.</p>
+					To view our past mailers, click the 'View Archive' button.</p>
 					<form action="https://atlanticlabequipment.com/newsletter.php" method="post" class="newsletter-form">
 						<label>First Name:</label>
 						<input type="text" name="firstname">
@@ -183,9 +183,9 @@
 						<input type="text" name="lastname">
 						<label>Email Address:</label>
 						<input type="text" name="email">
-						<input id="website" name="website" type="text" value="" class="sticky-field">
-						<input type="button" value="Sign Up" onclick="" class="standard-button">
-						<input type="button" value="View Archive" onclick="" class="standard-button">
+						<input class="f-phone" type="text" id="f-phone" placeholder="Phone Number *">
+						<input type="button" value="Sign Up" onclick="" class="secondary-button">
+						<input type="button" value="View Archive" onclick="" class="secondary-button">
 					</form>
 				</div>
 				<div class="foot-section">
@@ -193,14 +193,14 @@
 						<h3>Have a Question?</h3>
 						<p>We're always happy to help. Click below to send us a message. We'll 
 						get back to you as soon as we can.</p>
-						<a class="button-link standard-button" href="https://atlanticlabequipment.com/contact">Ask us Anything</a>
+						<a class="button-link secondary-button" href="?controller=public&action=contact&title=Contact%20Us&section=contact">Ask us Anything</a>
 					</div>
 					<hr class="foot-subsection-divider">
 					<div class="foot-subsection">
 						<h3>Need a Quote?</h3>
 						<p>You can request a quote for any instrument with the handy form
 						you can find here. Our goal is to contact you promptly.</p>
-						<a class="button-link standard-button" href="https://atlanticlabequipment.com/estimates">Get a Quote</a>
+						<a class="button-link secondary-button" href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">Get a Quote</a>
 					</div>
 				</div>
 				<div class="foot-section">

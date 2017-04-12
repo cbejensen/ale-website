@@ -1,14 +1,16 @@
 <?php $this->model->setListing($id, $this->userData); ?>
-<main class="listing-main">
+<main class="listing-main pageContent">
 	<h1 class="section-head"><?php echo $this->model->listing->title; ?></h1>
 	<div class="item-summary">
 		<div class="listing-gallery">
-			<img src="<?php echo $this->model->listing->photos['url'][1]; ?>" alt="<?php echo $this->model->listing->photos['alt'][1]; ?>">
+			<img class="material" src="<?php echo $this->model->listing->photos['url'][1]; ?>" alt="<?php echo $this->model->listing->photos['alt'][1]; ?>">
+			<?php if (!empty($this->model->listing->photos['url'][2])): ?>
 			<div class="img-scroll">
 				<img src="" alt="">
 				<?php $this->model->listing->getPhotos(); ?>
 				<img src="" alt="">
 			</div>
+			<?php endif; ?>
 		</div>
 		<div class="summary-data">
 			<table>

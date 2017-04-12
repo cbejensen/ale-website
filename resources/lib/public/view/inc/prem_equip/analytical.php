@@ -1,6 +1,6 @@
 <div class="description">
 	<h2 class="section-head">Analytical Systems</h2>
-	<p class="subhead">Liquid &amp; Gas Chromatography and Mass Spectrometry</p>
+	<p class="subhead">Liquid &amp; Gas Chromatography Mass Spectrometry</p>
 	<div class="list">
 		<p class="list-head">Systems Include:</p>
 		<ul>

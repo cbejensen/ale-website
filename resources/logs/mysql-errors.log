@@ -220,3 +220,4 @@
 [11-Apr-2017 11:28:49 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
 [11-Apr-2017 11:33:52 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
 [11-Apr-2017 11:38:22 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
+[12-Apr-2017 11:20:15 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()

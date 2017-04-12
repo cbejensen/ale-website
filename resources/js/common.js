@@ -94,6 +94,7 @@ function buildAlert(title, message, actions)
 	// Add Title
 	var head		=	document.createElement('h2');
 	var t			=	document.createTextNode(title);
+	head.setAttribute('class', 'section-head');
 	head.appendChild(t);
 	alertBox.appendChild(head);
 	

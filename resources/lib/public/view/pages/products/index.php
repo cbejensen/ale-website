@@ -15,8 +15,8 @@
 <main class="products-main site-main">
 	<h1 class="section-head pageContent">Products &amp; Services</h1>
 	<p class="subhead page-subtitle pageContent">We offer a wide range of products and services, including our specialty service,
-	developing premium Automation Solutions for laboratories to help improve their throughput, effieciency,
-	and reproducibility. We also have a large, dynamic selection of specialized laboratory equipment, as well as more
+	developing Premium Automation Solutions for laboratories to help improve their throughput, efficiency,
+	and reproducibility.  We also have a large, dynamic selection of specialized laboratory equipment, as well as more
 	general lab apparatus.</p>
 	<section class="auto-solutions-section">
 		<div class="auto-solutions-wrap pageContent">
@@ -25,8 +25,8 @@
 				<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
 				<h3 class="section-head">Integrated Automation</h3>
 				<p>Integrating devices to your liquid handling platform can 
-				improve	the process flow and overall throughput in your lab.
-				ALE has experience integrating devices and confidence in our
+				improve	your process flow and overall throughput in your lab.
+				ALE has experience integrating devices and are confident in our
 				ability to customize a solution for your needs.</p>
 				<a href="" class="gradient-button">Learn More</a>
 			</div>
@@ -98,7 +98,7 @@
 			<?php //getNewArrivals(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 1);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'newly-arrived', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
 		</div>
@@ -109,25 +109,25 @@
 			<?php //getMontlySpecials(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'monthly-special', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">
 		</div>
 	</section>
 	<section class="waters-equipment-section material ads-section">
 		<div class="waters-wrap">
-			<h2 class="section-head pageContent">WATERS Analytical Equipment</h2>
+			<h2 class="section-head pageContent">Premium Analytical Equipment</h2>
 			<?php //getWatersEquipment(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 3);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'waters', 'banner'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 3)">
 		</div>
 	</section>
 	<section class="outlet-ad-section pageContent">
 		<img src="" alt="">
-		<h2 class="section-head">Outlet Equipment</h2>
+		<h2 class="section-head">Outlet Store</h2>
 		<span>As-Is instrumentation on our eBay store.</span>
 		<p>We specialize in pre-owned, biotech, pharmaceutical,
 		and basic research laboratory equipment. Many of our listings
