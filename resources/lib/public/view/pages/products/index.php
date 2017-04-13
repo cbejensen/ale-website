@@ -28,7 +28,7 @@
 				improve	your process flow and overall throughput in your lab.
 				ALE has experience integrating devices and are confident in our
 				ability to customize a solution for your needs.</p>
-				<a href="" class="gradient-button">Learn More</a>
+				<a href="?controller=public&action=products&" class="gradient-button">Learn More</a>
 			</div>
 			<div class="auto-solutions-column">
 				<img class="material" src="img/content/system_installation.png" alt="Installation of an automated Liquid Handling workstation for biological applications">
@@ -79,7 +79,7 @@
 			<?php //getFeaturedEquipment(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 0);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'featured', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'featured', 'cards'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 0)">
 		</div>
@@ -92,35 +92,35 @@
 	 * 		- section	->	NOT .pageContent
 	 */
 	 ?>
-	<section class="new-equipment-section material ads-section">
+	<section class="new-equipment-ad-section material ads-section">
 		<div class="new-equip-wrap">
 			<h2 class="section-head pageContent">New Arrivals</h2>
 			<?php //getNewArrivals(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 1);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'newly-arrived', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'newly-arrived', 'cards'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
 		</div>
 	</section>
-	<section class="monthly-specials-section material ads-section">
+	<section class="monthly-specials-ad-section material ads-section">
 		<div class="specials-wrap">
 			<h2 class="section-head pageContent">Monthly Equipment Specials</h2>
 			<?php //getMontlySpecials(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'monthly-special', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'monthly-special', 'cards'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">
 		</div>
 	</section>
-	<section class="waters-equipment-section material ads-section">
+	<section class="waters-equipment-ad-section material ads-section">
 		<div class="waters-wrap">
 			<h2 class="section-head pageContent">Premium Analytical Equipment</h2>
 			<?php //getWatersEquipment(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 3);">
 			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'waters', 'banner'); ?>
+				<?php $this->model->getAds($this->userData, 'waters', 'cards'); ?>
 			</div>
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 3)">
 		</div>

@@ -36,14 +36,20 @@ function positionArrow(section, arrow)
 		case 'home':
 			arrow.style.left	=	'50%'; // Using magic numbers for now.
 			break;
-		case 'products':
-			arrow.style.left	=	'225%';
+		case 'services':
+			arrow.style.left	=	'215%';
+			break;
+		case 'store':
+			arrow.style.left	=	'392%';
+			break;
+		case 'news':
+			arrow.style.left	=	'502%';
 			break;
 		case 'contact':
-			arrow.style.left	=	'420%';
+			arrow.style.left	=	'625%';
 			break;
 		case 'estimates':
-			arrow.style.left	=	'600%';
+			arrow.style.left	=	'805%';
 			break;
 	}
 }

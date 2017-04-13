@@ -58,7 +58,7 @@ class PublicController
 		require_once PAGE_PATH . '/estimates.php';
 	}
 	
-	public function products_services()
+	public function services()
 	{
 		if (isset($_GET['subsection']))
 		{
@@ -81,6 +81,17 @@ class PublicController
 		} else {
 			$page	=	htmlentities($_GET['page'], ENT_QUOTES);
 			require_once PAGE_PATH . "/products/$page.php";
+		}
+	}
+	
+	public function store()
+	{
+		if (!isset($_GET['page']))
+		{
+			require_once PAGE_PATH . '/store/store.php';
+		} else {
+			$page	=	htmlentities($_GET['page'], ENT_QUOTES);
+			require_once PAGE_PATH . "/store/$page.php";
 		}
 	}
 	

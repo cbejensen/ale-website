@@ -189,7 +189,8 @@ ul.dropDown li a:hover {
 	background-color: #bbb;
 }
 #navBtn_home:hover #navDrop_home,
-#navBtn_prod:hover #navDrop_prod {
+#navBtn_prod:hover #navDrop_prod,
+#navBtn_store:hover #navDrop_store {
 	display: block;
 }
 .arrow-down {
@@ -706,7 +707,9 @@ ul.dropDown li a:hover {
 	padding: 12rem 0.25rem 0;
 }
 .listing-gallery,
-.summary-data {
+.summary-data,
+.item-desc .item-info,
+.item-desc .description {
 	display: inline-block;
 	margin-right: -4px;
 }
@@ -719,6 +722,41 @@ ul.dropDown li a:hover {
 }
 .summary-data {
 	width: 62%;
+	padding-left: 3rem;
+}
+.item-desc .item-info,
+.item-desc .description {
+	padding-top: 1rem;
+}
+.item-desc .item-info {
+	width: 38%;
+}
+.item-desc .item-info td {
+	padding: 0.25rem 0;
+}
+.item-desc .item-info td:first-child {
+	min-width: 9rem;
+}
+.item-desc .description {
+	width: 62%;
+	padding: 0 5rem 0 3rem;
+}
+.item-desc .description p {
+/* 	 -webkit-columns: auto 2; Chrome, Safari, Opera */
+/*     -moz-columns: auto 2; Firefox */
+/*     columns: auto 2; */
+/* -moz-column-count: 2; */
+/* -webkit-column-count: 2; */
+/* column-count: 2; */
+    text-align: justify;
+/*     -webkit-column-gap: 2rem; Chrome, Safari, Opera */
+/*     -moz-column-gap: 2rem; Firefox */
+/*     column-gap: 2rem; */
+/*     max-height: 20rem; */
+}
+.item-desc .description h2 {
+	font-size: 1.75rem;
+	margin-bottom: 0.5rem
 }
 
 /*=================================================================================

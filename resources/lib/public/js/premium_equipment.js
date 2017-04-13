@@ -17,7 +17,7 @@ container.addEventListener('click', function(e)
 		// e.target is the image inside the link we just clicked.
 		
 		var data = e.target.getAttribute('data-name'),
-		url = 'index.php?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products&subsection=' + data;
+		url = 'index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=' + data;
 		history.pushState(data, null, url);
 		  
 		// here we can fix the current classes for the images, to make it obvious which category was selected.
@@ -57,7 +57,7 @@ function requestContent(data)
 	(function()
 	{
 		var req;
-		makeRequest('ajax_handler.php?controller=public&action=products_services&subsection=' + data);
+		makeRequest('ajax_handler.php?controller=public&action=services&subsection=' + data);
 
 		function makeRequest(url)
 		{

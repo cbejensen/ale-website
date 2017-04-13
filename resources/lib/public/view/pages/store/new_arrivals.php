@@ -15,6 +15,6 @@
 	<!-- <p class="subhead">Located in nearby Milford, MA, Waters Corp. provides state-of-the-art
 	analytical laboratory equipment, specializing in Ultra Perfomance Liquid Chromatography (UPLC).</p>-->
 	<div class="list-wrap">
-		<?php $this->model->getAds($this->userData, 'newly-arrived', 'list'); ?>
+		<?php $this->model->getAds($this->userData, 'newly-arrived', 'banner'); ?>
 	</div>
 </main>

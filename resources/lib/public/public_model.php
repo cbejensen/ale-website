@@ -28,10 +28,10 @@ class PublicModel
 			if (!isset($ad['url'])) continue;
 			switch ($dspType)
 			{
-				case 'banner':
+				case 'cards':
 					include PUBLIC_PATH . '/view/inc/ads/featured_ad.php';
 					break;
-				case 'list':
+				case 'banner':
 					include PUBLIC_PATH . '/view/inc/ads/list_item.php';
 					break;
 			}

@@ -1,7 +1,8 @@
 <?php
 
 // list of controllers and their actions -- allowed values
-$controllers	= array('public' 			=>	[	'home', 	'products_services', 
+$controllers	= array('public' 			=>	[	'home', 	'services',
+													'store',	'news',
 													'contact', 	'estimates', 
 													'error', 	'test',
 													'submitForm',

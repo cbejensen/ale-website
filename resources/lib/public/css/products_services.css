@@ -25,7 +25,8 @@
 .products-main p.page-subtitle {
 	border-bottom: 1px solid #ddd;
 }
-.products-main h2.section-head {
+.products-main h2.section-head,
+	.store-main h2.section-head {
 	margin: 0rem auto 3rem;
 	display: block;
 	font-size: 1.75rem;
@@ -86,11 +87,11 @@
 /*--------------------------------------------
 	1.2 - Prem. Equipment
 ----------------------------------------------*/
-.products-main .premium-equipment-section {
+.premium-equipment-section {
 	padding-top: 4rem;
 	padding-bottom: 4rem;
 }
-.products-main .ads-section {
+.ads-section {
 	padding-top: 2rem;
 	padding-bottom: 1.5rem;
 }
@@ -125,20 +126,20 @@
 .ads-section h2.section-head {
 	margin-bottom: 1rem;
 }
-.products-main .new-equipment-section,
-.products-main .monthly-specials-section,
-.products-main .waters-equipment-section {
+.new-equipment-ad-section,
+.monthly-specials-ad-section,
+.waters-equipment-ad-section {
  	height: 24.5rem;
  	position: relative;
  	background-color: #fff;
 }
-.products-main .new-equipment-section {
+.new-equipment-ad-section {
 	z-index: 5;
 }
-.products-main .monthly-specials-section {
+.monthly-specials-ad-section {
 	z-index: 4;
 }
-.products-main .waters-equipment-section {
+.waters-equipment-ad-section {
 	z-index: 3;
 }
 
@@ -201,7 +202,8 @@
 		padding-left: 1rem;
 		padding-bottom: 2rem;
 	}
-	.products-main h2.section-head {
+	.products-main h2.section-head,
+	.store-main h2.section-head {
 		margin: 0rem auto 1rem;
 		padding: 0;
 /* 		display: block; */
