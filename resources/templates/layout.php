@@ -233,16 +233,16 @@
 						<h3>Navigation Links</h3>
 						<ul>
 							<li>
-								<a href="https://atlanticlabequipment.com">Top of Home Page</a>
+								<a href="index.php">Top of Home Page</a>
 							</li>
 							<li>
 								<a href="index.php?#about">About</a>
 							</li>
 							<li>
-								<a href="?controller=public&action=products_services&title=Products%20%26%20Services&section=products">Products &amp; Services</a>
+								<a href="?controller=public&action=services&title=Premium%20Services&section=services">Products &amp; Services</a>
 							</li>
 							<li>
-								<a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipemnt&section=products">Premium Equipment</a>
+								<a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services">Premium Equipment</a>
 							</li>
 							<li>
 								<a href="http://stores.ebay.com/ale-lab-equipment-outlet">Outlet Equipment</a>
