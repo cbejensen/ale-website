@@ -79,12 +79,12 @@
 	top: 0.1rem;
 }
 .header-info .phone:before {
-	background-image: url(../../public_html/img/interface/phone-icon.png);
+	background-image: url(../img/interface/phone-icon.png);
 	transform: rotate(-30deg);
 	top: 0.2rem;
 }
 .header-info .email:before {
-	background-image: url(../../public_html/img/interface/mail-icon.png);
+	background-image: url(../img/interface/mail-icon.png);
 }
 
 /*--------------------------------------------
@@ -328,7 +328,7 @@ ul.dropDown li a:hover {
 	display: block;
 }
 .searchBar-store span:after {
-	content: url(../../public_html/img/interface/down-arrow-8px.png);
+	content: url(../img/interface/down-arrow-8px.png);
 	margin-left: 0.5em;
 }
 .searchBar-cart {
@@ -477,28 +477,28 @@ ul.dropDown li a:hover {
     transition: 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .facebook-icon {
-	background-image: url(../../public_html/img/interface/facebook.png);
+	background-image: url(../img/interface/facebook.png);
 }
 .facebook-icon:hover {
-	background-image: url(../../public_html/img/interface/facebook-hover.png);
+	background-image: url(../img/interface/facebook-hover.png);
 }
 .twitter-icon {
-	background-image: url(../../public_html/img/interface/twitter.png);
+	background-image: url(../img/interface/twitter.png);
 }
 .twitter-icon:hover {
-	background-image: url(../../public_html/img/interface/twitter-hover.png);
+	background-image: url(../img/interface/twitter-hover.png);
 }
 .google-icon {
-	background-image: url(../../public_html/img/interface/google.png);
+	background-image: url(../img/interface/google.png);
 }
 .google-icon:hover {
-	background-image: url(../../public_html/img/interface/google-hover.png);
+	background-image: url(../img/interface/google-hover.png);
 }
 .linkedin-icon {
-	background-image: url(../../public_html/img/interface/linkedin.png);
+	background-image: url(../img/interface/linkedin.png);
 }
 .linkedin-icon:hover {
-	background-image: url(../../public_html/img/interface/linkedin-hover.png);
+	background-image: url(../img/interface/linkedin-hover.png);
 }
 
 
@@ -506,7 +506,7 @@ ul.dropDown li a:hover {
 	4.0 - Footer
 =================================================================================*/
 .foot-main {
-	background-image: url(../../public_html/img/interface/colorful-microplate.png);
+	background-image: url(../img/interface/colorful-microplate.png);
 	color: #fff;
 }
 .foot-section {
@@ -883,7 +883,7 @@ ul.dropDown li a:hover {
 		752^ Footer
 	----------------------------------------------*/
 	.foot-main {
-		background-image: url(../../public_html/img/interface/tecanEVO-background.png);
+		background-image: url(../img/interface/tecanEVO-background.png);
 		background-size: cover;
 	}
 	.foot-main-container {
