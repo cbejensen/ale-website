@@ -1,0 +1,1 @@
+<img class="material" src="<?php echo $img['url']; ?>" alt="<?php echo $img['alt']; ?>" class="<?php echo $class; ?>">

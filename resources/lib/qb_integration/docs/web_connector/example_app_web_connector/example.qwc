@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<QBWCXML>
+	<AppName>QuickBooks Web Connector Add Customer Test</AppName>
+	<AppID></AppID>
+	<AppURL>http://localhost/eclipse/atlanticlabs_v2/lib/qb_integration/docs/web_connector/example_app_web_connector/qbwc.php</AppURL>
+	<AppDescription></AppDescription>
+	<AppSupport>http://localhost/eclipse/atlanticlabs_v2/index.php</AppSupport>
+	<UserName>ale_quickbooks</UserName>
+	<OwnerID>{90A44FB7-33D9-4815-AC85-AC86A7E7D1EB}</OwnerID>
+	<FileID>{57F3B9B6-86F1-4FCC-B1FF-967DE1813D20}</FileID>
+	<QBType>QBFS</QBType>
+	<Scheduler>
+		<RunEveryNMinutes>1</RunEveryNMinutes>
+	</Scheduler>
+	<IsReadOnly>false</IsReadOnly>
+</QBWCXML>
