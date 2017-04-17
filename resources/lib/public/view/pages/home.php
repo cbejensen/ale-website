@@ -16,19 +16,19 @@
 		    	<a href=""><img scr="" alt=""></a>
 		    	<a href=""><img scr="" alt=""></a> -->
 		    	<div class="circle-img">
-		    		<a href="index.php?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions#integration">
+		    		<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions#integration">
 			    		<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
 			    		<h2>Integration</h2>
 		    		</a>
 		    	</div>
 		    	<div class="circle-img">
-		    		<a href="index.php?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions#installation">
+		    		<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions#installation">
 			    		<img class="material" src="img/content/system_installation.png" alt="Installation of an automated Liquid Handling workstation for biological applications">
 			    		<h2>Installation</h2>
 			    	</a>
 		    	</div>
 		    	<div class="circle-img">
-		    		<a href="index.php?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions#applications">
+		    		<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions#applications">
 		    			<img class="material" src="img/content/applications.png" alt="A Mass Spectrometer as part of an itegrated system developed for proteomic applications">
 		    			<h2>Applications</h2>
 		    		</a>
@@ -77,17 +77,17 @@
 			<div class="about-wrapper">
 				<h1 class="section-head">About Atlantic Lab Equipment</h1>
 				<p>Atlantic Lab Equipment provides 
-				<a href="?controller=public&action=products_services&page=automation_solutions&title=Automation%20Solutions&section=products">Premium Automation Solutions</a> 
+				<a href="?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=products">Premium Automation Solutions</a> 
 				with refurbished
 				liquid handling automation, HPLC, GC-MS, LC-MS/MS, and other biotech equipment.
 				Based in Salem, Massachusetts, Atlantic Lab Equipment has served labs locally,
 				nationally, and internationally for over 15 years.</p>
-				<p>Please call or email ALE when you need help with <a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipment&section=products">automation and liquid
+				<p>Please call or email ALE when you need help with <a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipment&section=products">automation and liquid
 				handling</a> or simply need to buy excellent equipment for less. Our customers
 				include some of the largest universities, biotech, pharmaceutical, chemical,
 				research, and analytical laboratories in North America, as well as start-ups,
 				small businesses, and international laboratories.</p>
-				<p>Altantic Lab Equipment provides <a href="?controller=public&action=products_services&page=premium_equipment&title=Premium%20Equipment&section=products">reliable products backed by outstanding service</a>.
+				<p>Altantic Lab Equipment provides <a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipment&section=products">reliable products backed by outstanding service</a>.
 				Our extensive inventory includes liquid handlers, laboratory automation instruments,
 				analytical systems, thermal cyclers, PCR systems, DNA sequencers, imaging systems, microplate
 				readers &amp; washers, and other bench-top lab equipment to meet your needs.</p>

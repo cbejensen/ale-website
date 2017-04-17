@@ -69,7 +69,7 @@
 					<ul class="navList" onmouseleave="moveArrow('<?php echo $section; ?>')">
 	                	<!-- Begin Home button -->
 						<li id="navBtn_home" class="<?php if ($section == 'home') echo 'activeNavBtn';?>" onmouseover="moveArrow('home');">
-							<a href="http://atlanticlabequipment.com">Home</a>
+							<a href="index.php">Home</a>
 							<div id="navDrop_home" class="dropDown">
 								<ul class="dropDown">
 									<li>
