@@ -1,0 +1,66 @@
+/*=================================================================================
+	1.0 - List Pages
+=================================================================================*/
+.list-main h1 {
+	margin: 7rem 0 1rem;	
+	font-size: 3rem;
+}
+.list-main .subtitle {
+	font-size: 1.15rem;
+	color: #555;
+	width: 62%;
+}
+.list-main .subhead {
+	font-size: 1.25rem;
+	color: #555;
+	width: 62%;
+}
+.list-wrap {
+	margin: 4rem 0;
+}
+.list-item {
+	display: flex;
+	padding: 1.5rem 0;
+	border-bottom: 1px solid #ddd;
+}
+.list-item:last-child {
+	border-bottom: 0;
+}
+.list-item .list-img,
+.list-item .list_description,
+.list-item .desc_subsection {
+	display: inline-block;
+	margin-right: -4px;
+	padding: 1rem 0;
+}
+.list-item .list-img {
+/* 	width: 38%; */
+	flex-shrink: 2;
+}
+.list-item img {
+/* 	width: 100%; */
+	width: auto;
+	height: auto;
+	display: block;
+	margin: 0 0 0 0.5rem;
+	max-width: 300px;
+	max-height: 300px;
+	padding: 0.33rem;
+}
+.list-item .list_description {
+	width: 62%;
+/* 	padding: 0.5rem 1rem; */
+	flex-grow: 2;
+}
+.list-item .list_description h2 {
+	font-size: 1.75rem;
+}
+.list-item .desc_subsection {
+	padding: 0 1.5rem;	
+}
+.list-item .desc_subsection:nth-child(1) {
+	width: 62%;
+}
+.list-item .desc_subsection:nth-child(2) {
+	width: 38%;
+}

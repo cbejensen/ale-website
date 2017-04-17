@@ -1,0 +1,614 @@
+/*=================================================================================
+	1.0 - Header, Premium Automation Solutions 
+=================================================================================*/
+.home-main {
+	position: relative;
+}
+.home-header {
+	position: relative;
+	clear: both;
+	overflow: hidden;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+}
+.home-header h1 {
+	margin: 1rem 0.5rem 0.5rem;
+	font-size: 1.667rem;
+	text-align: center;
+}
+.home-header .subhead-text {
+	padding: 0 5%;
+	font-size: 0.9rem;
+	color: #6f6f6f;
+	font-style: italic;
+	margin: 0.33rem auto;
+	max-width: 25rem;
+	text-align: justify;
+}
+.home-header .subhead-cta {
+	font-size: 1rem;
+}
+.home-header video {
+	position: relative;
+	width: 100% !important;
+	height: auto !important;
+	display: block;
+	top: 0;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+}
+.video-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;	
+}
+#about,
+#testimonials,
+#mission {
+position: absolute;
+	top: -12rem;
+}
+
+/*--------------------------------------------
+	Circular Buttons, Header, Premium Automation Solutions 
+----------------------------------------------*/
+.home-header-columns {
+	margin: 1rem auto;
+	max-width: 28rem;
+}
+.circle-img {
+	width: 33%;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	margin-right: -4px;
+	padding: 0.5rem;
+}
+.circle-img a {
+	color: #333;
+}
+/* .circle-img .img-overlay { */
+/* 	opacity: 0; */
+/* 	box-shadow:	inset 0 0 20px 30px rgba(255,255,255,0.33); */
+/* 	border-radius: 50%; */
+/* 	width: 100%; */
+/* 	height: 10rem; */
+/*  	background-color: #fff;  */
+/* 	position: absolute; */
+/* 	top: 0; */
+/* 	left: 0; */
+/* 	transition: 0.5s ease; */
+/* } */
+.circle-img img {
+	width: 100%;
+	border-radius: 50%;
+	transition: 0.25s ease;
+	opacity: 1;
+}
+.circle-img img:hover {
+	opacity: 0.67;
+	cursor: pointer;
+}
+.circle-img h2 {
+	font-size: 0.85rem;
+	position: absolute;
+	display: block;
+	width: calc(100% - 1rem); /* Subtract total padding of parent */
+	top: 75%;
+	transform: translateY(-50%);
+	text-align: center;
+	background-color: rgba(255,255,255, 0.80);
+	font-weight: bold;
+	padding: 0.33rem 0;
+}
+
+
+/*=================================================================================
+	2.0 - Featured Ads Section
+=================================================================================*/
+.ads-section {
+	width: 100%;
+	height: 34rem;
+	padding: 4.5rem 0rem 4rem;
+/* 	overflow: hidden; */
+	white-space: nowrap;
+	position: relative;
+}
+.ads-section h1 {
+	max-width: 87rem;
+	margin: 0 auto 1rem;
+}
+.ads-section h2 {
+	margin: 0 auto 0.5rem;
+}
+.ads-wrap {
+	overflow-x: hidden;
+	overflow-y: visible;
+	padding: 2px;
+	width: 100%;
+	margin: 0 auto;
+}
+.left-arrow,
+.right-arrow {
+	position: absolute;
+	width: 1.667rem;
+	top: 50%;
+	transform: translateY(-50%);
+	background-size: contain;
+	z-index: 3;
+	padding: 0.5rem;
+    border-radius: 2px;
+    transition: 0.25s ease;
+}
+.left-arrow {
+	left: 0;
+}
+.right-arrow {
+	right: 0;
+}
+.ads-section:hover .left-arrow,
+.ads-section:hover .right-arrow {
+	width: 2.33rem;
+}
+
+
+/*=================================================================================
+	3.0 - Estimate Section (Call to Action)
+=================================================================================*/
+.estimate-section {
+	padding: 4rem 0;
+	background-size: contain;
+	position: relative;
+}
+.estimate-wrapper {
+	position: relative;
+}
+.estimate-section h1 {
+	max-width: 85%;
+	font-size: 1.75rem;
+	margin: 0 auto 1.5rem;
+}
+.estimate-intro,
+.estimate-cta {
+	display: block;
+}
+.estimate-intro p {
+	max-width: 85%;
+	margin: 0 auto;
+}
+.estimate-intro p.section-head {
+	font-size: 1.15rem;
+	margin: 0 auto 1.75rem;
+}
+.estimate-intro .subhead {
+	font-size: 1rem;
+	color: #656565;
+	font-style: italic;
+}
+.estimate-cta {
+	margin-top: 2rem;
+}
+.estimate-cta h3,
+.question-form {
+	max-width: 80%;
+	margin: 0 auto;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+.question-form {
+	padding: 2rem 3rem 1.5rem;	
+}
+.estimate-cta h3 {
+	font-size: 0.85rem;
+	padding: 0.95rem 0;
+}
+.question-form input, 
+.question-form textarea {
+	background-color: #eaeaea;
+	font-size: 12px;
+	border: 0;
+	margin-bottom: 1.25rem;
+	padding: 1.25rem;
+}
+.question-form input[class*='name'] {
+	display: block;
+	position: relative;
+/* 	margin-right: -4px; */
+	width: 100%;
+}
+.question-form .lname {
+	position: relative;
+/*     left: 4%; */
+}
+.question-form .email {
+	width: 100%;	
+}
+.question-form .hr {
+	width: 100%;
+	margin: 0 auto 1.25rem;
+	display: block;
+	background-color: #ddd;
+	height: 1px;
+}
+.question-form textarea {
+	padding: 0.5rem 1.25rem;
+	width: calc(100% - 2.5rem);
+	font-family: calibri, arial, sans-serif;
+	color: #999;
+	resize: none;
+	border-radius: 3px;
+}
+.question-form textarea:focus {
+	color: #333;
+}
+.question-form .button {
+    padding: 0.5rem 3rem;
+    display: inline-block;
+    border-radius: 3px;
+}
+.question-form .button:hover {
+	cursor: default;
+}
+.f-phone {
+	display: none;
+}
+
+
+/*=================================================================================
+	4.0 - About/Mission Section
+=================================================================================*/
+.home-main .section-divider {
+	max-width: 70rem;
+	display: block;
+	margin: 3rem auto;
+}
+.about-section,
+.about-section .wrapper {
+	position: relative;
+}
+.about-wrapper,
+.mission-wrapper {
+	width: 100%;
+	border-radius: 2px;
+	padding: 2rem 1.33rem;
+	display: block;
+	margin: 2rem 0 0 0;
+	position: relative;
+}
+.about-wrapper {
+}
+.about-wrapper p {
+	margin-top: 1rem;
+	color: #444;
+}
+.mission-wrapper {
+	left: 0%;
+}
+.mission-wrapper .bg {
+/* 	background-image: url(../../../../public_html/img/interface/tecan_cta_bg5.png); */
+/* 	background-position: center; */
+/* 	background-size: 100rem; */
+/* 	-webkit-filter: brightness(100%) contrast(50%); */
+/*     filter: brightness(100%) contrast(50%); */
+/*      position: absolute; */
+/*     width: 100%; */
+/*     height: calc(100% + 1px); */
+/*     height: 100%; */
+/*     border-radius: 2px; */
+/*     left: 0; */
+/*     top: 0; */
+/*     background-clip: padding-box; */
+/*     padding: 0.5rem; */
+}
+.mission-wrapper h1 {
+	font-size: 3rem;
+	color:#353535;
+	z-index: 5;
+	position: relative;
+}
+.mission-wrapper p {
+	font-size: 1.5rem;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	z-index: 5;
+	position: relative;
+	margin-bottom: 1rem;
+	color: #444;
+}
+
+
+/*=================================================================================
+	5.0 - Testimonial Section
+=================================================================================*/
+.testimonials-section {
+	position: relative;
+	margin: 5rem auto;
+}
+.testimonials-section h1 {
+	padding-left: 3rem;
+	font-size: 3rem;
+}
+.testimonials-section hr {
+	display: none;
+}
+.testimonial {
+	display: block;
+	width: 100%;
+	padding: 0 3rem;
+}
+.testimonial img {
+	border-radius: 50%;
+	display: block;
+	width: 50%;
+	max-width: 200px;
+	margin: 3rem auto 1.5rem;
+}
+.testimonial p {
+	text-align: justify;
+	color: #444;
+	max-width: 350px;
+	margin: 0 auto;
+}
+.testimonial span {
+	font-size: 1.2rem;
+	font-style: italic;
+	color: #555;
+	display: block;
+	margin-top: 1.33rem;
+	max-width: 350px;
+	margin: 1.33rem auto 0;
+}
+
+
+/*=================================================================================
+	X.0 - Media Queries
+=================================================================================*/
+@media only screen and (min-width: 32rem) { /* 512px */
+	.home-header h1 {
+		font-size: 2.5rem;
+	}
+	.home-header .subhead-text {
+    	max-width: 36rem;
+    	margin-bottom: 1rem;
+	}
+	.home-header .subhead-cta {
+		font-size: 1.1rem;
+	}
+	.home-header-columns {
+		margin: 1rem auto;
+		max-width: 40rem;
+	}
+	.circle-img {
+		padding: 0.5rem 1rem;
+	}
+	.circle-img h2 {
+		width: calc(100% - 2rem);
+	}
+}
+
+
+@media only screen and (min-width: 47rem) { /* 752px */
+	/*--------------------------------------------
+		752^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header h1 {
+		font-size: 3rem;
+		margin: 1.667rem 0 1.25rem;
+	}
+	.home-header .subhead-text {
+		text-align: justify;
+    	max-width: 42rem;
+    	font-size: 1.2rem;
+	}
+	.home-header-columns {
+		max-width: 55rem;
+		width: 90%;
+	}
+	.circle-img {
+		padding: 0.5rem 2rem;
+	}
+	.circle-img h2 {
+		font-size: 1.25rem;
+		width: calc(100% - 4rem); /* Subtract total padding of parent */
+		padding: 0.33em 0;
+	}
+	
+	/*--------------------------------------------
+		752^ - Contact/Estimate CTA
+	----------------------------------------------*/
+	.estimate-section h1 {
+		font-size: 2.5rem;
+		margin: 0 auto 2.75rem;
+	}
+	.estimate-intro p.section-head {
+		font-size: 1.75rem;
+	}
+	.estimate-intro .subhead {
+		font-size: 1.25rem;
+	}
+	.estimate-intro,
+	.estimate-cta {
+		display: inline-block;
+		width: 50%;
+		margin-right: -4px;
+	}
+	.estimate-intro {
+		position: absolute;
+		top: 50%;
+	  	-webkit-transform: translateY(-50%);
+	 	-ms-transform: translateY(-50%);
+	 	transform: translateY(-50%);
+	}
+	.estimate-cta {
+		position: relative;
+	    left: 50%;
+	    margin-top: 0;
+	}
+	
+	/*--------------------------------------------
+		752^ - About/Mission
+	----------------------------------------------*/
+	.about-wrapper,
+	.mission-wrapper {
+		width: 45%;
+		display: inline-block;
+		margin: 2rem -4px 0 0;
+	}
+	.mission-wrapper {
+		left: 10%;
+	}
+}
+
+
+@media only screen and (min-width: 63rem) { /* 1008px */
+	/*--------------------------------------------
+		1008^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header {
+ 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+	}
+	.home-header video {
+		width: 55% !important;
+		left: 45%;
+		z-index: -2;
+		box-shadow: initial;
+	}
+	.home-header h1 {
+		margin: 4.5rem 0rem 0.5rem 2rem;
+		font-size: 2rem;
+		text-align: left;
+	}
+	.home-header .subhead-text {
+		color: #555;
+		font-size: 0.9rem;
+		padding: 0;
+		margin: 0.33rem 0rem 0.5rem 2rem;
+	}
+	.home-header .subhead-cta {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+	}
+	.video-overlay {
+		z-index: -1;
+		width: 55%;
+		background-color: rgba(200,200,200, 0.15);
+		background: linear-gradient(to right, 
+					rgba(255,255,255,1) 0%,
+					rgba(255,255,255,.8) 5%,
+					rgba(255,255,255,0) 20%);
+	}
+	.home-header-content-wrap {
+		position: absolute;
+    	top: 0;
+    	overflow: hidden;
+    	width: 50%;
+    	top: 50%;
+   		transform: translateY(-50%);
+	}
+	.home-header-columns {
+		margin: 0;
+	}
+	.circle-img {
+		padding: 0.5rem 1.5rem;
+	}
+	.circle-img h2 {
+		font-size: 0.9rem;
+		width: calc(100% - 3rem); /* Subtract total padding of parent */
+	}
+	
+	/*--------------------------------------------
+		1008^ - Contact Form
+	----------------------------------------------*/
+	.question-form input[class*='name'] {
+		display: inline-block;
+		position: relative;
+		margin-right: -4px;
+		width: 48%;
+	}
+	.question-form .lname {
+/* 		position: relative; */
+	    left: 4%;
+	}
+	
+	/*--------------------------------------------
+		1008^ - Testimonials
+	----------------------------------------------*/
+	.testimonial {
+		display: inline-block;
+		width: 33.33%;
+		margin-right: -4px;
+		padding: 0 3rem;
+	}
+	.testimonial p {
+		text-align: justify;
+		color: #444;
+		max-width: initial;
+		margin: initial;
+	}
+	.testimonial span {
+		font-size: 1.2rem;
+		font-style: italic;
+		color: #555;
+		display: block;
+		margin: initial;
+		margin-top: 1.33rem;
+		max-width: initial;
+	}
+}
+
+
+@media only screen and (min-width: 85rem) { /* 1360px */
+	/*--------------------------------------------
+		1360^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header video {
+		width: 45% !important;
+		left: 55%;
+	}
+	.video-overlay {
+		width: 45%;
+	}
+	.home-header-content-wrap {
+	    width: 100%;
+	    max-width: 85em;
+	    margin: 0 auto;
+	    left: 0;
+	    right: 0;
+	}
+	.home-header h1 {
+		font-size: 2rem;
+	}
+	.home-header-columns {
+		max-width: 55rem;
+		width: 50%;
+	}
+	.circle-img {
+    	padding: 0.5rem 1.75rem;
+	}
+	.home-header .subhead-text {
+		font-size: 1.2rem;
+		max-width: 40rem;
+	}
+}
+
+@media only screen and (min-width: 100rem) {
+	/*--------------------------------------------
+		1600^ - Home, Intro/Video Section
+	----------------------------------------------*/
+	.home-header video {
+		width: 45% !important;
+		left: 55%;
+	}
+	.video-overlay {
+		width: 45%;
+	}
+	.home-header-content-wrap {
+	    width: 100%;
+	    max-width: 85em;
+	    margin: 0 auto;
+	    left: 0;
+	    right: 0;
+	}
+	.home-header h1 {
+		font-size: 3rem;
+	}
+}

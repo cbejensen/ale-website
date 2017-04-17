@@ -18,22 +18,22 @@
 		<title><?php echo $title; ?> | ALE: Premium Lab Equipment &amp; Automation</title>
 		<?php endif; ?>
 		<!-- Separate stylesheets for development -->
-		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/default.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>/styles/style.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/home.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/contact.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/estimates.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/automation-solutions.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/premium-equipment.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/products_services.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/lists.css" media="all">
-		<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH; ?>/css/store.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/default.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/home.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/contact.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/estimates.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/automation-solutions.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/premium-equipment.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/products_services.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/lists.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/store.css" media="all">
 		<link rel="icon" type="image/ico" href="favicon_ale.ico">
 		<!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
 		<!-- <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet"> -->
-		<script type="text/javascript" src="../resources/js/common.js"></script>
-		<script src="<?php echo PUBLIC_PATH; ?>/js/public.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/public.js"></script>
 		<meta charset="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<?php //PublicModel::get_metaDesc($title); ?>">
