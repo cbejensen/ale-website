@@ -147,6 +147,13 @@
 						<span id="category-label" data-name="all">All</span>
 						<div id="s_categories" class="searchBar-dropdown material">
 							<div class="arrow-up"></div>
+							<!-- <h2 class="section-head category-head">Search For...</h2>
+							<h2 class="section-head category-head">Pages, by Site Section </h2>
+							<ul>
+								<li data-name="all-sect" onclick="switchCategory();">Whole Site</li>
+								<li data-name="services" onclick="switchCategory();">Premium Services</li>
+								<li data-name="news" onclick="switchCategory();">News</li>
+							</ul>-->
 							<h2 class="section-head category-head">Equipment Categories</h2>
 							<ul>
 								<li data-name="all" onclick="switchCategory();">All Categories</li>
