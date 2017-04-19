@@ -113,11 +113,13 @@ function getListingTitle($id)
 	require PUBLIC_PATH . '/listing.php';
 	try {
 	$listing	=	new Listing($id, $conn);
+	$r			=	$listing->title;
 	} catch (Exception $e) {
-		// error	
+		// error - constructor method threw an exception	
+		$r	=	false;
 	}
 	$conn->close();
-	return $listing->title;
+	return $r;
 }
 
 function refValues($arr)

@@ -101,8 +101,13 @@ class PublicController
 		{
 			require_once PAGE_PATH . '/products/index.php';
 		} else {
-			$id	=	htmlentities($_GET['id'], ENT_QUOTES);
-			require_once PAGE_PATH . "/listing.php";
+			if ($this->model->setListing($_GET['id'], $this->userData))
+			{
+				require_once PAGE_PATH . "/listing.php";
+			} else {
+				// If false, the db returned 0 results for the supplied id.
+				// Show missing/invalid listing page.
+			}
 		}
 	}
 	

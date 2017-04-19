@@ -755,3 +755,35 @@
 [13-Apr-2017 14:27:01 America/New_York] PHP Fatal error:  Call to a member function error() on string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 72
 [13-Apr-2017 14:27:57 America/New_York] PHP Fatal error:  Call to undefined method PublicController::store() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 72
 [13-Apr-2017 14:29:28 America/New_York] PHP Fatal error:  Call to undefined method PublicController::news() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 72
+[19-Apr-2017 10:50:57 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 112
+[19-Apr-2017 10:50:57 America/New_York] PHP Notice:  Undefined property: Exception::$getMessage in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 48
+[19-Apr-2017 10:53:10 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 113
+[19-Apr-2017 10:53:10 America/New_York] PHP Notice:  Undefined property: Exception::$getMessage in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 48
+[19-Apr-2017 11:06:16 America/New_York] PHP Notice:  Undefined property: mysqli_stmt::$store_result in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 115
+[19-Apr-2017 11:06:16 America/New_York] PHP Notice:  Undefined property: Exception::$getMessage in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 48
+[19-Apr-2017 11:06:36 America/New_York] PHP Fatal error:  Call to undefined method mysqli_stmt::fetch_array() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 122
+[19-Apr-2017 11:06:38 America/New_York] PHP Fatal error:  Call to undefined method mysqli_stmt::fetch_array() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 122
+[19-Apr-2017 11:09:57 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 121
+[19-Apr-2017 11:11:17 America/New_York] PHP Fatal error:  Cannot use object of type mysqli_stmt as array in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 125
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined variable: listing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 126
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 168
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
+[19-Apr-2017 11:14:57 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
+[19-Apr-2017 11:20:01 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 172
+[19-Apr-2017 11:20:01 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
+[19-Apr-2017 11:20:01 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5

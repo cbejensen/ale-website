@@ -1,11 +1,11 @@
 <?php 
 /*
- * The Listing class represents the state of a listing. 
+ * The GenListing class represents the state of a general listing. 
  * It also includes static methods for manipulation 
- * of the listing records.
+ * of the general listing records.
  */
 
-class Listing
+class GenListing
 {
 	public $ad		=	array(	'id'			=>	null,
 								'mnfrID'		=>	null,
@@ -33,52 +33,36 @@ class Listing
 	
 	public function __construct($id, &$conn)
 	{
-		$this->ad['id']		=	$id;
+		$this->ad['id']		=	htmlspecialchars($id, ENT_QUOTES);
 		$this->conn			=	$conn;
+		
 		// Get listing data
-		$q					=	"SELECT
-								a.*, b.mnfr, c.model, c.function_desc, d.brand
-								FROM general_listings a
-								LEFT JOIN manufacturers b ON a.mnfrID = b.id
-								LEFT JOIN models c ON a.modelID = c.id
-								LEFT JOIN brands d ON a.brandID = d.id
-								WHERE a.id=$id;";
-		$r	=	db_query($q, $this->conn);
-		if ($r->num_rows == 0)
-		{
-			// Error
-		}
-		$r->data_seek(0);
-		$listing		=	$r->fetch_array(MYSQLI_ASSOC);
-		foreach ($this->ad as $key => $value)
-		{
-			if ($listing[$key] == '') continue;
-			else {
-				$this->ad[$key]	=	$listing[$key];
+		try {
+			$r				=	$this->getListingData();
+			if (!$r)
+			{
+				throw new Exception('DB returned 0 results for supplied general listing ID.');
 			}
+		} catch (Exception $e) {
+			// return false? log error?
+			throw new Exception($e->getMessage);
 		}
+		
+		
 		// Set listing title
-		$this->title	=	$this->ad['mnfr'] . ' ';
-		if (!empty($this->ad['brand'])) $this->title	.=	$this->ad['brand'] . ' ';
-		if (!empty($this->ad['model'])) $this->title	.=	$this->ad['model'] . ' ';
-		$this->title	.=	$this->ad['function_desc'] . ' ';
-		$this->title	.=	$this->ad['title_extn'];
+		$this->setTitle();
+		
+		
 		// Get photos
-		$q		=	"SELECT url, alt, time_added 
-					FROM ad_photos 
-					WHERE listingID={$this->ad['id']}
-					ORDER BY display_order;";
-		$r		=	db_query($q, $this->conn);
-		$count	=	$r->num_rows;
-		$k 		=	1; // Index for photo display order
-		for ($j = 0 ; $j < $count ; $j++)
-		{
-			$r->data_seek($j);
-			$img	=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->photos['url'][$k]	=	$img['url'];
-			$this->photos['alt'][$k]	=	$img['alt'];
-			$this->photos['date'][$k]	=	$img['time_added'];
-			$k++;
+		try {
+			$r				=	$this->setPhotos();
+			if (!$r)
+			{
+				// log that the item has no images?
+				//throw new Exception('DB returned 0 photos for supplied general listing ID.');
+			}
+		} catch (Exception $e) {
+			// return false? log error?
 		}
 	}
 	
@@ -96,6 +80,103 @@ class Listing
 		foreach ($imgs as $img)
 		{
 			include	PUBLIC_PATH . '/view/inc/ads/img.php';
+		}
+	}
+	
+	private function getListingData()
+	{
+		$a			=	array();
+		$q			=	'SELECT
+						a.id, a.mnfrID, a.modelID, a.brandID, a.title_extn,
+						a.description, a.price, a.item_condition, a.testing,
+						a.warranty, a.components, a.condition_note,
+						b.mnfr, c.model, c.function_desc, d.brand
+						FROM general_listings a
+						LEFT JOIN manufacturers b ON a.mnfrID = b.id
+						LEFT JOIN models c ON a.modelID = c.id
+						LEFT JOIN brands d ON a.brandID = d.id
+						WHERE a.id=?;';
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('i', $this->ad['id']);
+		if ($rc === false)
+		{
+			throw new Exception('bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
+		if ($r->num_rows == 0)
+		{
+			// Error
+			$result	=	false;
+		} else {
+			$r->data_seek(0);
+			$listing		=	$r->fetch_array(MYSQLI_ASSOC);
+			
+			foreach ($this->ad as $key => $value)
+			{
+				if ($listing[$key] == '') continue;
+				else {
+					$this->ad[$key]	=	$listing[$key];
+				}
+			}
+			
+			$result	=	true;
+		}
+		return $result;
+	}
+	
+	private function setTitle()
+	{
+		$title									=	$this->ad['mnfr'] . ' ';
+		if (!empty($this->ad['brand'])) $title	.=	$this->ad['brand'] . ' ';
+		if (!empty($this->ad['model'])) $title	.=	$this->ad['model'] . ' ';
+		$title									.=	$this->ad['function_desc'] . ' ';
+		$title									.=	$this->ad['title_extn'];
+		$this->title							=	$title;
+	}
+	
+	private function setPhotos()
+	{
+		$q		=	"SELECT url, alt, time_added
+					FROM ad_photos
+					WHERE listingID=?
+					ORDER BY display_order;";
+		$stmt				=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('i', $this->ad['id']);
+		if ($rc === false)
+		{
+			throw new Exception('bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r		=	$stmt->execute();
+		if ($r === false)
+		{
+			throw new Exception('execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
+		$count	=	$r->num_rows;
+		$k 		=	1; // Index for photo display order
+		for ($j = 0 ; $j < $count ; $j++)
+		{
+			$r->data_seek($j);
+			$img	=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->photos['url'][$k]	=	$img['url'];
+			$this->photos['alt'][$k]	=	$img['alt'];
+			$this->photos['date'][$k]	=	$img['time_added'];
+			$k++;
 		}
 	}
 	

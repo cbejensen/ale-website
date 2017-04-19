@@ -13,7 +13,7 @@
 ?>
 <script src="../resources/lib/public/js/public.js"></script>
 <main class="products-main site-main">
-	<h1 class="section-head pageContent">Products &amp; Services</h1>
+	<h1 class="section-head pageContent">Premium Automation Solutions</h1>
 	<p class="subhead page-subtitle pageContent">We offer a wide range of products and services, including our specialty service,
 	developing Premium Automation Solutions for laboratories to help improve their throughput, efficiency,
 	and reproducibility.  We also have a large, dynamic selection of specialized laboratory equipment, as well as more

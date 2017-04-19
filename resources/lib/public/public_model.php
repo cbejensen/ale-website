@@ -46,7 +46,7 @@ class PublicModel
 		require_once PUBLIC_PATH . '/listing.php';
 		$conn	=	db_connect(AL_DB, $userData);
 		try {
-			$this->listing	=	new Listing($id, $conn);
+			$this->listing	=	new GenListing($id, $conn);
 			$r	=	true;
 		} catch (Exception $e) {
 			// Failed to set listing
