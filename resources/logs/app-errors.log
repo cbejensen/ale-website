@@ -787,3 +787,13 @@
 [19-Apr-2017 11:20:01 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 172
 [19-Apr-2017 11:20:01 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
 [19-Apr-2017 11:20:01 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
+[19-Apr-2017 11:41:28 America/New_York] PHP Notice:  Undefined variable: type in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_controller.php on line 111
+[19-Apr-2017 11:41:28 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66
+[19-Apr-2017 11:41:31 America/New_York] PHP Notice:  Undefined variable: type in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_controller.php on line 111
+[19-Apr-2017 11:41:31 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66
+[19-Apr-2017 11:42:00 America/New_York] PHP Notice:  Undefined variable: type in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_controller.php on line 111
+[19-Apr-2017 11:42:00 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66
+[19-Apr-2017 11:43:34 America/New_York] PHP Notice:  Undefined variable: type in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_controller.php on line 113
+[19-Apr-2017 11:43:34 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66
+[19-Apr-2017 11:54:33 America/New_York] PHP Notice:  Undefined variable: type in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_controller.php on line 113
+[19-Apr-2017 11:54:33 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66

@@ -11,6 +11,13 @@ class PublicModel
 	
 	public function getAds($userData, $adType, $dspType)
 	{
+		/*
+		 * NOTE: This method has only been set up to support the general listings.
+		 * When the inventory database is integrated with the website, we'll need
+		 * to pull data from two sources and combine them, such that you can have,
+		 * for example, a general listing and a specific item show up under 'Monthly
+		 * Specials.'
+		 */
 		$conn	=	db_connect(AL_DB, $userData);
 			
 		require	PUBLIC_PATH . '/inc/ad_query.php';
@@ -24,7 +31,7 @@ class PublicModel
 			$r->data_seek($j);
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
 			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
-			$url	=	"?controller=public&action=listing&section=products&title=$title&id={$ad['id']}";
+			$url	=	"?controller=public&action=listing&section=products&title=$title&ltype=general&id={$ad['id']}";
 			if (!isset($ad['url'])) continue;
 			switch ($dspType)
 			{
@@ -41,16 +48,27 @@ class PublicModel
 		$conn->close();
 	}
 
-	public function setListing($id, $userData)
+	public function setListing($id, $type, $userData)
 	{
 		require_once PUBLIC_PATH . '/listing.php';
 		$conn	=	db_connect(AL_DB, $userData);
-		try {
-			$this->listing	=	new GenListing($id, $conn);
-			$r	=	true;
-		} catch (Exception $e) {
-			// Failed to set listing
-			$r	=	false;
+		switch ($type)
+		{
+			case 'general':
+				try {
+					$this->listing	=	new GenListing($id, $conn);
+					$r	=	true;
+				} catch (Exception $e) {
+					// Failed to set listing
+					$r	=	false;
+				}
+				break;
+			case 'item':
+				
+				break;
+			default:
+				//error
+				break;
 		}
 		return $r;
 	}

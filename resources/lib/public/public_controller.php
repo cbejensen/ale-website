@@ -99,15 +99,26 @@ class PublicController
 	{
 		if (!isset($_GET['id']))
 		{
-			require_once PAGE_PATH . '/products/index.php';
+			require_once PAGE_PATH . '/store/index.php';
+			return;
+		} 
+		if (!isset($_GET['ltype'])) {
+			// listing error page?
+			return;
+		} 
+		if ($_GET['ltype'] == 'general' || $_GET['ltype'] == 'item') 
+		{
+			$type = $_GET['ltype']; 
 		} else {
-			if ($this->model->setListing($_GET['id'], $this->userData))
-			{
-				require_once PAGE_PATH . "/listing.php";
-			} else {
-				// If false, the db returned 0 results for the supplied id.
-				// Show missing/invalid listing page.
-			}
+			//error
+			return;
+		}
+		if ($this->model->setListing($_GET['id'], $type, $this->userData))
+		{
+			require_once PAGE_PATH . "/listing.php";
+		} else {
+			// If false, the db returned 0 results for the supplied id.
+			// Show missing/invalid listing page.
 		}
 	}
 	

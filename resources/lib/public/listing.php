@@ -1,6 +1,6 @@
 <?php 
 /*
- * The GenListing class represents the state of a general listing. 
+ * The GenListing class represents the state of a SINGLE general listing. 
  * It also includes static methods for manipulation 
  * of the general listing records.
  */
@@ -58,11 +58,12 @@ class GenListing
 			$r				=	$this->setPhotos();
 			if (!$r)
 			{
-				// log that the item has no images?
+				error_log("[General Listing #$id] No photos found.");
 				//throw new Exception('DB returned 0 photos for supplied general listing ID.');
 			}
 		} catch (Exception $e) {
 			// return false? log error?
+			throw new Exception($e->getMessage);
 		}
 	}
 	
@@ -166,18 +167,25 @@ class GenListing
 		{
 			throw new Exception('execute() failed: ' . htmlspecialchars($stmt->error));
 		}
-		$r = $stmt->get_result();
+		$r 		= 	$stmt->get_result();
 		$count	=	$r->num_rows;
-		$k 		=	1; // Index for photo display order
-		for ($j = 0 ; $j < $count ; $j++)
+		if ($count === 0)
 		{
-			$r->data_seek($j);
-			$img	=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->photos['url'][$k]	=	$img['url'];
-			$this->photos['alt'][$k]	=	$img['alt'];
-			$this->photos['date'][$k]	=	$img['time_added'];
-			$k++;
+			$r	=	false;
+		} else {
+			$k 		=	1; // Index for photo display order
+			for ($j = 0 ; $j < $count ; $j++)
+			{
+				$r->data_seek($j);
+				$img	=	$r->fetch_array(MYSQLI_ASSOC);
+				$this->photos['url'][$k]	=	$img['url'];
+				$this->photos['alt'][$k]	=	$img['alt'];
+				$this->photos['date'][$k]	=	$img['time_added'];
+				$k++;
+			}
+			$r	=	true;
 		}
+		return $r;
 	}
 	
 	public function updateListing()
