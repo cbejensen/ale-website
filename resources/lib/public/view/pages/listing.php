@@ -1,4 +1,3 @@
-<?php $this->model->setListing($id, $this->userData); ?>
 <main class="listing-main pageContent">
 	<h1 class="section-head"><?php echo $this->model->listing->title; ?></h1>
 	<div class="item-summary">

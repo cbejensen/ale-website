@@ -30,7 +30,7 @@ if (isset($_GET['title']))
 elseif (isset($_GET['action']) && $_GET['action'] == 'listing')
 {
 	$id		=	htmlentities($_GET['id'], ENT_QUOTES);
-	$title	=	getListingTitle($id);
+	$title	=	getGenListingTitle($id);
 	if (empty($title)) {
 		// send warning to log
 		$title = 'Bum';

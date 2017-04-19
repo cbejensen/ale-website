@@ -106,18 +106,20 @@ function alertUser($title, $message)
 	require_once PUBLIC_PATH . '/view/pages/error.php';
 }
 
-function getListingTitle($id)
+function getGenListingTitle($id)
 {
 	$userData 	=	setDefaultUser();
 	$conn		=	db_connect(AL_DB, $userData);
 	require PUBLIC_PATH . '/listing.php';
 	try {
-	$listing	=	new Listing($id, $conn);
+	$listing	=	new GenListing($id, $conn);
+	$r			=	$listing->title;
 	} catch (Exception $e) {
-		// error	
+		// error - constructor method threw an exception	
+		$r	=	false;
 	}
 	$conn->close();
-	return $listing->title;
+	return $r;
 }
 
 function refValues($arr)
