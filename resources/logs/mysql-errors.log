@@ -221,3 +221,16 @@
 [11-Apr-2017 11:33:52 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
 [11-Apr-2017 11:38:22 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
 [12-Apr-2017 11:20:15 America/New_York] Message Failed to Send mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set()
+[21-Apr-2017 11:25:52 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'listing_category ON general_listings.id = listing_category.listingID
+						AND ' at line 16
+[21-Apr-2017 11:25:52 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
+[21-Apr-2017 11:26:57 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'listing_category ON general_listings.id = listing_category.listingID
+						AND ' at line 16
+[21-Apr-2017 11:26:57 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
+[21-Apr-2017 11:28:26 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'listing_category ON general_listings.id = listing_category.listingID
+						AND ' at line 16
+[21-Apr-2017 11:28:26 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
+[21-Apr-2017 11:29:02 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'listing_category'
+[21-Apr-2017 11:29:02 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
+[21-Apr-2017 11:29:25 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'listing_category'
+[21-Apr-2017 11:29:25 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16

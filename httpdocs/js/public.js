@@ -365,3 +365,24 @@ function mapCategories(dataName)
 	}
 	return catName;
 }
+
+function expandCategory(id)
+{
+	var a	=	document.getElementById(id);
+	var div	=	document.getElementById(id + '-d');
+	console.log(a.className)
+	switch (a.className)
+	{
+		case 'pa':
+			a.className		=	'pa menu-expand';
+			div.className	=	'bbc-dropdown';
+			break;
+		case 'pa menu-expand':
+			a.className		=	'pa';
+			div.className	=	'bbc-dropdown bbc-hidden';
+			break;
+		default:
+			a.className		=	'pa menu-expand';
+			div.className	=	'bbc-dropdown';
+	}
+}

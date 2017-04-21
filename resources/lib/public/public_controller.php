@@ -86,13 +86,16 @@ class PublicController
 	
 	public function store()
 	{
-		if (!isset($_GET['page']))
+		if (isset($_GET['page']))
 		{
-			require_once PAGE_PATH . '/store/store.php';
+			$page		=	htmlentities($_GET['page'], ENT_QUOTES);
+			$storePage	=	PAGE_PATH . "/store/$page.php";
+		} elseif (isset($_GET['category']) || isset($_GET['q'])) {
+			$storePage	=	PAGE_PATH . '/store/search.php';
 		} else {
-			$page	=	htmlentities($_GET['page'], ENT_QUOTES);
-			require_once PAGE_PATH . "/store/$page.php";
+			$storePage	=	PAGE_PATH . '/store/index.php';
 		}
+		require_once PAGE_PATH . '/store/store.php';
 	}
 	
 	public function listing() 
@@ -115,7 +118,8 @@ class PublicController
 		}
 		if ($this->model->setListing($_GET['id'], $type, $this->userData))
 		{
-			require_once PAGE_PATH . "/listing.php";
+			$storePage	=	PAGE_PATH . "/listing.php";
+			require_once PAGE_PATH . '/store/store.php';
 		} else {
 			// If false, the db returned 0 results for the supplied id.
 			// Show missing/invalid listing page.

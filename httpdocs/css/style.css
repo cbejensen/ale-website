@@ -125,7 +125,7 @@
 	transition: 0.33s ease;
 }
 .topNavBar-hide {
-	top: -305%;
+	top: -485%;
 }
 .topNavBar-show {
 	top: 100%;
@@ -704,7 +704,7 @@ ul.dropDown li a:hover {
 	6.0 - Listing Pages
 =================================================================================*/
 .listing-main {
-	padding: 12rem 0.25rem 0;
+	padding: 0rem 0.25rem 0;
 }
 .listing-gallery,
 .summary-data,
@@ -739,7 +739,7 @@ ul.dropDown li a:hover {
 }
 .item-desc .description {
 	width: 62%;
-	padding: 0 5rem 0 3rem;
+	padding: 0 0rem 0 3rem;
 }
 .item-desc .description p {
 /* 	 -webkit-columns: auto 2; Chrome, Safari, Opera */
@@ -859,7 +859,7 @@ ul.dropDown li a:hover {
 /* 		transform: translateY(-50%); */
 	}
 	.topNavBar-hide {
-		top: -105%;
+		top: -210%;
 	}
 	/*--------------------------------------------
 		Search Bar

@@ -1,4 +1,4 @@
-<main class="listing-main pageContent">
+<div class="listing-main pageContent">
 	<h1 class="section-head"><?php echo $this->model->listing->title; ?></h1>
 	<div class="item-summary">
 		<div class="listing-gallery">
@@ -74,4 +74,4 @@
 			<p><?php echo $this->model->listing->ad['description']; ?></p>
 		</div>
 	</div>
-</main>
+</div>

@@ -797,3 +797,10 @@
 [19-Apr-2017 11:43:34 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66
 [19-Apr-2017 11:54:33 America/New_York] PHP Notice:  Undefined variable: type in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_controller.php on line 113
 [19-Apr-2017 11:54:33 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 66
+[21-Apr-2017 11:20:27 America/New_York] PHP Fatal error:  Class 'Paginator' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 34
+[21-Apr-2017 11:21:22 America/New_York] PHP Fatal error:  Class 'Paginator' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 34
+[21-Apr-2017 11:21:25 America/New_York] PHP Fatal error:  Class 'Paginator' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 34
+[21-Apr-2017 11:24:33 America/New_York] PHP Fatal error:  Class 'Paginator' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 36
+[21-Apr-2017 11:25:26 America/New_York] PHP Notice:  Undefined property: PublicController::$conn in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 37
+[21-Apr-2017 11:25:26 America/New_York] PHP Fatal error:  Call to a member function query() on null in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 44
+[21-Apr-2017 11:32:35 America/New_York] PHP Notice:  Undefined variable: qs in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 41
