@@ -7,7 +7,7 @@
  */
 
 require_once '../resources/config.php';
-
+require_once '../resources/user_init.php';
 
 // Define the controller/action
 if (isset($_GET['controller']) && isset($_GET['action']))

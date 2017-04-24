@@ -386,3 +386,10 @@ function expandCategory(id)
 			div.className	=	'bbc-dropdown';
 	}
 }
+
+function searchSite()
+{
+	console.log('searching.....');
+	var	key			=	document.getElementById('search-input').value;
+	window.location	=	'?controller=public&action=store&section=store&title=Search&q=' + key;
+}

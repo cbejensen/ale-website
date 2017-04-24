@@ -16,8 +16,10 @@ class Paginator {
 		$this->_total	=	$r->num_rows;
 	}
 
-	public function getPageData($limit = 10, $page = 1)
+	public function getPageData($limit = null, $page = null)
 	{
+		if ($limit === null) $limit = 20;
+		if ($page === null) $page = 1;
 		$this->_limit	=	$limit;
 		$this->_page	=	$page;
 		if ($this->_limit == 'all')
@@ -41,15 +43,16 @@ class Paginator {
 		return $result;
 	}
 
-	public function createLinks($num_links, $list_class)
+	public function createLinks($num_links, $list_class = null)
 	{
+		if ($list_class === null) $list_class = 'std-pg';
 		if ($this->_limit == 'all') {
 			return '';
 		}
 		$last	=	ceil($this->_total / $this->_limit);
 		$start	=	(($this->_page - $num_links) > 0) ? $this->_page - $num_links: 1;
 		$end	=	(($this->_page + $num_links) < $last) ? $this->_page + $num_links: $last;
-		$class	=	($this->_page	== 1) ? "disabled" : '';
+		$class	=	($this->_page	== 1) ? "pg-disabled" : '';
 		ob_start();
 		require LIB_PATH . '/paginator/paginator_view.php';
 		$html	=	ob_get_contents();

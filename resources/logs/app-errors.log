@@ -804,3 +804,78 @@
 [21-Apr-2017 11:25:26 America/New_York] PHP Notice:  Undefined property: PublicController::$conn in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 37
 [21-Apr-2017 11:25:26 America/New_York] PHP Fatal error:  Call to a member function query() on null in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 44
 [21-Apr-2017 11:32:35 America/New_York] PHP Notice:  Undefined variable: qs in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 41
+[24-Apr-2017 09:55:54 America/New_York] PHP Catchable fatal error:  Object of class Paginator could not be converted to string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 56
+[24-Apr-2017 11:03:28 America/New_York] PHP Fatal error:  Cannot use object of type stdClass as array in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 59
+[24-Apr-2017 11:32:51 America/New_York] PHP Notice:  Undefined index: limit in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 51
+[24-Apr-2017 11:32:51 America/New_York] PHP Notice:  Undefined index: rp in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 51
+[24-Apr-2017 11:33:59 America/New_York] PHP Notice:  Undefined index: limit in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 51
+[24-Apr-2017 11:33:59 America/New_York] PHP Notice:  Undefined index: rp in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 51
+[24-Apr-2017 11:34:20 America/New_York] PHP Notice:  Undefined index: lc in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 52
+[24-Apr-2017 11:48:27 America/New_York] [General Listing #0000012] No photos found.
+[24-Apr-2017 11:48:27 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
+[24-Apr-2017 11:48:27 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\listing.php on line 5
+[24-Apr-2017 13:50:56 America/New_York] PHP Notice:  Undefined index: lo in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 29
+[24-Apr-2017 14:35:07 America/New_York] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 60
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: page in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\store.php on line 168
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: oqs in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 9
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 10
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 10
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 18
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 18
+[24-Apr-2017 14:56:30 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 18
+[24-Apr-2017 14:56:30 America/New_York] PHP Notice:  Undefined variable: links in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 35
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: page in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\store.php on line 168
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: oqs in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 9
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 10
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 10
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 13
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: r in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 18
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 18
+[24-Apr-2017 14:56:34 America/New_York] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 18
+[24-Apr-2017 14:56:34 America/New_York] PHP Notice:  Undefined variable: links in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 35
+[24-Apr-2017 14:57:43 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 14:57:46 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 14:57:59 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 14:58:20 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:51:41 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:51:56 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:52:00 America/New_York] PHP Notice:  Undefined index: lo in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\index.php on line 72
+[24-Apr-2017 16:52:00 America/New_York] PHP Notice:  Undefined index: lo in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\index.php on line 74
+[24-Apr-2017 16:52:00 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:52:30 America/New_York] PHP Notice:  Undefined index: lo in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\index.php on line 72
+[24-Apr-2017 16:52:30 America/New_York] PHP Notice:  Undefined index: lo in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\index.php on line 74
+[24-Apr-2017 16:52:30 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:11 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:14 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:25 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:27 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:29 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:31 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:42 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:44 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:53:46 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:54:04 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:54:08 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 16:54:12 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:07:09 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:07:15 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:07:38 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:07:45 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:07:56 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:08:02 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:08:05 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:08:14 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:09:26 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:09:30 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:10:10 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:10:13 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:10:19 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:10:29 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25
+[24-Apr-2017 17:10:35 America/New_York] PHP Notice:  Undefined variable: userData in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 25

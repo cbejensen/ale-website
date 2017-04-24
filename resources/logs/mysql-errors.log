@@ -234,3 +234,9 @@
 [21-Apr-2017 11:29:02 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
 [21-Apr-2017 11:29:25 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'listing_category'
 [21-Apr-2017 11:29:25 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
+[24-Apr-2017 11:32:51 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 22
+[24-Apr-2017 11:32:51 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 31
+[24-Apr-2017 11:33:59 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 22
+[24-Apr-2017 11:33:59 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 31
+[24-Apr-2017 11:57:22 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-20, 20' at line 22
+[24-Apr-2017 11:57:22 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 33

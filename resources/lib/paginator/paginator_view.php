@@ -1,31 +1,49 @@
+<?php 
+	$url	=	'?controller=public&action=store&section=store&title=Search%20Results';
+	$url	.=	(isset($_GET['category'])) ? '&category=' . htmlspecialchars($_GET['category'], ENT_QUOTES) : '';
+	$url	.=	(isset($_GET['q'])) ? '&q=' . htmlspecialchars($_GET['q'], ENT_QUOTES) : '';
+	$url	.=	'&limit=' . $this->_limit;
+	//$url	.=	'&rp=' . ($this->_page - 1);
+	$url	.=	(isset($_GET['lc'])) ? '&lc=' . htmlspecialchars($_GET['lc'], ENT_QUOTES) : '';
+	$url	.=	(isset($_GET['lo'])) ? '&lo=' . htmlspecialchars($_GET['lo'], ENT_QUOTES) : '';
+?>
+
 <ul class="<?php echo $list_class; ?>">
 	
 	<li class="<?php echo $class; ?>">
-		<a href="?limit=<?php echo $this->_limit; ?>&page=<?php echo ($this->_page - 1); ?>">&laquo;</a>
+		<a href="<?php echo $url . '&rp=' . ($this->_page - 1); ?>">&laquo;</a>
 	</li>
 	
 	<?php if ($start > 1) : ?>
 		<li>
-			<a href="?limit=<?php echo $this->_limit; ?>&page=1">1</a>
+			<a href="<?php echo $url . '&rp=1'; ?>">1</a>
 		</li>
-		<li class="page_disabled">
+	<?php endif; ?>
+	<?php if ($start > 2) : ?>
+		<li class="pg_disabled">
 			<span>...</span>
 		</li>
 	<?php endif; ?>
 	
 	<?php for ($i = $start ; $i <= $end ; $i++) : ?>
-		<?php $class = ($this->_page == $i) ? "active" : ''; ?>
+		<?php $class = ($this->_page == $i) ? "pg-active" : ''; ?>
 		<li class="<?php echo $class; ?>">
-			<a href="?limit=<?php echo $this->_limit; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+			<a href="<?php echo $url . '&rp=' . $i; ?>"><?php echo $i; ?></a>
 		</li>
 	<?php endfor; ?>
 	
-	<?php if ($end < $last) : ?>
-		<li class="page_disabled">
+	<?php if ($end < ($last-1)) : ?>
+		<li class="pg_disabled">
 			<span>...</span>
 		</li>
-		<li class="<?php echo $class; ?>">
-			<a href="?limit=<?php echo $this->_limit; ?>&page=<?php echo ($this->_page + 1); ?>">&raquo;</a>
+	<?php endif; ?>
+	<?php if ($end < $last) : ?>
+		<li>
+			<a href="<?php echo $url . '&rp=' . $last; ?>"><?php echo $last; ?></a>
 		</li>
 	<?php endif; ?>
+		<?php $class = ($this->_page == $last) ? "pg-disabled" : ''; ?>
+		<li class="<?php echo $class; ?>">
+			<a href="<?php echo $url . '&rp=' . ($this->_page + 1); ?>">&raquo;</a>
+		</li>
 </ul>

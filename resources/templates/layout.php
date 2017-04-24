@@ -174,8 +174,8 @@
 							</ul>
 						</div>
 					</div>
-					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)">
-					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="">
+					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)" id="search-input" onKeydown="if (event.keyCode==13) searchSite();">
+					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="searchSite()">
 						<img src="img/interface/white-search.png">
 					</div>
 					<!-- <div class="searchBar-subitem searchBar-cart">
