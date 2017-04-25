@@ -60,5 +60,5 @@
 	<div class="equipment-content" id="content">
 	<?php if (isset($subsection)) include_once PUBLIC_PATH . "/view/inc/prem_equip/$subsection.php"; ?>
 	</div>
-	<script src="../resources/lib/public/js/premium_equipment.js"></script>
+	<script src="js/premium_equipment.js"></script>
 </main>

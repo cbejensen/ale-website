@@ -32,7 +32,7 @@
 	}
 	if (isset($_GET['q']))
 	{
-		$oqs		=	htmlspecialchars($_GET['q'], ENT_QUOTES);
+		$oqs		=	htmlentities($_GET['q'], ENT_QUOTES);
 		$qs			=	explode(' ', $oqs);
 		$q			.=	"WHERE ";
 		foreach ($qs as $key)
@@ -43,7 +43,7 @@
 						MATCH(manufacturers.mnfr) AGAINST('$key*' IN BOOLEAN MODE) OR
 						MATCH(models.model) AGAINST('$key*' IN BOOLEAN MODE) OR
 						MATCH(models.function_desc) AGAINST('$key*' IN BOOLEAN MODE) OR
-						MATCH(brands.brand) AGAINST('$key*' IN BOOLEAN MODE) OR";
+						MATCH(brands.brand) AGAINST('$key*' IN BOOLEAN MODE) OR ";
 		}
 		$q	=	substr($q, 0, -3); // Remove last " OR"
 		

@@ -23,9 +23,9 @@ $url		.=	(isset($_GET['q'])) ? '&q=' . htmlspecialchars($_GET['q'], ENT_QUOTES) 
 ?>
 
 <div class="search-toolbar material">
-	<div style="display: inline-block; width: 50%;" class="breadcrumbs">
-		<p>Home > Products > Analytical > Search</p>
-	</div>
+	<!-- <div style="display: inline-block; width: 50%;" class="breadcrumbs">-->
+<!-- 		<p>Home > Products > Analytical > Search</p> -->
+<!-- 	</div> -->
 	<div class="stb-btn-wrap">
 		<div class="stb-btn rpp" id="">
 			<label>Results Per Page:</label>
