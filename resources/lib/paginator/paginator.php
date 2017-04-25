@@ -59,4 +59,9 @@ class Paginator {
 		ob_end_clean();
 		return $html;
 	}	
+	
+	public static function getSearchToolbar()
+	{
+		require PUBLIC_PATH . '/view/inc/search-toolbar.php';
+	}
 }

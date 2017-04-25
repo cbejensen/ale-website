@@ -47,8 +47,8 @@
 				<div class="logoBar_content pageContent">
 					<a href="index.php">
 					<img 
-					srcset="img/interface/aleBanner-tagline-250w.png 250w,
-							img/interface/aleBanner-tagline.png 500w"
+					srcset="img/interface/aleBanner-250w.png 250w,
+							img/interface/aleBanner.png 500w"
 					sizes="(max-width: 524px) 250px,
 							500px"
 					src="img/interface/aleBanner.png" 

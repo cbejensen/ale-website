@@ -240,3 +240,7 @@
 [24-Apr-2017 11:33:59 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 31
 [24-Apr-2017 11:57:22 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-20, 20' at line 22
 [24-Apr-2017 11:57:22 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 33
+[25-Apr-2017 09:30:18 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'ale_category'
+[25-Apr-2017 09:30:18 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 138
+[25-Apr-2017 09:39:05 America/New_York] Database Query Failed. 
+[25-Apr-2017 09:39:05 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 138

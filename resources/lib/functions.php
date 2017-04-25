@@ -122,6 +122,24 @@ function getGenListingTitle($id)
 	return $r;
 }
 
+function getCategoryName($id, $mode = 1)
+{
+	$conn = db_connect(AL_DB);
+	switch ($mode)
+	{
+		case 1:
+			$q	=	"SELECT ale_category FROM ale_category WHERE id=$id";
+			break;
+		case 2:
+			$q	=	"SELECT ale_subcategory FROM ale_category WHERE id=$id";
+			break;
+	}
+	$r		=	db_query($q, $conn);
+	$r->data_seek(0);
+	$row	=	$r->fetch_array(MYSQLI_NUM);
+	return $row[0];
+}
+
 function refValues($arr)
 {
 	if (strnatcmp(phpversion(),'5.3') >= 0) //Reference is required for PHP 5.3+

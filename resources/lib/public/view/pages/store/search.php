@@ -6,28 +6,29 @@
  */
 	require_once LIB_PATH . '/paginator/paginator.php';
 	$q		=	"SELECT
-					general_listings.id,
-					general_listings.title_extn,	general_listings.description,
-					general_listings.price,			general_listings.item_condition,
-					general_listings.testing,		general_listings.warranty,
-					general_listings.components,	general_listings.condition_note,
-					manufacturers.mnfr, 			models.model,
-					models.function_desc,
-					brands.brand,					ad_photos.url,
-					ad_photos.alt
-					FROM general_listings
-					LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
-					LEFT JOIN models ON general_listings.modelID = models.id
-					LEFT JOIN brands ON general_listings.brandID = brands.id
-					LEFT JOIN ad_photos ON general_listings.id = ad_photos.listingID
-					AND ad_photos.display_order = 1 ";
+				general_listings.id,
+				general_listings.title_extn,	general_listings.description,
+				general_listings.price,			general_listings.item_condition,
+				general_listings.testing,		general_listings.warranty,
+				general_listings.components,	general_listings.condition_note,
+				manufacturers.mnfr, 			models.model,
+				models.function_desc,
+				brands.brand,					ad_photos.url,
+				ad_photos.alt
+				FROM general_listings
+				LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+				LEFT JOIN models ON general_listings.modelID = models.id
+				LEFT JOIN brands ON general_listings.brandID = brands.id
+				LEFT JOIN ad_photos ON general_listings.id = ad_photos.listingID
+				AND ad_photos.display_order = 1 ";
 	
 	$conn	=	db_connect(AL_DB, $this->userData);
 	if (isset($_GET['category']))
 	{
-		$category	=	htmlspecialchars($_GET['category'], ENT_QUOTES);
-		$q			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID
-		AND listing_category.categoryID = $category";
+		$category		=	explode(',', htmlspecialchars($_GET['category'], ENT_QUOTES)); // Category accepts two comma-separated arguments. The second is the mode of getCategoryName()
+		$category_name	=	getCategoryName($category[0], $category[1]);
+		$q				.=	"JOIN listing_category ON general_listings.id = listing_category.listingID
+							AND listing_category.categoryID = $category[0] ";
 	}
 	if (isset($_GET['q']))
 	{
@@ -37,18 +38,18 @@
 		foreach ($qs as $key)
 		{
 			$q		.=	"MATCH(description) AGAINST('$key*' IN BOOLEAN MODE) OR
-			MATCH(components) AGAINST('$key*' IN BOOLEAN MODE) OR
-			MATCH(item_condition) AGAINST('$key*' IN BOOLEAN MODE) OR
-			MATCH(manufacturers.mnfr) AGAINST('$key*' IN BOOLEAN MODE) OR
-			MATCH(models.model) AGAINST('$key*' IN BOOLEAN MODE) OR
-			MATCH(models.function_desc) AGAINST('$key*' IN BOOLEAN MODE) OR
-			MATCH(brands.brand) AGAINST('$key*' IN BOOLEAN MODE) OR";
+						MATCH(components) AGAINST('$key*' IN BOOLEAN MODE) OR
+						MATCH(item_condition) AGAINST('$key*' IN BOOLEAN MODE) OR
+						MATCH(manufacturers.mnfr) AGAINST('$key*' IN BOOLEAN MODE) OR
+						MATCH(models.model) AGAINST('$key*' IN BOOLEAN MODE) OR
+						MATCH(models.function_desc) AGAINST('$key*' IN BOOLEAN MODE) OR
+						MATCH(brands.brand) AGAINST('$key*' IN BOOLEAN MODE) OR";
 		}
 		$q	=	substr($q, 0, -3); // Remove last " OR"
 		
 	}
 	$pg		=	new Paginator($conn, $q);
-	//$limit	=	(isset($_GET['limit'])) ? htmlspecialchars($_GET['limit'], ENT_QUOTES) : null;
+// 	$limit	=	(isset($_GET['limit'])) ? htmlspecialchars($_GET['limit'], ENT_QUOTES) : null;
 	if (isset($_GET['limit']) && is_numeric($_GET['limit']))
 	{
 		$limit	=	$_GET['limit'];
@@ -72,13 +73,18 @@
 	$links	=	$pg->createLinks(4, $lc);
 ?>
 <div class="store-results">
+	<?php if (!empty($oqs)) : ?>
 	<h1 class="section-head">Search Results for "<?php echo $oqs; ?>"</h1>
+	<?php else : ?>
+	<h1 class="section-head"><?php echo $category_name; ?></h1>
+	<?php endif; ?>
 	<?php if ($r->page == 1) : ?>
 		<h2><?php echo $r->total . ' results'; ?></h2>
 	<?php else : ?>
 		<h2><?php echo 'Page ' . $r->page . ' of ' . $r->total . ' results'; ?></h2>
 	<?php endif; ?>
 	<?php 
+		Paginator::getSearchToolbar();
 		$ad_i	=	0;
 		$i		=	0;
 		foreach ($r->data as $ad)
