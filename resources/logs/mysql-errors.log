@@ -344,3 +344,7 @@
 						MATCH(brands.brand) AGAINST('evo*' IN BOOLEAN MODE)  ORDER BY RELEVANCE DESC
 [26-Apr-2017 16:23:59 America/New_York] Database Query Failed. 
 [26-Apr-2017 16:23:59 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 138
+[26-Apr-2017 16:56:06 America/New_York] Database Query Failed. syntax error, unexpected $end, expecting FTS_TERM or FTS_NUMB or '*'
+[26-Apr-2017 16:56:06 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
+[26-Apr-2017 16:56:06 America/New_York] Database Query Failed. syntax error, unexpected $end, expecting FTS_TERM or FTS_NUMB or '*'
+[26-Apr-2017 16:56:06 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 33

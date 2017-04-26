@@ -301,15 +301,19 @@ function switchCategory(category)
 {
 //	console.log('running');
 //	console.log(event.target.dataset.name);
-	var name	=	category || event.target.dataset.name;
-	var label	=	mapCategories(name);
-	var button	=	document.getElementById('category-label');
+	var name		=	category || event.target.dataset.name;
+	var label		=	mapCategories(name);
+	var button		=	document.getElementById('category-label');
+	var goBtn		=	document.getElementById('searchBtn');
+	var searchField	=	document.getElementById('search-input');
 	while (button.firstChild) {
 		button.removeChild(button.firstChild);
 	}
 	var text	=	document.createTextNode(label);
 	button.appendChild(text);
 	button.dataset.name	=	name;
+	goBtn.setAttribute('onclick', 'searchSite(\''+name+'\')');
+	searchField.setAttribute('onKeydown', "if (event.keyCode==13) searchSite('"+name+"')");
 }
 
 function mapCategories(dataName, ret)
@@ -320,6 +324,7 @@ function mapCategories(dataName, ret)
 	{
 		case 'all':
 			catName	=	'All';
+			//num 	=	'oh no';
 			break;
 		case 'analytical':
 			catName	=	'Analytical Instruments';
@@ -327,42 +332,55 @@ function mapCategories(dataName, ret)
 			break;
 		case 'automation':
 			catName	=	'Automation & Robotics';
+			num		=	'1,1';
 			break;
 		case 'centrifuges':
 			catName	=	'Centrifuges';
+			num		=	'12,1';
 			break;
 		case 'cooling':
 			catName	=	'Cooling Devices';
+			num		=	'17,1';
 			break;
 		case 'electrophoresis':
 			catName	=	'Electrophoresis';
+			num		=	'46,1';
 			break;
 		case 'heating':
 			catName	=	'Heating Devices';
+			num		=	'22,1';
 			break;
 		case 'imaging':
 			catName	=	'Imaging';
+			num		=	'29,1';
 			break;
 		case 'supplies':
 			catName	=	'Lab Supplies';
+			num		=	'61,1';
 			break;
 		case 'microscopes':
 			catName	=	'Microscopes';
+			num		=	'32,1';
 			break;
 		case 'mixers':
 			catName	=	'Mixers & Stirrers';
+			num		=	'36,1';
 			break;
 		case 'other':
 			catName	=	'Other Lab Equipment';
+			//num		=	'what happens here?';
 			break;
 		case 'pcr':
 			catName	=	'PCR DNA Thermal Cyclers';
+			num		=	'43,1';
 			break;
 		case 'pumps':
 			catName	=	'Pumps';
+			num		=	'49,1';
 			break;
 		case 'scales':
 			catName	=	'Scales & Balances';
+			num		=	'55,1';
 			break;
 	}
 	switch (r)
