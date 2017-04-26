@@ -96,7 +96,7 @@ class GenListing
 						LEFT JOIN manufacturers b ON a.mnfrID = b.id
 						LEFT JOIN models c ON a.modelID = c.id
 						LEFT JOIN brands d ON a.brandID = d.id
-						WHERE a.id=?;';
+						WHERE a.id=? AND a.active=1;';
 		$stmt		=	$this->conn->prepare($q);
 		if ($stmt === false)
 		{

@@ -69,7 +69,7 @@
 					<ul class="navList" onmouseleave="moveArrow('<?php echo $section; ?>')">
 	                	<!-- Begin Home button -->
 						<li id="navBtn_home" class="<?php if ($section == 'home') echo 'activeNavBtn';?>" onmouseover="moveArrow('home');">
-							<a style="cursor: default;">Home</a>
+							<a href="index.php" style="cursor: default;">Home</a>
 							<div id="navDrop_home" class="dropDown">
 								<ul class="dropDown">
 									<li>
@@ -93,7 +93,7 @@
 						</li>
 						<!-- Begin Products and Services button -->
 						<li id="navBtn_prod" class="<?php if ($section == 'services') echo 'activeNavBtn';?>" onmouseover="moveArrow('services');">
-							<a style="cursor: default;">Premium Services</a>
+							<a href="?controller=public&action=services&section=services&title=Premium%20Services" style="cursor: default;">Premium Services</a>
 							<div id="navDrop_prod" class="dropDown">
 								<ul class="dropDown">
 									<li>
@@ -119,7 +119,7 @@
 							</div>
 						</li>
 						<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
-							<a style="cursor: default;">Products</a>
+							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Products</a>
 							<div id="navDrop_store" class="dropDown">
 								<ul class="dropDown">
 									<li>

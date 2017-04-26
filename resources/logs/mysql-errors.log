@@ -244,3 +244,36 @@
 [25-Apr-2017 09:30:18 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 138
 [25-Apr-2017 09:39:05 America/New_York] Database Query Failed. 
 [25-Apr-2017 09:39:05 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 138
+[26-Apr-2017 11:21:33 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+			LEFT J' at line 12
+[26-Apr-2017 11:21:33 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:33 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:33 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+			LEFT J' at line 12
+[26-Apr-2017 11:21:33 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:33 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:33 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+			LEFT J' at line 12
+[26-Apr-2017 11:21:33 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:33 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:42 America/New_York] Database Query Failed. Column 'active' in where clause is ambiguous
+[26-Apr-2017 11:21:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:42 America/New_York] Database Query Failed. Column 'active' in where clause is ambiguous
+[26-Apr-2017 11:21:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:42 America/New_York] Database Query Failed. Column 'active' in where clause is ambiguous
+[26-Apr-2017 11:21:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:21:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:22:04 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+			LEFT J' at line 12
+[26-Apr-2017 11:22:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:22:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:22:04 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+			LEFT J' at line 12
+[26-Apr-2017 11:22:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:22:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:22:04 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id
+			LEFT J' at line 12
+[26-Apr-2017 11:22:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26
+[26-Apr-2017 11:22:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\public_model.php on line 26

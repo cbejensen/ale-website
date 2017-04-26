@@ -18,5 +18,5 @@ $q		=	"SELECT
 			JOIN adverts_listings ON general_listings.id = adverts_listings.listingID 
 			AND adverts_listings.type = '$adType' 
 			AND adverts_listings.start_date <= DATE(NOW()) 
-			AND adverts_listings.end_date > DATE(NOW())
+			AND adverts_listings.end_date > DATE(NOW()) WHERE general_listings.active=1
 			ORDER BY RAND();";

@@ -3,7 +3,7 @@
 	
 	require_once '../resources/config.php';
 	
-	$q		=	"SELECT id, last_update FROM general_listings;";
+	$q		=	"SELECT id, last_update FROM general_listings WHERE active=1;";
 	$url	=	"http://atlanticlabequipment.com/?controller=public&action=listing&section=store";
 	$conn	=	db_connect(AL_DB);
 	$r		=	db_query($q, $conn);

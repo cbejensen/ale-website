@@ -107,6 +107,8 @@ class PublicController
 		} 
 		if (!isset($_GET['ltype'])) {
 			// listing error page?
+			$storePage	=	PAGE_PATH . '/listing_error.php';
+			require_once PAGE_PATH . '/store/store.php';
 			return;
 		} 
 		if ($_GET['ltype'] == 'general' || $_GET['ltype'] == 'item') 
@@ -122,7 +124,8 @@ class PublicController
 			require_once PAGE_PATH . '/store/store.php';
 		} else {
 			// If false, the db returned 0 results for the supplied id.
-			// Show missing/invalid listing page.
+			$storePage	=	PAGE_PATH . '/listing_not_found.php';
+			require_once PAGE_PATH . '/store/store.php';
 		}
 	}
 	
