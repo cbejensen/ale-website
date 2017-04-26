@@ -24,7 +24,7 @@
 			$title = 'Equipment Listing';
 		}
 		$data['url'][]	=	$url . "&title=$title&ltype=general&id=$id";
-		$data['date'][]	=	substr($date, 0, 9);
+		$data['date'][]	=	substr($date, 0, 10);
 	}
 	// PHP may attempt to parse <? as a short tag for <?php
 	$output	=	'<?xml version="1.0" encoding="UTF-8"?>' . "\n";
@@ -33,7 +33,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <?php for ($j = 0 ; $j < $r->num_rows ; $j++) : ?>
 <url>
-	<loc><?php echo $data['url'][$j]; ?></loc>
+	<loc><?php echo str_replace('&', '&amp;', $data['url'][$j]); ?></loc>
 	<lastmod><?php echo $data['date'][$j]; ?></lastmod>
 	<changefreq>weekly</changefreq>
 	<priority>0.8</priority>
