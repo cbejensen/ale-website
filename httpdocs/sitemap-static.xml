@@ -9,63 +9,63 @@
    </url>
    <!-- Services Index Page -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=services&section=services&title=Premium%20Services</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=services&amp;section=services&amp;title=Premium%20Services</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>monthly</changefreq>
       	<priority>0.7</priority>
    	</url>
    	<!-- PAS Page -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=services&section=services&title=Automation%20Solutions&page=automation_solutions</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=services&amp;section=services&amp;title=Automation%20Solutions&amp;page=automation_solutions</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>monthly</changefreq>
       	<priority>0.7</priority>
    	</url>
 	<!-- Prem. Equip Page -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=services&section=services&title=Premium%20Equipemnt&page=premium_equipment</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=services&amp;section=services&amp;title=Premium%20Equipemnt&amp;page=premium_equipment</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>monthly</changefreq>
       	<priority>0.7</priority>
    	</url>
    	<!--Store Index -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=Products</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=store&amp;section=store&amp;title=Products</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>weekly</changefreq>
       	<priority>0.9</priority>
    	</url>
    	<!-- New Arrivals -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=New%20Arrivals&page=new_arrivals</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=store&amp;section=store&amp;title=New%20Arrivals&amp;page=new_arrivals</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>weekly</changefreq>
       	<priority>0.8</priority>
    	</url>
    	<!-- Monthly Specials -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=Monthly%20Specials&page=monthly_specials</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=store&amp;section=store&amp;title=Monthly%20Specials&amp;page=monthly_specials</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>monthly</changefreq>
       	<priority>0.8</priority>
    	</url>
    	<!-- News Index -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=news&section=news&title=Newsletters&page=newsletters</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=news&amp;section=news&amp;title=Newsletters&amp;page=newsletters</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>weekly</changefreq>
       	<priority>0.7</priority>
    	</url>
    	<!-- Contact Page -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=contact&section=contact&title=Contact%20Us</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=contact&amp;section=contact&amp;title=Contact%20Us</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>monthly</changefreq>
       	<priority>0.7</priority>
    	</url>
    	<!-- Request a Quote -->
 	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=estimates&section=estimates&title=Request%20a%20Quote</loc>
+      	<loc>http://atlanticlabequipment.com/index.php?controller=public&amp;action=estimates&amp;section=estimates&amp;title=Request%20a%20Quote</loc>
       	<lastmod>2017-04-25</lastmod>
       	<changefreq>monthly</changefreq>
       	<priority>0.7</priority>
