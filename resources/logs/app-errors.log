@@ -885,3 +885,19 @@
 [25-Apr-2017 09:39:05 America/New_York] PHP Notice:  Undefined offset: 1 in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 29
 [25-Apr-2017 09:39:05 America/New_York] PHP Notice:  Undefined variable: q in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 137
 [25-Apr-2017 09:39:05 America/New_York] PHP Warning:  mysqli::query(): Empty query in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 44
+[26-Apr-2017 09:45:47 America/New_York] PHP Fatal error:  Cannot redeclare class GenListing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 9
+[26-Apr-2017 09:46:46 America/New_York] PHP Fatal error:  Cannot redeclare class GenListing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 9
+[26-Apr-2017 09:47:51 America/New_York] PHP Fatal error:  Cannot redeclare class GenListing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 9
+[26-Apr-2017 09:49:20 America/New_York] PHP Fatal error:  Cannot redeclare class GenListing in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\listing.php on line 9
+[26-Apr-2017 09:51:23 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 09:51:23 America/New_York] PHP Notice:  Array to string conversion in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\sitemap-products.php on line 26
+[26-Apr-2017 09:51:59 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 09:52:44 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 09:54:18 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 09:54:18 America/New_York] PHP Notice:  Array to string conversion in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\sitemap-products.php on line 27
+[26-Apr-2017 09:54:37 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 09:54:37 America/New_York] PHP Notice:  Array to string conversion in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\sitemap-products.php on line 27
+[26-Apr-2017 09:55:04 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 10:14:54 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 10:15:19 America/New_York] [General Listing #0000012] No photos found.
+[26-Apr-2017 10:17:18 America/New_York] [General Listing #0000012] No photos found.

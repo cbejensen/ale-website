@@ -1,73 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<!-- Home Page -->
-	<url>
-    	<loc>http://atlanticlabequipment.com/index.php</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.6</priority>
-   </url>
-   <!-- Services Index Page -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=services&section=services&title=Premium%20Services</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.7</priority>
-   	</url>
-   	<!-- PAS Page -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=services&section=services&title=Automation%20Solutions&page=automation_solutions</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.7</priority>
-   	</url>
-	<!-- Prem. Equip Page -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=services&section=services&title=Premium%20Equipemnt&page=premium_equipment</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.7</priority>
-   	</url>
-   	<!--Store Index -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=Products</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>weekly</changefreq>
-      	<priority>0.9</priority>
-   	</url>
-   	<!-- New Arrivals -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=New%20Arrivals&page=new_arrivals</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>weekly</changefreq>
-      	<priority>0.8</priority>
-   	</url>
-   	<!-- Monthly Specials -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=Monthly%20Specials&page=monthly_specials</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.8</priority>
-   	</url>
-   	<!-- News Index -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=news&section=news&title=Newsletters&page=newsletters</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>weekly</changefreq>
-      	<priority>0.7</priority>
-   	</url>
-   	<!-- Contact Page -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=contact&section=contact&title=Contact%20Us</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.7</priority>
-   	</url>
-   	<!-- Request a Quote -->
-	<url>
-      	<loc>http://atlanticlabequipment.com/index.php?controller=public&action=estimates&section=estimates&title=Request%20a%20Quote</loc>
-      	<lastmod>2017-04-25</lastmod>
-      	<changefreq>monthly</changefreq>
-      	<priority>0.7</priority>
-   	</url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>http://atlanticlabequipment.com/sitemap-static.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>http://atlanticlabequipment.com/sitemap-products.xml</loc>
+  </sitemap>
+</sitemapindex>

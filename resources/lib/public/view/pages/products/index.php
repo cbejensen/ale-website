@@ -13,7 +13,7 @@
 ?>
 <script src="../resources/lib/public/js/public.js"></script>
 <main class="products-main site-main">
-	<h1 class="section-head pageContent">Premium Automation Solutions</h1>
+	<h1 class="section-head pageContent">Premium Services</h1>
 	<p class="subhead page-subtitle pageContent">We offer a wide range of products and services, including our specialty service,
 	developing Premium Automation Solutions for laboratories to help improve their throughput, efficiency,
 	and reproducibility.  We also have a large, dynamic selection of specialized laboratory equipment, as well as more
@@ -21,6 +21,14 @@
 	<section class="auto-solutions-section">
 		<div class="auto-solutions-wrap pageContent">
 			<h2 class="section-head prem-auto-head">Premium Automation Solutions</h2>
+<!-- 			<p class="subhead pageContent"> -->
+<!-- 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel quam vestibulum,  -->
+<!-- 			posuere purus quis, vulputate purus. Mauris a metus elementum, tempor enim nec, ornare  -->
+<!-- 			lacus. Quisque aliquam dui nulla, vel facilisis augue imperdiet tempor. Nunc maximus nisl  -->
+<!-- 			a sapien sodales auctor. Vestibulum sodales, nulla et volutpat fermentum, turpis justo  -->
+<!-- 			porttitor risus, ac tempus metus ex non ligula. Vivamus non tristique nisi. In pulvinar  -->
+<!-- 			urna non tempus tristique. -->
+<!-- 			</p> -->
 			<div class="auto-solutions-column">
 				<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
 				<h3 class="section-head">Integrated Automation</h3>
@@ -28,7 +36,7 @@
 				improve	your process flow and overall throughput in your lab.
 				ALE has experience integrating devices and are confident in our
 				ability to customize a solution for your needs.</p>
-				<a href="?controller=public&action=products&" class="gradient-button">Learn More</a>
+				<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services#integration" class="gradient-button">Learn More</a>
 			</div>
 			<div class="auto-solutions-column">
 				<img class="material" src="img/content/system_installation.png" alt="Installation of an automated Liquid Handling workstation for biological applications">
@@ -38,7 +46,7 @@
 				is imperative for the overall performance of your systems.
 				ALE provides top-quality installation and training, addressing
 				both regulatory and safety concerns.</p>
-				<a href="" class="gradient-button">Learn More</a>
+				<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services#installation" class="gradient-button">Learn More</a>
 			</div>
 			<div class="auto-solutions-column">
 				<img class="material" src="img/content/applications.png" alt="A Mass Spectrometer as part of an itegrated system developed for proteomic applications">
@@ -47,7 +55,7 @@
 				support is critical for the success of your lab. The team at ALE is
 				capable of providing first-rate application method templates, hardware,
 				software technical support and service contracts.</p>
-				<a href="" class="gradient-button">Learn More</a>
+				<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services#applications" class="gradient-button">Learn More</a>
 			</div>
 		</div>
 	</section><!-- 

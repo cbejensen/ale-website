@@ -110,7 +110,7 @@ function getGenListingTitle($id)
 {
 	$userData 	=	setDefaultUser();
 	$conn		=	db_connect(AL_DB, $userData);
-	require PUBLIC_PATH . '/listing.php';
+	require_once PUBLIC_PATH . '/listing.php';
 	try {
 	$listing	=	new GenListing($id, $conn);
 	$r			=	$listing->title;
