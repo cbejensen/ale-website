@@ -297,11 +297,11 @@ function showStoreCategories()
 	}
 }
 
-function switchCategory()
+function switchCategory(category)
 {
 //	console.log('running');
 //	console.log(event.target.dataset.name);
-	var name	=	event.target.dataset.name
+	var name	=	category || event.target.dataset.name;
 	var label	=	mapCategories(name);
 	var button	=	document.getElementById('category-label');
 	while (button.firstChild) {
@@ -312,8 +312,9 @@ function switchCategory()
 	button.dataset.name	=	name;
 }
 
-function mapCategories(dataName)
+function mapCategories(dataName, ret)
 {
+	var r		=	ret || 'catName';
 	var catName	=	'';
 	switch (dataName)
 	{
@@ -322,6 +323,7 @@ function mapCategories(dataName)
 			break;
 		case 'analytical':
 			catName	=	'Analytical Instruments';
+			num		=	'3,1';
 			break;
 		case 'automation':
 			catName	=	'Automation & Robotics';
@@ -363,7 +365,16 @@ function mapCategories(dataName)
 			catName	=	'Scales & Balances';
 			break;
 	}
-	return catName;
+	switch (r)
+	{
+		case 'catName':
+			var result = catName;
+			break;
+		case 'num':
+			var result	=	num;
+			break;
+	}
+	return result;
 }
 
 function expandCategory(id)
@@ -387,9 +398,25 @@ function expandCategory(id)
 	}
 }
 
-function searchSite()
+function searchSite(sb)
 {
 	console.log('searching.....');
+	var searchBar	=	sb 	|| 0;
+	var category	=	document.getElementById('category-label').dataset.name;
 	var	key			=	document.getElementById('search-input').value;
-	window.location	=	'?controller=public&action=store&section=store&title=Search&q=' + key;
+	if (category == 'all') {
+		if (searchBar != 0) {
+			window.location	=	'?controller=public&action=store&section=store&title=Search&q=' + key + '&sb=' + searchBar;
+		} else {
+			window.location	=	'?controller=public&action=store&section=store&title=Search&q=' + key;
+		}
+	} else {
+		var num			=	mapCategories(category, 'num');
+		if (searchBar != 0) {
+			window.location	=	'?controller=public&action=store&section=store&title=Search&category=' + num + '&q=' + key + '&sb=' + searchBar;
+		} else {
+			window.location	=	'?controller=public&action=store&section=store&title=Search&category=' + num + '&q=' + key;
+		}
+	}
+	
 }

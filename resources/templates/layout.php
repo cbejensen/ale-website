@@ -178,10 +178,13 @@
 								<li data-name="pumps" onclick="switchCategory();">Pumps</li>
 								<li data-name="scales" onclick="switchCategory();">Scales &amp; Balances</li>
 							</ul>
+							<?php if (isset($_GET['sb'])) : ?>
+							<script>switchCategory('<?php echo htmlentities($_GET['sb'], ENT_QUOTES); ?>');</script>
+							<?php endif; ?>
 						</div>
 					</div>
-					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)" id="search-input" onKeydown="if (event.keyCode==13) searchSite();">
-					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="searchSite()">
+					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)" id="search-input" onKeydown="if (event.keyCode==13) searchSite(<?php if (isset($_GET['sb'])) echo "'".htmlentities($_GET['sb'], ENT_QUOTES)."'"; ?>);">
+					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="searchSite(<?php if (isset($_GET['sb'])) echo "'".htmlentities($_GET['sb'], ENT_QUOTES)."'"; ?>)">
 						<img src="img/interface/white-search.png">
 					</div>
 					<!-- <div class="searchBar-subitem searchBar-cart">

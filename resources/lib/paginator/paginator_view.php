@@ -10,40 +10,40 @@
 
 <ul class="<?php echo $list_class; ?>">
 	
-	<li class="<?php echo $class; ?>">
+	<li class="<?php echo $class; ?> material">
 		<a href="<?php echo $url . '&rp=' . ($this->_page - 1); ?>">&laquo;</a>
 	</li>
 	
 	<?php if ($start > 1) : ?>
-		<li>
+		<li class="material">
 			<a href="<?php echo $url . '&rp=1'; ?>">1</a>
 		</li>
 	<?php endif; ?>
 	<?php if ($start > 2) : ?>
-		<li class="pg_disabled">
+		<li class="pg_disabled  material">
 			<span>...</span>
 		</li>
 	<?php endif; ?>
 	
 	<?php for ($i = $start ; $i <= $end ; $i++) : ?>
 		<?php $class = ($this->_page == $i) ? "pg-active" : ''; ?>
-		<li class="<?php echo $class; ?>">
+		<li class="<?php echo $class; ?> material">
 			<a href="<?php echo $url . '&rp=' . $i; ?>"><?php echo $i; ?></a>
 		</li>
 	<?php endfor; ?>
 	
 	<?php if ($end < ($last-1)) : ?>
-		<li class="pg_disabled">
+		<li class="pg_disabled material">
 			<span>...</span>
 		</li>
 	<?php endif; ?>
 	<?php if ($end < $last) : ?>
-		<li>
+		<li class="material">
 			<a href="<?php echo $url . '&rp=' . $last; ?>"><?php echo $last; ?></a>
 		</li>
 	<?php endif; ?>
-		<?php $class = ($this->_page == $last) ? "pg-disabled" : ''; ?>
-		<li class="<?php echo $class; ?>">
+		<?php $class = ($this->_page >= $last) ? "pg-disabled" : ''; ?>
+		<li class="<?php echo $class; ?> material">
 			<a href="<?php echo $url . '&rp=' . ($this->_page + 1); ?>">&raquo;</a>
 		</li>
 </ul>
