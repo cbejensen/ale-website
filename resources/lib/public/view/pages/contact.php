@@ -60,7 +60,7 @@
 					<span class="hr"></span>
 					<textarea rows="10" id="msg" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
-					<span class="button gradient-button" onclick="submitQuestion()">Start a Conversation</span>
+					<span class="button gradient-button" onclick="submitQuestion()">Submit Your Question</span>
 				</div>
 			</div>
 	</section>
