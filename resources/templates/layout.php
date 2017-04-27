@@ -55,7 +55,7 @@
 					alt="ale: Providing refurbished lab equipment, specializing in Laboratory Automation.">
 					</a>
 					<div class="header-info">
-						<span class="phone">Call us toll-free at (866) 484-6031!</span>
+						<span class="phone">Call us toll-free at (866) 484-6031</span>
 						<!-- <span>45 Congress St. Salem, MA</span> -->
 						<span class="email"><a href="mailto:answers@atlanticlabequipment.com">answers@atlanticlabequipment.com</a></span>
 					</div>
@@ -70,7 +70,7 @@
 	                	<!-- Begin Home button -->
 						<li id="navBtn_home" class="<?php if ($section == 'home') echo 'activeNavBtn';?>" onmouseover="moveArrow('home');">
 							<a href="index.php" style="cursor: default;">Home</a>
-							<div id="navDrop_home" class="dropDown">
+							<!-- <div id="navDrop_home" class="dropDown">
 								<ul class="dropDown">
 									<li>
 										<a href="index.php">Top of Homepage</a>
@@ -88,25 +88,24 @@
 										<a href="index.php?controller=public&action=home&section=home#testimonials">Testimonials</a>
 									</li>
 								</ul>
-							</div><!-- End Home drop menu -->
-							
+							</div> -->
 						</li>
 						<!-- Begin Products and Services button -->
 						<li id="navBtn_prod" class="<?php if ($section == 'services') echo 'activeNavBtn';?>" onmouseover="moveArrow('services');">
 							<a href="?controller=public&action=services&section=services&title=Premium%20Services" style="cursor: default;">Premium Services</a>
-							<div id="navDrop_prod" class="dropDown">
-								<ul class="dropDown">
-									<li>
-										<a href="?controller=public&action=services&section=services&title=Premium%20Services">Services Home</a>
-									</li>
-									<li>
-										<a href="?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services">
-										Premium Automation Solutions & Service</a>
-									</li>
-									<li>
-										<a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services">
-										Premium Equipment</a>
-									</li>
+<!-- 							<div id="navDrop_prod" class="dropDown"> -->
+<!-- 								<ul class="dropDown"> -->
+<!-- 									<li> -->
+<!-- 										<a href="?controller=public&action=services&section=services&title=Premium%20Services">Services Home</a> -->
+<!-- 									</li> -->
+<!-- 									<li> -->
+<!-- 										<a href="?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services"> -->
+<!-- 										Premium Automation Solutions & Service</a> -->
+<!-- 									</li> -->
+<!-- 									<li> -->
+<!-- 										<a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services"> -->
+<!-- 										Premium Equipment</a> -->
+<!-- 									</li> -->
 							<!-- 	<li>
 										<a href="http://stores.ebay.com/ale-lab-equipment-outlet" target="_blank">
 										Outlet Store</a>
@@ -115,30 +114,30 @@
 										<a href="?controller=public&action=products_services&page=waters_equipment&title=WATERS%20Equipment&section=products">
 										Analytical Equipment</a>
 									</li> -->
-								</ul>
-							</div>
+<!-- 								</ul> -->
+<!-- 							</div> -->
 						</li>
 						<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
 							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Products</a>
-							<div id="navDrop_store" class="dropDown">
-								<ul class="dropDown">
-									<li>
-										<a href="?controller=public&action=store&section=store&title=Products">Products Home</a>
-									</li>
-									<li>
-										<a href="?controller=public&action=store&page=new_arrivals&title=New%20Arrivals&section=store">
-										New Arrivals</a>
-									</li>
-									<li>
-										<a href="?controller=public&action=store&page=monthly_specials&title=Monthly%20Specials&section=store">
-										Monthly Specials</a>
-									</li>
-								</ul>
-							</div>
+<!-- 							<div id="navDrop_store" class="dropDown"> -->
+<!-- 								<ul class="dropDown"> -->
+<!-- 									<li> -->
+<!-- 										<a href="?controller=public&action=store&section=store&title=Products">Products Home</a> -->
+<!-- 									</li> -->
+<!-- 									<li> -->
+<!-- 										<a href="?controller=public&action=store&page=new_arrivals&title=New%20Arrivals&section=store"> -->
+<!-- 										New Arrivals</a> -->
+<!-- 									</li> -->
+<!-- 									<li> -->
+<!-- 										<a href="?controller=public&action=store&page=monthly_specials&title=Monthly%20Specials&section=store"> -->
+<!-- 										Monthly Specials</a> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
 						</li>
-						<li id="navBtn_news" class="<?php if ($section == 'news') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('news');">
-							<a href="?controller=public&action=news&page=newsletters&section=news&title=Newsletters">News</a>
-						</li>
+<!--						<li id="navBtn_news" class="<?php if ($section == 'news') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('news');">-->
+<!-- 							<a href="?controller=public&action=news&page=newsletters&section=news&title=Newsletters">News</a> -->
+<!-- 						</li> -->
 						<li id="navBtn_cont" class="<?php if ($section == 'contact') echo 'activeNavBtn';?>" onmouseover="moveArrow('contact');">
 							<a href="?controller=public&action=contact&title=Contact%20Us&section=contact">Contact Us</a>
 						</li>

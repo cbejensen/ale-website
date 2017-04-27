@@ -46,10 +46,10 @@ function positionArrow(section, arrow)
 			arrow.style.left	=	'502%';
 			break;
 		case 'contact':
-			arrow.style.left	=	'625%';
+			arrow.style.left	=	'525%';//625
 			break;
 		case 'estimates':
-			arrow.style.left	=	'805%';
+			arrow.style.left	=	'705%';//805
 			break;
 	}
 }

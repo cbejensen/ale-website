@@ -53,10 +53,10 @@
 				<!-- <h2>Start a Conversation!</h2> -->
 				<p class="subhead">Ask a question with the provided form or 
 				<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">request a quote</a>
-				for any instrument, even if you don't see it here.</p>
+				for any instrument, even if you don't see it on our site.</p>
 			</div>
 			<div class="estimate-cta">
-				<h3 class="material gradient-header">Get Started Today!</h3>
+				<h3 class="material gradient-header">Ask Us for Information Today!</h3>
 				<div class="question-form material">
 					<input class="fname" type="text" id="fname" placeholder="First name *">
 					<input class="lname" type="text" id="lname" placeholder="Last name *">
@@ -65,7 +65,7 @@
 					<span class="hr"></span>
 					<textarea rows="4" id="msg" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>
-					<span class="button gradient-button" onclick="submitQuestion()">Start a Conversation</span>
+					<span class="button gradient-button" onclick="submitQuestion()">Submit Your Question</span>
 				</div>
 			</div>
 		</div>
@@ -92,7 +92,7 @@
 				analytical systems, thermal cyclers, PCR systems, DNA sequencers, imaging systems, microplate
 				readers &amp; washers, and other bench-top lab equipment to meet your needs.</p>
 			</div>
-			<div class="mission-wrapper">
+			<div class="mission-wrapper material">
 				<div id="mission"></div>
 				<div class="bg"></div>
 				<h1 class="section-head">Mission Statement</h1>
@@ -100,10 +100,11 @@
 				solutions with high-quality refurbished robots. We also help labs sell their surplus.</p>
 				<p>Our mission
 				is to remove the risk from buying used lab equipment.</p>
+				<img src="img/interface/aleBanner-tagline.png" alt="ALE is a Woman Owned Small Business" class="material" style="margin-top: 2rem; display: block; max-width: 100%;">
 			</div>
 		</div>
 	</section>
-	<hr class="section-divider">
+<!-- 	<hr class="section-divider"> -->
 	<section class="testimonials-section pageContent">
 		<div id="testimonials"></div>
 		<h1 class="section-head">Testimonials</h1>

@@ -8,6 +8,7 @@
 ?>
 <main class="contact-main site-main pageContent">
 	<h1 class="section-head">Contact Us</h1>
+	<img src="img/interface/aleBanner-tagline.png" alt="ALE is a Woman Owned Small Business" class="material" style="margin: -1rem 0 2rem; display: block; max-width: 100%;">
 	<!-- <p>Need technical support with one of our instruments? Looking for a specific item? We're happy to answer any questions you may have for us.</p>-->
 	<section class="contact-info-section contact-info">
 		<div class="info-subsection">

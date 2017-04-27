@@ -90,6 +90,7 @@ class InventoryController
 							);
 			$conn		=	db_connect(AL_DB, $this->userData);
 			foreach ($data as &$d) if (empty($d)) $d = null;
+			//print_r(explode("\n", $data['description'])); THIS IS A START ON PARSING FORMATTING INSTRUCTIONS IN STORED TEXT
 			InventoryModel::addGeneralListing($data, $conn);
 		} else {
 			if (isset($_POST['reqIsAjax']))
