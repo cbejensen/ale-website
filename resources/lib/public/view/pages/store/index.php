@@ -18,7 +18,7 @@
 </header>
 <section class="new-equipment-ad-section ads-section">
 	<div class="new-equip-wrap">
-		<h2 class="section-head pageContent">New Arrivals</h2>
+		<h2 class="section-head pageContent"><a style="color: inherit; font-family:inherit;" id="new-arrivals-a" href="?controller=public&action=store&page=new_arrivals&title=New%20Arrivals&section=store">New Arrivals</a></h2>
 		<?php //getNewArrivals(); ?>
 		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 0);">
 		<div class="ads-wrap">

@@ -111,26 +111,26 @@
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
 		</div>
 	</section>
-	<section class="monthly-specials-ad-section material ads-section">
-		<div class="specials-wrap">
-			<h2 class="section-head pageContent">Monthly Equipment Specials</h2>
+<!-- 	<section class="monthly-specials-ad-section material ads-section"> -->
+<!-- 		<div class="specials-wrap"> -->
+<!-- 			<h2 class="section-head pageContent">Monthly Equipment Specials</h2> -->
 			<?php //getMontlySpecials(); ?>
-			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">
-			<div class="ads-wrap">
-				<?php $this->model->getAds($this->userData, 'monthly-special', 'cards'); ?>
-			</div>
-			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">
-		</div>
-	</section>
+<!-- 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">-->
+<!-- 			<div class="ads-wrap"> -->
+				<?php // $this->model->getAds($this->userData, 'monthly-special', 'cards'); ?>
+<!-- 			</div> -->
+<!-- 		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">-->
+<!-- 		</div> -->
+<!-- 	</section> -->
 	<section class="waters-equipment-ad-section material ads-section">
 		<div class="waters-wrap">
 			<h2 class="section-head pageContent">Premium Analytical Equipment</h2>
 			<?php //getWatersEquipment(); ?>
-			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 3);">
+			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">
 			<div class="ads-wrap">
 				<?php $this->model->getAds($this->userData, 'waters', 'cards'); ?>
 			</div>
-			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 3)">
+			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">
 		</div>
 	</section>
 	<section class="outlet-ad-section pageContent">

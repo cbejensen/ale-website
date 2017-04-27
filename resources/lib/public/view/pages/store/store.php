@@ -30,8 +30,8 @@
 					</div>
 				</li>
 				<li class="parent-category">
-					<a class="pa" id="centri" onclick="expandCategory(this.id);">Centrifuges</a>
-					<div id="centri-d" class="bbc-dropdown bbc-hidden">
+					<a class="pa menu-expand" id="centri" onclick="expandCategory(this.id);">Centrifuges</a>
+					<div id="centri-d" class="bbc-dropdown">
 						<ul>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=12,1&sb=centrifuges">View All Centrifuges</a></li>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=12,2&sb=centrifuges">Benchtop</a></li>
