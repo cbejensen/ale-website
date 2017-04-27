@@ -348,3 +348,13 @@
 [26-Apr-2017 16:56:06 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
 [26-Apr-2017 16:56:06 America/New_York] Database Query Failed. syntax error, unexpected $end, expecting FTS_TERM or FTS_NUMB or '*'
 [26-Apr-2017 16:56:06 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 33
+[27-Apr-2017 09:43:38 America/New_York] Connection Error. Access denied for user 'jack'@'localhost' (using password: YES)
+[27-Apr-2017 09:48:51 America/New_York] Connection Error. Access denied for user 'jack'@'localhost' (using password: YES)
+[27-Apr-2017 11:19:26 America/New_York] Database Query Failed. Unknown column 'models' in 'order clause'
+[27-Apr-2017 11:19:26 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 93
+[27-Apr-2017 11:19:51 America/New_York] Database Query Failed. Unknown column 'models' in 'order clause'
+[27-Apr-2017 11:19:51 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 93
+[27-Apr-2017 11:26:58 America/New_York] Database Query Failed. Unknown column 'manufacturers' in 'order clause'
+[27-Apr-2017 11:26:58 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 79
+[27-Apr-2017 11:27:09 America/New_York] Database Query Failed. Unknown column 'manufacturer' in 'order clause'
+[27-Apr-2017 11:27:09 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 79

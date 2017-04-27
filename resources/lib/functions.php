@@ -36,6 +36,7 @@ function db_connect($database, $userData = 0)
 							'error'		=>	$conn->connect_error
 						);
 		handleError($errorData, $conn, 'mysql');
+		$conn	=	false;
 	}
 	return $conn;
 }
