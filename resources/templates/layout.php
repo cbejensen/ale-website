@@ -164,16 +164,17 @@
 								<li data-name="all" onclick="switchCategory();">All Categories</li>
 								<li data-name="analytical" onclick="switchCategory();">Analytical Instruments</li>
 								<li data-name="automation" onclick="switchCategory();">Automation &amp; Robotics</li>
-								<li data-name="centrifuges" onclick="switchCategory();">Centrifuges</li>
-<!-- 							<li data-name="cooling" onclick="switchCategory();">Cooling Devices</li>
-								<li data-name="electrophoresis" onclick="switchCategory();">Electrophoresis</li>
+<!--							<li data-name="centrifuges" onclick="switchCategory();">Centrifuges</li>-->
+<!-- 							<li data-name="cooling" onclick="switchCategory();">Cooling Devices</li>-->
+								<li data-name="dna-seq" onclick="switchCategory();">DNA Sequencers</li>
+<!--							<li data-name="electrophoresis" onclick="switchCategory();">Electrophoresis</li>
 								<li data-name="heating" onclick="switchCategory();">Heating Devices</li>
 								<li data-name="imaging" onclick="switchCategory();">Imaging</li>
 								<li data-name="supplies" onclick="switchCategory();">Lab Supplies</li>
 								<li data-name="microscopes" onclick="switchCategory();">Microscopes</li>
 								<li data-name="mixers" onclick="switchCategory();">Mixers &amp; Stirrers</li>
 								<li data-name="other" onclick="switchCategory();">Other Lab Equipment</li>-->
-								<li data-name="pcr" onclick="switchCategory();">PCR DNA Thermal Cyclers</li>
+<!--								<li data-name="pcr" onclick="switchCategory();">PCR DNA Thermal Cyclers</li>-->
 <!-- 							<li data-name="pumps" onclick="switchCategory();">Pumps</li>
 								<li data-name="scales" onclick="switchCategory();">Scales &amp; Balances</li> -->
 							</ul>

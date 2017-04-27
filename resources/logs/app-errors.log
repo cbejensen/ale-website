@@ -1005,3 +1005,6 @@
 [27-Apr-2017 12:23:27 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 91
 [27-Apr-2017 12:23:45 America/New_York] PHP Warning:  mysqli_stmt::bind_param(): Number of elements in type definition string doesn't match number of bind variables in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 88
 [27-Apr-2017 12:24:11 America/New_York] PHP Warning:  mysqli_stmt::bind_param(): Number of elements in type definition string doesn't match number of bind variables in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\inventory_model.php on line 88
+[27-Apr-2017 18:02:43 America/New_York] PHP Notice:  Undefined variable: where in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 57
+[27-Apr-2017 18:02:47 America/New_York] PHP Notice:  Undefined variable: where in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 57
+[27-Apr-2017 18:02:48 America/New_York] PHP Notice:  Undefined variable: where in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 57

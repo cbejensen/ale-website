@@ -29,18 +29,18 @@
 						</ul>
 					</div>
 				</li>
-				<li class="parent-category">
-					<a class="pa menu-expand" id="centri" onclick="expandCategory(this.id);">Centrifuges</a>
-					<div id="centri-d" class="bbc-dropdown">
-						<ul>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=12,1&sb=centrifuges">View All Centrifuges</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=12,2&sb=centrifuges">Benchtop</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=13,2&sb=centrifuges">Microcentrifuges</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=15,2&sb=centrifuges">Floor Centrifuges</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=14,2&sb=centrifuges">Rotors &amp; Parts</a></li>
-						</ul>
-					</div>
-				</li>
+<!-- 				<li class="parent-category"> -->
+<!--					<a class="pa menu-expand" id="centri" onclick="expandCategory(this.id);">Centrifuges</a>-->
+<!-- 					<div id="centri-d" class="bbc-dropdown"> -->
+<!-- 						<ul> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=12,1&sb=centrifuges">View All Centrifuges</a></li> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=12,2&sb=centrifuges">Benchtop</a></li> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=13,2&sb=centrifuges">Microcentrifuges</a></li> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=15,2&sb=centrifuges">Floor Centrifuges</a></li> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=14,2&sb=centrifuges">Rotors &amp; Parts</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
 <!-- 				<li class="parent-category"> -->
 <!--					<a class="pa" id="coolin" onclick="expandCategory(this.id);">Cooling Devices</a>-->
 <!-- 					<div id="coolin-d" class="bbc-dropdown bbc-hidden"> -->
@@ -52,6 +52,9 @@
 <!-- 						</ul> -->
 <!-- 					</div> -->
 <!-- 				</li> -->
+				<li class="parent-category">
+					<a class="pa" id="dna-seq" href="?controller=public&action=store&section=store&title=All%20DNA%20Sequencers&category=67,1&sb=dna-seq">DNA Sequencers</a>
+				</li>
 <!-- 				<li class="parent-category"> -->
 <!--					<a class="pa" id="electr" onclick="expandCategory(this.id);">Electrophoresis</a>-->
 <!-- 					<div id="electr-d" class="bbc-dropdown bbc-hidden"> -->
@@ -126,16 +129,16 @@
 <!-- 				<li class="parent-category"> -->
 <!-- 					<a class="pa">Other Lab Equipment</a> -->
 <!-- 				</li> -->
-				<li class="parent-category">
-					<a class="pa menu-expand" id="pcrdna" onclick="expandCategory(this.id);">PCR DNA Thermal Cyclers</a>
-					<div id="pcrdna-d" class="bbc-dropdown">
-						<ul>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=43,1&sb=pcr">View All PCR</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=43,2&sb=pcr">Thermal Cyclers</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=44,2&sb=pcr">Parts, Heating Blocks</a></li>
-						</ul>
-					</div>
-				</li>
+<!-- 				<li class="parent-category"> -->
+<!--					<a class="pa menu-expand" id="pcrdna" onclick="expandCategory(this.id);">PCR DNA Thermal Cyclers</a>-->
+<!-- 					<div id="pcrdna-d" class="bbc-dropdown"> -->
+<!-- 						<ul> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=43,1&sb=pcr">View All PCR</a></li> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=43,2&sb=pcr">Thermal Cyclers</a></li> -->
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=44,2&sb=pcr">Parts, Heating Blocks</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
 <!-- 				<li class="parent-category"> -->
 <!--					<a class="pa" id="pumps" onclick="expandCategory(this.id);">Pumps</a>-->
 <!-- 					<div id="pumps-d" class="bbc-dropdown bbc-hidden"> -->

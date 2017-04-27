@@ -382,6 +382,9 @@ function mapCategories(dataName, ret)
 			catName	=	'Scales & Balances';
 			num		=	'55,1';
 			break;
+		case 'dna-seq':
+			catName =	'DNA Sequencers';
+			num		=	'67,1';
 	}
 	switch (r)
 	{
