@@ -872,6 +872,37 @@ ul.dropDown li a:hover {
 /*     display: table-cell; */
 /*     text-align: right; */
 /* } */
+.listing-cta {
+	background-color: #f5f5f5;
+	padding: 1.5rem 1rem;
+}
+.listing-cta-wrap {
+	display: inline-block;
+	margin-right: -4px;
+}
+.listing-cta .text-cta {
+	width: 62%;
+	border-right: 1px solid #ddd;
+	padding-right: 2rem;
+}
+.listing-cta .text-cta .section-head {
+	font-size: 1.1rem;
+	margin-bottom: 0.67rem;
+}
+.listing-cta .text-cta div {
+	margin-bottom: 0.5rem;
+}
+.listing-cta .btn-cta {
+	width: 38%;
+	border-left: 1px solid #fff;
+}
+.listing-cta .btn-cta  a {
+	padding: 0.5rem 0.66rem;
+	display: inline-block;
+	transform: translateX(-50%) translateY(100%);
+	left: calc(50% + 0.5rem);
+	position: relative;
+}
 
 /*=================================================================================
 	7.0 - Error Page

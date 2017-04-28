@@ -15,7 +15,7 @@
 		requested. Required fields are marked with an asterisk.</p>
 		<form action="/?controller=forms&action=processEstimateForm" method="post">
 			<label class="required">Instrument of Interest</label>
-			<input id="instrument" type="text" name="instrument" placeholder="e.g. Tecan EVO 200 Automated Liquid Handler">
+			<input id="instrument" type="text" name="instrument" placeholder="e.g. Tecan EVO 200 Automated Liquid Handler" <?php if ($_GET['inst']) echo 'value="' . htmlentities($_GET['inst'], ENT_QUOTES) . '"'?>>	
 			<label class="required">Information Requested</label>
 			<!-- Radio Buttons are a better solution here.
 			When a user selects "Other" create another text input, labelled "Please Describe" -->

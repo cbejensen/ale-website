@@ -12,21 +12,32 @@
 			<?php endif; ?>
 		</div>
 		<div class="summary-data">
-			<table>
-				<tbody>
-					<tr>
-						<td>Condition:</td>
-						<td><?php echo $this->model->listing->ad['item_condition']; ?></td>
-					</tr>
-					<tr>
-						<td>Our Price:</td>
-						<td><?php echo $this->model->listing->ad['price']; ?></td>
-					</tr>
-					<tr>
-						<td></td><!-- colspan=2 | buttons -->
-					</tr>
-				</tbody>
-			</table>
+<!-- 			<table> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<!-- 						<td>Condition:</td>
+						<td><?php //echo $this->model->listing->ad['item_condition']; ?></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>Our Price:</td>
+						<td><?php //echo $this->model->listing->ad['price']; ?></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+	<!--					<td></td><!-- colspan=2 | buttons -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+			<div class="listing-cta material">
+				<div class="listing-cta-wrap text-cta">
+					<h2 class="section-head">Interested in this item?</h2>
+					<div>Let us know! Click the "Request a Quote" button to hear from us via email.</div>
+					<div>You can also call us
+					today, toll-free, at (866) 484-6031. We're available between 8am - 6pm EDT.</div>
+				</div>
+				<div class="listing-cta-wrap btn-cta">
+					<a class="gradient-button" href="?controller=public&action=estimates&section=estimates&title=Request%20a%20Quote&inst=<?php echo str_replace(' ', '%20', $this->model->listing->title); ?>">Request a Quote</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="item-desc">
