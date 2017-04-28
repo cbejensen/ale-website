@@ -144,10 +144,14 @@ function getCategoryName($id, $mode = 1)
 function renderLayout($str)
 {
 	$strs	=	explode('<br />', $str);
+	echo '<pre>';
+	print_r($strs);
+	echo '</pre>';
 	$len	=	count($strs);
 	foreach ($strs as &$s)
 	{
 		static $i	=	1;
+		//echo '>>> ' . $s[0] . ' <<<';
 		if ($s[0] == '*')
 		{
 			switch ($i)
@@ -164,7 +168,7 @@ function renderLayout($str)
 			}
 		}
 	}
-	$str	=	implode('<br />', $strs);
+	$str	=	implode($strs);
 	return $str;
 }
 

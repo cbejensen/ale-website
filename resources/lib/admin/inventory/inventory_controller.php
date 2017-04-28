@@ -86,7 +86,7 @@ class InventoryController
 								'condition_note'=>	$_POST['condition_note'],
 								'warranty'		=>	$_POST['warranty'],
 								'components'	=>	$_POST['components'],
-								'description'	=>	nl2br(htmlentities($_POST['description'], ENT_QUOTES)),
+								'description'	=>	str_replace( "\n", '<br />', htmlentities($_POST['description'], ENT_QUOTES)),
 							);
 			$conn		=	db_connect(AL_DB, $this->userData);
 			foreach ($data as &$d) if (empty($d)) $d = null;
