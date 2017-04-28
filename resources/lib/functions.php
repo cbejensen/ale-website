@@ -147,22 +147,21 @@ function renderLayout($str)
 	$len	=	count($strs);
 	foreach ($strs as &$s)
 	{
-		static $i	=	1;
-		//echo '>>> ' . $s[0] . ' <<<';
+		if (isset($k) && $s[0] != '*') $s = '</ul>' . $s;
 		if ($s[0] == '*')
 		{
+			static $i	=	0;
+			static $k 	= 	1;
 			switch ($i)
 			{
 				case 0:
 					$s	=	str_replace('*', '<ul><li>', $s) . '</li>';
 					break;
-				case ($i == $len):
-					$s	=	str_replace('*', '<li>', $s) . '</li></ul>';
-					break;
 				default:
 					$s	=	str_replace('*', '<li>', $s) . '</li>';
 					break;
 			}
+			$i++;
 		}
 	}
 	$str	=	implode($strs);
