@@ -9,7 +9,7 @@ require_once LIB_PATH . '/admin/inventory/inventory_controller.php';
 require_once LIB_PATH . '/admin/inventory/inventory_model.php';
 
 //Attempt to verify user.
-if (isset($_POST['user']) && isset($_POST['pass']) && $_POST['user'] != 'admin')
+if (!empty($_POST['user']) && !empty($_POST['pass']) && $_POST['user'] != 'admin')
 {
 	$userData	=	array(	'db'	=>	array(
 			'user'	=>	$_POST['user'],

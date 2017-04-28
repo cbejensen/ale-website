@@ -144,9 +144,6 @@ function getCategoryName($id, $mode = 1)
 function renderLayout($str)
 {
 	$strs	=	explode('<br />', $str);
-	echo '<pre>';
-	print_r($strs);
-	echo '</pre>';
 	$len	=	count($strs);
 	foreach ($strs as &$s)
 	{
