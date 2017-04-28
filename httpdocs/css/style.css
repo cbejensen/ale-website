@@ -856,10 +856,10 @@ ul.dropDown li a:hover {
 	font-size: 1.75rem;
 	margin-bottom: 0.5rem
 }
-/* .item-desc .description ul { */
-/* 	counter-reset: foo; */
-/*     display: table; */
-/* } */
+.item-desc .description ul {
+	margin: 1rem 0;
+	padding-left: 1.5rem;
+}
 /* .item-desc .description ul > li { */
 /* 	counter-increment: foo; */
 /*     display: table-row; */
