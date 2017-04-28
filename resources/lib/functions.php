@@ -162,6 +162,8 @@ function renderLayout($str)
 					break;
 			}
 			$i++;
+		} else {
+			$s	=	$s . '<br />';
 		}
 	}
 	$str	=	implode($strs);
