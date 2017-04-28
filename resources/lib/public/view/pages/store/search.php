@@ -36,7 +36,7 @@
 	{
 		$oqs		=	htmlentities($_GET['q'], ENT_QUOTES);
 		$qs			=	explode(' ', $oqs);
-		$where		=	"WHERE ";
+		$where		=	"WHERE (general_listings.active=1) AND (";
 		$select		.=	', (';
 		foreach ($qs as $key)
 		{
@@ -50,7 +50,7 @@
 			$select	.=	"(1.3 * (MATCH(manufacturers.mnfr) AGAINST ('$key*' IN BOOLEAN MODE))) + (1.3 * (MATCH(models.model) AGAINST ('$key*' IN BOOLEAN MODE))) + (1.3 * (MATCH(models.function_desc) AGAINST ('$key*' IN BOOLEAN MODE))) + (0.6 * (MATCH(general_listings.description) AGAINST ('$key*' IN BOOLEAN MODE))) + ";
 		}
 		$where	=	substr($where, 0, -3); // Remove last " OR"
-		$where	.=	" ORDER BY RELEVANCE DESC";
+		$where	.=	") ORDER BY RELEVANCE DESC";
 		$select	=	substr($select, 0, -3); // Remove last " + "
 		$select	.=	') AS relevance ';
 	}
