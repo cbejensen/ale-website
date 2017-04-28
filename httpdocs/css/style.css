@@ -860,6 +860,9 @@ ul.dropDown li a:hover {
 	margin: 1rem 0;
 	padding-left: 1.5rem;
 }
+.item-desc .description li {
+	list-style-type: disc;
+}
 /* .item-desc .description ul > li { */
 /* 	counter-increment: foo; */
 /*     display: table-row; */
