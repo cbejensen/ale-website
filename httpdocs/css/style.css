@@ -862,6 +862,7 @@ ul.dropDown li a:hover {
 }
 .item-desc .description li {
 	list-style-type: disc;
+	margin: 0.4rem 0;
 }
 /* .item-desc .description ul > li { */
 /* 	counter-increment: foo; */
