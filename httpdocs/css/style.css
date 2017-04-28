@@ -439,6 +439,9 @@ ul.dropDown li a:hover {
 	margin-top: 0.65rem;
 	margin-bottom: 0.65rem;
 }
+.store-results {
+	margin-bottom: 5rem;
+}
 /*--------------------------------------------
 	2.5 Search Toolbar
 ----------------------------------------------*/
@@ -803,6 +806,7 @@ ul.dropDown li a:hover {
 }
 .listing-main {
 	padding: 0rem 0.25rem 0;
+	margin-bottom: 5rem;
 }
 .listing-gallery,
 .summary-data,
