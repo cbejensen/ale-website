@@ -856,18 +856,18 @@ ul.dropDown li a:hover {
 	font-size: 1.75rem;
 	margin-bottom: 0.5rem
 }
-.item-desc .description ul {
-	counter-reset: foo;
-    display: table;
-}
-.item-desc .description ul > li {
-	counter-increment: foo;
-    display: table-row;
-}
-.item-desc .description ul > li::before {
-    display: table-cell;
-    text-align: right;
-}
+/* .item-desc .description ul { */
+/* 	counter-reset: foo; */
+/*     display: table; */
+/* } */
+/* .item-desc .description ul > li { */
+/* 	counter-increment: foo; */
+/*     display: table-row; */
+/* } */
+/* .item-desc .description ul > li::before { */
+/*     display: table-cell; */
+/*     text-align: right; */
+/* } */
 
 /*=================================================================================
 	7.0 - Error Page
