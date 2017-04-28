@@ -71,7 +71,7 @@
 		</div>
 		<div class="description">
 			<h2 class="section-head">Description</h2>
-			<p><?php echo $this->model->listing->ad['description']; ?></p>
+			<p><?php echo renderLayout($this->model->listing->ad['description']); ?></p>
 		</div>
 	</div>
 </div>

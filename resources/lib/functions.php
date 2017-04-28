@@ -141,6 +141,33 @@ function getCategoryName($id, $mode = 1)
 	return $row[0];
 }
 
+function renderLayout($str)
+{
+	$strs	=	explode('<br />', $str);
+	$len	=	count($strs);
+	foreach ($strs as &$s)
+	{
+		static $i	=	1;
+		if ($s[0] == '*')
+		{
+			switch ($i)
+			{
+				case 0:
+					$s	=	str_replace('*', '<ul><li>', $s) . '</li>';
+					break;
+				case ($i == $len):
+					$s	=	str_replace('*', '<li>', $s) . '</li></ul>';
+					break;
+				default:
+					$s	=	str_replace('*', '<li>', $s) . '</li>';
+					break;
+			}
+		}
+	}
+	$str	=	implode('<br />', $strs);
+	return $str;
+}
+
 function refValues($arr)
 {
 	if (strnatcmp(phpversion(),'5.3') >= 0) //Reference is required for PHP 5.3+
