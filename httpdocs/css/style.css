@@ -308,7 +308,11 @@ ul.dropDown li a:hover {
 	background-color: #2059AB;
 	letter-spacing: 0.05rem;
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#4d86da),color-stop(100%,#2a6bca));
-	background: gradient(linear,left top,left bottom,color-stop(0,#4d86da),color-stop(100%,#2a6bca));
+	background: linear-gradient(
+					to bottom,
+					#4d86da,
+					#2a6bca 100%
+				);
 }
 .searchBar-store {
 	border-top-right-radius: 0;
@@ -521,7 +525,11 @@ ul.dropDown li a:hover {
 	letter-spacing: 0.05rem;
 	background-color: #2059AB;
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#4d86da),color-stop(100%,#2a6bca));
-	background: gradient(linear,left top,left bottom,color-stop(0,#4d86da),color-stop(100%,#2a6bca));
+	background: linear-gradient(
+					to bottom,
+					#4d86da,
+					#2a6bca 100%
+				);
 	border: 1px solid #2867c2;/*#184b94;*/
     border-bottom-color: #245bac;
     border-radius: 2px;
@@ -529,7 +537,11 @@ ul.dropDown li a:hover {
 }
 .gradient-button:hover {
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#2a6bca),color-stop(100%,#4d86da));
-	background: gradient(linear,left top,left bottom,color-stop(0,#2a6bca),color-stop(100%,#4d86da));
+	background: linear-gradient(
+					to bottom,
+					#2a6bca,
+					#4d86da
+				);
 }
 .secondary-button {
 	text-align: center;
@@ -537,7 +549,11 @@ ul.dropDown li a:hover {
 	letter-spacing: 0.05rem;
 	background-color: #2059AB;
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#59DA4D),color-stop(100%,#2AB023));
-	background: gradient(linear,left top,left bottom,color-stop(0,#59DA4D),color-stop(100%,#2AB023));
+	background: linear-gradient(
+					to bottom,
+					#59DA4D,
+					#2AB023
+				);
 	border: 1px solid #59DA4D;/*#184b94;*/
     border-bottom-color: #299E23;
     border-radius: 2px;
@@ -545,7 +561,11 @@ ul.dropDown li a:hover {
 }
 .secondary-button:hover {
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#2AB023),color-stop(100%,#59DA4D));
-	background: gradient(linear,left top,left bottom,color-stop(0,#2AB023),color-stop(100%,#59DA4D));
+	background: linear-gradient(
+					to bottom,
+					#2AB023,
+					#59DA4D
+				);
 	cursor: default;
 }
 .section-divider {
@@ -703,6 +723,7 @@ ul.dropDown li a:hover {
 	overflow: hidden;
 	padding: 0.5em;
 	height: 20em;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -714,11 +735,13 @@ ul.dropDown li a:hover {
 .featured-ad img {
 	display: block;
 	width: 100%; /*calc(100% - 1.5rem);*/
+	height: auto;
 /* 	padding: 0.333em; */
 	background-color: #fbfbfb;
 	margin-bottom: 0.75em;
 	flex-basis: auto;
-	flex-grow: 1;
+	flex: 0 0 auto;
+	object-fit: scale-down;
 }
 .featAd-text {
 	flex-basis: calc(20em - 600px);
@@ -1074,6 +1097,7 @@ ul.dropDown li a:hover {
 /* 		margin-right: -4px; */
 	}
 	.site-main {
+		display: block;
 		padding-top: calc(70px + 2.333rem + 0.25rem)
 	}
 	.topNavBar {
