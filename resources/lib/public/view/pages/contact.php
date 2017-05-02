@@ -53,7 +53,7 @@
 		<div class="estimate-cta">
 				<h3 class="material gradient-header">Ask us a Question</h3>
 				<div class="question-form material">
-					<input class="fname" type="text" id="fname" placeholder="First name *">
+					<input type="text" class="fname" id="fname" placeholder="First name">
 					<input class="lname" type="text" id="lname" placeholder="Last name *">
 					<input class="email" type="text" id="email" placeholder="Email address *">
 					<input class="f-phone" type="text" id="f-phone" placeholder="Phone Number *">

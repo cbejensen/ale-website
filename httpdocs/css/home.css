@@ -208,7 +208,11 @@ position: absolute;
 	font-size: 12px;
 	border: 0;
 	margin-bottom: 1.25rem;
-	padding: 1.25rem;
+/* 	padding: 1.25rem; */
+}
+.question-form input {
+	line-height: 1em;
+	height: calc(1em + 1.75rem);
 }
 .question-form input[class*='name'] {
 	display: block;
