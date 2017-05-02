@@ -138,6 +138,9 @@
 <!--						<li id="navBtn_news" class="<?php if ($section == 'news') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('news');">-->
 <!-- 							<a href="?controller=public&action=news&page=newsletters&section=news&title=Newsletters">News</a> -->
 <!-- 						</li> -->
+						<li id="navBtn_outlet" onmouseover="moveArrow('outlet');">
+							<a href="http://stores.ebay.com/ale-lab-equipment-outlet">Outlet Store</a>
+						</li>
 						<li id="navBtn_cont" class="<?php if ($section == 'contact') echo 'activeNavBtn';?>" onmouseover="moveArrow('contact');">
 							<a href="?controller=public&action=contact&title=Contact%20Us&section=contact">Contact Us</a>
 						</li>

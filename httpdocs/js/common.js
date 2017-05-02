@@ -45,11 +45,14 @@ function positionArrow(section, arrow)
 		case 'news':
 			arrow.style.left	=	'502%';
 			break;
+		case 'outlet':
+			arrow.style.left	=	'535%';
+			break;
 		case 'contact':
-			arrow.style.left	=	'525%';//625
+			arrow.style.left	=	'695%';//525//625
 			break;
 		case 'estimates':
-			arrow.style.left	=	'705%';//805
+			arrow.style.left	=	'875%';//705//805
 			break;
 	}
 }

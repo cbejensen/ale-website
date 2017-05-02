@@ -44,11 +44,11 @@
 		<p class="subhead pageContent" style="margin-left: 0;">ALE provides tested, reconditioned, and refurbished equipment: reliable products
 		backed by outstanding service.</p>
 		<?php //getFeaturedEquipment(); ?>
-		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 2);">
+		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 1);">
 		<div class="ads-wrap">
 			<?php $this->model->getAds($this->userData, 'featured', 'cards'); ?>
 		</div>
-		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 2)">
+		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
 	</div>
 </section>
 <section class="outlet-ad-section pageContent" style="padding-left: 1rem;">
