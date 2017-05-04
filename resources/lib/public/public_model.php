@@ -120,7 +120,7 @@ class PublicModel
 								'message'	=>	'Unfortunately, the server was unable to complete your request at this time. Please try again.',
 								'error'		=>	''
 						);
-		$m			=	array(	'recip'		=>	'jack@atlanticlabequipment.com', // answers@atlanticlabequipment.com, jack@atlanticlabequipment.com, kelly@atlanticlabequipment.com
+		$m			=	array(	'recip'		=>	'answers@atlanticlabequipment.com, jack@atlanticlabequipment.com, kelly@atlanticlabequipment.com',
 								'subj'		=>	"[$ticket] {$formData['fname']} {$formData['lname']} asked a question",
 								'msg'		=>	"Ticket: $ticket\n" . $formData['message'],
 								'head'		=>	"From: {$formData['email']}"
@@ -174,7 +174,7 @@ class PublicModel
 								'message'	=>	'Unfortunately, the server was unable to complete your request at this time. Please try again.',
 								'error'		=>	''
 						);
-		$m			=	array(	'recip'		=>	'jack@atlanticlabequipment.com', // answers@atlanticlabequipment.com, jack@atlanticlabequipment.com, kelly@atlanticlabequipment.com
+		$m			=	array(	'recip'		=>	'answers@atlanticlabequipment.com, jack@atlanticlabequipment.com, kelly@atlanticlabequipment.com',
 								'subj'		=>	"[$ticket] {$formData['fname']} {$formData['lname']} requested a quote",
 								'msg'		=>	"Ticket: $ticket\n\nName:\t{$formData['fname']} {$formData['lname']}\nInstrument of Interest:\t{$formData['instrument']}\nInfo Requested\t{$formData['info_req']}\nEmail:\t{$formData['email']}\nPhone:\t{$formData['phone']}\n\nMessage:\n{$formData['message']}",
 								'head'		=>	"From: {$formData['email']}"
