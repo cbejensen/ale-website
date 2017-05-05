@@ -50,7 +50,8 @@ function db_query($q, &$conn) {
 							'message'	=>	'Please retry your request. If the problem persists, please report this error.',
 							'error'		=>	$conn->error
 						);
-		handleError($errorData, $conn, 'mysql');
+		// Log the error, do not report to user.
+		handleError($errorData, $conn, 'mysql', 0);
 	}
 	return $result;
 }
