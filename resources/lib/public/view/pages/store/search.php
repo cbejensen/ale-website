@@ -98,16 +98,19 @@
 	$links	=	$pg->createLinks(4, $lc);
 ?>
 <div class="store-results">
+
 	<?php if (!empty($oqs)) : ?>
 	<h1 class="section-head">Search Results for "<?php echo $oqs; ?>"</h1>
 	<?php else : ?>
 	<h1 class="section-head"><?php echo $category_name; ?></h1>
 	<?php endif; ?>
+	
 	<?php if ($r->page == 1) : ?>
 		<h2><?php echo $r->total . ' results'; ?></h2>
 	<?php else : ?>
 		<h2><?php echo 'Page ' . $r->page . ' of ' . $r->total . ' results'; ?></h2>
 	<?php endif; ?>
+	
 	<?php 
 		Paginator::getSearchToolbar();
 		$ad_i	=	0;

@@ -4,7 +4,7 @@
 		<nav class="store-nav material">
 			<h2 id="cat-browse-head" class="section-head">Browse by Category</h2>
 			<ul>
-				<li class="parent-category">
+				<!-- <li class="parent-category">
 					<a class="pa menu-expand" id="analyt" onclick="expandCategory(this.id);">Analytical Instruments</a>
 					<div id="analyt-d" class="bbc-dropdown">
 						<ul>
@@ -15,16 +15,16 @@
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=6,2&sb=analytical">Spectrophotometers</a></li>
 						</ul>
 					</div>
-				</li>
+				</li>-->
 				<li class="parent-category">
 					<a class="pa menu-expand" id="automa" onclick="expandCategory(this.id);">Automation &amp; Robotics</a>
 					<div id="automa-d" class="bbc-dropdown">
 						<ul>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=1,1&sb=automation">View All Automation</a></li>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=1,2&sb=automation">Liquid Handlers</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=7,2&sb=automation">Plate Stackers</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=10,2&sb=automation">Plate Sealers</a></li>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=8,2&sb=automation">Plate Readers</a></li>
+							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=10,2&sb=automation">Plate Sealers</a></li>
+							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=7,2&sb=automation">Plate Stackers</a></li>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=9,2&sb=automation">Plate Washers</a></li>
 						</ul>
 					</div>
