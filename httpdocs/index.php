@@ -63,7 +63,7 @@ else
 
 
 // Assign Meta Description
-if ($_GET['action'] == 'listing')
+if (isset($_GET['action']) && $_GET['action'] == 'listing')
 {
 	$meta 	=	$title . ' for sale by Atlantic Lab Equipment.';
 }
