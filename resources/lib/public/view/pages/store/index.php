@@ -60,5 +60,5 @@
 		feature fully tested, functional equipment, and we offer units
 		"as-is" and "for parts" at discounted prices. We also carry
 		lab supplies and consumables.</p>
-		<a href="" class="gradient-button">View Catalog</a>
+		<a href="http://stores.ebay.com/ale-lab-equipment-outlet" class="gradient-button">View Catalog</a>
 	</section>

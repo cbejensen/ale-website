@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="js/public.js"></script>
 		<meta charset="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php //PublicModel::get_metaDesc($title); ?>">
+		<meta name="description" content="<?php echo $meta;//PublicModel::get_metaDesc($title); ?>">
 		<meta name="author" content="Jack Brown">
 	</head>
 	<body id="ale-body">

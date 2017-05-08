@@ -31,7 +31,7 @@ class PublicModel
 			$r->data_seek($j);
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
 			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
-			$url	=	"?controller=public&action=listing&section=products&title=$title&ltype=general&id={$ad['id']}";
+			$url	=	"?controller=public&action=listing&section=store&title=$title&ltype=general&id={$ad['id']}";
 			if (!isset($ad['url'])) continue;
 			switch ($dspType)
 			{
