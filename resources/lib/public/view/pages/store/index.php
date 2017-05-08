@@ -20,11 +20,11 @@
 	<div class="new-equip-wrap">
 		<h2 class="section-head pageContent"><a style="color: inherit; font-family:inherit;" id="new-arrivals-a" href="?controller=public&action=store&page=new_arrivals&title=New%20Arrivals&section=store">New Arrivals</a></h2>
 		<?php //getNewArrivals(); ?>
-		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 0);">
+		<img class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 0);">
 		<div class="ads-wrap">
 			<?php $this->model->getAds($this->userData, 'newly-arrived', 'cards'); ?>
 		</div>
-		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 0)">
+		<img class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 0)">
 	</div>
 </section>
 <!-- <section class="monthly-specials-ad-section ads-section"> -->
@@ -44,15 +44,15 @@
 		<p class="subhead pageContent" style="margin-left: 0;">ALE provides tested, reconditioned, and refurbished equipment: reliable products
 		backed by outstanding service.</p>
 		<?php //getFeaturedEquipment(); ?>
-		<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 1);">
+		<img class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 1);">
 		<div class="ads-wrap">
 			<?php $this->model->getAds($this->userData, 'featured', 'cards'); ?>
 		</div>
-		<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
+		<img class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 1)">
 	</div>
 </section>
 <section class="outlet-ad-section pageContent" style="padding-left: 1rem;">
-		<img src="" alt="">
+<!-- 		<img src="" alt=""> -->
 		<h2 class="section-head">Outlet Store</h2>
 		<span>As-Is instrumentation on our eBay store.</span>
 		<p>We specialize in pre-owned, biotech, pharmaceutical,
