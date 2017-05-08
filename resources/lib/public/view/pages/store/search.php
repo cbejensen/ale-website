@@ -46,7 +46,6 @@
 				AND listing_category.categoryID = $category[0] ";
 				break;
 		}
-		
 	}
 	if (isset($_GET['q']))
 	{
@@ -70,7 +69,8 @@
 		$select	=	substr($select, 0, -3); // Remove last " + "
 		$select	.=	') AS relevance ';
 	} else {
-		$where	=	"WHERE general_listings.active=1";
+		// If there's no user-supplied lookup query
+		$where	=	"WHERE general_listings.active=1 ORDER BY manufacturers.mnfr";
 	}
 	$q		=	$select . $from . $where;
 	$pg		=	new Paginator($conn, $q);
