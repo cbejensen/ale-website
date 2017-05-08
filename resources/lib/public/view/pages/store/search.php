@@ -29,8 +29,24 @@
 	{
 		$category		=	explode(',', htmlspecialchars($_GET['category'], ENT_QUOTES)); // Category accepts two comma-separated arguments. The second is the mode of getCategoryName()
 		$category_name	=	getCategoryName($category[0], $category[1]);
-		$from			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID
-							AND listing_category.categoryID = $category[0] ";
+		switch ($category[1])
+		{
+			case 1:
+				$from			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID AND (";
+				$subs 			=	PublicModel::getSubcategories($category[0], $conn);
+				foreach ($subs as $sub)
+				{
+					$from	.=	"listing_category.categoryID=$sub OR ";
+				}
+				$from	=	substr($from, 0, -3); // Remove last " OR"
+				$from	.=	')';
+				break;
+			case 2:
+				$from			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID
+				AND listing_category.categoryID = $category[0] ";
+				break;
+		}
+		
 	}
 	if (isset($_GET['q']))
 	{

@@ -73,6 +73,26 @@ class PublicModel
 		return $r;
 	}
 	
+	public static function getSubcategories($categoryID, $conn)
+	{
+		$q		=	"SELECT ale_category FROM ale_category WHERE id=$categoryID";
+		$r		=	db_query($q, $conn);
+		$r->data_seek(0);
+		$row	=	$r->fetch_array(MYSQLI_NUM);
+		$cat	=	$row[0];
+		
+		$ids	=	array();
+		$q		=	"SELECT id FROM ale_category WHERE ale_category='$cat'";
+		$r		=	db_query($q, $conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row	=	$r->fetch_array(MYSQLI_NUM);
+			$ids[]	=	$row[0];
+		}
+		return $ids;
+	}
+	
 	public function submitNewsletterForm($userData)
 	{
 		if (!PublicModel::honeypotCheck('phone')) {

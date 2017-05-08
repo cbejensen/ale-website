@@ -1011,3 +1011,5 @@
 [28-Apr-2017 17:00:34 America/New_York] PHP Notice:  Undefined index: inst in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\estimates.php on line 18
 [28-Apr-2017 17:00:47 America/New_York] PHP Notice:  Undefined index: inst in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\estimates.php on line 18
 [01-May-2017 16:26:30 America/New_York] PHP Notice:  Undefined index: inst in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\estimates.php on line 18
+[08-May-2017 10:52:58 America/New_York] PHP Notice:  Undefined variable: where in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 41
+[08-May-2017 10:53:00 America/New_York] PHP Notice:  Undefined variable: where in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\pages\store\search.php on line 41
