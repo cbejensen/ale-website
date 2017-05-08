@@ -70,7 +70,7 @@
 		$select	.=	') AS relevance ';
 	} else {
 		// If there's no user-supplied lookup query
-		$where	=	"WHERE general_listings.active=1 ORDER BY manufacturers.mnfr";
+		$where	=	"WHERE general_listings.active=1 ORDER BY manufacturers.mnfr, models.model, models.function_desc";
 	}
 	$q		=	$select . $from . $where;
 	$pg		=	new Paginator($conn, $q);
