@@ -32,6 +32,7 @@ class PublicModel
 			$ad		=	$r->fetch_array(MYSQLI_ASSOC);
 			$title	=	"{$ad['mnfr']} {$ad['brand']} {$ad['model']} {$ad['function_desc']} {$ad['title_extn']}";
 			$url	=	"?controller=public&action=listing&section=store&title=$title&ltype=general&id={$ad['id']}";
+			$url	=	str_replace(' ', '%20', $url);
 			if (!isset($ad['url'])) continue;
 			switch ($dspType)
 			{
