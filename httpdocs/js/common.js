@@ -40,19 +40,19 @@ function positionArrow(section, arrow)
 			arrow.style.left	=	'215%';
 			break;
 		case 'store':
-			arrow.style.left	=	'392%';
+			arrow.style.left	=	'455%'; //392
 			break;
 		case 'news':
-			arrow.style.left	=	'502%';
+			arrow.style.left	=	'650%'; //502
 			break;
 		case 'outlet':
-			arrow.style.left	=	'535%';
+			arrow.style.left	=	'660%';
 			break;
 		case 'contact':
-			arrow.style.left	=	'695%';//525//625
+			arrow.style.left	=	'815%';//525//625/695
 			break;
 		case 'estimates':
-			arrow.style.left	=	'875%';//705//805
+			arrow.style.left	=	'995%';//705//805/875
 			break;
 	}
 }

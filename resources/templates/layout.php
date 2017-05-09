@@ -118,7 +118,7 @@
 <!-- 							</div> -->
 						</li>
 						<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
-							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Products</a>
+							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Premium Equipment</a>
 <!-- 							<div id="navDrop_store" class="dropDown"> -->
 <!-- 								<ul class="dropDown"> -->
 <!-- 									<li> -->
