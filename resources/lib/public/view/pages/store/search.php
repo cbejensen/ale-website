@@ -29,8 +29,23 @@
 	{
 		$category		=	explode(',', htmlspecialchars($_GET['category'], ENT_QUOTES)); // Category accepts two comma-separated arguments. The second is the mode of getCategoryName()
 		$category_name	=	getCategoryName($category[0], $category[1]);
-		$from			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID
-							AND listing_category.categoryID = $category[0] ";
+		switch ($category[1])
+		{
+			case 1:
+				$from			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID AND (";
+				$subs 			=	PublicModel::getSubcategories($category[0], $conn);
+				foreach ($subs as $sub)
+				{
+					$from	.=	"listing_category.categoryID=$sub OR ";
+				}
+				$from	=	substr($from, 0, -3); // Remove last " OR"
+				$from	.=	')';
+				break;
+			case 2:
+				$from			.=	"JOIN listing_category ON general_listings.id = listing_category.listingID
+				AND listing_category.categoryID = $category[0] ";
+				break;
+		}
 	}
 	if (isset($_GET['q']))
 	{
@@ -54,7 +69,8 @@
 		$select	=	substr($select, 0, -3); // Remove last " + "
 		$select	.=	') AS relevance ';
 	} else {
-		$where	=	"WHERE general_listings.active=1";
+		// If there's no user-supplied lookup query
+		$where	=	"WHERE general_listings.active=1 ORDER BY manufacturers.mnfr, models.model, models.function_desc";
 	}
 	$q		=	$select . $from . $where;
 	$pg		=	new Paginator($conn, $q);
@@ -82,16 +98,19 @@
 	$links	=	$pg->createLinks(4, $lc);
 ?>
 <div class="store-results">
+
 	<?php if (!empty($oqs)) : ?>
 	<h1 class="section-head">Search Results for "<?php echo $oqs; ?>"</h1>
 	<?php else : ?>
 	<h1 class="section-head"><?php echo $category_name; ?></h1>
 	<?php endif; ?>
+	
 	<?php if ($r->page == 1) : ?>
 		<h2><?php echo $r->total . ' results'; ?></h2>
 	<?php else : ?>
 		<h2><?php echo 'Page ' . $r->page . ' of ' . $r->total . ' results'; ?></h2>
 	<?php endif; ?>
+	
 	<?php 
 		Paginator::getSearchToolbar();
 		$ad_i	=	0;

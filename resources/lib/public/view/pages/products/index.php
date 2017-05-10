@@ -81,9 +81,10 @@
 	</section> -->
 	<section class="hve-ads-section material ads-section">
 		<div class="hve-wrap">
-			<h2 class="section-head pageContent">Featured Premium Equipment</h2>
+			<h2 class="section-head pageContent"><a class="fpe" href="?controller=public&action=services&section=services&title=Premium%20Services&page=premium_equipment">Featured Premium Equipment</a></h2>
 			<p class="subhead pageContent">ALE provides tested, reconditioned, and refurbished equipment: reliable products
 			backed by outstanding service.</p>
+			<!-- <p class="subhead pageContent"><a style="color: #333;" href="?controller=public&action=services&section=services&title=Premium%20Services&page=premium_equipment">View Catalog</a></p> -->
 			<?php //getFeaturedEquipment(); ?>
 			<img id="leftArrow" class="left-arrow" src="img/interface/left-arrow.png" alt="Click here to browse the previous equipment" onclick="moveFeaturedAds(0, 0);">
 			<div class="ads-wrap">
@@ -142,6 +143,6 @@
 		feature fully tested, functional equipment, and we offer units
 		"as-is" and "for parts" at discounted prices. We also carry
 		lab supplies and consumables.</p>
-		<a href="" class="gradient-button">View Catalog</a>
+		<a href="http://stores.ebay.com/ale-lab-equipment-outlet" class="gradient-button">View Catalog</a>
 	</section>
 </main>

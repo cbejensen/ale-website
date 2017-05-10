@@ -1,6 +1,6 @@
 <main class="home-main site-main">
 	<section class="home-header">
-		<video autoplay muted loop poster="">
+		<video autoplay muted loop>
 			<source src="img/video/ale_slas2017.mp4" type="video/mp4">
 			<!-- <source src="movie.ogg" type="video/ogg"> -->
 		</video>
@@ -61,7 +61,7 @@
 					<input class="fname" type="text" id="fname" placeholder="First name *">
 					<input class="lname" type="text" id="lname" placeholder="Last name *">
 					<input class="email" type="text" id="email" placeholder="Email address *">
-					<input class="f-phone" type="text" id="f-phone" placeholder="Phone Number *">
+					<input class="f-phone" type="text" id="f-phone" name="phone" placeholder="Phone Number *">
 					<span class="hr"></span>
 					<textarea rows="4" id="msg" placeholder="Ask your question here"></textarea>
 					<span class="hr"></span>

@@ -10,7 +10,7 @@
 */
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<?php if ($section == 'home'): ?>
 		<title>Atlantic Lab Equipment | Premium Equipment &amp; Automation</title>
@@ -34,10 +34,19 @@
 		<!-- <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet"> -->
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/public.js"></script>
-		<meta charset="">
+<!-- 		<meta charset=""> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="<?php //PublicModel::get_metaDesc($title); ?>">
+		<meta name="description" content="<?php echo $meta;//PublicModel::get_metaDesc($title); ?>">
 		<meta name="author" content="Jack Brown">
+		<?php // Google Analytics code follows. DO NOT REMOVE. ?>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-86227524-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
 	</head>
 	<body id="ale-body">
 		<header class="site-header">
@@ -118,7 +127,7 @@
 <!-- 							</div> -->
 						</li>
 						<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
-							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Products</a>
+							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Premium Equipment</a>
 <!-- 							<div id="navDrop_store" class="dropDown"> -->
 <!-- 								<ul class="dropDown"> -->
 <!-- 									<li> -->
@@ -185,7 +194,7 @@
 					</div>
 					<input type="text" name="search" placeholder="Search for anything (e.g. Tecan EVO)" id="search-input" onKeydown="if (event.keyCode==13) searchSite(<?php if (isset($_GET['sb'])) echo "'".htmlentities($_GET['sb'], ENT_QUOTES)."'"; ?>);">
 					<div class="searchBar-goButton gradient-button" id="searchBtn" onclick="searchSite(<?php if (isset($_GET['sb'])) echo "'".htmlentities($_GET['sb'], ENT_QUOTES)."'"; ?>)">
-						<img src="img/interface/white-search.png">
+						<img src="img/interface/white-search.png" alt="Run Search">
 					</div>
 					<?php if (isset($_GET['sb'])) : ?>
 						<script>switchCategory('<?php echo htmlentities($_GET['sb'], ENT_QUOTES); ?>');</script>
@@ -215,7 +224,7 @@
 						<input type="text" name="lastname">
 						<label>Email Address:</label>
 						<input type="text" name="email">
-						<input class="f-phone" type="text" id="f-phone" placeholder="Phone Number *">
+						<input class="f-phone" type="text" id="ff-phone" name="phone" placeholder="Phone Number *">
 						<input type="button" value="Sign Up" onclick="" class="secondary-button">
 						<input type="button" value="View Archive" onclick="" class="secondary-button">
 					</form>
@@ -278,7 +287,7 @@
 				</div>
 			</div>
 			<div class="google-maps">
-				<iframe frameborder="0"
+				<iframe style="border:0;"
 				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7X1orAXshhfLK7VkgAo7_FjbYLyz_4Ng&q=Atlantic+Lab+Equipment,Salem+MA&zoom=12" 
 				allowfullscreen>
 				</iframe>

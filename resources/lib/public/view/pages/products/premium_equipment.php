@@ -18,7 +18,7 @@
 	<h1 class="section-head">Premium Equipment</h1>
 	<p class="section-intro">Our extensive inventory includes a myriad of instrumentation which enables
 	automation of laboratory procedures. We develop custom
-	integrated systems for specific applications using the our equipment, 
+	integrated systems for specific applications using our equipment, 
 	and we're happy to provide these items individually, as well.</p>
 	<p class="section-intro">Within each of the subsections below, you will find links to the appropriate listings
 	of our catalog and more information on specific instruments.</p>
