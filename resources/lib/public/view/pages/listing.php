@@ -44,39 +44,53 @@
 		<div class="item-info">
 			<table>
 				<tbody>
+					<?php if (!empty($this->model->listing->ad['mnfr'])) : ?>
 					<tr>
 						<td class="section-head">Manufacturer:</td>
 						<td><?php echo $this->model->listing->ad['mnfr']; ?></td>
 					</tr>
+					<?php endif; ?>
+					<?php if (!empty($this->model->listing->ad['brand'])) : ?>
 					<tr>
 						<td class="section-head">Brand:</td>
 						<td><?php echo $this->model->listing->ad['brand']; ?></td>
 					</tr>
+					<?php endif; ?>
+					<?php if (!empty($this->model->listing->ad['model'])) : ?>
 					<tr>
 						<td class="section-head">Model Name:</td>
 						<td><?php echo $this->model->listing->ad['model']; ?></td>
 					</tr>
-					<?php // if model number exists ?>
-					<tr>
-						<td class="section-head">Model Number:</td>
-						<td><?php // model number ?></td>
-					</tr>
+					<?php endif; ?>
+					<?php //if (!empty($this->model->listing->ad['brand'])) : ?>
+<!-- 					<tr> -->
+<!-- 						<td class="section-head">Model Number:</td> -->
+<!--						<td><?php // model number ?></td>
+ 					</tr> -->
+ 					<?php if (!empty($this->model->listing->ad['testing'])) : ?>
 					<tr>
 						<td class="section-head">Testing &amp; Functionality Notes:</td>
 						<td><?php echo $this->model->listing->ad['testing']; ?></td>
 					</tr>
+					<?php endif; ?>
+					<?php if (!empty($this->model->listing->ad['components'])) : ?>
 					<tr>
 						<td class="section-head">Components Included:</td>
 						<td><?php echo $this->model->listing->ad['components']; ?></td>
 					</tr>
+					<?php endif; ?>
+					<?php if (!empty($this->model->listing->ad['condition_note'])) : ?>
 					<tr>
 						<td class="section-head">Condition Notes:</td>
 						<td><?php echo $this->model->listing->ad['condition_note']; ?></td>
 					</tr>
+					<?php endif; ?>
+					<?php if (!empty($this->model->listing->ad['warranty'])) : ?>
 					<tr>
 						<td class="section-head">Warranty:</td>
 						<td><?php echo $this->model->listing->ad['warranty']; ?></td>
 					</tr>
+					<?php endif; ?>
 				</tbody>
 			</table>
 		</div>
