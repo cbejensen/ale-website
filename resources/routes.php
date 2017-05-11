@@ -9,6 +9,9 @@ $controllers	= array('public' 			=>	[	'home', 	'services',
 													'listing'
 													],
 		
+						'admin'				=>	[	'list'
+													],
+		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',
 													''
 													],
@@ -39,6 +42,16 @@ function call($controller, $action)
 		case 'public':
 			require_once PUBLIC_PATH . '/public_controller.php';
 			$controller	= new PublicController();
+			break;
+			
+		case 'admin':
+			require_once ADMIN_PATH . '/admin_controller.php';
+			try {
+				$controller	= new AdminController();
+			} catch (Exception $e) {
+				// if the controller cannot be constructed:
+			}
+			
 			break;
 			
 		case 'admin_pages':

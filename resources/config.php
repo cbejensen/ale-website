@@ -14,6 +14,7 @@ define('RESOURCES_PATH', '../resources');
 define('TEMPLATE_PATH', '../resources/templates');
 define('INC_PATH', '../resources/inc');
 define('PUBLIC_PATH', '../resources/lib/public');
+define('ADMIN_PATH', '../resources/lib/admin');
 define('PAGE_PATH', '../resources/lib/public/view/pages');
 define('LOGS_PATH', '../resources/logs');
 
