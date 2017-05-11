@@ -49,6 +49,7 @@ else
 	// Determine if admin
 	switch ($controller)
 	{
+		case 'admin':
 		case 'admin_pages':
 		case 'admin_lists':
 		case 'admin_inventory':
