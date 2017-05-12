@@ -4,18 +4,18 @@
 		<nav class="store-nav material">
 			<h2 id="cat-browse-head" class="section-head">Browse by Category</h2>
 			<ul>
-				<!-- <li class="parent-category">
+				<li class="parent-category">
 					<a class="pa menu-expand" id="analyt" onclick="expandCategory(this.id);">Analytical Instruments</a>
 					<div id="analyt-d" class="bbc-dropdown">
 						<ul>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=3,1&sb=analytical">View All Analytical</a></li>
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=3,2&sb=analytical">HPLC Systems &amp; Parts</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=4,2&sb=analytical">Gas Chromatography</a></li>
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=4,2&sb=analytical">Gas Chromatography</a></li> -->
 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=5,2&sb=analytical">Mass Spectrometers</a></li>
-							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=6,2&sb=analytical">Spectrophotometers</a></li>
+<!-- 							<li><a href="?controller=public&action=store&section=store&title=All%20Analytical%20Equipment&category=6,2&sb=analytical">Spectrophotometers</a></li> -->
 						</ul>
 					</div>
-				</li>-->
+				</li>
 				<li class="parent-category">
 					<a class="pa menu-expand" id="automa" onclick="expandCategory(this.id);">Automation &amp; Robotics</a>
 					<div id="automa-d" class="bbc-dropdown">
