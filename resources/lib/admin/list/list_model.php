@@ -1,7 +1,7 @@
 <?php
 /*
  * The List class models the graphical list interfaces.
- * 
+ *
  * Users must be logged in, and should be authorized and validated with each request.
  */
 
@@ -10,12 +10,13 @@ class DataList
 	public	$ltype, $lscope;
 	
 	private $fieldMap 	=	array(	1	=>	'',
-									2	=>	'',
-									3	=>	'',
-									4	=>	'',
-									5	=>	'',
-									6	=>	'',
+			2	=>	'',
+			3	=>	'',
+			4	=>	'',
+			5	=>	'',
+			6	=>	'',
 	);
+	private $fields		=	array();
 	
 	public function __construct()
 	{
@@ -111,6 +112,9 @@ class DataList
 				if (in_array($fieldId, $this->fieldMap))
 				{
 					$this->fields[]	=	$this->fieldMap[$fieldId];
+				} else {
+					// Throw notice? Log warning?
+					continue;
 				}
 			}
 		}

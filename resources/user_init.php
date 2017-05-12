@@ -42,10 +42,16 @@ if (!isset($_COOKIE['serp-limit']))
 	}
 }
 
+if ($_GET['controller']	== 'admin')
+{
+	// Set cookies
+}
+
 
 // Functions
 function setLoCookie()
 {
+	// Set SERP Layout preference
 	switch ($_GET['lo']) // input restriction
 	{
 		case 'grid':
@@ -65,6 +71,7 @@ function setLoCookie()
 
 function setLimitCookie()
 {
+	// Set SERP Items Per Page Limit preference
 	$limit	=	$_GET['limit'];
 	if (!setcookie('serp-limit', $limit, time()+60*60*24*30*2, '/'))
 	{
