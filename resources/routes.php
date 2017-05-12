@@ -82,5 +82,11 @@ function call($controller, $action)
 	}
 
 	// call the action
-	$controller->{ $action }();
+	try 
+	{
+		$controller->{ $action }();
+	} 
+	catch (Exception $e) {
+		// Do something if the action throws an exception
+	}
 }

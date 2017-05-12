@@ -7,7 +7,7 @@
  */
 
 class PublicController
-{
+{	
 	public function __construct()
 	{
 		
@@ -24,6 +24,11 @@ class PublicController
 		 * 		search query
 		 * 		page no.
 		 * 		list type (item[review/complete/all], listings[general], ads, etc.)
+		 * 		list scope
 		 */
+		require_once ADMIN_PATH . '/list/list_model.php';
+		$list	=	new DataList(); // Any exceptions thrown should be caught by the router by default.
 	}
+	
+	
 }
