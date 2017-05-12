@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cartalyst/sentinel": "2.0.*"
+    }
+}
