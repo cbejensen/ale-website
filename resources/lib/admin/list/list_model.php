@@ -27,6 +27,7 @@ class DataList
 		$this->setListScope();
 		$this->setSearchQuery();
 		$this->setFields();
+		$this->setSortField();
 	}
 	
 	private function setFieldMap()
@@ -178,4 +179,27 @@ class DataList
 		}
 	}
 	
+	public function setData()
+	{
+		/*
+		 * Given parameters set at construction of object, gather data from the database.
+		 * Returns void, sets $data parameter, an array representative of each item in the list.
+		 * Two-dimensional - parameters for each item can be accessed via its db table id.
+		 */
+		switch ($this->ltype)
+		{
+			case 'items':
+				
+				'SELECT
+				general_listings.id,
+				general_listings.title_extn,	general_listings.description,
+				general_listings.price,			general_listings.item_condition,
+				general_listings.testing,		general_listings.warranty,
+				general_listings.components,	general_listings.condition_note,
+				manufacturers.mnfr, 			models.model,
+				models.function_desc,
+				brands.brand,					ad_photos.url,
+				ad_photos.alt';
+		}
+	}
 }

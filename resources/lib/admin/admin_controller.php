@@ -28,6 +28,7 @@ class PublicController
 		 */
 		require_once ADMIN_PATH . '/list/list_model.php';
 		$list	=	new DataList(); // Any exceptions thrown should be caught by the router by default.
+		$list->getData();
 	}
 	
 	
