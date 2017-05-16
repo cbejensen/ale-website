@@ -26,9 +26,10 @@ class PublicController
 		 * 		list type (item[review/complete/all], listings[general], ads, etc.)
 		 * 		list scope
 		 */
+		require_once LIB_PATH . '/paginator/paginator.php';
 		require_once ADMIN_PATH . '/list/list_model.php';
 		$list	=	new DataList(); // Any exceptions thrown should be caught by the router by default.
-		$list->getData();
+		
 	}
 	
 	
