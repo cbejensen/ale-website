@@ -2,11 +2,12 @@
 
 class InvItem
 {
-	public $aleAsset;
-	protected $conn;
-	public $assetType	=	array();
-	public $photos		=	array();
-	public $data		=	array();
+	public 		$aleAsset;
+	protected 	$conn;
+	
+	public 		$assetType	=	array();
+	public 		$photos		=	array();
+	public 		$data		=	array();
 	
 	public function __construct($aleAsset, &$conn, $fields = 0, $data = 0)
 	{
