@@ -5,7 +5,7 @@ class InvItem
 	public 		$aleAsset;
 	protected 	$conn;
 	
-	public 		$assetType	=	array();
+	public 		$assetType	=	array(); // ['track'], ['suffix']
 	public 		$photos		=	array();
 	public 		$data		=	array();
 	
@@ -98,9 +98,9 @@ class InvItem
 	public static function getAssetType($aleAsset)
 	{
 		// Returns FALSE if no records were found, RESULT ARRAY if success, throws exceptions on error. 
-		$q	=	"SELECT itemlist.assetType, asset_type.type, asset_type.suffix FROM
+		$q	=	"SELECT item_track.track, item_track.suffix FROM
 				itemlist
-				LEFT JOIN asset_type ON itemlist.assetType = asset_type.id
+				LEFT JOIN item_track ON itemlist.track = item_track.id
 				WHERE itemlist.aleAsset=?";
 		
 		$stmt	=	$conn->prepare($q);

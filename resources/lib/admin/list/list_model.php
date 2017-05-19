@@ -148,7 +148,21 @@ class DataList extends Paginator
 	{
 		/*
 		 * Sets the fields property, which is an array of field names.
-		 * Takes no args, looks for $_GET['f'], which is a comma-separated array of field ids.
+		 * This property represents the default fields, based on entries in the database, in addition to any added fields. 
+		 */
+		$q		=	"SELECT field_name FROM default_fields WHERE list='$this->ltype'";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row			=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->fields[]	=	$row['field_name'];
+		}
+		
+		
+		
+		/*
+		 * Looks for $_GET['f'], which is a comma-separated array of additional field ids.
 		 * This method takes those ids and maps them to their names, complete with table prefixes.
 		 */
 		if (isset($_GET['f']))
@@ -166,6 +180,9 @@ class DataList extends Paginator
 				}
 			}
 		}
+		
+		
+		
 	}
 		
 	private function setSortField()
