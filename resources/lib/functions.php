@@ -23,6 +23,12 @@ function db_connect($database, $userData = 0)
 		case NOV_DB:
 			require INC_PATH . '/db_login_novartis.php';
 			break;
+		case 'old_db':
+			require INC_PATH . '/2016_10_31.php';
+			break;
+		case 'remote_al_db':
+			require INC_PATH . '/remote_al_db.php';
+			break;
 		default: 
 			require INC_PATH . '/db_login.php';
 			break;

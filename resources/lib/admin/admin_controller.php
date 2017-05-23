@@ -6,7 +6,7 @@
  * Users must be logged in, and should be authorized and validated with each request.
  */
 
-class PublicController
+class AdminController
 {	
 	public function __construct()
 	{
@@ -26,10 +26,25 @@ class PublicController
 		 * 		list type (item[review/complete/all], listings[general], ads, etc.)
 		 * 		list scope
 		 */
+		PublicController::loadList();
+		$list	=	new DataList(); // Any exceptions thrown should be caught by the router by default.
+		require_once ADMIN_PATH . '/list/list_view.php';
+	}
+	
+	public function updateList()
+	{
+		/*
+		 * For ajax requests.
+		 */
+		PublicController::loadList();
+		$list	=	new DataList();
+		$list->getRows();
+	}
+	
+	private static function loadList()
+	{
 		require_once LIB_PATH . '/paginator/paginator.php';
 		require_once ADMIN_PATH . '/list/list_model.php';
-		$list	=	new DataList(); // Any exceptions thrown should be caught by the router by default.
-		
 	}
 	
 	

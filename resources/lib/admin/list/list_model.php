@@ -41,6 +41,67 @@ class DataList extends Paginator
 		$this->links	=	$this->createLinks(4, $this->list_class);
 	}
 	
+	public function getHeaders()
+	{
+		$mode	=	0;
+		require	ADMIN_PATH . '/list/list_row.php';
+	}
+	
+	public function getRows()
+	{
+		if (isset($_POST['isAjax']))
+		{
+			echo json_encode($this->data);
+		} else {
+			$mode	=	1;
+			foreach ($this->data as $row)
+			{
+				require ADMIN_PATH . '/list/list_row.php';
+			}
+		}
+	}
+	
+	private function getCells($mode)
+	{
+		/* 
+		 * Mode 0: header cell.
+		 * Mode 1: table cell.
+		 * This method is called by the getHeaders() and getRows() methods.
+		 */
+		$cells	=	array();
+		$th		=	array();
+		foreach ($list->fields as $field)
+		{
+			switch ($field)
+			{
+				// If the field is an inv. item's prefix, skip creating a column
+				case 'itemtrack.suffix':
+					continue;
+					break;
+					// If the field is an inv. item's asset #, add its prefix
+				case 'itemlist.aleAsset':
+					$cells[]	=	$row['suffix'] . $row['aleAsset'];
+					$th[]		=	'Asset';
+					break;
+					// By default, just add the contents of the field to the column
+				default:
+					$f			=	explode('.', $field);
+					$cells[]	=	$row[$f[1]];
+					$th[]		=	ucfirst($f[1]);
+			}
+		}
+		switch ($mode)
+		{
+			case 0:
+				$out	=	$th;
+				break;
+			case 1:
+				$out	=	$cells;
+				break;
+		}
+		return $out;
+	}
+	
 	private function setFieldMap()
 	{
 		/*
@@ -150,7 +211,7 @@ class DataList extends Paginator
 		 * Sets the fields property, which is an array of field names.
 		 * This property represents the default fields, based on entries in the database, in addition to any added fields. 
 		 */
-		$q		=	"SELECT field_name FROM default_fields WHERE list='$this->ltype'";
+		$q		=	"SELECT field_name FROM default_fields WHERE list='$this->ltype' AND field_order!=0 ORDER BY field_order";
 		$r		=	db_query($q, $this->conn);
 		for ($j = 0 ; $j < $r->num_rows ; $j++)
 		{

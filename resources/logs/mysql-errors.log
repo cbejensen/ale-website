@@ -386,3 +386,22 @@
 [08-May-2017 15:27:50 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 16
 [08-May-2017 15:27:50 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'general_listings.active=1 LIMIT 0, 20' at line 16
 [08-May-2017 15:27:50 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 33
+[22-May-2017 09:30:05 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'allitems'
+[22-May-2017 09:30:05 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 74
+[22-May-2017 09:35:42 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'allitems'
+[22-May-2017 09:35:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 74
+[22-May-2017 09:36:21 America/New_York] Database Query Failed. SELECT command denied to user 'guest'@'localhost' for table 'allitems'
+[22-May-2017 09:36:21 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 74
+[22-May-2017 09:38:50 America/New_York] Database Query Failed. Table 'al_db.allitems' doesn't exist
+[22-May-2017 09:38:50 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 82
+[22-May-2017 09:41:50 America/New_York] Database Query Failed. Unknown column 'N23831' in 'where clause'
+[22-May-2017 09:41:50 America/New_York] PHP Fatal error:  Call to a member function data_seek() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 63
+[22-May-2017 11:10:56 America/New_York] Database Query Failed. INSERT command denied to user 'guest'@'localhost' for table 'emp_category'
+[22-May-2017 11:12:26 America/New_York] Connection Error. No connection could be made because the target machine actively refused it.
+
+[22-May-2017 11:12:27 America/New_York] PHP Fatal error:  Call to a member function query() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 51
+[22-May-2017 11:13:34 America/New_York] Connection Error. No connection could be made because the target machine actively refused it.
+
+[22-May-2017 11:13:36 America/New_York] PHP Fatal error:  Call to a member function query() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 51
+[22-May-2017 11:22:39 America/New_York] Connection Error. No connection could be made because the target machine actively refused it.
+
