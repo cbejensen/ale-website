@@ -49,13 +49,17 @@ class DataList extends Paginator
 	
 	public function getRows()
 	{
+		$mode	=	1;
 		if (isset($_POST['isAjax']))
 		{
-			echo json_encode($this->data);
-			
-			
+			$rows	=	array();
+			foreach ($this->data as $row)
+			{
+				$cells	=	$this->getCells($mode, $row);
+				$rows[]	=	$cells;
+			}
+			echo json_encode($rows);
 		} else {
-			$mode	=	1;
 			foreach ($this->data as $row)
 			{
 				require ADMIN_PATH . '/list/list_row.php';

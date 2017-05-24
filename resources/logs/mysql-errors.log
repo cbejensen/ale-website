@@ -405,3 +405,4 @@
 [22-May-2017 11:13:36 America/New_York] PHP Fatal error:  Call to a member function query() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 51
 [22-May-2017 11:22:39 America/New_York] Connection Error. No connection could be made because the target machine actively refused it.
 
+[24-May-2017 11:16:29 America/New_York] Connection Error. Access denied for user 'admin'@'localhost' (using password: YES)

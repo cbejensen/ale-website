@@ -4408,3 +4408,31 @@ Stack trace:
 [22-May-2017 15:11:28 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 107
 [22-May-2017 15:11:28 America/New_York] PHP Notice:  Undefined variable: recrod in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 107
 [22-May-2017 15:11:28 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\httpdocs\migrator.php on line 107
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:32 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:33 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:37 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 10:34:52 America/New_York] PHP Notice:  Undefined index: controller in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 45
+[24-May-2017 11:16:29 America/New_York] PHP Warning:  mysqli::mysqli(): (HY000/1045): Access denied for user 'admin'@'localhost' (using password: YES) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 36
