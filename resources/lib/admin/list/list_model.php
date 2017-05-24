@@ -52,6 +52,8 @@ class DataList extends Paginator
 		if (isset($_POST['isAjax']))
 		{
 			echo json_encode($this->data);
+			
+			
 		} else {
 			$mode	=	1;
 			foreach ($this->data as $row)
@@ -61,7 +63,7 @@ class DataList extends Paginator
 		}
 	}
 	
-	private function getCells($mode)
+	private function getCells($mode, $row)
 	{
 		/* 
 		 * Mode 0: header cell.
@@ -70,9 +72,9 @@ class DataList extends Paginator
 		 */
 		$cells	=	array();
 		$th		=	array();
-		foreach ($list->fields as $field)
+		foreach ($this->fields as $field)
 		{
-			switch ($field)
+			switch ($field['field_name'])
 			{
 				// If the field is an inv. item's prefix, skip creating a column
 				case 'itemtrack.suffix':
@@ -87,7 +89,7 @@ class DataList extends Paginator
 				default:
 					$f			=	explode('.', $field);
 					$cells[]	=	$row[$f[1]];
-					$th[]		=	ucfirst($f[1]);
+					$th[]		=	$field['label'];
 			}
 		}
 		switch ($mode)
@@ -107,14 +109,14 @@ class DataList extends Paginator
 		/*
 		 * Takes no args, simply goes into database to retreive names of necessary fields.
 		 */
-		$q		=	"SELECT id, field_name FROM field_map";
+		$q		=	"SELECT id, field_name, label FROM field_map";
 		$r		=	db_query($q, $this->conn);
 		$count	=	$r->num_rows;
 		for ($j = 0 ; $j < $count ; $j++)
 		{
 			$r->data_seek($j);
 			$row						=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->fieldMap[$row['id']]	=	$row['field_name'];	
+			$this->fieldMap[$row['id']]	=	array('field_name' => $row['field_name'], 'label' => $row['label']);	
 		}
 	}
 	
@@ -211,13 +213,15 @@ class DataList extends Paginator
 		 * Sets the fields property, which is an array of field names.
 		 * This property represents the default fields, based on entries in the database, in addition to any added fields. 
 		 */
-		$q		=	"SELECT field_name FROM default_fields WHERE list='$this->ltype' AND field_order!=0 ORDER BY field_order";
+		$q		=	"SELECT default_fields.field_name, field_map.label FROM default_fields 
+					LEFT JOIN field_map ON default_fields.field_name = field_map.field_name
+					WHERE list='$this->ltype' AND field_order!=0 ORDER BY field_order";
 		$r		=	db_query($q, $this->conn);
 		for ($j = 0 ; $j < $r->num_rows ; $j++)
 		{
 			$r->data_seek($j);
 			$row			=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->fields[]	=	$row['field_name'];
+			$this->fields[]	=	array('field_name' => $row['field_name'], 'label' => $row['label']);
 		}
 		
 		
@@ -233,7 +237,7 @@ class DataList extends Paginator
 			{
 				if (in_array($fieldId, $this->fieldMap))
 				{
-					$this->fields[]	=	$this->fieldMap[$fieldId];
+					$this->fields[]	=	array('field_name' => $this->fieldMap[$fieldId]['field_name'], 'label' => $this->fieldMap[$fieldId]['label']);
 				} else {
 					// Given ID did not have map value.
 					// Throw notice? Log warning?
@@ -257,7 +261,7 @@ class DataList extends Paginator
 		{
 			if (in_array($_GET['srt_f'], $this->fieldMap))
 			{
-				$this->sortField	=	$this->fieldMap[$_GET['srt_f']];
+				$this->sortField	=	$this->fieldMap[$_GET['srt_f']['field_name']];
 			} else {
 				// Defaults to ALE Asset if given id is invalid, sends error report
 				$this->sortField	=	'itemlist.aleAsset';
@@ -346,7 +350,7 @@ class DataList extends Paginator
 		$tables		=	array();
 		foreach ($this->fields as $field)
 		{
-			$table		=	explode('.', $field);
+			$table		=	explode('.', $field['field_name']);
 			if ($table[0] == $default_table[0]) continue; // Keep the default table out of the JOIN clauses.
 			$tables[]	=	$table[0];
 		}
@@ -367,8 +371,8 @@ class DataList extends Paginator
 		$select		=	"SELECT $default_field, ";
 		foreach ($this->fields as $field)
 		{
-			if ($field == $default_field) continue;
-			$select	.=	$field . ', ';
+			if ($field['field_name'] == $default_field) continue;
+			$select	.=	$field['field_name'] . ', ';
 		}
 		$select		=	substr($select, 0, -2); // Remove last comma and space
 		return $select;

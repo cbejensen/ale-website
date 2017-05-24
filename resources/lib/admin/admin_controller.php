@@ -26,7 +26,7 @@ class AdminController
 		 * 		list type (item[review/complete/all], listings[general], ads, etc.)
 		 * 		list scope
 		 */
-		PublicController::loadList();
+		AdminController::loadList();
 		$list	=	new DataList(); // Any exceptions thrown should be caught by the router by default.
 		require_once ADMIN_PATH . '/list/list_view.php';
 	}
@@ -36,7 +36,7 @@ class AdminController
 		/*
 		 * For ajax requests.
 		 */
-		PublicController::loadList();
+		AdminController::loadList();
 		$list	=	new DataList();
 		$list->getRows();
 	}

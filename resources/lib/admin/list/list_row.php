@@ -1,6 +1,6 @@
-<tr>
+<tr id="<?php echo $row['aleAsset']; ?>">
 	<?php 
-		$cells	=	$this->getCells($mode);
+		$cells	=	$this->getCells($mode, $row);
 		foreach ($cells as $cell)
 		{
 	?>
