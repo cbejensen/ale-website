@@ -43,67 +43,124 @@ class DataList extends Paginator
 	
 	public function getHeaders()
 	{
-		$mode	=	0;
-		require	ADMIN_PATH . '/list/list_row.php';
+		require	ADMIN_PATH . '/list/list_head.php';
 	}
 	
 	public function getRows()
 	{
-		$mode	=	1;
 		if (isset($_POST['isAjax']))
 		{
 			$rows	=	array();
 			foreach ($this->data as $row)
 			{
-				$cells	=	$this->getCells($mode, $row);
+				$cells	=	$this->getCells(1, $row);
 				$rows[]	=	$cells;
 			}
 			echo json_encode($rows);
 		} else {
+			$class	=	0;
 			foreach ($this->data as $row)
 			{
 				require ADMIN_PATH . '/list/list_row.php';
+				$class++;
 			}
 		}
 	}
 	
-	private function getCells($mode, $row)
+	private function getCells($mode = 0, $row = 0)
 	{
 		/* 
 		 * Mode 0: header cell.
 		 * Mode 1: table cell.
 		 * This method is called by the getHeaders() and getRows() methods.
+		 * 
+		 * THIS METHOD is called by a row. It generates the content for a row.
 		 */
-		$cells	=	array();
-		$th		=	array();
+		$out	=	array(); // The output array of cell content
+		
+		// For table content before default rows (e.g. Select, Flags)
+		if ($mode === 1)
+		{
+			// First, a select field. Then, an optional "status" field.
+			$out[]	=	'<input class="item-select" type="checkbox" name="select" value="' . $row['aleAsset'] . '">';
+			switch ($this->ltype)
+			{
+				case 'items':
+					$status	=	InvItem::getStatus($row['aleAsset'], $this->conn);
+					$imgs	=	'';
+					foreach ($status as $stat)
+					{
+						$imgs	.=	"<img class=\"status-flag\" src=\"status_$stat[0].png\" alt=\"$stat[1]\">";
+					}
+					$out[]	=	$imgs;
+					break;
+			}
+		}
+		
+		// For header content before default rows (e.g. Select, Flags)
+		if ($mode === 0)
+		{
+			$out[]	=	'';
+			switch ($this->ltype)
+			{
+				case 'items':
+					$out[]	=	'Status';
+			}
+		}
+		
+		// Begin default rows
 		foreach ($this->fields as $field)
 		{
+			/*
+			 * THIS SWITCH can be used to alter the default rendering of a field.
+			 * The default setting creates a column with the label on file, and inserts the raw data.
+			 */
 			switch ($field['field_name'])
 			{
 				// If the field is an inv. item's prefix, skip creating a column
-				case 'itemtrack.suffix':
+				case 'item_track.suffix':
+				case 'models.model':
+				case 'brands.brand':
+				case 'models.function_desc':
+				case 'itemlist.title_extn':
 					continue;
 					break;
 					// If the field is an inv. item's asset #, add its prefix
 				case 'itemlist.aleAsset':
-					$cells[]	=	$row['suffix'] . $row['aleAsset'];
-					$th[]		=	'Asset';
+					switch ($mode)
+					{
+						case 0:
+							$out[]		=	'Asset';
+							break;
+						case 1:
+							$out[]		=	$row['suffix'] . $row['aleAsset'];
+							break;
+					}
+					break;
+				case 'manufacturers.mnfr':
+					switch ($mode)
+					{
+						case 0:
+							$out[]		=	'Title';
+							break;
+						case 1:
+							$out[]		=	$row['mnfr'].' '.$row['brand'].' '.$row['model'].' '.$row['function_desc'].' '.$row['title_extn'];
+							break;
+					}
 					break;
 					// By default, just add the contents of the field to the column
 				default:
-					$f			=	explode('.', $field);
-					$cells[]	=	$row[$f[1]];
-					$th[]		=	$field['label'];
+					switch ($mode)
+					{
+						case 0:
+							$out[]		=	$field['label'];
+							break;
+						case 1:
+							$f			=	explode('.', $field['field_name']);
+							$out[]		=	$row[$f[1]];
+							break;
+					}
 			}
-		}
-		switch ($mode)
-		{
-			case 0:
-				$out	=	$th;
-				break;
-			case 1:
-				$out	=	$cells;
-				break;
 		}
 		return $out;
 	}
@@ -249,9 +306,6 @@ class DataList extends Paginator
 				}
 			}
 		}
-		
-		
-		
 	}
 		
 	private function setSortField()
@@ -263,9 +317,9 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['srt_f']))
 		{
-			if (in_array($_GET['srt_f'], $this->fieldMap))
+			if (array_key_exists($_GET['srt_f'], $this->fieldMap))
 			{
-				$this->sortField	=	$this->fieldMap[$_GET['srt_f']['field_name']];
+				$this->sortField	=	$this->fieldMap[$_GET['srt_f']]['field_name'];
 			} else {
 				// Defaults to ALE Asset if given id is invalid, sends error report
 				$this->sortField	=	'itemlist.aleAsset';
@@ -368,6 +422,7 @@ class DataList extends Paginator
 		// Add order clause, set query
 		$order			=	" ORDER BY $this->sortField $this->sortOrder";
 		$this->query	=	$select . $from . $where . $order;
+		
 	}
 	
 	private function getSelectClause($default_field)
@@ -386,9 +441,11 @@ class DataList extends Paginator
 	{
 		$from		=	" FROM $default_table";
 		
+		//print_r($tables);
+		
 		foreach ($tables as $tf)
 		{
-			switch ($tf[0])
+			switch ($tf)
 			{
 				case 'manufacturers':
 					$from	.=	' LEFT JOIN manufacturers ON itemlist.mnfrID = manufacturers.id';
@@ -399,6 +456,15 @@ class DataList extends Paginator
 				case 'brands':
 					$from	.=	' LEFT JOIN brands ON itemlist.brandID = brands.id';
 					break;
+				case 'item_track':
+					$from	.=	' LEFT JOIN item_track ON itemlist.track = item_track.id';
+					break;
+				case 'inv_batch':
+					$from	.=	' LEFT JOIN inv_batch ON itemlist.batch = inv_batch.id';
+					break;
+				case 'vendors':
+					$from	.=	' LEFT JOIN item_accounting ON itemlist.aleAsset = item_accounting.aleAsset';
+					$from	.=	' LEFT JOIN vendors ON item_accounting.vendorID = vendors.id';
 			}
 		}
 		return $from;
@@ -410,7 +476,9 @@ class DataList extends Paginator
 		{
 			case 'all':
 				if (isset($this->searchKey)) {
-					$where	= ' WHERE (';
+					$where	= 	' WHERE (';
+				} else {
+					$where	=	'';
 				}
 				break;
 			case 'complete':
@@ -430,7 +498,7 @@ class DataList extends Paginator
 		if (isset($this->searchKey)) {
 			foreach ($tables as $tf)
 			{
-				switch ($tf[0])
+				switch ($tf)
 				{
 					case 'manufacturers':
 							foreach ($this->searchKey as $key)
@@ -441,7 +509,8 @@ class DataList extends Paginator
 					case 'models':
 							foreach ($this->searchKey as $key)
 							{
-								$where	.=	" models.model LIKE '%$key%' OR";
+								$where	.=	" models.model LIKE '%$key%' OR 
+											models.function_desc LIKE '%$key%' OR";
 							}
 						break;
 					case 'brands':
@@ -467,7 +536,7 @@ class DataList extends Paginator
 		 */
 		
 		// Get results
-		$r	=	$this->getPageData($this->limit, $this->result_pg);
+		$r	=	$this->getPageData($this->limit, $this->result_pg, 1);
 		
 		// Declare field to use as $this->data index
 		switch ($this->ltype)
@@ -480,7 +549,7 @@ class DataList extends Paginator
 		}
 		
 		// Populate list data
-		for ($j = 0 ; $j < $this->total ; $j++)
+		for ($j = 0 ; $j < $r->count ; $j++)
 		{
 			$this->data[$r->data[$j][$id]]	=	$r->data[$j];	
 		}

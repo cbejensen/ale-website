@@ -2,7 +2,7 @@
 	$url	=	'?controller=public&action=store&section=store&title=Search%20Results';
 	$url	.=	(isset($_GET['category'])) ? '&category=' . htmlspecialchars($_GET['category'], ENT_QUOTES) : '';
 	$url	.=	(isset($_GET['q'])) ? '&q=' . htmlspecialchars($_GET['q'], ENT_QUOTES) : '';
-	$url	.=	'&limit=' . $this->_limit;
+	$url	.=	'&limit=' . $this->limit;
 	//$url	.=	'&rp=' . ($this->_page - 1);
 	$url	.=	(isset($_GET['lc'])) ? '&lc=' . htmlspecialchars($_GET['lc'], ENT_QUOTES) : '';
 	$url	.=	(isset($_GET['lo'])) ? '&lo=' . htmlspecialchars($_GET['lo'], ENT_QUOTES) : '';
@@ -11,7 +11,7 @@
 <ul class="<?php echo $list_class; ?>">
 	
 	<li class="<?php echo $class; ?> material">
-		<a href="<?php echo $url . '&rp=' . ($this->_page - 1); ?>">&laquo;</a>
+		<a href="<?php echo $url . '&rp=' . ($this->page - 1); ?>">&laquo;</a>
 	</li>
 	
 	<?php if ($start > 1) : ?>
@@ -26,7 +26,7 @@
 	<?php endif; ?>
 	
 	<?php for ($i = $start ; $i <= $end ; $i++) : ?>
-		<?php $class = ($this->_page == $i) ? "pg-active" : ''; ?>
+		<?php $class = ($this->page == $i) ? "pg-active" : ''; ?>
 		<li class="<?php echo $class; ?> material">
 			<a href="<?php echo $url . '&rp=' . $i; ?>"><?php echo $i; ?></a>
 		</li>
@@ -42,8 +42,8 @@
 			<a href="<?php echo $url . '&rp=' . $last; ?>"><?php echo $last; ?></a>
 		</li>
 	<?php endif; ?>
-		<?php $class = ($this->_page >= $last) ? "pg-disabled" : ''; ?>
+		<?php $class = ($this->page >= $last) ? "pg-disabled" : ''; ?>
 		<li class="<?php echo $class; ?> material">
-			<a href="<?php echo $url . '&rp=' . ($this->_page + 1); ?>">&raquo;</a>
+			<a href="<?php echo $url . '&rp=' . ($this->page + 1); ?>">&raquo;</a>
 		</li>
 </ul>

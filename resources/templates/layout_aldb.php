@@ -2,8 +2,6 @@
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="css/admin.css" media="all">
-	<script type="text/javascript" src="js/common.js"></script>
 	<link rel="icon" type="image/ico" href="favicon_ale.ico">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/default.css" media="all">
@@ -12,20 +10,21 @@
 	<title><?php echo $title ?> | al.db</title>
 <!--<meta charset="UTF-8">-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/admin.js"></script>
 </head>
 
 <body class="admin-body">
 
 <header class="admin-header">
 	<div class="logoBar">
-		<div id="logoBar_leftBG"></div>
 		<div id="logoBar_rightBG"></div>
-		<div class="logoBar_content pageContent">
+		<div class="logoBar_content">
 			<a href="index.php">
 			<img 
-			srcset="img/interface/aleBanner-250w.png 250w,
+			srcset="img/interface/aleBanner-350w.png 350w,
 					img/interface/aleBanner.png 500w"
-			sizes="(max-width: 524px) 250px,
+			sizes="(max-width: 2524px) 350px,
 					500px"
 			src="img/interface/aleBanner.png" 
 			alt="ale: Providing refurbished lab equipment, specializing in Laboratory Automation.">
@@ -62,31 +61,31 @@
 					</div> -->
 				</li>
 				<!-- Begin Products and Services button -->
-				<li id="navBtn_prod" class="<?php if ($subsect == 'Inventory') echo 'activeNavBtn';?>" onmouseover="moveArrow('inventory');">
-					<a href="?controller=admin&action=list&subsect=Inventory&title=All%20Inventory" style="cursor: default;">Premium Services</a>
-	<!-- 							<div id="navDrop_prod" class="dropDown"> -->
-	<!-- 								<ul class="dropDown"> -->
-	<!-- 									<li> -->
-	<!-- 										<a href="?controller=public&action=services&section=services&title=Premium%20Services">Services Home</a> -->
-	<!-- 									</li> -->
-	<!-- 									<li> -->
-	<!-- 										<a href="?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services"> -->
-	<!-- 										Premium Automation Solutions & Service</a> -->
-	<!-- 									</li> -->
-	<!-- 									<li> -->
-	<!-- 										<a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services"> -->
-	<!-- 										Premium Equipment</a> -->
-	<!-- 									</li> -->
-					<!-- 	<li>
+				<li id="navBtn_prod" class="<?php if ($subsect == 'inventory') echo 'activeNavBtn';?>" onmouseover="moveArrow('inventory');">
+					<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&limit=20&rp=1" style="cursor: default;">Inventory</a>
+ 					<div id="navDrop_prod" class="dropDown">
+	 					<ul class="dropDown">
+	 						<li>
+	 							<a href="?controller=public&action=services&section=services&title=Premium%20Services">All Inventory</a>
+	 						</li>
+	 						<li>
+	 							<a href="?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services">
+	 							Complete</a>
+	 						</li>
+	 						<li>
+	 							<a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services">
+	 							Under Review</a>
+	 						</li>
+							<li>
 								<a href="http://stores.ebay.com/ale-lab-equipment-outlet" target="_blank">
-								Outlet Store</a>
-							</li> -->
-					<!-- 	<li>
+								Import from CSV</a>
+				 			</li>
+							<li>
 								<a href="?controller=public&action=products_services&page=waters_equipment&title=WATERS%20Equipment&section=products">
-								Analytical Equipment</a>
-							</li> -->
-	<!-- 								</ul> -->
-	<!-- 							</div> -->
+								Export to Spreadsheet</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
 					<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Premium Equipment</a>
@@ -124,7 +123,7 @@
 </header>
 
 <?php 	
-		require_once 'routes.php'; 
+		require_once RESOURCES_PATH . '/routes.php'; 
 		//require_once 'views/sidebar.php';
 ?>
 

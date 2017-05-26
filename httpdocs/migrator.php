@@ -3,6 +3,10 @@
  * This is the migrator of records from the old database structure to
  * the new one. 
  * It gets the data for each old record and creates a new one.
+ * 
+ * Requires 2 files (other than config.php):
+ * 		The new functions.php
+ * 		The old-db login file
  */
 
 require_once '../resources/config.php';
@@ -50,6 +54,9 @@ class NewRecord
 		 * EMP category must be set (but it should be all ready to go).
 		 * 
 		 * ALE CATEGORIES MUST BE SET
+		 * USE PREP STMTS FOR MODEL/MNFR/BRANDS/SUBITEMS
+		 * 
+		 * 
 		 *
 		 */
 		$this->setAsset();
@@ -64,47 +71,159 @@ class NewRecord
 		$this->setMnfr();
 		$this->setModel();
 		$this->setBrand();
+		$this->setBatch();
+		$this->setData();
 		
+		// INSERT NEW ITEM RECORDS
+		$this->insertItem();
+		$this->addPhotos();
+		$this->addCategories();
+		
+	}
+	
+	private function insertItem()
+	{
 		try {
 			// Itemlist
-			$q	=	"INSERT INTO";
-			$r	=	db_query($q, $this->conn);
-			if (!$r)
+			$q	=	"INSERT INTO itemlist (
+					aleAsset, 		track, 			mnfrID, 	modelID, 	brandID, 	addtl_model,
+					serial_num,		title_extn, 	price, 		mpn,		wh_location, quantity, 	batch, yom,
+					condition_note, item_condition, testing, 	weight, 	ship_class, cosmetic, 	components,
+					warranty, 		reviewed, 		date_added, date_completed
+					)
+					VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";	//25
+			$stmt	=	$this->conn->prepare($q);
+			if ($stmt === false)
 			{
-				throw new Exception('INSERT INTO itemlist: Failed');
+				throw new Exception('Itemlist: prepare() failed: ' . htmlspecialchars($this->conn->error));
 			}
+			// Bind Parameters
+			$rc		=	$stmt->bind_param("iiiiisssissiissiiiiisiiss",
+					$this->data['aleAsset'],	$this->data['track'], 		$this->data['mnfr'], 			$this->data['model'],
+					$this->data['brand'], 		$this->data['addtl_model'], $this->data['serial_num'], 		$this->data['title_extn'],
+					$this->data['price'], 		$this->data['mpn'], 		$this->data['wh_location'], 	$this->data['quantity'],
+					$this->data['batch'], 		$this->data['yom'], 		$this->data['condition_note'], $this->data['item_condition'],
+					$this->data['testing'], 	$this->data['weight'], 		$this->data['ship_class'], 		$this->data['cosmetic'],
+					$this->data['components'], 	$this->data['warranty'], 	$this->data['reviewed'], 		$this->data['date_added'],
+					$this->data['date_completed']
+					);
+			if ($rc === false)
+			{
+				throw new Exception('Itemlist: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			// Execute
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('Itemlist: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+			
 			// Accounting
-			$q	=	"INSERT INTO";
-			$r	=	db_query($q, $this->conn);
-			if (!$r)
+			$q	=	"INSERT INTO item_accounting (
+					aleAsset, vendorID, cost
+					)
+					VALUES (?,?,?)";
+			$stmt	=	$this->conn->prepare($q);
+			if ($stmt === false)
 			{
-				throw new Exception('INSERT INTO item_accounting: Failed');
+				throw new Exception('item_accounting: prepare() failed: ' . htmlspecialchars($this->conn->error));
 			}
+			// Bind Parameters
+			$rc		=	$stmt->bind_param("iii",
+						$this->data['aleAsset'], $this->data['vendorID'], $this->data['cost']
+						);
+			if ($rc === false)
+			{
+				throw new Exception('item_accounting: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			// Execute
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('item_accounting: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+			
 			// Novartis EMP, if applicable
+			// emp_status, emp_category, emp_img_url
 			if ($this->data['track'] == 2 || $this->data['track'] == 4 || $this->data['track'] == 5)
 			{
-				$q	=	"INSERT INTO";
-				$r	=	db_query($q, $this->conn);
-				if (!$r)
+				$q	=	"INSERT INTO emp (
+						aleAsset, nibr, tm0, sap, status, category, nbv, img_url, prev_owner,
+						src_building, src_floor, src_room
+						)
+						VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+				$stmt	=	$this->conn->prepare($q);
+				if ($stmt === false)
 				{
-					throw new Exception('INSERT INTO emp: Failed');
+					throw new Exception('emp: prepare() failed: ' . htmlspecialchars($this->conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param("isssiiisisss",
+						$this->data['aleAsset'], $this->data['nibr'], $this->data['tm0'],
+						$this->data['sap'], $this->data['emp_status'], $this->data['emp_category'],
+						$this->data['nbv'], $this->data['emp_img_url'], $this->data['prev_owner'],
+						$this->data['src_building'], $this->data['src_floor'], $this->data['src_room']
+						);
+				if ($rc === false)
+				{
+					throw new Exception('emp: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				// Execute
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('emp: execute() failed: ' . htmlspecialchars($stmt->error));
 				}
 			}
 		} catch (Exception $e) {
 			$q	=	"INSERT INTO migrator_error (type, asset, note) VALUES ";
-			$q	.=	"('Failed Record', '{$this->oldRec->data['aleAsset']}', '{$e->getMessage()}')";
-			$r	=	db_query($q, $this->conn);
+			$q	.=	"(?,?,?)";
+			
+			$stmt	=	$this->conn->prepare($q);
+			if ($stmt === false)
+			{
+				throw new Exception('mig_err: prepare() failed: ' . htmlspecialchars($this->conn->error));
+			}
+			// Bind Parameters
+			$msg	=	'Failed Record';
+			$rc		=	$stmt->bind_param("sss",
+					$msg, $this->oldRec->data['aleAsset'], $e->getMessage()
+					);
+			if ($rc === false)
+			{
+				throw new Exception('mig_err: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			// Execute
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('mig_err: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
 		}
 	}
 	
 	private function addPhotos()
 	{
-		
+		$photos	=	$this->oldRec->photos;
+		$q		=	"INSERT INTO item_photos (aleAsset, img_url, img_order) VALUES ";
+		foreach ($photos as $key => $value)
+		{
+			$q	.=	"({$this->data['aleAsset']}, '$value', $key), ";
+		}
+		$q		=	substr($q, 0, -2); // Remove last comma/space
+		$r		=	db_query($q, $this->conn);
 	}
 	
 	private function addCategories()
 	{
-		
+		$cats	=	$this->oldRec->catIDs;
+		$q		=	"INSERT IGNORE INTO item_category (aleAsset, category) VALUES ";
+		foreach ($cats as $cat)
+		{
+			$q	.=	"({$this->data['aleAsset']}, $cat), ";
+		}
+		$q		=	substr($q, 0, -2); // Remove last comma/space
+		$r		=	db_query($q, $this->conn);
 	}
 	
 	private function setAsset()
@@ -294,12 +413,44 @@ class NewRecord
 				$this->oldRec->data['vendor']	=	'Novartis Inst. of Biomedical Research';
 				break;
 		}
-		
-		$q	=	"INSERT IGNORE INTO vendors (vendor) VALUES ('{$this->oldRec->data['vendor']}')";
-		$r	=	db_query($q, $this->conn);
-		
-		$q	=	"SELECT id FROM vendors WHERE vendor='{$this->oldRec->data['vendor']}'";
-		$r	=	db_query($q, $this->conn);
+		//INSERT
+		$q	=	"INSERT IGNORE INTO vendors (vendor) VALUES (?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('vendor: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("s", $this->oldRec->data['vendor']);
+		if ($rc === false)
+		{
+			throw new Exception('vendor: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('vendor: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// SELECT
+		$q	=	"SELECT id FROM vendors WHERE vendor=?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('s', $this->oldRec->data['vendor']);
+		if ($rc === false)
+		{
+			throw new Exception('bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
 		$r->data_seek(0);
 		$row					=	$r->fetch_array(MYSQLI_ASSOC);
 		$this->data['vendorID']	=	$row['id'];
@@ -307,11 +458,45 @@ class NewRecord
 	
 	private function setSubitemOf()
 	{
-		$q	=	"INSERT IGNORE INTO subitem_of (subitem_of) VALUES ('{$this->oldRec->data['subitem_of']}')";
-		$r	=	db_query($q, $this->conn);
+		// INSERT INTO subitem_of
+		$q	=	"INSERT IGNORE INTO subitem_of (subitem_of) VALUES (?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Subitem_of INSERT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("s", $this->oldRec->data['subitem_of']);
+		if ($rc === false)
+		{
+			throw new Exception('Subitem_of INSERT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Subitem_of INSERT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
 		
-		$q	=	"SELECT id FROM subitem_of WHERE subitem_of='{$this->oldRec->data['subitem_of']}'";
-		$r	=	db_query($q, $this->conn);
+		// SELECT id FROM subitem_of
+		$q	=	"SELECT id FROM subitem_of WHERE subitem_of=?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Subitem_of SELECT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('s', $this->oldRec->data['subitem_of']);
+		if ($rc === false)
+		{
+			throw new Exception('Subitem_of SELECT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Subitem_of SELECT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
 		$r->data_seek(0);
 		$row						=	$r->fetch_array(MYSQLI_ASSOC);
 		$this->data['subitem_of']	=	$row['id'];
@@ -319,11 +504,45 @@ class NewRecord
 	
 	private function setMnfr()
 	{
-		$q	=	"INSERT IGNORE INTO manufacturers (mnfr, subitem_of) VALUES ('{$this->oldRec->data['mnfr']}', {$this->data['subitem_of']})";
-		$r	=	db_query($q, $this->conn);
+		// INSERT
+		$q	=	"INSERT IGNORE INTO manufacturers (mnfr, subitem_of) VALUES (?,?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Mnfr INSERT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("si", $this->oldRec->data['mnfr'], $this->data['subitem_of']);
+		if ($rc === false)
+		{
+			throw new Exception('Mnfr INSERT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Mnfr INSERT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
 		
-		$q	=	"SELECT id FROM manufacturers WHERE mnfr='{$this->oldRec->data['mnfr']}'";
-		$r	=	db_query($q, $this->conn);
+		// SELECT
+		$q	=	"SELECT id FROM manufacturers WHERE mnfr=?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Mnfr SELECT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('s', $this->oldRec->data['mnfr']);
+		if ($rc === false)
+		{
+			throw new Exception('Mnfr SELECT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Mnfr SELECT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
 		$r->data_seek(0);
 		$row					=	$r->fetch_array(MYSQLI_ASSOC);
 		$this->data['mnfr']		=	$row['id'];
@@ -331,11 +550,47 @@ class NewRecord
 	
 	private function setModel()
 	{
-		$q	=	"INSERT IGNORE INTO models (model, function_desc) VALUES ('{$this->oldRec->data['model']}', '{$this->data['titleFuncDescription']}')";
-		$r	=	db_query($q, $this->conn);
+		// INSERT 
+		$q	=	"INSERT IGNORE INTO models (model, function_desc, description) VALUES (?,?,?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Model INSERT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("sss", 	$this->oldRec->data['model'], 
+												$this->oldRec->data['titleFuncDescription'], 
+												$this->oldRec->data['descGeneral']);
+		if ($rc === false)
+		{
+			throw new Exception('Model INSERT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Model INSERT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
 		
-		$q	=	"SELECT id FROM models WHERE model='{$this->oldRec->data['model']}'";
-		$r	=	db_query($q, $this->conn);
+		// SELECT
+		$q	=	"SELECT id FROM models WHERE model=?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Model SELECT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('s', $this->oldRec->data['model']);
+		if ($rc === false)
+		{
+			throw new Exception('Model SELECT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Model SELECT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
 		$r->data_seek(0);
 		$row						=	$r->fetch_array(MYSQLI_ASSOC);
 		$this->data['model']		=	$row['id'];
@@ -348,14 +603,137 @@ class NewRecord
 			$this->data['brand']	=	null;
 			return;
 		}
-		$q	=	"INSERT IGNORE INTO brands (brand) VALUES ('{$this->oldRec->data['brand']}')";
-		$r	=	db_query($q, $this->conn);
+		// INSERT
+		$q	=	"INSERT IGNORE INTO brands (brand) VALUES (?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Brand INSERT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("s", 	$this->oldRec->data['brand']);
+		if ($rc === false)
+		{
+			throw new Exception('Brand INSERT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Brand INSERT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
 		
-		$q	=	"SELECT id FROM brands WHERE brand='{$this->oldRec->data['brand']}'";
-		$r	=	db_query($q, $this->conn);
+		// SELECT
+		$q	=	"SELECT id FROM brands WHERE brand=?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Brand SELECT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('s', $this->oldRec->data['brand']);
+		if ($rc === false)
+		{
+			throw new Exception('Brand SELECT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Brand SELECT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
 		$r->data_seek(0);
 		$row						=	$r->fetch_array(MYSQLI_ASSOC);
 		$this->data['brand']		=	$row['id'];
+	}
+	
+	private function setBatch()
+	{
+		if (empty($this->oldRec->data['source_desc']))
+		{
+			$this->data['batch']	=	null;
+			return;
+		}
+		$desc	=	'Old batch, added prior to v3.0';
+		// INSERT
+		$q	=	"INSERT IGNORE INTO inv_batch (batch_name, description) VALUES (?,?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Batch INSERT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("ss", $this->oldRec->data['source_desc'], $desc);
+		if ($rc === false)
+		{
+			throw new Exception('Batch INSERT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Batch INSERT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// SELECT
+		$q	=	"SELECT id FROM inv_batch WHERE batch_name=?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Batch SELECT: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('s', $this->oldRec->data['source_desc']);
+		if ($rc === false)
+		{
+			throw new Exception('Batch SELECT: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Batch SELECT: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r = $stmt->get_result();
+		$r->data_seek(0);
+		$row						=	$r->fetch_array(MYSQLI_ASSOC);
+		$this->data['batch']		=	$row['id'];
+	}
+	
+	private function setData()
+	{
+		$old							=	$this->oldRec->data;
+		$this->data['wh_location']		=	$old['whLocation'];
+		$this->data['price']			=	(int) $old['price'];
+		$this->data['title_extn']		=	$old['titleExtn'];
+		$this->data['yom']				=	$old['yom'];
+		$this->data['weight']			=	(int) $old['weight'];
+		$this->data['components']		=	$old['components'];
+		$this->data['condition_note']	=	$old['conditionNote'];
+		$this->data['quantity']			=	(int) $old['quantity'];
+		$this->data['serial_num']		=	$old['serialNumber'];
+		$this->data['date_added']		=	$old['date_added'];
+		$this->data['date_completed']	=	$old['date_added'];
+		$this->data['mpn']				=	$old['mpn'];
+		$this->data['addtl_model']		=	$old['addtl_model'];
+		$this->data['description']		=	$old['descGeneral'];
+		$this->data['cost']				=	(int) $old['cost'];
+		$this->data['nibr']				=	$old['nibr'];
+		$this->data['tm0']				=	$old['tm0'];
+		$this->data['sap']				=	$old['sap'];
+		$this->data['emp_category']		=	(int) $old['empCategoryID'];
+		$this->data['nbv']				=	(int) $old['nbv'];
+		$this->data['emp_img_url']		=	str_replace('images/', 'img/novartis/', $old['emp_img_url']);
+		$this->data['src_building']		=	$old['src_building'];
+		$this->data['src_floor']		=	$old['src_floor'];
+		$this->data['src_room']			=	$old['src_room'];
+		$this->data['reviewed']			=	1;
+		
+		foreach ($this->data as $key => $value)
+		{
+			if ($this->data[$key] !== 0 && empty($this->data[$key]))
+			{
+				$this->data[$key] = null;
+			}
+		}
 	}
 }
 class OldRecord 
@@ -450,8 +828,8 @@ class OldRecord
 
 // Establish Connections
 $oldUser	=	array(	'db'	=>	array(
-								'user'	=>	'jack',
-								'pass'	=>	'thisisthedb'
+								'user'	=>	'admin',
+								'pass'	=>	'euphrates8@N@N@$'
 								),
 						'user'	=>	array(
 								'name'		=>	'Guest'
@@ -489,10 +867,11 @@ foreach ($aleAsset as $asset)
 	if ($k == $stop) break;
 	else $k++;
 	$record		=	new OldRecord($asset, 'itemlist', $oldConn);
-	print_r($record->data);
-	print_r($record->photos);
-	print_r($record->catIDs);
-// 	$newRecord	=	new NewRecord($record, $newConn);
+// 	print_r($record->data);
+// 	print_r($record->photos);
+// 	print_r($record->catIDs);
+ 	$newRecord	=	new NewRecord($record, $newConn);
+ 	print_r($newRecord->data);
 // 	break;
 }
 echo 'Done';

@@ -55,6 +55,23 @@ else
 		case 'admin_inventory':
 		case 'admin_qb':
 			$section = 'al_db';
+			
+			if (isset($_GET['subsect']))
+			{
+				$sub	=	$_GET['subsect'];
+			} else $sub =	'home';
+			
+			switch ($sub)
+			{
+				case 'home':
+					$subsect = 'home';
+					break;
+				case 'inventory':
+					$subsect = 'inventory';
+					break;
+				default:
+					$subsect = 'home';
+			}
 			break;
 		default:
 			$section = 'home';

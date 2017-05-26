@@ -16,7 +16,7 @@ class Paginator {
 		$this->total	=	$r->num_rows;
 	}
 
-	public function getPageData($limit = null, $page = null)
+	public function getPageData($limit = null, $page = null, $test = 0)
 	{
 		if ($limit === null) $limit = 20;
 		if ($page === null) $page = 1;
@@ -29,6 +29,10 @@ class Paginator {
 			$query	=	$this->query . " LIMIT " . (($this->page - 1) * $this->limit) . ", $this->limit";
 		}
 		$r			=	db_query($query, $this->conn);
+		if ($test === 1) {
+			$t			=	db_query($this->query, $this->conn);
+			$this->total=	$t->num_rows;
+		}
 		$results	=	array();
 		while ($row = $r->fetch_array(MYSQLI_ASSOC))
 		{
@@ -38,8 +42,8 @@ class Paginator {
 		$result->page	=	$this->page;
 		$result->limit	=	$this->limit;
 		$result->total	=	$this->total;
+		$result->count	=	$r->num_rows;
 		$result->data	=	$results;
-
 		return $result;
 	}
 
