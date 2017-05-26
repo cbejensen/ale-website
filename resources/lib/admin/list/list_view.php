@@ -1,4 +1,4 @@
-<main class="list-main">
+<main class="list-main" id="list-main">
 	<div class="list-toolbar material">
 	<?php 
 // 		foreach ($list->tools as $tool)
