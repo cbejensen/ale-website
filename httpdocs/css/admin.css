@@ -64,7 +64,7 @@ ul.dropDown li a {
 	2.0 - Lists
 =================================================================================*/
 .list-main {
-	width: 98%;
+	width: 100%;
 	height: 91vh;
 	top: 0;
 /* 	border-top: 2px solid red; */
@@ -72,6 +72,7 @@ ul.dropDown li a {
 	z-index: 3;
 	display: block;
 	margin: 0 auto;
+	position: relative;
 }
 .list-toolbar {
 	width: 98%;
@@ -148,4 +149,174 @@ table.list-table {
 	display: block;
 	height: 1rem;
     margin: 0 auto;
+}
+
+/*=================================================================================
+	X.0 - Asset View
+=================================================================================*/
+div.asset-view {
+	position: absolute;
+/* 	top: 2px; */
+	bottom: 0;
+	width: 68%;
+	transition: 0.5s ease;
+/* 	border: 1px solid #333; */
+/* 	left: 100%; */
+	z-index: 3;
+	height: calc(91vh - 3rem);
+	overflow-y: scroll;
+	background-color: #f9f9f9;
+	border-top-left-radius: 2px;
+	padding: 0 1rem;
+}
+nav.asset-view {
+	height: 3rem;
+	margin: 0 -1rem 1rem;
+ 	position: fixed; 
+	z-index: 10;
+	width: 68%;
+	background-color: #f8f8f8;
+	border-top-left-radius: 2px;
+	transform: translateY(-3rem);
+}
+h1.asset-view {
+	margin: 1rem 0;
+	font-weight: bold;
+/* 	font-style: italic; */
+	color: #333;
+	font-family: 'Hind', calibri, helvetica, sans-serif;
+	font-size: 2.5rem;
+}
+/* Sections */
+.asset-section {
+	margin-bottom: 1rem;
+}
+
+/* Data Tables */
+.asset-view .dataTable {
+	margin-bottom: 2rem;
+}
+.asset-view .dataTable:last-child {
+	margin-bottom: 0;
+}
+
+/* Close Button */
+.close-asset-view {
+	width: 2rem;
+	height: 2rem;
+/* 	background-color: #ddd; */
+}
+
+/*--------------------------------------------
+	X.X - Gallery
+----------------------------------------------*/ 
+.asset-gallery {
+	display: inline-block;
+/* 	margin-right: -4px; */
+	width: 32%;
+/* 	border: 1px solid red; */
+}
+.asset-gallery .mainImg {
+	width: 100%;
+	padding: 0.33rem;
+	background-color: #fff;
+}
+.asset-gallery .imgReel {
+	width: 100%;
+/* 	height: 8rem; */
+	overflow-x: scroll;
+	overflow-y: hidden;
+	margin-top: 0.5rem;
+	padding: 0.1rem;
+}
+.reel-wrap {
+	display: block;
+	width: 250%;
+}
+.imgReel img {
+	display: inline-block;
+	width: calc(20% - 0.33rem);
+	padding: 0.2rem;
+	margin-right: 0.33rem;
+}
+.imgReel img:last-child {
+	margin-right: 0rem;
+}
+/*--------------------------------------------
+	X.X - Basic Data
+----------------------------------------------*/
+.info-wrap {
+	display: inline-block;
+/* 	margin-right: -4px; */
+	width: 68%;
+/* 	border: 1px solid black; */
+	padding: 0 1rem;
+}
+.condition-note {
+	padding: 0.4rem 0.67rem;
+	color: #444;
+	border-left: 5px solid #FFEB3B;
+	background-color: rgba(255, 235, 59, 0.3);
+	margin-bottom: 2rem;
+}
+.table-wrap {
+	width: 60%;
+	display: inline-block;
+	min-width: 200px;
+}
+.table-wrap:nth-child(2) {
+	width: 35%;
+	display: inline-block;
+	border-right: 1px solid #ddd;
+	margin-right: 5%;
+}
+.basic-info .dataTable {
+	font-size: 1.25rem;
+} 
+.basic-info .dataTable tr {
+	line-height: 1.25;	
+}
+.basic-info .dataTable td:nth-child(1),
+.basic-info .dataTable td:nth-child(2) {
+	min-width: 40%;
+}
+.basic-info .dataTable td {
+	min-width: 40%;
+	padding-right: 1.5rem;
+}
+/*--------------------------------------------
+	X.X - Detailed Data
+----------------------------------------------*/
+.detailed-sect {
+	padding: 1rem 0 1.5rem;
+	border-bottom: 1px solid #ddd;
+}
+.item-detail-wrap {
+	display: inline-block;
+	width: 50%;
+	color: #333;
+	font-size: 1.25rem;
+}
+.item-detail-wrap h2 {
+	margin-bottom: 0.5rem;
+	font-size: 1.5rem;
+/* 	font-weight: bold; */
+/* 	text-decoration: underline; */
+	font-style: italic;
+}
+.item-detail-wrap td {
+	min-width: 40%;
+	padding-right: 1.5rem;
+}
+.item-detail-wrap .dataTable tr {
+	line-height: 1.2;
+}
+.status-table {
+	background-color: #eee;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	min-height: 6rem;
+	padding: 0.35rem 0.25rem;
+	margin-right: 3rem;
+	margin-bottom: 2rem;
 }

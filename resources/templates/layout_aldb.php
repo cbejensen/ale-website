@@ -4,6 +4,7 @@
 <head>
 	<link rel="icon" type="image/ico" href="favicon_ale.ico">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/default.css" media="all">
 	<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 	<link rel="stylesheet" type="text/css" href="css/admin.css" media="all">
@@ -36,7 +37,7 @@
 	</div>
 	<nav class="topNavBar topNavBar-hide" id="ale-main-menu">
 		<div>
-			<ul class="navList" onmouseleave="moveArrow('<?php echo $section; ?>')">
+			<ul class="navList material" onmouseleave="moveArrow('<?php echo $section; ?>')">
 	                	<!-- Begin Home button -->
 				<li id="navBtn_home" class="<?php if ($subsect == 'home') echo 'activeNavBtn';?>" onmouseover="moveArrow('admin-home');">
 					<a href="?controller=admin&action=home&subsect=home&title=Dashboard" style="cursor: default;">Home</a>

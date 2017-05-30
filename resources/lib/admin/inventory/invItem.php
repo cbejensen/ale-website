@@ -7,7 +7,8 @@ class InvItem
 	
 	public 		$assetType	=	array(); // ['track'], ['suffix']
 	public 		$photos		=	array(); // [ord]['url'], ['added'], ['update']
-	public 		$categories	=	array(); // []['category'], ['subcategory']
+	public 		$categories	=	array(); // []['id'], ['category'], ['subcategory']
+	public 		$status		=	array();
 	public 		$data		=	array(); // aliases: emp_category, emp_subcategory, m_desc (model), b_desc (batch), emp_status, emp_desc (status desc)
 	
 	public function __construct($aleAsset, &$conn, $data = 0)
@@ -27,6 +28,7 @@ class InvItem
 			$this->setData();
 			$this->setPhotos();
 			$this->setCategories();
+			$this->setStatus();
 		} elseif ($data !== 0) {
 			// Optionally, if supplied with the data (perhaps saved in the session), 
 			// simply compile it from the array.
@@ -119,6 +121,7 @@ class InvItem
 					emp.sap,				emp_status.status as emp_status,				emp_status.description as emp_desc, 
 					emp_category.category as emp_category,
 					emp_category.subcategory as emp_subcategory,	emp.nbv,
+					emp.category as emp_cat_id,
 					emp.img_url,			emp_prev_owners.prev_owner,						emp.src_building,
 					emp.src_floor,			emp.src_room
 					FROM itemlist
@@ -223,12 +226,46 @@ class InvItem
 		for ($j = 0 ; $j < $r->num_rows ; $j++)
 		{
 			$r->data_seek($j);
-			$row								=	$r->fetch_array(MYSQLI_ASSOC);
+			$row				=	$r->fetch_array(MYSQLI_ASSOC);
 			$this->categories[]	=	array(
 										'id'			=>	$row['id'],
 										'category'		=>	$row['ale_category'],
 										'subcategory'	=>	$row['ale_subcategory']
 									);
+		}
+	}
+	
+	private function setStatus()
+	{
+		$q		=	"SELECT item_status.status, item_status.description FROM item_status
+					JOIN status ON item_status.id = status.status
+					WHERE status.aleAsset=?";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('Set Status: prepare() failed: ' . htmlspecialchars($conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param("i", $this->aleAsset);
+		if ($rc === false)
+		{
+			throw new Exception('Set Status: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		// Execute
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('Set Status: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$r		=	$stmt->get_result();
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row			=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->status[]	=	array(
+									'status'		=>	$row['status'],
+									'description'	=>	$row['description']
+								);
 		}
 	}
 	
