@@ -9418,3 +9418,4 @@ Stack trace:
 [26-May-2017 14:41:26 America/New_York] PHP Notice:  Undefined variable: conn in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\invItem.php on line 205
 [26-May-2017 14:41:26 America/New_York] PHP Fatal error:  Call to a member function prepare() on null in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\invItem.php on line 205
 [30-May-2017 12:31:44 America/New_York] PHP Notice:  Undefined property: InvItem::$status in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\show_invData.php on line 5
+[31-May-2017 18:03:05 America/New_York] PHP Fatal error:  Call to a member function error() on string in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 87

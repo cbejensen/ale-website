@@ -29,7 +29,7 @@
 }
 .admin-header {
 	width: 100%;
-	height: 9vh;
+	height: 5.3rem;
 }
 #logoBar_rightBG {
 	width: 100%;
@@ -65,7 +65,7 @@ ul.dropDown li a {
 =================================================================================*/
 .list-main {
 	width: 100%;
-	height: 91vh;
+	height: calc(100vh - 5.3rem);
 	top: 0;
 /* 	border-top: 2px solid red; */
 /* 	border-bottom: 2px solid blue; */
@@ -158,7 +158,7 @@ div.asset-view {
 	position: absolute;
 /* 	top: 2px; */
 	bottom: 0;
-	width: 68%;
+	width: 95%;
 	transition: 0.5s ease;
 /* 	border: 1px solid #333; */
 /* 	left: 100%; */
@@ -174,32 +174,87 @@ nav.asset-view {
 	margin: 0 -1rem 1rem;
  	position: fixed; 
 	z-index: 10;
-	width: 68%;
+	width: 100%;
 	background-color: #f8f8f8;
 	border-top-left-radius: 2px;
 	transform: translateY(-3rem);
 }
 h1.asset-view {
-	margin: 1rem 0;
+	margin: 1.5rem 0 1rem;
 	font-weight: bold;
 /* 	font-style: italic; */
 	color: #333;
 	font-family: 'Hind', calibri, helvetica, sans-serif;
-	font-size: 2.5rem;
+	font-size: 2.25rem;
+}
+.asset-view h2 {
+	margin-bottom: 0.5rem;
+	font-size: 1.5rem;
+	color: #174B94;
+/* 	font-weight: bold; */
+/* 	text-decoration: underline; */
+	font-style: italic;
+}
+.asset-view table {
+	width: 100%;
+}
+.asset-view tr:hover {
+/* 	cursor: pointer; */
+/* 	background: linear-gradient( */
+/* 					to bottom, */
+/* 					#D7F3D8, */
+/* 					#AFE8B1 100% */
+/* 				); */
+/* 	color: #2F9606; */
+}
+.asset-view tr.header:hover {
+	background: none;
+	color: #333;
+	cursor: default;
 }
 /* Sections */
 .asset-section {
-	margin-bottom: 1rem;
+	margin: 2rem 0 3rem;
 }
 
 /* Data Tables */
 .asset-view .dataTable {
 	margin-bottom: 2rem;
 }
+.asset-view .dataTable td {
+	padding: 0.25rem 0.5rem 0.25rem 0;
+/* 	padding: 0.5rem 0; */
+	vertical-align: top;
+}
+.asset-view .dataTable td:first-child {
+	text-align: right;
+	width: 10%;
+/* 	padding-top: 0.5rem; */
+	min-width: 75px;
+}
 .asset-view .dataTable:last-child {
 	margin-bottom: 0;
 }
-
+.asset-view .dataTable input,
+.asset-view .dataTable select,
+.asset-view .dataTable textarea {
+	width: 50%;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	box-shadow:	inset 0 1px 1px rgba(0,0,0,.075);
+}
+.asset-view .dataTable select {
+	padding-top: 0.35rem;
+	padding-bottom: 0.35rem;
+}
+.asset-view .dataTable textarea {
+	border-radius: 2px;
+	font-size: 0.8rem;
+	font-family: 'Open Sans', calibri, helvetica, sans-serif;
+}
+.asset-view .cat-dataTable {
+	width: 45%;
+}
 /* Close Button */
 .close-asset-view {
 	width: 2rem;
@@ -216,36 +271,54 @@ h1.asset-view {
 	width: 32%;
 /* 	border: 1px solid red; */
 }
-.asset-gallery .mainImg {
+.asset-gallery .main-img-cont {
 	width: 100%;
-	padding: 0.33rem;
+	padding: 0.35rem;
+	max-height: 19rem;
+	overflow: hidden;
+}
+.asset-gallery .main-img {
+	width: 100%;
+/* 	padding: 0.33rem; */
 	background-color: #fff;
 }
-.asset-gallery .imgReel {
+.asset-gallery .img-reel-container {
 	width: 100%;
-/* 	height: 8rem; */
+/* 	max-height: 8rem; */
 	overflow-x: scroll;
 	overflow-y: hidden;
 	margin-top: 0.5rem;
 	padding: 0.1rem;
+/* 	padding-bottom: 0.3rem; */
+/* 	margin-right: 0.2rem; */
 }
 .reel-wrap {
 	display: block;
-	width: 250%;
+	width: 100%;
+	white-space: nowrap;
+	margin-bottom: 0.5rem;
+/* 	height: 100%; */
 }
-.imgReel img {
+.smImg-wrap {
 	display: inline-block;
-	width: calc(20% - 0.33rem);
+	width: calc(50% - 5px);
+	margin-right: 5px;
+	max-height: 10rem;
 	padding: 0.2rem;
-	margin-right: 0.33rem;
+	overflow: hidden;
+/* 	margin-right: 0.33rem; */
 }
-.imgReel img:last-child {
+.img-reel-container img {
+	display: inline;
+	width: 100%;
+}
+.img-reel-container img:last-child {
 	margin-right: 0rem;
 }
 /*--------------------------------------------
 	X.X - Basic Data
 ----------------------------------------------*/
-.info-wrap {
+.overview-info {
 	display: inline-block;
 /* 	margin-right: -4px; */
 	width: 68%;
@@ -253,70 +326,147 @@ h1.asset-view {
 	padding: 0 1rem;
 }
 .condition-note {
-	padding: 0.4rem 0.67rem;
+	padding: 0.4rem 0.5rem;
 	color: #444;
-	border-left: 5px solid #FFEB3B;
+	border-left: 6px solid #FFEB3B;
 	background-color: rgba(255, 235, 59, 0.3);
 	margin-bottom: 2rem;
 }
-.table-wrap {
-	width: 60%;
-	display: inline-block;
-	min-width: 200px;
+.overview-info .table-wrap {
+	width: 100%;
+	display: block;
+/* 	min-width: 200px; */
 }
-.table-wrap:nth-child(2) {
-	width: 35%;
-	display: inline-block;
-	border-right: 1px solid #ddd;
-	margin-right: 5%;
-}
+/* .table-wrap:nth-child(2) { */
+/* 	width: 35%; */
+/* 	display: inline-block; */
+/* 	border-right: 1px solid #ddd; */
+/* 	margin-right: 5%; */
+/* } */
 .basic-info .dataTable {
-	font-size: 1.25rem;
+/* 	font-size: 1.1rem; */
 } 
-.basic-info .dataTable tr {
-	line-height: 1.25;	
+.overview-info .dataTable tr {
+/* 	line-height: 1.25;	 */
 }
-.basic-info .dataTable td:nth-child(1),
-.basic-info .dataTable td:nth-child(2) {
-	min-width: 40%;
+.overview-info .dataTable td:nth-child(1) {
+/* 	width: 20%; */
 }
-.basic-info .dataTable td {
-	min-width: 40%;
-	padding-right: 1.5rem;
+.overview-info .dataTable td {
+/* 	width: 80%; */
+/* 	padding: 0.5rem 0; */
+/* 	vertical-align: middle; */
+/* 	padding-right: 1.5rem; */
+}
+.status-table {
+	background-color: #f2f2f2;
+/* 	border: 1px solid #ccc; */
+	border-radius: 2px;
+	color: #444;
+	min-height: 6rem;
+	padding: 0.5rem 0.33rem;
+	margin: 2rem 3rem 0 0;
+/* 	margin-bottom: 2rem; */
+}
+.status-table h2 {
+	font-size: 1.25rem;
+	color: #333;
 }
 /*--------------------------------------------
 	X.X - Detailed Data
 ----------------------------------------------*/
 .detailed-sect {
 	padding: 1rem 0 1.5rem;
-	border-bottom: 1px solid #ddd;
+/* 	border-bottom: 1px solid #ddd; */
 }
 .item-detail-wrap {
-	display: inline-block;
-	width: 50%;
-	color: #333;
-	font-size: 1.25rem;
+/* 	display: inline-block; */
+/* 	width: 50%; */
+/* 	color: #333; */
+/* 	font-size: 1.15rem; */
 }
 .item-detail-wrap h2 {
+	margin-bottom: 0.5rem;
+/* 	font-size: 1.5rem; */
+/* 	font-weight: bold; */
+/* 	text-decoration: underline; */
+	font-style: italic;
+}
+.item-detail-wrap td {
+/* 	width: 20%; */
+/* 	padding-right: 1.5rem; */
+}
+.item-detail-wrap .dataTable tr {
+	line-height: 1.2;
+}
+/*--------------------------------------------
+	X.X - Description/Specifications
+----------------------------------------------*/
+.desc-specs {
+	color: #333;
+	margin-bottom: 2.5rem;
+}
+.desc-specs h2 {
 	margin-bottom: 0.5rem;
 	font-size: 1.5rem;
 /* 	font-weight: bold; */
 /* 	text-decoration: underline; */
 	font-style: italic;
 }
-.item-detail-wrap td {
-	min-width: 40%;
-	padding-right: 1.5rem;
+.desc-specs div {
+	display: inline-block;
+	padding: 0.75rem 1rem;
+	background-color: #F2F2F2;
+	width: 45%;
+	min-height: 8rem;
+	margin-right: -4px;
+/* 	border: 1px solid #ccc; */
+/* 	margin-right: 2rem; */
 }
-.item-detail-wrap .dataTable tr {
-	line-height: 1.2;
+.desc-specs div:nth-child(2) {
+	position: relative;
+	left: 10%;
 }
-.status-table {
-	background-color: #eee;
-	border: 1px solid #bbb;
-	border-radius: 2px;
-	min-height: 6rem;
-	padding: 0.35rem 0.25rem;
-	margin-right: 3rem;
-	margin-bottom: 2rem;
+/*--------------------------------------------
+	X.X - Novartis Section
+----------------------------------------------*/
+.novartis-section {
+	color: #333;
+	margin-bottom: 3rem;
+}
+.novartis-section h2 {
+	margin-bottom: 0.5rem;
+	font-size: 1.5rem;
+/* 	font-weight: bold; */
+/* 	text-decoration: underline; */
+	font-style: italic;
+}
+.novartis-section div {
+	display: block;
+/* 	width: 29%; */
+/* 	margin-right: 2%; */
+/* 	border-right: 1px solid #ccc; */
+/* 	border: 1px solid red; */
+}
+.novartis-section div:last-child {
+/* 	margin-right: 0%; */
+/* 	border-right: 0px solid #ddd; */
+}
+.novartis-section td:first-child {
+/* 	width: 20%; */
+}
+.novartis-section table {
+	line-height: 1.25;
+}
+
+@media only screen and (min-width: 63rem) { /* 1008px */
+	div.asset-view {
+		width: 68%;
+	}	
+
+}
+@media only screen and (min-width: 85rem) { /* 1360px */
+	div.asset-view {
+			width: 50%;
+		}
 }

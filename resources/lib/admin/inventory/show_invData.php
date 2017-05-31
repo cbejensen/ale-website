@@ -4,4 +4,4 @@ $photos	=	json_encode($asset->photos);
 $cats	=	json_encode($asset->categories);
 $status	=	json_encode($asset->status);
 ?>
-<script>displayInvItem(<?php echo "'$data', '$photos', '$cats', '$status'" ?>)</script>
+<script>displayInvAsset(<?php echo "'$data', '$photos', '$cats', '$status'" ?>)</script>
