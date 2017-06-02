@@ -1,7 +1,21 @@
 <?php 
-$data	=	json_encode($asset->data);
-$photos	=	json_encode($asset->photos);
-$cats	=	json_encode($asset->categories);
-$status	=	json_encode($asset->status);
+foreach ($asset->data as &$data)
+{
+	//$data	= str_replace('"','\\"',$data);
+}
+//$data	=	str_replace('\\', '\\\\\\', json_encode($asset->data, JSON_HEX_QUOT));
+//$data	=	json_encode($asset->data, JSON_HEX_QUOT);
+//$photos	=	json_encode($asset->photos);
+//$cats	=	json_encode($asset->categories);
+//$status	=	json_encode($asset->status);
+//$options=	json_encode($list->options);
 ?>
-<script>displayInvAsset(<?php echo "'$data', '$photos', '$cats', '$status'" ?>)</script>
+<script>
+//	displayInvAsset(<?php echo "'$data', '$photos', '$cats', '$status', '$options'" ?>)
+	var data	=	<?php echo json_encode($asset->data, JSON_HEX_QUOT); ?>;
+	var photos	=	<?php echo json_encode($asset->photos); ?>;
+	var cats	=	<?php echo json_encode($asset->categories); ?>;
+	var status	=	<?php echo json_encode($asset->status); ?>;
+	var options	=	<?php echo json_encode($list->options); ?>;
+	displayInvAsset(data, photos, cats, status, options);
+</script>

@@ -1,12 +1,23 @@
-function displayInvAsset(data, photos, categories, status)
+function displayInvAsset(data, photos, categories, status, options)
 {
 // Initialization
 	showLoadTimer();
+	//ar data	=	data.replace('\u0022', '\\u0022');
 	
-	var data		=	JSON.parse(data);
-	var photos		=	JSON.parse(photos);
-	var categories	=	JSON.parse(categories);
-	var status		=	JSON.parse(status);
+	console.log(data);
+	console.log(options);
+	//var data		=	JSON.parse(data);
+	//var photos		=	JSON.parse(photos);
+	//var categories	=	JSON.parse(categories);
+	//var status		=	JSON.parse(status);
+	//var options		=	JSON.parse(options);	
+	var vendors		=	options.vendors;
+	var mnfrs		=	options.mnfrs;
+	var models		=	options.models;
+	var brands		=	options.brands;
+	var batch		=	options.batch;
+	var prevOwners	=	options.prev_owner;
+	
 	
 	// Convert NULL to empty string
 	Object.keys(data).forEach(function(cv) {
@@ -41,7 +52,7 @@ function displayInvAsset(data, photos, categories, status)
 	 * Class = asset-view
 	 */ 
 	var navBar	=	document.createElement('nav');
-	navBar.setAttribute('class', 'asset-view material');
+	navBar.setAttribute('class', 'asset-view material window-header');
 	// Close Button
 	var exitBtn	=	document.createElement('div');
 	exitBtn.setAttribute('onclick', 'closeAssetView()');
@@ -85,7 +96,7 @@ function displayInvAsset(data, photos, categories, status)
 	// Basic Data
 	var basicInfo	=	document.createElement('div');
 	basicInfo.setAttribute('class', 'asset-section basic-sect');
-	var basic			=	getBasicInfo(data);
+	var basic			=	getBasicInfo(data, mnfrs, models, brands);
 //	var itemStatusListing	=	createItemStatusListing(data, status, cate);
 	// Compile Children
 	basicInfo.appendChild(basic);
@@ -95,7 +106,7 @@ function displayInvAsset(data, photos, categories, status)
 	// Accounting Data
 	var accountingInfo	=	document.createElement('div');
 	accountingInfo.setAttribute('class', 'asset-section accounting-sect');
-	var acc			=	createAccountingInfo(data);
+	var acc			=	createAccountingInfo(data, vendors);
 	accountingInfo.appendChild(acc);
 	
 	// Listing Data
@@ -113,7 +124,7 @@ function displayInvAsset(data, photos, categories, status)
 	// Novartis
 	var novartis	=	document.createElement('div');
 	novartis.setAttribute('class', 'asset-section category-sect');
-	var cat			=	createNovartis(data);
+	var cat			=	createNovartis(data, prevOwners);
 	novartis.appendChild(cat);
 	
 	// Assemble Sections
@@ -174,7 +185,7 @@ function createImgGallery(phot)
 	return imgGallery;
 }
 
-function createOverviewInfo(data)
+function createOverviewInfo(data, batch)
 {
 	// Info Wrapper
 	var infoWrap	=	document.createElement('div');
@@ -199,7 +210,30 @@ function createOverviewInfo(data)
 	// Top Left Table
 	var leftTable		=	document.createElement('table');
 	leftTable.setAttribute('class', 'dataTable');
-	createDataTableRow(leftTable, 'ALE Asset', data.prefix + data.aleAsset, 'aleAsset');
+	//createDataTableRow(leftTable, 'ALE Asset', data.prefix + data.aleAsset, 'aleAsset');
+	
+		// Create AleAsset View
+		var row			=	document.createElement('tr');
+		//row.setAttribute('onclick', 'getUpdateDialog(\'' + id + '\'');
+		var td1			=	document.createElement('td');
+		var tn1			=	document.createTextNode('ALE Asset');
+		td1.appendChild(tn1);
+		td1.style.fontWeight = 'bold';
+		var td2			=	document.createElement('td');
+		var tn2			=	document.createTextNode(data.prefix);
+		td2.appendChild(tn2);
+		var span		=	document.createElement('span');
+		span.setAttribute('id', 'ale-asset-num');
+		span.setAttribute('data-asset', data.aleAsset);
+		var tn3			=	document.createTextNode(data.aleAsset);
+		span.appendChild(tn3);
+		td2.appendChild(span);
+		row.appendChild(td1);
+		row.appendChild(td2);
+		leftTable.appendChild(row);
+		// END
+
+		
 	createDataFormRow(leftTable, 'Location', data.wh_location, 'wh_location');
 				//createDataTableRow(leftTable, 'ALE Asset', data.prefix + data.aleAsset, 'aleAsset');
 				//createDataTableRow(leftTable, 'Location', data.wh_location, 'wh_location');
@@ -211,52 +245,18 @@ function createOverviewInfo(data)
 							01:	'ALOE',
 							02:	'Novartis',
 							04:	'EMP',
-							05:	'Novartis/EMP',
+							05:	'Novartis/ALOE',
 							06:	'Consignment',
 							08:	'ALE'
 	};
 	createDataFormRow(leftTable, 'Track', data.track, 'track', 'select', trackArray);
-	createDataFormRow(leftTable, 'Batch', data.batch_name, 'batch_name');
+	createDataFormRow(leftTable, 'Batch', data.batch_name, 'batch_name', 'select', batch);
 	createDataFormRow(leftTable, 'Received', data.date_received, 'date_received');
 	createDataTableRow(leftTable, 'Added', data.date_added, 'date_added');
 	createDataTableRow(leftTable, 'Completed', data.date_completed, 'date_completed');
 	createDataTableRow(leftTable, 'Modified', data.last_update, 'last_update');
 	createDataTableRow(leftTable, 'Modified By', data.modified_by, 'modified_by');
 	leftTableWrap.appendChild(leftTable);
-	
-	// Right Table Wrap
-//	var rightTableWrap	=	document.createElement('div');
-//	rightTableWrap.setAttribute('class', 'table-wrap');
-	// Top Right Table
-//	var rightTable		=	document.createElement('table');
-//	rightTable.setAttribute('class', 'dataTable');
-//	createDataTableRow(rightTable, 'Track', data.track, 'track');
-//	createDataTableRow(rightTable, 'Batch', data.batch_name, 'batch_name');
-//	createDataTableRow(rightTable, 'Vendor', data.vendor, 'vendor');
-//	rightTableWrap.appendChild(rightTable);
-	// Bottom Right Table
-//	var rightTable		=	document.createElement('table');
-//	rightTable.setAttribute('class', 'dataTable');
-//	createDataTableRow(rightTable, 'Added', data.date_added, 'date_added');
-//	createDataTableRow(rightTable, 'Received', data.date_received, 'date_received');
-//	createDataTableRow(rightTable, 'Completed', data.date_completed, 'date_completed');
-//	createDataTableRow(rightTable, 'Modified', data.last_update, 'last_update');
-//	createDataTableRow(rightTable, 'Modified By', data.modified_by, 'modified_by');
-//	rightTableWrap.appendChild(rightTable);
-	// Status Table
-//	var subWrap			=	document.createElement('div');
-//	subWrap.setAttribute('class', 'sub-wrap status-table material');
-//	var h2 				=	document.createElement('h2');
-//	var header			=	document.createTextNode('Item Status');
-//	h2.appendChild(header);
-//	subWrap.appendChild(h2);
-//	var detailTable		=	document.createElement('table');
-//	detailTable.setAttribute('class', 'dataTable');
-//	Object.keys(status).forEach(function(cv) {
-//		//console.log(cv, status[cv]);
-//		createStatusRow(detailTable, status[cv].status, status[cv].description);
-//	});
-//	subWrap.appendChild(detailTable);
 	
 // Finish Basic Info Box
 	infoWrap.appendChild(condNoteBox);
@@ -266,7 +266,7 @@ function createOverviewInfo(data)
 	return infoWrap;
 }
 
-function getBasicInfo(data)
+function getBasicInfo(data, mnfrs, models, brands)
 {
 	var itemDetails		=	document.createElement('div');
 	itemDetails.setAttribute('class', 'item-detail-wrap');
@@ -276,9 +276,9 @@ function getBasicInfo(data)
 	itemDetails.appendChild(h2);
 	var detailTable		=	document.createElement('table');
 	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Mnfr.', data.mnfr, 'mnfr');
-	createDataFormRow(detailTable, 'Brand', data.brand, 'brand');
-	createDataFormRow(detailTable, 'Model', data.model, 'model');
+	createDataFormRow(detailTable, 'Mnfr.', data.mnfr, 'mnfr', 'select', mnfrs);
+	createDataFormRow(detailTable, 'Brand', data.brand, 'brand', 'select', brands);
+	createDataFormRow(detailTable, 'Model', data.modelID, 'model', 'select', models);
 	createDataFormRow(detailTable, 'Function', data.function_desc, 'function_desc');
 	createDataFormRow(detailTable, 'Title Extn.', data.title_extn, 'title_extn');
 	itemDetails.appendChild(detailTable);
@@ -293,7 +293,7 @@ function getBasicInfo(data)
 	return itemDetails;
 }
 
-function createAccountingInfo(data)
+function createAccountingInfo(data, vendors)
 {
 	var itemDetails		=	document.createElement('div');
 	itemDetails.setAttribute('class', 'item-detail-wrap');
@@ -306,6 +306,7 @@ function createAccountingInfo(data)
 	createDataFormRow(detailTable, 'Price', data.price, 'price');
 	createDataFormRow(detailTable, 'Cost', data.cost, 'cost');
 	createDataFormRow(detailTable, 'Quantity', data.quantity, 'quantity');
+	createDataFormRow(detailTable, 'Vendor', data.vendor, 'vendor', 'select', vendors);
 	itemDetails.appendChild(detailTable);
 	return itemDetails;
 }
@@ -380,7 +381,7 @@ function createCategoriesSection(cate)
 	return subWrap;
 }
 
-function createNovartis(data) 
+function createNovartis(data, prevOwners) 
 {
 	var empStatus	=	{
 							01: 'Available for Purchase',
@@ -402,7 +403,7 @@ function createNovartis(data)
 	detailTable.setAttribute('data-empCatId', data.emp_cat_id);
 	createDataFormRow(detailTable, 'EMP Status', data.emp_status, 'emp_status', 'select', empStatus);
 	createDataTableRow(detailTable, 'EMP Category', data.emp_category + '/' + data.emp_subcategory, 'emp_category');
-	createDataFormRow(detailTable, 'Prev. Owner', data.prev_owner, 'prev_owner');
+	createDataFormRow(detailTable, 'Prev. Owner', data.prev_owner, 'prev_owner', 'select', prevOwners);
 	createDataFormRow(detailTable, 'NBV', data.nbv, 'nbv');
 	section.appendChild(detailTable);
 	novartis.appendChild(section);
@@ -432,7 +433,7 @@ function createNovartis(data)
 function createDataTableRow(table, name, data, id)
 {
 	var row			=	document.createElement('tr');
-	row.setAttribute('onclick', 'getUpdateDialog(\'' + id + '\'');
+	//row.setAttribute('onclick', 'getUpdateDialog(\'' + id + '\'');
 	var td1			=	document.createElement('td');
 	var tn1			=	document.createTextNode(name);
 	td1.appendChild(tn1);
@@ -465,29 +466,50 @@ function createDataFormRow(table, fieldName, cv, dataName, type, optArray)
 		var input	=	document.createElement('input');
 		input.setAttribute('type', type);
 		input.setAttribute('value', cv);
-		input.setAttribute('onblur', 'updateInvAsset()');
+		input.setAttribute('id', dataName);
+		input.setAttribute('onblur', 'updateInvAsset(this.value, \''+dataName+'\')');
 		td2.appendChild(input);
 	}
 	if (type == 'select') {
 		var select	=	document.createElement('select');
+		switch (dataName)
+		{
+			case 'brand':
+			case 'batch_name':
+				var option	=	document.createElement('option');
+				option.setAttribute('value', '');
+				if (cv == '') option.selected = true;
+				var tn		=	document.createTextNode('N/A');
+				option.appendChild(tn);
+				select.appendChild(option);
+				break;
+		}
 		Object.keys(optArray).forEach(function(curVal) {
 			// Create Options
 			var option	=	document.createElement('option');
 			option.setAttribute('value', curVal);
 			if (optArray[curVal] == cv) {
 				option.selected = true;
+			} else {
+				if (curVal == Number(cv) && dataName == 'model') {
+					option.selected = true;
+				}
 			}
 			var tn		=	document.createTextNode(optArray[curVal]);
 			option.appendChild(tn);
 			select.appendChild(option);
 		});
+		select.setAttribute('onblur', 'updateInvAsset(this.value, \''+dataName+'\')');
+		select.setAttribute('id', dataName);
 		td2.appendChild(select);
 	}
 	if (type == 'textarea') {
 		var textarea	=	document.createElement('textarea');
 		var tn			=	document.createTextNode(cv);
 		textarea.appendChild(tn);
+		textarea.setAttribute('onblur', 'updateInvAsset(this.value, \''+dataName+'\')');
 		textarea.setAttribute('rows', '10');
+		textarea.setAttribute('id', dataName);
 		td2.appendChild(textarea);
 	}
 	row.appendChild(td1);

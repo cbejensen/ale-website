@@ -65,7 +65,7 @@ ul.dropDown li a {
 =================================================================================*/
 .list-main {
 	width: 100%;
-	height: calc(100vh - 5.3rem);
+	height: calc(100vh - 5.3rem - 1vh);
 	top: 0;
 /* 	border-top: 2px solid red; */
 /* 	border-bottom: 2px solid blue; */
@@ -73,11 +73,13 @@ ul.dropDown li a {
 	display: block;
 	margin: 0 auto;
 	position: relative;
+	padding-top: 1vh;
+	overflow: initial;
 }
 .list-toolbar {
 	width: 98%;
 	height: 10vh;
-	margin: 1vh auto 1vh;
+	margin: 0vh auto 1vh;
 }
 .list-wrap {
 	width: 98%;
@@ -163,11 +165,13 @@ div.asset-view {
 /* 	border: 1px solid #333; */
 /* 	left: 100%; */
 	z-index: 3;
-	height: calc(91vh - 3rem);
+	height: 93vh;
 	overflow-y: scroll;
 	background-color: #f9f9f9;
 	border-top-left-radius: 2px;
-	padding: 0 1rem;
+	padding: 0rem 1rem 0;
+	margin-top: 3rem;
+	box-shadow: -2px 4px 6px 3px rgba(0,0,0,0.15), 0 2px 0 1px rgba(0,0,0,0.15);
 }
 nav.asset-view {
 	height: 3rem;
@@ -231,6 +235,8 @@ h1.asset-view {
 	width: 10%;
 /* 	padding-top: 0.5rem; */
 	min-width: 75px;
+	color: #444;
+	font-weight: normal !important;
 }
 .asset-view .dataTable:last-child {
 	margin-bottom: 0;
@@ -243,6 +249,14 @@ h1.asset-view {
 	border-radius: 2px;
 	box-shadow:	inset 0 1px 1px rgba(0,0,0,.075);
 }
+.asset-view .dataTable input:focus,
+.asset-view .dataTable select:focus,
+.asset-view .dataTable textarea:focus {
+	border-color: rgba(82,168,236,.8);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+}
 .asset-view .dataTable select {
 	padding-top: 0.35rem;
 	padding-bottom: 0.35rem;
@@ -251,6 +265,16 @@ h1.asset-view {
 	border-radius: 2px;
 	font-size: 0.8rem;
 	font-family: 'Open Sans', calibri, helvetica, sans-serif;
+}
+.asset-view .invalid-input {
+	color: #b94a48;
+    border: 1px solid #b94a48!important;
+    background-color: #FFEEEE;
+}
+.asset-view .invalid-input:focus {
+	 border-color: #942a25;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #dd7a75;
+/*     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #dd7a75 !important; */
 }
 .asset-view .cat-dataTable {
 	width: 45%;

@@ -37,6 +37,225 @@ class InvItem
 		
 	}
 	
+	public function update($field, $newVal)
+	{
+		switch (gettype($newVal))
+		{
+			case 'boolean':
+			case 'integer':
+			case 'double':
+				$type	=	'i';
+			default:
+				$type	=	's';
+		}
+		if ($newVal == '') $newVal = null;
+		switch ($field)
+		{
+			case 'brand':
+				$field	=	'brandID';
+				break;
+			case 'shipping_class':
+				$field	=	'ship_class';
+				break;
+			case 'm_desc':
+				$field 	=	'description';
+				break;
+			case 'vendor':
+				$field	=	'vendorID';
+				break;
+			case 'batch_name':
+				$field	=	'batch';
+				break;
+			case 'mnfr':
+				$field	=	'mnfrID';
+				break;
+			case 'model':
+				$field	=	'modelID';
+		}
+		switch ($field)
+		{
+// 			case 'brand':
+// 				$this->updateBrand($field, $newVal, $type);
+// 				break;
+// 			case 'batch_name':
+// 				$this->updateBatch($field, $newVal, $type);
+// 				break;
+			case 'vendorID':
+			case 'cost':
+				$this->updateAccounting($field, $newVal, $type);
+				break;
+			//case 'model':
+			case 'description':
+			case 'function_desc':
+				$this->updateModel($field, $newVal, $type);
+				break;
+			case 'emp_category':
+				$field = 'category';
+			case 'emp_status':
+				if ($field == 'emp_status') $field = 'status';
+			case 'nibr':
+			case 'tm0':
+			case 'sap':
+			case 'src_building':
+			case 'src_room':
+			case 'src_floor':
+			case 'nbv':
+			case 'prev_owner':
+				$this->updateEmp($field, $newVal, $type);
+				break;
+			default:
+				$this->updateItemlist($field, $newVal, $type);
+				break;
+		}
+	}
+	
+	private function updateBatch($field, $newVal, $type)
+	{
+		
+	}
+	
+	private function updateEmp($field, $newVal, $type)
+	{
+		$q	=	"UPDATE emp SET $field = ? WHERE aleAsset = ?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('InvItem emp UPDATE: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param($type.'i', $newVal, $this->aleAsset);
+		if ($rc === false)
+		{
+			throw new Exception('InvItem emp UPDATE: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('InvItem emp UPDATE: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		
+		$q	=	"SELECT $field FROM emp WHERE aleAsset = $this->aleAsset";
+		$r	=	db_query($q, $this->conn);
+		$r->data_seek(0);
+		$row	=	$r->fetch_array(MYSQLI_NUM);
+		
+		if (isset($_POST['reqIsAjax']))
+		{
+			$msg	=	array(	'result'	=>	1,
+								'updated'	=>	$row[0],
+						);
+			echo json_encode($msg);
+		}
+	}
+	
+// 	private function updateBrand($field, $newVal, $type)
+// 	{
+// 		if ($newVal == '') $newVal = null;
+// 		$q	=	"UPDATE itemlist"
+// 	}
+	
+	private function updateAccounting($field, $newVal, $type)
+	{
+		$q	=	"UPDATE item_accounting SET $field = ? WHERE aleAsset = ?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('InvItem item_accounting UPDATE: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param($type.'i', $newVal, $this->aleAsset);
+		if ($rc === false)
+		{
+			throw new Exception('InvItem Data UPDATE: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('InvItem Data UPDATE: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		
+		$q	=	"SELECT $field FROM item_accounting WHERE aleAsset = $this->aleAsset";
+		$r	=	db_query($q, $this->conn);
+		$r->data_seek(0);
+		$row	=	$r->fetch_array(MYSQLI_NUM);
+		
+		if (isset($_POST['reqIsAjax']))
+		{
+			$msg	=	array(	'result'	=>	1,
+								'updated'	=>	$row[0],
+						);
+			echo json_encode($msg);
+		}
+	}
+	
+	private function updateModel($field, $newVal, $type)
+	{
+		$q	=	"UPDATE models SET $field = ? WHERE model = ?";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('InvItem UPDATE: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param($type.'s', $newVal, $this->data['model']);
+		if ($rc === false)
+		{
+			throw new Exception('InvItem Data UPDATE: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('InvItem Data UPDATE: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		
+		$q	=	"SELECT $field FROM models where model = '{$this->data['model']}'";
+		$r	=	db_query($q, $this->conn);
+		$r->data_seek(0);
+		$row	=	$r->fetch_array(MYSQLI_NUM);
+		
+		if (isset($_POST['reqIsAjax']))
+		{
+			$msg	=	array(	'result'	=>	1,
+								'updated'	=>	$row[0],
+						);
+			echo json_encode($msg);
+		}
+	}
+	
+	private function updateItemlist($field, $newVal, $type)
+	{
+		$q	=	"UPDATE itemlist SET $field = ? WHERE aleAsset = $this->aleAsset";
+		$stmt		=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('InvItem UPDATE: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param($type, $newVal);
+		if ($rc === false)
+		{
+			throw new Exception('InvItem Data UPDATE: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('InvItem Data UPDATE: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		
+		$q	=	"SELECT $field FROM itemlist where aleAsset=$this->aleAsset";
+		$r	=	db_query($q, $this->conn);
+		$r->data_seek(0);
+		$row	=	$r->fetch_array(MYSQLI_NUM);
+		
+		if (isset($_POST['reqIsAjax']))
+		{
+			$msg	=	array(	'result'	=>	1,
+								'updated'	=>	$row[0],
+						);
+			echo json_encode($msg);
+		}
+	}
+	
 	private function validateAleAsset($aleAsset)
 	{
 		if (is_numeric($aleAsset))
@@ -108,6 +327,7 @@ class InvItem
 		// Get the data from the database
 		$q		=	"SELECT 
 					manufacturers.mnfr,		models.model,			models.function_desc,	models.description as m_desc,
+					itemlist.modelID,
 					brands.brand,			itemlist.addtl_model,	itemlist.serial_num,	itemlist.title_extn,
 					itemlist.price,			itemlist.mpn,			itemlist.wh_location,	itemlist.quantity,
 					inv_batch.batch_name, 	inv_batch.description as b_desc,				itemlist.yom,			

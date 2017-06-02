@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="js/assetView.js"></script>
 </head>
 
-<body class="admin-body">
+<body class="admin-body" id="ale-body">
 
 <header class="admin-header">
 	<div class="logoBar">

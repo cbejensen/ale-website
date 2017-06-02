@@ -82,16 +82,21 @@ function handleError($errorData, &$conn, $source = 0, $mode = 1)
 	error_log($errorData['title'] . ' ' . $errorData['error']);
 	
 	// If the request originated via Ajax, send the user a response
-	if (isset($_POST['reqIsAjax']) && $mode == 1)
+	if ($mode == 1) 
 	{
-		$result		=	0;
-		$title		=	$errorData['title'];
-		$message	=	$errorData['message'];
-		ajaxResponse_alert($result, $title, $message);
-	} elseif (!isset($_POST['reqIsAjax']) && $mode == 1) {
-		alertUser($errorData['title'], $errorData['message']);
-		// For a page request, exiting the script may not be the appropriate action.
-		//exit;
+		if (isset($_POST['reqIsAjax']))
+		{
+			$result		=	0;
+			$title		=	$errorData['title'];
+			$message	=	$errorData['message'];
+			ajaxResponse_alert($result, $title, $message);
+		} 
+		elseif (!isset($_POST['reqIsAjax'])) 
+		{
+			alertUser($errorData['title'], $errorData['message']);
+			// For a page request, exiting the script may not be the appropriate action.
+			//exit;
+		}
 	}
 }
 

@@ -9,7 +9,8 @@ $controllers	= array('public' 			=>	[	'home', 	'services',
 													'listing'
 													],
 		
-						'admin'				=>	[	'showList'
+						'admin'				=>	[	'showList',	'updateInvItem',
+													'getVendors'
 													],
 		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',

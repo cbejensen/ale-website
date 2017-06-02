@@ -8,6 +8,21 @@
 
 class AdminController
 {	
+	// DEV ONLY
+	private static function getNewUser()
+	{
+		$newUser	=	array(	'db'	=>	array(
+				'user'	=>	'admin',
+				'pass'	=>	'euphrates8@N@N@$'
+		),
+				'user'	=>	array(
+						'name'	=>	'admin'
+				)
+		);
+		return $newUser;
+	}
+	// END DEV ONLY
+	
 	public function __construct()
 	{
 		
@@ -17,14 +32,9 @@ class AdminController
 	{
 		AdminController::loadList();
 		AdminController::loadItemModel();
-		$newUser	=	array(	'db'	=>	array(
-													'user'	=>	'admin',
-													'pass'	=>	'euphrates8@N@N@$'
-											),
-								'user'	=>	array(
-													'name'	=>	'admin'
-											)
-						);
+		// DEV ONLY
+		$newUser	=	AdminController::getNewUser();
+		// END DEV ONLY
 		$conn		=	db_connect(AL_DB, $newUser);
 		$list		=	new DataList($conn); // Any exceptions thrown should be caught by the router by default.
 		require_once ADMIN_PATH . '/list/list_view.php';
@@ -37,7 +47,7 @@ class AdminController
 				// Asset could not be created.
 				// Find a way to alert the user, preferably in the view you're about to call.
 				$errorData	=	array('title' => 'Could Not Get Item.', 'error' => $e->getMessage());
-				handleError($errorData, $conn, $source = 0, $mode = 0);
+				handleError($errorData, $conn, 0, 0);
 			}
 			require_once ADMIN_PATH . '/inventory/show_invData.php';
 		}
@@ -51,6 +61,31 @@ class AdminController
 		AdminController::loadList();
 		$list	=	new DataList();
 		$list->getRows();
+	}
+	
+	public function updateInvItem()
+	{
+		// DEV ONLY
+		$newUser	=	AdminController::getNewUser();
+		// END DEV ONLY
+		$conn		=	db_connect(AL_DB, $newUser);
+		AdminController::loadItemModel();
+		try {
+			$json	=	json_decode($_POST['json'], true);
+			if (is_null($json) || !$json)
+			{
+				throw new Exception('JSON decode error: ' . json_last_error_msg());
+			}
+			$asset	=	new InvItem($json['aleAsset'], $conn);
+			$asset->update($json['field'], $json['newVal']);
+		} catch (Exception $e) {
+			// If the request could not be decoded, alert the user with a message and error code.
+			$errorData	=	array(	'title'		=>	'Item Update Failed',
+									'message'	=>	'The server was unable to process your request.',
+									'error' 	=>	$e->getMessage()
+								);
+			handleError($errorData, $conn, 0, 1);
+		}
 	}
 	
 	private static function loadList()

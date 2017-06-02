@@ -17,7 +17,8 @@ class DataList extends Paginator
 			$result_pg,
 			$list_class;
 	
-	public $data		=	array();		
+	public $data		=	array();	
+	public $options		=	array();
 			
 	private $fieldMap 	=	array();
 	private $fields		=	array();
@@ -39,6 +40,7 @@ class DataList extends Paginator
 		$this->setQuery();
 		$this->setData();
 		$this->links	=	$this->createLinks(4, $this->list_class);
+		$this->setOptions();
 	}
 	
 	public function getHeaders()
@@ -552,6 +554,69 @@ class DataList extends Paginator
 		for ($j = 0 ; $j < $r->count ; $j++)
 		{
 			$this->data[$r->data[$j][$id]]	=	$r->data[$j];	
+		}
+	}
+	
+	private function setOptions()
+	{
+		// Vendors
+		$q		=	"SELECT id, vendor FROM vendors WHERE active=1 ORDER BY vendor";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['vendors'][$row['id']]	=	$row['vendor'];
+		}
+		
+		// Manufacturers
+		$q		=	"SELECT id, mnfr FROM manufacturers WHERE active=1 ORDER BY mnfr";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['mnfrs'][$row['id']]	=	$row['mnfr'];
+		}
+		
+		// Models
+		$q		=	"SELECT id, model, function_desc FROM models WHERE active=1 ORDER BY model";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['models'][$row['id']]	=	$row['model'] . ' [' . $row['function_desc'] .']';
+		}
+		
+		// Brands
+		$q		=	"SELECT id, brand FROM brands WHERE active=1 ORDER BY brand";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['brands'][$row['id']]	=	$row['brand'];
+		}
+		
+		// Batches
+		$q		=	"SELECT id, batch_name FROM inv_batch ORDER BY batch_name";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['batch'][$row['id']]	=	$row['batch_name'];
+		}
+		
+		// Nov. Prev. Owners 
+		$q		=	"SELECT id, prev_owner FROM emp_prev_owners ORDER BY prev_owner";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['prev_owner'][$row['id']]	=	$row['prev_owner'];
 		}
 	}
 }
