@@ -77,7 +77,7 @@ class AdminController
 				throw new Exception('JSON decode error: ' . json_last_error_msg());
 			}
 			$asset	=	new InvItem($json['aleAsset'], $conn);
-			$asset->update($json['field'], $json['newVal']);
+			$asset->update($json);
 		} catch (Exception $e) {
 			// If the request could not be decoded, alert the user with a message and error code.
 			$errorData	=	array(	'title'		=>	'Item Update Failed',

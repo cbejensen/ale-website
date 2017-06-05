@@ -542,6 +542,25 @@ ul.dropDown li a:hover {
 					#e5e5e5 100%
 				);
 }
+.tertiary-button {
+	background: linear-gradient(
+					to bottom,
+					#eee,
+					#ccc 100%
+				);
+	text-align: center;
+	color: #777;
+/* 	letter-spacing: 0.05rem; */
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+.tertiary-button:hover {
+	background: linear-gradient(
+					to bottom,
+					#ddd,
+					#eee 100%
+				);
+}
 .gradient-button:hover {
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#2a6bca),color-stop(100%,#4d86da));
 	background: linear-gradient(
@@ -583,6 +602,25 @@ ul.dropDown li a:hover {
     border: 0px solid white;
     height: 1px;
 }
+.warning-button {
+background: linear-gradient(
+					to bottom,
+					#C42D2D,
+					#AB2727 100%
+				);
+	text-align: center;
+	color: #fff;
+/* 	letter-spacing: 0.05rem; */
+	border: 1px solid #942323;
+	border-radius: 2px;
+}
+.warning-button:hover {
+	background: linear-gradient(
+					to bottom,
+					#AB2727,
+					#C42D2D 100%
+				);
+}	
 .required:after {
 	content: '*';
 	color: red;

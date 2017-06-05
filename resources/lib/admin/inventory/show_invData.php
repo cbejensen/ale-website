@@ -11,11 +11,18 @@ foreach ($asset->data as &$data)
 //$options=	json_encode($list->options);
 ?>
 <script>
-//	displayInvAsset(<?php echo "'$data', '$photos', '$cats', '$status', '$options'" ?>)
+//	displayInvAsset(<?php // echo "'$data', '$photos', '$cats', '$status', '$options'" ?>)
 	var data	=	<?php echo json_encode($asset->data, JSON_HEX_QUOT); ?>;
 	var photos	=	<?php echo json_encode($asset->photos); ?>;
 	var cats	=	<?php echo json_encode($asset->categories); ?>;
-	var status	=	<?php echo json_encode($asset->status); ?>;
+	
+	var item_status	=	[];
+	
+	<?php 
+	foreach ($asset->status as $status)
+	echo 'item_status.push('.json_encode($status, JSON_HEX_QUOT).');'; 
+	
+	?>
 	var options	=	<?php echo json_encode($list->options); ?>;
-	displayInvAsset(data, photos, cats, status, options);
+	displayInvAsset(data, photos, cats, item_status, options);
 </script>

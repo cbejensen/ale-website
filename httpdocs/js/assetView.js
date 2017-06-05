@@ -17,7 +17,7 @@ function displayInvAsset(data, photos, categories, status, options)
 	var brands		=	options.brands;
 	var batch		=	options.batch;
 	var prevOwners	=	options.prev_owner;
-	
+	var statuses	=	status;
 	
 	// Convert NULL to empty string
 	Object.keys(data).forEach(function(cv) {
@@ -53,11 +53,25 @@ function displayInvAsset(data, photos, categories, status, options)
 	 */ 
 	var navBar	=	document.createElement('nav');
 	navBar.setAttribute('class', 'asset-view material window-header');
+	var btns	=	document.createElement('span');
+	btns.setAttribute('class', 'btns-cont');
+	// Save button
+	var saveBtn	=	document.createElement('span');
+	saveBtn.setAttribute('onclick', 'saveAssetData()');
+	saveBtn.setAttribute('class', 'gradient-button save-btn');
+	var sbtn	=	document.createTextNode('Save');
+	saveBtn.appendChild(sbtn);
+	btns.appendChild(saveBtn);
 	// Close Button
-	var exitBtn	=	document.createElement('div');
+	var exitBtn	=	document.createElement('span');
 	exitBtn.setAttribute('onclick', 'closeAssetView()');
-	exitBtn.setAttribute('class', 'close-asset-view');
-	navBar.appendChild(exitBtn);
+	exitBtn.setAttribute('class', 'close-asset-view tertiary-button');//close-asset-view
+	var ebtn	=	document.createTextNode('Close');
+	exitBtn.appendChild(ebtn);
+	btns.appendChild(exitBtn);
+	
+	// Append Buttons
+	navBar.appendChild(btns);
 	
 	// Create the title
 	var h1		= document.createElement('h1');
@@ -78,19 +92,29 @@ function displayInvAsset(data, photos, categories, status, options)
 	overview.appendChild(info);
 	
 	//Statuses
-	var status			=	document.createElement('div');
-	status.setAttribute('class', 'table-wrap status-table material');
+	var statusSect		=	document.createElement('div');
+	statusSect.setAttribute('class', 'asset-section basic-sect');
 	var h2 				=	document.createElement('h2');
 	var header			=	document.createTextNode('Item Status');
 	h2.appendChild(header);
-	status.appendChild(h2);
+	var status			=	document.createElement('div');
+	status.setAttribute('class', 'table-wrap status-table material');
+//	var h2 				=	document.createElement('h2');
+//	var header			=	document.createTextNode('Item Status');
+//	h2.appendChild(header);
+//	status.appendChild(h2);
 	var detailTable		=	document.createElement('table');
 	detailTable.setAttribute('class', 'dataTable');
-	Object.keys(status).forEach(function(cv) {
-		//console.log(cv, status[cv]);
-		createStatusRow(detailTable, status[cv].status, status[cv].description);
+	//Header Rows
+	// HEADER ROWS GO HERE!
+	// Rows
+	Object.keys(statuses).forEach(function(cv) {
+		console.log('this ' + statuses[cv]);
+		createStatusRow(detailTable, statuses[cv].status, statuses[cv].description);
 	});
 	status.appendChild(detailTable);
+	statusSect.appendChild(h2);
+	statusSect.appendChild(status);
 	
 	
 	// Basic Data
@@ -131,7 +155,7 @@ function displayInvAsset(data, photos, categories, status, options)
 	assetView.appendChild(navBar);
 	assetView.appendChild(h1);
 	assetView.appendChild(overview);
-	assetView.appendChild(status);
+	assetView.appendChild(statusSect);
 	assetView.appendChild(basicInfo);
 	assetView.appendChild(accountingInfo);
 	assetView.appendChild(listingInfo);
@@ -140,6 +164,14 @@ function displayInvAsset(data, photos, categories, status, options)
 	listMain.appendChild(assetView);
 //	assetView.style.left = '100%';
 	assetView.style.right = '0%';
+	
+	// Listen for Changes to model
+	var model	=	document.getElementById('model');
+	model.addEventListener('change', function(e) {
+		//if (e.target != e.currentTarget)
+		//console.log(e.target); // Returns the whole select element
+		//console.log(e.currentTarget);
+	}, false);
 }
 
 function createImgGallery(phot)
@@ -178,10 +210,24 @@ function createImgGallery(phot)
 		wrap.appendChild(smImg);
 		reelWrap.appendChild(wrap);
 	});
+	// Buttons
+	var btnWrap	=	document.createElement('div');
+	var edit	=	document.createElement('span');
+	var clear	=	document.createElement('span');
+	var editNode=	document.createTextNode('Add/Edit');
+	var clrNode	=	document.createTextNode('Clear');
+	btnWrap.setAttribute('class', 'img-gallery-btn-wrap');
+	edit.setAttribute('class', 'gradient-button');
+	clear.setAttribute('class', 'tertiary-button');
+	edit.appendChild(editNode);
+	clear.appendChild(clrNode);
+	btnWrap.appendChild(edit);
+	btnWrap.appendChild(clear);
 	//Complete Gallery
 	smImgReel.appendChild(reelWrap);
 	imgGallery.appendChild(mainImgCont);
 	imgGallery.appendChild(smImgReel);
+	imgGallery.appendChild(btnWrap);
 	return imgGallery;
 }
 
@@ -197,11 +243,17 @@ function createOverviewInfo(data, batch)
 	var p			=	document.createElement('p');
 	var label		=	document.createTextNode('Condition Note: ');
 	var labelSpan	=	document.createElement('span');
-	labelSpan.style.fontWeight = 'bold';
-	var condNote	=	document.createTextNode( data.condition_note);
 	labelSpan.appendChild(label);
+	labelSpan.style.fontWeight = 'bold';
+	
+	var noteSpan	=	document.createElement('span');
+	noteSpan.setAttribute('id', 'condition_note');
+	noteSpan.setAttribute('data-value', data.condition_note);
+	var condNote	=	document.createTextNode( data.condition_note);
+	noteSpan.appendChild(condNote);
+
 	p.appendChild(labelSpan);
-	p.appendChild(condNote);
+	p.appendChild(noteSpan);
 	condNoteBox.appendChild(p);
 	
 	// Left Table Wrap
@@ -465,9 +517,10 @@ function createDataFormRow(table, fieldName, cv, dataName, type, optArray)
 	if (type == 'text') {
 		var input	=	document.createElement('input');
 		input.setAttribute('type', type);
+		input.setAttribute('data-name', fieldName);
 		input.setAttribute('value', cv);
 		input.setAttribute('id', dataName);
-		input.setAttribute('onblur', 'updateInvAsset(this.value, \''+dataName+'\')');
+		input.setAttribute('onblur', 'checkInput(this.value, \''+dataName+'\')');
 		td2.appendChild(input);
 	}
 	if (type == 'select') {
@@ -499,17 +552,41 @@ function createDataFormRow(table, fieldName, cv, dataName, type, optArray)
 			option.appendChild(tn);
 			select.appendChild(option);
 		});
-		select.setAttribute('onblur', 'updateInvAsset(this.value, \''+dataName+'\')');
+		select.setAttribute('onblur', 'checkInput(this.value, \''+dataName+'\')');
+		select.setAttribute('data-name', fieldName);
 		select.setAttribute('id', dataName);
-		td2.appendChild(select);
+		// Determines whether or not to add an "Add New Option" button to the select field
+		switch (dataName)
+		{
+			case 'batch_name':
+			case 'brand':
+			case 'model':
+			case 'mnfr':
+			case 'prev_owner':
+				select.setAttribute('class', 'select-add-opt');
+				var btn	=	document.createElement('div');
+				btn.setAttribute('class', 'add-opt-btn gradient-button');
+				var img	=	document.createElement('img');
+				img.setAttribute('src', 'img/interface/add-g8a.png');
+				btn.appendChild(img);
+				var i	=	1;
+			default:
+				// Append Select to Table Cell, as well as the button, if applicable
+				td2.appendChild(select);
+				if (i === 1) {
+					td2.appendChild(btn);
+				}
+		}
+		
 	}
 	if (type == 'textarea') {
 		var textarea	=	document.createElement('textarea');
 		var tn			=	document.createTextNode(cv);
 		textarea.appendChild(tn);
-		textarea.setAttribute('onblur', 'updateInvAsset(this.value, \''+dataName+'\')');
+		textarea.setAttribute('onblur', 'checkInput(this.value, \''+dataName+'\')');
 		textarea.setAttribute('rows', '10');
 		textarea.setAttribute('id', dataName);
+		textarea.setAttribute('data-name', fieldName);
 		td2.appendChild(textarea);
 	}
 	row.appendChild(td1);
@@ -531,7 +608,9 @@ function createStatusRow(table, status, desc, bold)
 	td2.appendChild(tn2);
 	var td3		=	document.createElement('td');
 	var tn3		=	document.createElement('span');
-	tn3.setAttribute('class', 'status-rm');
+	tn3.setAttribute('class', 'status-rm warning-button');
+	var tn4		=	document.createTextNode('Remove');
+	tn3.appendChild(tn4);
 	td3.appendChild(tn3);
 	if (bold != 0) {
 		td1.style.fontWeight = 'bold';
@@ -566,3 +645,4 @@ function createHeadRow(table, col1, col2)
 	row.setAttribute('class', 'header');
 	table.appendChild(row);
 }
+

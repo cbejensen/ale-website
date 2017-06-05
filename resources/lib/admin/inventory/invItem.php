@@ -37,75 +37,118 @@ class InvItem
 		
 	}
 	
-	public function update($field, $newVal)
+	public function update($json)
 	{
-		switch (gettype($newVal))
-		{
-			case 'boolean':
-			case 'integer':
-			case 'double':
-				$type	=	'i';
-			default:
-				$type	=	's';
-		}
-		if ($newVal == '') $newVal = null;
-		switch ($field)
-		{
-			case 'brand':
-				$field	=	'brandID';
-				break;
-			case 'shipping_class':
-				$field	=	'ship_class';
-				break;
-			case 'm_desc':
-				$field 	=	'description';
-				break;
-			case 'vendor':
-				$field	=	'vendorID';
-				break;
-			case 'batch_name':
-				$field	=	'batch';
-				break;
-			case 'mnfr':
-				$field	=	'mnfrID';
-				break;
-			case 'model':
-				$field	=	'modelID';
-		}
-		switch ($field)
-		{
-// 			case 'brand':
-// 				$this->updateBrand($field, $newVal, $type);
-// 				break;
-// 			case 'batch_name':
-// 				$this->updateBatch($field, $newVal, $type);
-// 				break;
-			case 'vendorID':
-			case 'cost':
-				$this->updateAccounting($field, $newVal, $type);
-				break;
-			//case 'model':
-			case 'description':
-			case 'function_desc':
-				$this->updateModel($field, $newVal, $type);
-				break;
-			case 'emp_category':
-				$field = 'category';
-			case 'emp_status':
-				if ($field == 'emp_status') $field = 'status';
-			case 'nibr':
-			case 'tm0':
-			case 'sap':
-			case 'src_building':
-			case 'src_room':
-			case 'src_floor':
-			case 'nbv':
-			case 'prev_owner':
-				$this->updateEmp($field, $newVal, $type);
-				break;
-			default:
-				$this->updateItemlist($field, $newVal, $type);
-				break;
+		$errors		=	array();
+		try {
+			$this->conn->autocommit(false);
+			$this->conn->begin_transaction();
+			foreach ($json as $key => $value)
+			{
+				if ($key == 'aleAsset') continue;
+				switch (gettype($value))
+				{
+					case 'boolean':
+					case 'integer':
+					case 'double':
+						$type	=	'i';
+					default:
+						$type	=	's';
+				}
+				if ($value== '') $value = null;
+				switch ($key)
+				{
+					case 'brand':
+						$key	=	'brandID';
+						break;
+					case 'shipping_class':
+						$key	=	'ship_class';
+						break;
+					case 'm_desc':
+						$key	=	'description';
+						break;
+					case 'vendor':
+						$key	=	'vendorID';
+						break;
+					case 'batch_name':
+						$key	=	'batch';
+						break;
+					case 'mnfr':
+						$key	=	'mnfrID';
+						break;
+					case 'model':
+						$key	=	'modelID';
+						break;
+					case 'emp_category':
+						$key	= 'category';
+						break;
+					case 'emp_status':
+						$key	= 'status';
+						break;
+				}
+				switch ($key)
+				{
+		// 			case 'brand':
+		// 				$this->updateBrand($field, $newVal, $type);
+		// 				break;
+		// 			case 'batch_name':
+		// 				$this->updateBatch($field, $newVal, $type);
+		// 				break;
+					case 'vendorID':
+					case 'cost':
+						try {
+							$this->updateAccounting($key, $value, $type);
+						} catch (Exception $e) {
+							throw new Exception('Update Error: Accounting. Key: ' . $key . ' Value: ' . $value . '. ' . $e->getMessage());
+						}
+						break;
+					//case 'model':
+					case 'description':
+					case 'function_desc':
+						try {
+							$this->updateModel($key, $value, $type);
+						} catch (Exception $e) {
+							throw new Exception('Update Error: Model. Key: ' . $key . ' Value: ' . $value . '. ' . $e->getMessage());
+						}
+						break;
+					case 'category':
+					case 'status':
+					case 'nibr':
+					case 'tm0':
+					case 'sap':
+					case 'src_building':
+					case 'src_room':
+					case 'src_floor':
+					case 'nbv':
+					case 'prev_owner':
+						try {
+							$this->updateEmp($key, $value, $type);
+						} catch (Exception $e) {
+							throw new Exception('Update Error: EMP. Key: ' . $key . ' Value: ' . $value . '. ' . $e->getMessage());
+						}
+						break;
+					default:
+						try {
+							$this->updateItemlist($key, $value, $type);
+						} catch (Exception $e) {
+							throw new Exception('Update Error: Itemlist. Key: ' . $key . ' Value: ' . $value . '. ' . $e->getMessage());
+						}
+						break;
+				}
+			} 
+			$this->conn->commit();
+			$this->conn->autocommit(true);
+			$result	=	1;
+			$title	=	'Update Complete';
+			$message=	'This item has been updated successfully.';
+			ajaxResponse_alert($result, $title, $message);
+		} catch (Exception $e) {
+			$this->conn->rollback();
+			$errorData	=	array(	'title'		=>	'Item Update Failed',
+					'message'	=>	'The server was unable to process your request.',
+					'error' 	=>	$e->getMessage()
+			);
+			handleError($errorData, $this->conn, 0, 1);
 		}
 	}
 	
@@ -138,14 +181,6 @@ class InvItem
 		$r	=	db_query($q, $this->conn);
 		$r->data_seek(0);
 		$row	=	$r->fetch_array(MYSQLI_NUM);
-		
-		if (isset($_POST['reqIsAjax']))
-		{
-			$msg	=	array(	'result'	=>	1,
-								'updated'	=>	$row[0],
-						);
-			echo json_encode($msg);
-		}
 	}
 	
 // 	private function updateBrand($field, $newVal, $type)
@@ -178,14 +213,6 @@ class InvItem
 		$r	=	db_query($q, $this->conn);
 		$r->data_seek(0);
 		$row	=	$r->fetch_array(MYSQLI_NUM);
-		
-		if (isset($_POST['reqIsAjax']))
-		{
-			$msg	=	array(	'result'	=>	1,
-								'updated'	=>	$row[0],
-						);
-			echo json_encode($msg);
-		}
 	}
 	
 	private function updateModel($field, $newVal, $type)
@@ -212,14 +239,6 @@ class InvItem
 		$r	=	db_query($q, $this->conn);
 		$r->data_seek(0);
 		$row	=	$r->fetch_array(MYSQLI_NUM);
-		
-		if (isset($_POST['reqIsAjax']))
-		{
-			$msg	=	array(	'result'	=>	1,
-								'updated'	=>	$row[0],
-						);
-			echo json_encode($msg);
-		}
 	}
 	
 	private function updateItemlist($field, $newVal, $type)
@@ -246,14 +265,6 @@ class InvItem
 		$r	=	db_query($q, $this->conn);
 		$r->data_seek(0);
 		$row	=	$r->fetch_array(MYSQLI_NUM);
-		
-		if (isset($_POST['reqIsAjax']))
-		{
-			$msg	=	array(	'result'	=>	1,
-								'updated'	=>	$row[0],
-						);
-			echo json_encode($msg);
-		}
 	}
 	
 	private function validateAleAsset($aleAsset)
@@ -271,7 +282,7 @@ class InvItem
 		try {
 			$type				=	InvItem::getAssetType($this->aleAsset, $this->conn);
 			$this->assetType	=	$type;
-		} catch (Excpetion $e) {
+		} catch (Exception $e) {
 			throw new Exception('Could not get Asset-Type: '. $e->getMessage());
 		}
 	}

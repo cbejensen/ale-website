@@ -92,7 +92,7 @@ class DataList extends Paginator
 					$imgs	=	'';
 					foreach ($status as $stat)
 					{
-						$imgs	.=	"<img class=\"status-flag\" src=\"status_$stat[0].png\" alt=\"$stat[1]\">";
+						$imgs	.=	"<img class=\"status-flag\" src=\"img/interface/status_$stat[0].png\" alt=\"$stat[1]\">";
 					}
 					$out[]	=	$imgs;
 					break;
