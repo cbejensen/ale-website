@@ -10099,3 +10099,5 @@ Stack trace:
 [05-Jun-2017 16:10:54 America/New_York] PHP Notice:  Undefined variable: cats in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\show_invData.php on line 14
 [05-Jun-2017 16:10:54 America/New_York] PHP Notice:  Undefined variable: status in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\show_invData.php on line 14
 [05-Jun-2017 16:10:54 America/New_York] PHP Notice:  Undefined variable: options in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\show_invData.php on line 14
+[06-Jun-2017 13:50:36 America/New_York] PHP Parse error:  syntax error, unexpected ';', expecting ')' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\inventory\invItem.php on line 430
+[06-Jun-2017 15:45:17 America/New_York] PHP Notice:  Undefined index: aleAsset in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\admin_controller.php on line 104

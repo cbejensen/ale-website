@@ -37,6 +37,17 @@ class InvItem
 		
 	}
 	
+	public function updatePhotos($json)
+	{
+		print_r($json);
+// 		echo $json['aleAsset'];
+// 		echo $json['imgs'][0]['url'];
+		foreach ($json['imgs'] as $img)
+		{
+// 			echo $img['url'];
+		}
+	}
+	
 	public function update($json)
 	{
 		$errors		=	array();
@@ -399,8 +410,8 @@ class InvItem
 	
 	private function setPhotos()
 	{
-		$q		=	"SELECT img_url, img_order, date_added, last_update
-					 FROM item_photos WHERE aleAsset=?";
+		$q		=	"SELECT id, img_url, img_order, date_added, last_update
+					 FROM item_photos WHERE aleAsset=? ORDER BY img_order";
 		$stmt	=	$this->conn->prepare($q);
 		if ($stmt === false)
 		{
@@ -423,11 +434,13 @@ class InvItem
 		{
 			$r->data_seek($j);
 			$row								=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->photos[$row['img_order']]	=	array(	
-														'url'	=>	$row['img_url'],
-														'added'	=>	$row['date_added'],
-														'update'=>	$row['last_update']
-													);
+			$this->photos[]	=	array(	
+									'order'	=>	$row['img_order'],
+									'url'	=>	$row['img_url'],
+									'added'	=>	$row['date_added'],
+									'update'=>	$row['last_update'],
+									'id'	=>	$row['id']
+								);
 		}
 	}
 	

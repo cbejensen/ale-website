@@ -88,6 +88,52 @@ class AdminController
 		}
 	}
 	
+	public function updateItemPhotos()
+	{
+		// DEV ONLY
+		$newUser	=	AdminController::getNewUser();
+		// END DEV ONLY
+		$conn		=	db_connect(AL_DB, $newUser);
+		AdminController::loadItemModel();
+		try {
+			$json	=	json_decode($_POST['json'], true);
+			if (is_null($json) || !$json)
+			{
+				throw new Exception('JSON decode error: ' . json_last_error_msg());
+			}
+			$asset	=	new InvItem($json['aleAsset'], $conn);
+			$asset->updatePhotos($json);
+		} catch (Exception $e) {
+			// If the request could not be decoded, alert the user with a message and error code.
+			$errorData	=	array(	'title'		=>	'Photo Update Failed',
+					'message'	=>	'The server was unable to process your request.' . "\n\n" . $e->getMessage(),
+					'error' 	=>	$e->getMessage()
+			);
+			handleError($errorData, $conn, 0, 1);
+		}
+	}
+	
+	public function imagePreprocess()
+	{
+		ini_set('upload_max_filesize', '1000000000'); // set to 1 GB
+		require_once 'lib/photoHandler.php';
+		$aleAsset		= htmlentities($_POST['asset'], ENT_QUOTES);
+		try {
+		$pH		=	new PhotoHandler($aleAsset);
+		} catch (Excpetion $e) {
+			$message	=	'';
+			foreach ($pH->errors as $err)
+			{
+				$message	.=	$err . "\n";
+			}
+			$errorData	=	array(	'title'		=>	'Image Processing Failed',
+									'message'	=>	$message,
+									'error' 	=>	$e->getMessage() . ' | ' . $message
+							);
+			handleError($errorData, $conn, 0, 1);
+		}
+	}
+	
 	private static function loadList()
 	{
 		require_once LIB_PATH . '/paginator/paginator.php';

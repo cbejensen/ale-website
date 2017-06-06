@@ -603,9 +603,9 @@ ul.dropDown li a:hover {
     height: 1px;
 }
 .warning-button {
-background: linear-gradient(
+	background: linear-gradient(
 					to bottom,
-					#C42D2D,
+					#D93232,
 					#AB2727 100%
 				);
 	text-align: center;
@@ -613,12 +613,13 @@ background: linear-gradient(
 /* 	letter-spacing: 0.05rem; */
 	border: 1px solid #942323;
 	border-radius: 2px;
+	cursor: default;
 }
 .warning-button:hover {
 	background: linear-gradient(
 					to bottom,
 					#AB2727,
-					#C42D2D 100%
+					#D93232 100%
 				);
 }	
 .required:after {
@@ -1030,7 +1031,7 @@ background: linear-gradient(
 	position: absolute;
     right: 0;
     top: 0;
-    color: #ddd;
+    color: #fff;
     background-color: #B22222;
     line-height: 1.25rem;
     font-size: 1rem;
@@ -1038,10 +1039,12 @@ background: linear-gradient(
     width: 1.5rem;
     text-align: center;
     transition: 0.25s ease;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
 }
 .closeBtn:hover {
-	cursor: default;
-	box-shadow: inset 0 0 5px 6px rgba(255, 0, 0, 0.33);
+/* 	cursor: default; */
+/* 	box-shadow: inset 0 0 5px 6px rgba(255, 0, 0, 0.33); */
 }
 /*--------------------------------------------
 	Page Material (Boxes, Ads, Images, etc.)

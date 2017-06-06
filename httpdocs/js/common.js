@@ -79,6 +79,18 @@ function alertUser(reqResponse)
 	}
 }
 
+function addCloseButton(parent, parentID)
+{
+	// Add Close Button
+	var closeButton	= document.createElement('span');
+	closeButton.setAttribute('class', 'closeBtn warning-button'); //closeBtn
+	closeButton.setAttribute('id', 'modal-close');
+	closeButton.setAttribute('onclick', "closeDialog('" + parentID + "')");
+	var x = document.createTextNode('x');
+	closeButton.appendChild(x);
+	parent.appendChild(closeButton);
+}
+
 function buildAlert(title, message, actions)
 {
 	// Currently does not support additional user actions, other than 'Accept'
@@ -95,7 +107,7 @@ function buildAlert(title, message, actions)
 		
 		// Add Close Button
 		var closeButton	= document.createElement('span');
-		closeButton.setAttribute('class', 'closeBtn');
+		closeButton.setAttribute('class', 'closeBtn warning-button');
 		closeButton.setAttribute('id', 'modal-close');
 		closeButton.setAttribute('onclick', "closeDialog('alertBox')");
 		var x = document.createTextNode('x');

@@ -6,6 +6,8 @@ function displayInvAsset(data, photos, categories, status, options)
 	
 	console.log(data);
 	console.log(options);
+	console.log('PHOTOS:');
+	console.log(photos);
 	//var data		=	JSON.parse(data);
 	//var photos		=	JSON.parse(photos);
 	//var categories	=	JSON.parse(categories);
@@ -18,6 +20,7 @@ function displayInvAsset(data, photos, categories, status, options)
 	var batch		=	options.batch;
 	var prevOwners	=	options.prev_owner;
 	var statuses	=	status;
+	var statOpt		=	options.status;
 	
 	// Convert NULL to empty string
 	Object.keys(data).forEach(function(cv) {
@@ -28,6 +31,21 @@ function displayInvAsset(data, photos, categories, status, options)
 	Object.keys(photos).forEach(function(cv) {
 		if (photos[cv] == null) photos[cv] = 'fix me!';
 	});
+	
+	// Check for empty photos array:
+	if (Object.keys(photos).length === 0) {
+		console.log('NO PHOTOS!');
+		for (j = 1 ; j <= 6 ; j++)
+		{
+			var img	=	new Object;
+			img.url	=	'img/interface/image_needed.png';
+			photos.push(img);
+		}
+		console.log('PHOTOS:');
+		console.log(photos);
+	}
+	
+	
 	
 	console.log('JSON parsed.');
 	console.log('Constructing Asset View.');
@@ -105,6 +123,7 @@ function displayInvAsset(data, photos, categories, status, options)
 //	status.appendChild(h2);
 	var detailTable		=	document.createElement('table');
 	detailTable.setAttribute('class', 'dataTable');
+	createHeadRow(detailTable, 'Status', 'Description');
 	//Header Rows
 	// HEADER ROWS GO HERE!
 	// Rows
@@ -113,8 +132,25 @@ function displayInvAsset(data, photos, categories, status, options)
 		createStatusRow(detailTable, statuses[cv].status, statuses[cv].description);
 	});
 	status.appendChild(detailTable);
+	//var addStatus	=	document.createElement('select');
+//	createDataFormRow(detailTable, 'Add Status', '', 'mnfr', 'select', statOpt);
+	// BUTTONS
+	var btnWrap	=	document.createElement('div');
+	var add	=	document.createElement('span');
+	var clear	=	document.createElement('span');
+	var addNode=	document.createTextNode('Add');
+	var clrNode	=	document.createTextNode('Clear');
+	btnWrap.setAttribute('class', 'status-btn-wrap');
+	add.setAttribute('class', 'gradient-button');
+	add.setAttribute('onclick', 'addStatusDialog()');
+	clear.setAttribute('class', 'tertiary-button');
+	add.appendChild(addNode);
+	clear.appendChild(clrNode);
+	btnWrap.appendChild(add);
+	btnWrap.appendChild(clear);
 	statusSect.appendChild(h2);
 	statusSect.appendChild(status);
+	statusSect.appendChild(btnWrap);
 	
 	
 	// Basic Data
@@ -218,6 +254,7 @@ function createImgGallery(phot)
 	var clrNode	=	document.createTextNode('Clear');
 	btnWrap.setAttribute('class', 'img-gallery-btn-wrap');
 	edit.setAttribute('class', 'gradient-button');
+	edit.setAttribute('onclick', 'photoEditDialog('+JSON.stringify(photos)+')');
 	clear.setAttribute('class', 'tertiary-button');
 	edit.appendChild(editNode);
 	clear.appendChild(clrNode);
@@ -229,6 +266,119 @@ function createImgGallery(phot)
 	imgGallery.appendChild(smImgReel);
 	imgGallery.appendChild(btnWrap);
 	return imgGallery;
+}
+
+function photoEditDialog(photos)
+{
+//	var photos = JSON.parse(photos);
+	console.log(photos);
+	// Define the view's parent container (the list's main element)
+	var body	=	document.getElementById('ale-body');
+	
+	// Define the container, elements
+	var container	=	document.createElement('div');
+	var h2			=	document.createElement('h2');
+	var h2Text		=	document.createTextNode('Add/Edit Photos');
+	var inputWrap	=	document.createElement('div');
+	var input		=	document.createElement('input');
+	var tableWrap	=	document.createElement('div');
+	var imgTable	=	document.createElement('table');
+	var btnWrap		=	document.createElement('div');
+	var update		=	document.createElement('span');
+	
+	container.setAttribute('id', 'photo-editor');
+	container.setAttribute('class', 'photo-editor material');
+	inputWrap.setAttribute('class', 'file-drop-wrap');
+	input.setAttribute('class', 'file-drop');
+	input.setAttribute('id', 'file-drop');
+	input.setAttribute('onchange', 'imgPreprocess()');
+	tableWrap.setAttribute('class', 'img-list-wrap material');
+	imgTable.setAttribute('class', 'img-list');
+	imgTable.setAttribute('id', 'img-list');
+	
+	// Header
+	h2.appendChild(h2Text);
+	
+	// Input
+	input.multiple = 'true';
+	input.setAttribute('type', 'file');
+	
+	// Image Table
+	Object.keys(photos).forEach(function(cv){
+		if (photos[cv].url != 'img/interface/image_needed.png') {
+			createImageDetailRow(photos, cv, imgTable);
+		}
+}); // End Image Table Loop
+	
+	// Btns
+	var txt		=	document.createTextNode('Update');
+	update.appendChild(txt);
+	update.className	=	'gradient-button';
+	update.setAttribute('onclick', 'updatePhotos()');
+	btnWrap.appendChild(update);
+	btnWrap.className	=	'img-edit-btns';
+	
+	// Complete
+	inputWrap.appendChild(input);
+	tableWrap.appendChild(imgTable);
+	addCloseButton(container, 'photo-editor');
+	container.appendChild(h2);
+	container.appendChild(inputWrap);
+	container.appendChild(tableWrap);
+	container.appendChild(btnWrap);
+	body.appendChild(container);
+	
+}
+
+function removePhoto(id)
+{
+	var table	=	document.getElementById('img-list');
+	var row		=	document.getElementById(id);
+	table.removeChild(row);
+}
+
+function updatePhotos()
+{
+	var obj		=	new Object;
+	obj.aleAsset=	document.getElementById('ale-asset-num').dataset.asset;
+	var imgs	=	[];
+	// Validate (order, mostly)
+	
+	// Update photos
+	for (j = 0 ; j < 7 ; j++)
+	{
+		var row	=	document.getElementById('img' + j);
+		if (row) {
+			// Get the data
+			var img		=	new Object;
+			img.url		=	row.dataset.url;
+			img.id		=	row.dataset.rowid;
+			img.order	=	row.dataset.order;
+			console.log(img);
+			imgs.push(img);
+		} else {
+			// Do something if there's no row? Photo never existed or was removed.
+		}
+	}
+	console.log(imgs);
+	obj.imgs	=	imgs;
+//	console.log(imgs[1].url)
+	var url		=	'ajax_handler.php?controller=admin&action=updateItemPhotos';
+	var json		=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, updatePhotoResponse)
+}
+
+function updatePhotoResponse(req)
+{
+	console.log('Update Photo Response');
+	console.log(req);
+}
+
+function changeOrder(rowID, newVal)
+{
+	var row	=	document.getElementById(rowID);
+//	console.log(newVal);
+	row.dataset.order	=	newVal;
 }
 
 function createOverviewInfo(data, batch)
@@ -624,15 +774,15 @@ function createStatusRow(table, status, desc, bold)
 
 function createHeadRow(table, col1, col2)
 {
-	var bold = 1;
+	var bold = 0;
 	var row		=	document.createElement('tr');
-	var td1		=	document.createElement('td');
+	var td1		=	document.createElement('th');
 	var tn1		=	document.createTextNode(col1);
 	td1.appendChild(tn1);
-	var td2		=	document.createElement('td');
+	var td2		=	document.createElement('th');
 	var tn2		=	document.createTextNode(col2);
 	td2.appendChild(tn2);
-	var td3		=	document.createElement('td');
+	var td3		=	document.createElement('th');
 	var tn3		=	document.createElement('span');
 	td3.appendChild(tn3);
 	if (bold != 0) {
@@ -646,3 +796,186 @@ function createHeadRow(table, col1, col2)
 	table.appendChild(row);
 }
 
+function createImageDetailRow(photos, cv, imgTable)
+{
+	// Add a Row for each table
+	var tr		=	document.createElement('tr');
+	var picTd	=	document.createElement('td');
+	var infoTd	=	document.createElement('td');
+	var actTd	=	document.createElement('td');
+	var img		=	document.createElement('img');
+	var rmBtn	=	document.createElement('span');
+	var select	=	document.createElement('select');
+	var subTable=	document.createElement('table');
+	subTable.className	=	'info-table';
+	
+	// Row
+	tr.setAttribute('class', 'img-row');
+	tr.setAttribute('id', 'img' + cv);
+	tr.dataset.url	=	photos[cv].url;
+	tr.dataset.rowid=	photos[cv].id;
+	tr.dataset.order=	photos[cv].order;
+	
+	var options	=	[];
+	var txt		=	document.createTextNode('Select Image Order');
+	options.push('Select Image Order');
+	
+	// Select
+	select.setAttribute('onchange', "changeOrder('"+tr.id+"', this.value)");
+	for (j = 1 ; j<=6 ; j++)
+	{
+		options.push(j);
+	}
+//	console.log('OPT1: ' + options);
+	
+	var count	=	new Object;
+	count.count	=	0;	
+	
+	// Create Options
+	Object.keys(options).forEach(function(cvOpt) {
+//		console.log(options[cvOpt]);
+		var opt	=	document.createElement('option');
+		var txt	=	document.createTextNode(options[cvOpt])
+		opt.setAttribute('value', options[cvOpt]);
+		if (cvOpt == 0) {
+			opt.id			=	'default-opt';
+			opt.selected	=	'true';
+			opt.disabled	=	'true';
+			opt.value		=	'null';
+		}
+		if (cvOpt == photos[cv].order)
+		{
+			opt.selected	=	'true';
+			count.count++;
+		}
+		opt.appendChild(txt);
+		select.appendChild(opt);
+	});
+	
+	
+	// Images
+	img.setAttribute('src', photos[cv].url);
+	img.setAttribute('class', 'material');
+	
+	// Info Table
+	var ordTr	=	document.createElement('tr');
+	var addTr	=	document.createElement('tr');
+	var upTr	=	document.createElement('tr');
+	var ord1	=	document.createElement('td');
+	var ord2	=	document.createElement('td');
+	var add1	=	document.createElement('td');
+	var add2	=	document.createElement('td');
+	var up1		=	document.createElement('td');
+	var up2		=	document.createElement('td');
+	
+	var ordTn	=	document.createTextNode('Order');
+	var addTn	=	document.createTextNode('Date Added');
+	var upTn	=	document.createTextNode('Date Updated');
+	
+	var ordData	=	select;
+	var addData	=	document.createTextNode(photos[cv].added);
+	var upData	=	document.createTextNode(photos[cv].update);
+	
+	ord1.appendChild(ordTn);
+	add1.appendChild(addTn);
+	up1.appendChild(upTn);
+	
+	ord2.appendChild(ordData);
+	add2.appendChild(addData);
+	up2.appendChild(upData);
+	
+	ordTr.appendChild(ord1);
+	ordTr.appendChild(ord2);
+	addTr.appendChild(add1);
+	addTr.appendChild(add2);
+	upTr.appendChild(up1);
+	upTr.appendChild(up2);
+	subTable.appendChild(ordTr);
+	subTable.appendChild(addTr);
+	subTable.appendChild(upTr);
+	// END INFO TABLE
+	
+	// Remove Btn
+	rmBtn.className	=	'status-rm warning-button';
+	rmBtn.setAttribute('onclick', "removePhoto('img"+cv+"')");
+	var txt			=	document.createTextNode('Remove');
+	rmBtn.appendChild(txt);
+	
+	
+	// Assemble td's
+	picTd.appendChild(img);
+	infoTd.appendChild(subTable);
+	actTd.appendChild(rmBtn);
+	
+	// Assemble tr
+	tr.appendChild(picTd);
+	tr.appendChild(infoTd);
+	tr.appendChild(actTd);
+	imgTable.appendChild(tr);
+}
+
+function imgPreprocess() {
+	var aleAsset		=	document.getElementById('ale-asset-num').dataset.asset;
+	var inputElement	= 	document.getElementById('file-drop');
+	var imgTable		=	document.getElementById('img-list');
+	var photos			=	new Object;
+	photos.count 		= 	0
+	for (j = 0 ; j < 6 ; j++)
+	{
+		var row	=	document.getElementById('img' + j);
+		if (row) photos.count++;
+	}
+	
+	var fileList=	inputElement.files;
+	console.log(photos.count);
+	console.log('inputElement.files LENGTH (number of files submitted): ' + fileList.length);
+	
+	// Validate
+	if (fileList.length > 6 - photos.count) {
+		console.log('You\'ve added too many photos.');
+		buildAlert('User Error', 'You\'ve added too many photos. Maximum 6 per Item.');
+		inputElement.value = '';
+	} else {
+		var formData	=	new FormData();
+		for (j = 0 ; j < fileList.length ; j++)
+		{
+			var file = fileList[j];
+			// Check the file type.
+			if (!file.type.match('image.*')) 
+			{
+				continue;
+			}
+			// Add the file to the request.
+			formData.append('image[]', file, file.name);
+		}
+		formData.append('asset', aleAsset);
+		
+		req = new XMLHttpRequest();
+		req.open('POST', 'ajax_handler.php?controller=admin&action=imagePreprocess', true);
+		req.send(formData);
+		
+		req.onload	= function() 
+		{
+			if (req.status === 200)
+			{
+				console.log('File(s) pre-processed' + req.responseText);
+				var data 		= JSON.parse(req.responseText);
+				var div			= document.getElementById('photoDataArea');
+				for (j = 0 ; j < data.length ; j++)
+				{
+					div.innerHTML += data[j];
+				}
+				//upBut.value	= 'Upload';
+				//document.getElementById("demo1").style.display = "none";
+				//getData(asset, ord);
+			}
+			else
+			{
+				alert('An error occurred while trying to process your image(s). Please try again.');
+				//upBut.value	= 'Upload';
+			}
+		};	
+//		var json		=	encodeURIComponent(JSON.stringify(formData))
+//		createImageDetailRow(photos, cv, imgTable)
+	} // END ELSE
+}

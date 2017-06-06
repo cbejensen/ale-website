@@ -618,5 +618,15 @@ class DataList extends Paginator
 			$row		=	$r->fetch_array(MYSQLI_ASSOC);
 			$this->options['prev_owner'][$row['id']]	=	$row['prev_owner'];
 		}
+		
+		// Statuses
+		$q		=	"SELECT id, status FROM item_status ORDER BY status";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['status'][$row['id']]	=	$row['status'];
+		}
 	}
 }
