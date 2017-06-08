@@ -6,7 +6,7 @@ class InvItem
 	protected 	$conn;
 	
 	public 		$assetType	=	array(); // ['track'], ['suffix']
-	public 		$photos		=	array(); // [ord]['url'], ['added'], ['update']
+	public 		$photos		=	array(); // [order]['url'], ['added'], ['update']
 	public 		$categories	=	array(); // []['id'], ['category'], ['subcategory']
 	public 		$status		=	array();
 	public 		$data		=	array(); // aliases: emp_category, emp_subcategory, m_desc (model), b_desc (batch), emp_status, emp_desc (status desc)
@@ -39,13 +39,100 @@ class InvItem
 	
 	public function updatePhotos($json)
 	{
-		print_r($json);
+//		DONT FORGET THE JS TEST FOR DUPLICATE ORDERS
+//		print_r($json);
 // 		echo $json['aleAsset'];
 // 		echo $json['imgs'][0]['url'];
-		foreach ($json['imgs'] as $img)
-		{
-// 			echo $img['url'];
+		require_once ADMIN_PATH . '/photoHandler.php';
+		$this->conn->autocommit(false);
+		$this->conn->begin_transaction();
+		try {
+			$newIds	=	array();
+			foreach ($json['imgs'] as $img)
+			{
+				$newIds[]	=	$img['id'];
+			}
+			foreach ($this->photos as $photo)
+			{
+				if (!in_array($photo['id'], $newIds))
+				{
+					PhotoHandler::deletePhotoRecord($this->aleAsset, $photo['id'], $this->conn);
+				}
+			}
+			foreach ($json['imgs'] as &$img)
+			{
+				//echo $img['url'] . "\n"; // ['id'], ['order'] 
+				if (empty($img['id']))
+				{
+					$img['url']	=	PhotoHandler::movePhotos($img['url'], 'img/temp_imgs/', 'img/ale_aloe/');
+					// Add record to item_photos
+					// Add to img_count
+					$q	=	"INSERT INTO item_photos (aleAsset, img_url, img_order) VALUES (?,?,?)";
+					//$qq	=	"UPDATE itemlist SET img_count = img_count + 1 WHERE aleAsset = ?";
+					
+					$stmt		=	$this->conn->prepare($q);
+					if ($stmt === false)
+					{
+						throw new Exception('Photo Update: prepare() failed: ' . htmlspecialchars($this->conn->error));
+					}
+					// Bind Parameters
+					$rc		=	$stmt->bind_param('isi', $this->aleAsset, $img['url'], $img['order']);
+					if ($rc === false)
+					{
+						throw new Exception('Photo Update: bind_param() failed: ' . htmlspecialchars($stmt->error));
+					}
+					$rc		=	$stmt->execute();
+					if ($rc === false)
+					{
+						throw new Exception('Photo Update: execute() failed: ' . htmlspecialchars($stmt->error));
+					}
+					
+// 					$stmt		=	$this->conn->prepare($qq);
+// 					if ($stmt === false)
+// 					{
+// 						throw new Exception('Itemlist Photo Update: prepare() failed: ' . htmlspecialchars($this->conn->error));
+// 					}
+// 					// Bind Parameters
+// 					$rc		=	$stmt->bind_param('i', $this->aleAsset);
+// 					if ($rc === false)
+// 					{
+// 						throw new Exception('Itemlist Photo Update: bind_param() failed: ' . htmlspecialchars($stmt->error));
+// 					}
+// 					$rc		=	$stmt->execute();
+// 					if ($rc === false)
+// 					{
+// 						throw new Exception('Itemlist Photo Update: execute() failed: ' . htmlspecialchars($stmt->error));
+// 					}
+				} else {
+					$q	=	"UPDATE item_photos SET img_order = ? WHERE id = ?";
+					$stmt		=	$this->conn->prepare($q);
+					if ($stmt === false)
+					{
+						throw new Exception('Photo Update: prepare() failed: ' . htmlspecialchars($this->conn->error));
+					}
+					// Bind Parameters
+					$rc		=	$stmt->bind_param('ii', $img['order'], $img['id']);
+					if ($rc === false)
+					{
+						throw new Exception('Photo Update: bind_param() failed: ' . htmlspecialchars($stmt->error));
+					}
+					$rc		=	$stmt->execute();
+					if ($rc === false)
+					{
+						throw new Exception('Photo Update: execute() failed: ' . htmlspecialchars($stmt->error));
+					}
+				}
+			}
+		} catch (Exception $e) {
+			$this->conn->rollback();
+			foreach ($json['imgs'] as &$img)
+			{
+				$img['url']	=	PhotoHandler::movePhotos($img['url'], 'img/ale_aloe/', 'img/temp_imgs/');
+			}
+			throw new Exception($e->getMessage());
 		}
+		$this->conn->commit();
+		$this->conn->autocommit(true);
 	}
 	
 	public function update($json)
@@ -163,6 +250,17 @@ class InvItem
 		}
 	}
 	
+	public function getAssetData()
+	{
+		$data	=	array(
+			'data'		=>	$this->data,
+			'photos'	=>	$this->photos,
+			'categories'=>	$this->categories,
+			'status'	=>	$this->status
+		);
+		echo json_encode($data);
+	}
+	
 	private function updateBatch($field, $newVal, $type)
 	{
 		
@@ -193,12 +291,6 @@ class InvItem
 		$r->data_seek(0);
 		$row	=	$r->fetch_array(MYSQLI_NUM);
 	}
-	
-// 	private function updateBrand($field, $newVal, $type)
-// 	{
-// 		if ($newVal == '') $newVal = null;
-// 		$q	=	"UPDATE itemlist"
-// 	}
 	
 	private function updateAccounting($field, $newVal, $type)
 	{

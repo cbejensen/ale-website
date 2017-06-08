@@ -12,6 +12,8 @@ foreach ($asset->data as &$data)
 ?>
 <script>
 //	displayInvAsset(<?php // echo "'$data', '$photos', '$cats', '$status', '$options'" ?>)
+//var listOptions	=	<?php //echo json_encode($list->options); ?>;
+function getAssetData(listOptions) {
 	var data	=	<?php echo json_encode($asset->data, JSON_HEX_QUOT); ?>;
 	var photos	=	<?php echo json_encode($asset->photos); ?>;
 	var cats	=	<?php echo json_encode($asset->categories); ?>;
@@ -23,6 +25,8 @@ foreach ($asset->data as &$data)
 	echo 'item_status.push('.json_encode($status, JSON_HEX_QUOT).');'; 
 	
 	?>
-	var options	=	<?php echo json_encode($list->options); ?>;
+	var options	=	listOptions;
 	displayInvAsset(data, photos, cats, item_status, options);
+}
+getAssetData(listOptions);
 </script>

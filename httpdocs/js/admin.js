@@ -3,14 +3,26 @@
  */
 
 
-function showLoadTimer()
+function showLoadTimer(msg)
 {
+	var msg = msg || 'Loading...';
 	console.log('Loading...');
+	var body	=	document.getElementById('ale-body');
+	var load	=	document.createElement('div');
+	load.className	=	'load-notice material';
+	load.setAttribute('id', 'loader');
+	var	p		=	document.createElement('p');
+	var t		=	document.createTextNode(msg);
+	p.appendChild(t);
+	load.appendChild(p)
+	body.appendChild(load);
 }
 
 function hideLoadTimer()
 {
-	//var fas = 'as';
+	var body	=	document.getElementById('ale-body');
+	var load	=	document.getElementById('loader');
+	body.removeChild(load);
 }
 
 function saveAssetData()
@@ -167,7 +179,7 @@ function updateInvAssetResponse(response, nextField)
 		console.log('success');
 		alertUser(response);
 	}
-	updateInvAssetView();
+	updateAssetView();
 	console.log('Done');
 }
 

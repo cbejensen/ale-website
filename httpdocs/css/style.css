@@ -1014,10 +1014,12 @@ ul.dropDown li a:hover {
 .alertBox h2 {
 	font-size: 1.5rem;
 	font-weight: bold;
+	word-break: break-word;
 }
 .alertBox p {
 	margin: 1rem 0 2.5rem;
 	padding-right: 2.75rem;
+	word-break: break-word;
 }
 .alertBox input {
 	position: absolute;

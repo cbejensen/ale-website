@@ -1,5 +1,4 @@
 <?php
-
 // list of controllers and their actions -- allowed values
 $controllers	= array('public' 			=>	[	'home', 	'services',
 													'store',	'news',
@@ -9,9 +8,9 @@ $controllers	= array('public' 			=>	[	'home', 	'services',
 													'listing'
 													],
 		
-						'admin'				=>	[	'showList',	'updateInvItem',
-													'getVendors', 'updateItemPhotos',
-													'imagePreprocess'
+						'admin'				=>	[	'showList',			'updateInvItem',
+													'getVendors', 		'updateItemPhotos',
+													'imagePreprocess', 	'getInvAssetData'
 													],
 		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',

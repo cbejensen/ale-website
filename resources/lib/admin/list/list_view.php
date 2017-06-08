@@ -8,7 +8,8 @@
 	?>
 	</div>
 	<div class="list-wrap material">
-		<table class="list-table">
+		<table class="list-table" id="list-table">
+			<script>var listOptions	=	<?php echo json_encode($list->options); ?>;</script>
 			<tbody>
 			<?php
 				$list->getHeaders();

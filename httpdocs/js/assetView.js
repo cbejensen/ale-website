@@ -27,10 +27,10 @@ function displayInvAsset(data, photos, categories, status, options)
 		if (data[cv] == null) data[cv] = '';
 	});
 	
-	// Convert NULL url to placeholder
-	Object.keys(photos).forEach(function(cv) {
-		if (photos[cv] == null) photos[cv] = 'fix me!';
-	});
+//	Convert NULL url to placeholder
+//	Object.keys(photos).forEach(function(cv) {
+//		if (photos[cv] == null) photos[cv] = 'fix me!';
+//	});
 	
 	// Check for empty photos array:
 	if (Object.keys(photos).length === 0) {
@@ -60,6 +60,10 @@ function displayInvAsset(data, photos, categories, status, options)
 	 * Class/ID	=	asset-view
 	 * begins @ 100% to left
 	 */ 
+	var elemExists	=	document.getElementById('asset-view');
+	if (elemExists != null) {
+		listMain.removeChild(elemExists);
+	}
 	var assetView	=	document.createElement('div');
 	assetView.setAttribute('class', 'asset-view material');
 	assetView.setAttribute('id', 'asset-view');
@@ -186,7 +190,7 @@ function displayInvAsset(data, photos, categories, status, options)
 	novartis.setAttribute('class', 'asset-section category-sect');
 	var cat			=	createNovartis(data, prevOwners);
 	novartis.appendChild(cat);
-	
+	hideLoadTimer()
 	// Assemble Sections
 	assetView.appendChild(navBar);
 	assetView.appendChild(h1);
@@ -221,9 +225,9 @@ function createImgGallery(phot)
 	// Main Image
 	var mainImg			=	document.createElement('img');
 	mainImg.setAttribute('class', 'main-img');
-	mainImg.setAttribute('src', phot[1].url);
-	mainImg.setAttribute('data-added', phot[1].added);
-	mainImg.setAttribute('data-update', phot[1].update);
+	mainImg.setAttribute('src', phot[0].url);
+	mainImg.setAttribute('data-added', phot[0].added);
+	mainImg.setAttribute('data-update', phot[0].update);
 	mainImgCont.appendChild(mainImg);
 	// Small-Image Reel
 	var smImgReel	=	document.createElement('div');
@@ -232,7 +236,7 @@ function createImgGallery(phot)
 	reelWrap.setAttribute('class', 'reel-wrap');
 	// For each photo, create an img, with wrapper, and append to reelWrap
 	Object.keys(phot).forEach(function(cv) {
-		if (cv == 1) return;
+		if (cv == 0) return;
 		//console.log(cv, phot[cv]);
 		//console.log(cv);
 		//console.log(phot[cv].url); // Prints each url
@@ -254,7 +258,7 @@ function createImgGallery(phot)
 	var clrNode	=	document.createTextNode('Clear');
 	btnWrap.setAttribute('class', 'img-gallery-btn-wrap');
 	edit.setAttribute('class', 'gradient-button');
-	edit.setAttribute('onclick', 'photoEditDialog('+JSON.stringify(photos)+')');
+	edit.setAttribute('onclick', 'photoEditDialog('+JSON.stringify(phot)+')');
 	clear.setAttribute('class', 'tertiary-button');
 	edit.appendChild(editNode);
 	clear.appendChild(clrNode);
@@ -342,9 +346,8 @@ function updatePhotos()
 	var obj		=	new Object;
 	obj.aleAsset=	document.getElementById('ale-asset-num').dataset.asset;
 	var imgs	=	[];
-	// Validate (order, mostly)
 	
-	// Update photos
+	// Get photo data
 	for (j = 0 ; j < 7 ; j++)
 	{
 		var row	=	document.getElementById('img' + j);
@@ -360,18 +363,59 @@ function updatePhotos()
 			// Do something if there's no row? Photo never existed or was removed.
 		}
 	}
-	console.log(imgs);
-	obj.imgs	=	imgs;
-//	console.log(imgs[1].url)
-	var url		=	'ajax_handler.php?controller=admin&action=updateItemPhotos';
-	var json		=	encodeURIComponent(JSON.stringify(obj));
-	makeRequest(url, json, updatePhotoResponse)
+	
+	// Validate data
+	var fail	=	false;
+	Object.keys(imgs).forEach(function(cv){
+		if (imgs[cv].order == ''){
+//			console.log('OHNO');
+			console.log('No order supplied.');
+			fail	=	true;
+		}
+	});
+	
+	if (fail === false){
+		console.log(imgs);
+		obj.imgs	=	imgs;
+//		console.log(imgs[1].url)
+		var url		=	'ajax_handler.php?controller=admin&action=updateItemPhotos';
+		var json		=	encodeURIComponent(JSON.stringify(obj));
+		showLoadTimer();
+		makeRequest(url, json, updatePhotoResponse)
+	} else {
+		var title	=	'Photo Update Fail';
+		var message	=	'Please ensure each photo has been assigned a valid Order.';
+		buildAlert(title, message);
+	}
 }
 
 function updatePhotoResponse(req)
 {
 	console.log('Update Photo Response');
+	updateAssetView();
+	closeDialog('photo-editor');
 	console.log(req);
+}
+
+function updateAssetView()
+{
+	var obj		=	new Object;
+	obj.aleAsset=	document.getElementById('ale-asset-num').dataset.asset;
+	var url		=	'ajax_handler.php?controller=admin&action=getInvAssetData';
+	var json		=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, updateAssetViewResponse);
+}
+
+function updateAssetViewResponse(res)
+{
+	var res	=	JSON.parse(res);
+	console.log(res);
+	console.log(listOptions);
+	var exists	=	document.getElementById('loader');
+	if (exists != null){
+		hideLoadTimer();
+	}
+	displayInvAsset(res.data, res.photos, res.categories, res.status, listOptions);
 }
 
 function changeOrder(rowID, newVal)
@@ -811,7 +855,15 @@ function createImageDetailRow(photos, cv, imgTable)
 	
 	// Row
 	tr.setAttribute('class', 'img-row');
-	tr.setAttribute('id', 'img' + cv);
+	
+	var rowId	=	cv;
+	while (document.getElementById('img' + rowId) != null)
+	{
+		rowId++;
+	}
+	tr.setAttribute('id', 'img' + rowId);
+	
+	
 	tr.dataset.url	=	photos[cv].url;
 	tr.dataset.rowid=	photos[cv].id;
 	tr.dataset.order=	photos[cv].order;
@@ -915,6 +967,7 @@ function createImageDetailRow(photos, cv, imgTable)
 }
 
 function imgPreprocess() {
+	showLoadTimer('The server is processing your images. This may take a few moments.');
 	var aleAsset		=	document.getElementById('ale-asset-num').dataset.asset;
 	var inputElement	= 	document.getElementById('file-drop');
 	var imgTable		=	document.getElementById('img-list');
@@ -949,32 +1002,72 @@ function imgPreprocess() {
 			formData.append('image[]', file, file.name);
 		}
 		formData.append('asset', aleAsset);
+		formData.append('reqIsAjax', 'true');
+		console.log('FORM DATA: ');
+		console.log(formData);
 		
 		req = new XMLHttpRequest();
+		req.onreadystatechange = alertContents;
 		req.open('POST', 'ajax_handler.php?controller=admin&action=imagePreprocess', true);
 		req.send(formData);
 		
-		req.onload	= function() 
+		function alertContents()
 		{
-			if (req.status === 200)
+			if (req.readyState === XMLHttpRequest.DONE) 
 			{
-				console.log('File(s) pre-processed' + req.responseText);
-				var data 		= JSON.parse(req.responseText);
-				var div			= document.getElementById('photoDataArea');
-				for (j = 0 ; j < data.length ; j++)
+				if (req.status === 200)
 				{
-					div.innerHTML += data[j];
+					hideLoadTimer();
+					console.log('File(s) pre-processed' + req.responseText);
+					var data 		= 	JSON.parse(req.responseText);
+					var imgTable	=	document.getElementById('img-list');
+					var photos		=	data[1];
+					console.log('DATA[0]: ' + data[0]);
+					if (data[0] === 1) {
+//						console.log('YESTES');
+						Object.keys(photos).forEach(function(cv){
+							createImageDetailRow(photos, cv, imgTable)
+						});
+					}
+//					alertUser(data);
+					//var div			= document.getElementById('photoDataArea');
+					for (j = 0 ; j < data.length ; j++)
+					{
+//						console.log(j);
+					}
+					//upBut.value	= 'Upload';
+					//document.getElementById("demo1").style.display = "none";
+					//getData(asset, ord);
 				}
-				//upBut.value	= 'Upload';
-				//document.getElementById("demo1").style.display = "none";
-				//getData(asset, ord);
+				else
+				{
+					alert('An error occurred while trying to process your image(s). Please try again.');
+					//upBut.value	= 'Upload';
+				}
 			}
-			else
-			{
-				alert('An error occurred while trying to process your image(s). Please try again.');
-				//upBut.value	= 'Upload';
-			}
-		};	
+		}
+//		req.onload	= function() 
+//		{
+//			if (req.status === 200)
+//			{
+//				console.log('File(s) pre-processed' + req.responseText);
+//				var data 		= req.responseText;
+//				alertUser(data);
+//				//var div			= document.getElementById('photoDataArea');
+//				for (j = 0 ; j < data.length ; j++)
+//				{
+//					//div.innerHTML += data[j];
+//				}
+//				//upBut.value	= 'Upload';
+//				//document.getElementById("demo1").style.display = "none";
+//				//getData(asset, ord);
+//			}
+//			else
+//			{
+//				alert('An error occurred while trying to process your image(s). Please try again.');
+//				//upBut.value	= 'Upload';
+//			}
+//		};	
 //		var json		=	encodeURIComponent(JSON.stringify(formData))
 //		createImageDetailRow(photos, cv, imgTable)
 	} // END ELSE
