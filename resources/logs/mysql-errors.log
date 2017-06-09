@@ -700,3 +700,4 @@
 
 [08-Jun-2017 11:59:44 America/New_York] Photo Update Failed Itemlist Photo Update: bind_param() failed: 
 [08-Jun-2017 12:00:27 America/New_York] Photo Update Failed Could not move photo.
+[09-Jun-2017 14:24:33 America/New_York] Item Update Failed Update Error: Itemlist. Key: modelID Value: Select a Manufacturer or Add a New Record. InvItem Data UPDATE: execute() failed: Cannot add or update a child row: a foreign key constraint fails (`al_db`.`itemlist`, CONSTRAINT `model_item` FOREIGN KEY (`modelID`) REFERENCES `models` (`id`))

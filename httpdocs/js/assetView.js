@@ -21,6 +21,7 @@ function displayInvAsset(data, photos, categories, status, options)
 	var prevOwners	=	options.prev_owner;
 	var statuses	=	status;
 	var statOpt		=	options.status;
+	var model_mnfr	=	options.model_mnfr;
 	
 	// Convert NULL to empty string
 	Object.keys(data).forEach(function(cv) {
@@ -212,6 +213,19 @@ function displayInvAsset(data, photos, categories, status, options)
 		//console.log(e.target); // Returns the whole select element
 		//console.log(e.currentTarget);
 	}, false);
+	
+	// Filter Models
+	filterModelsByMnfr()
+	filterBrandsByMnfr()
+	
+	var mnfr	=	document.getElementById('mnfr');
+	mnfr.setAttribute('onchange', 'updateModelList(this.value); updateBrandList(this.value)');
+	
+	var model	=	document.getElementById('model');
+	model.setAttribute('onchange', 'updateFunctionDesc(this.value)');
+	
+//	var model	=	document.getElementById('model');
+//	model.setAttribute('onchange', 'updateBrandList(this.value)')
 }
 
 function createImgGallery(phot)
@@ -415,7 +429,16 @@ function updateAssetViewResponse(res)
 	if (exists != null){
 		hideLoadTimer();
 	}
-	displayInvAsset(res.data, res.photos, res.categories, res.status, listOptions);
+	data		=	res.data;
+	photos		=	res.photos;
+	categories	=	res.categories;
+	item_status	=	res.status;
+	testThis()
+}
+
+function testThis()
+{
+	displayInvAsset(data, photos, categories, item_status, listOptions);
 }
 
 function changeOrder(rowID, newVal)
@@ -512,8 +535,132 @@ function createOverviewInfo(data, batch)
 	return infoWrap;
 }
 
+function updateFunctionDesc(newVal)
+{
+	data.modelID	=	newVal;
+	
+	var funcDesc	=	document.getElementById('function_desc');
+	funcDesc.value	=	listOptions.functions[newVal];
+}
+
+function updateBrandList(newVal)
+{
+	data.mnfrID	=	newVal;
+	filterBrandsByMnfr();
+}
+
+function updateModelList(newVal)
+{
+	console.log(newVal); // New mnfr ID
+	data.mnfrID	=	newVal;
+	filterModelsByMnfr();
+}
+
+function filterModelsByMnfr()
+{
+	var modelSelect 	=	document.getElementById('model');
+	var models			=	[];
+	Object.keys(listOptions.model_mnfr).forEach(function(cv){
+		if (listOptions.model_mnfr[cv].mnfr == data.mnfrID) {
+//			console.log(listOptions.model_mnfr[cv].model)
+			models.push(listOptions.model_mnfr[cv].model)
+		}
+	});	
+	
+	
+	console.log(models);
+	
+	while (modelSelect.hasChildNodes()) {
+		modelSelect.removeChild(modelSelect.lastChild);
+	}
+	
+	// Default
+	var option	=	document.createElement('option');
+	option.selected = true;
+	option.disabled = true;
+	var tn		=	document.createTextNode('Select a Model or Add a New Record');
+	option.appendChild(tn);
+	modelSelect.appendChild(option);
+	
+	Object.keys(models).forEach(function(curVal) {
+//		// Create Options
+		var id	=	models[curVal];
+		console.log(id);
+		console.log(listOptions.models[id]);
+		var option	=	document.createElement('option');
+		option.setAttribute('value', models[curVal]);
+		if (id == data.modelID) {
+			option.selected = true;
+		}// else {
+//			if (curVal == Number(cv) && dataName == 'model') {
+//				option.selected = true;
+//			}
+//		}
+		var tn		=	document.createTextNode(listOptions.models[id]);
+		option.appendChild(tn);
+		modelSelect.appendChild(option);
+	});
+}
+
+function filterBrandsByMnfr()
+{
+	var brandSelect 	=	document.getElementById('brand');
+	var brands			=	[];
+	Object.keys(listOptions.mnfr_brand).forEach(function(cv){
+		if (listOptions.mnfr_brand[cv].mnfr == data.mnfrID) {
+//			console.log(listOptions.model_mnfr[cv].model)
+			brands.push(listOptions.mnfr_brand[cv].brand)
+		}
+	});
+	
+	while (brandSelect.hasChildNodes()) {
+		brandSelect.removeChild(brandSelect.lastChild);
+	}
+	
+	// Default
+	var option	=	document.createElement('option');
+	option.selected = true;
+	option.disabled = true;
+	var tn		=	document.createTextNode('Select a Brand or Add a New Record');
+	option.appendChild(tn);
+	brandSelect.appendChild(option);
+	
+	// NA
+	var option	=	document.createElement('option');
+	option.setAttribute('value', '');
+	if (data.brandID == '') option.selected = true;
+	var tn		=	document.createTextNode('N/A');
+	option.appendChild(tn);
+	brandSelect.appendChild(option);
+	
+	Object.keys(brands).forEach(function(curVal) {
+//		// Create Options
+		var id	=	brands[curVal];
+		console.log(id);
+		console.log(listOptions.brands[id]);
+		var option	=	document.createElement('option');
+		option.setAttribute('value', brands[curVal]);
+		if (id == data.brandID) {
+			option.selected = true;
+		}// else {
+//			if (curVal == Number(cv) && dataName == 'model') {
+//				option.selected = true;
+//			}
+//		}
+		var tn		=	document.createTextNode(listOptions.brands[id]);
+		option.appendChild(tn);
+		brandSelect.appendChild(option);
+	});
+}
+
 function getBasicInfo(data, mnfrs, models, brands)
 {
+	// Create list of models for the given manufacturer:
+	
+	
+	
+	
+	
 	var itemDetails		=	document.createElement('div');
 	itemDetails.setAttribute('class', 'item-detail-wrap');
 	var h2 				=	document.createElement('h2');
@@ -694,6 +841,8 @@ function createDataTableRow(table, name, data, id)
 
 function createDataFormRow(table, fieldName, cv, dataName, type, optArray)
 {
+	console.log('OPT ARRAY:');
+	console.log(optArray);
 	var type 		=	type || 'text';
 	var optArray	=	optArray || 0;
 	// Create Row

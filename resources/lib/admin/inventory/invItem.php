@@ -440,8 +440,8 @@ class InvItem
 	{
 		// Get the data from the database
 		$q		=	"SELECT 
-					manufacturers.mnfr,		models.model,			models.function_desc,	models.description as m_desc,
-					itemlist.modelID,
+					manufacturers.mnfr,		itemlist.mnfrID, models.model,			models.function_desc,	models.description as m_desc,
+					itemlist.modelID,		itemlist.brandID,
 					brands.brand,			itemlist.addtl_model,	itemlist.serial_num,	itemlist.title_extn,
 					itemlist.price,			itemlist.mpn,			itemlist.wh_location,	itemlist.quantity,
 					inv_batch.batch_name, 	inv_batch.description as b_desc,				itemlist.yom,			

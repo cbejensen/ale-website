@@ -13,20 +13,13 @@ foreach ($asset->data as &$data)
 <script>
 //	displayInvAsset(<?php // echo "'$data', '$photos', '$cats', '$status', '$options'" ?>)
 //var listOptions	=	<?php //echo json_encode($list->options); ?>;
-function getAssetData(listOptions) {
-	var data	=	<?php echo json_encode($asset->data, JSON_HEX_QUOT); ?>;
-	var photos	=	<?php echo json_encode($asset->photos); ?>;
-	var cats	=	<?php echo json_encode($asset->categories); ?>;
-	
-	var item_status	=	[];
-	
-	<?php 
-	foreach ($asset->status as $status)
-	echo 'item_status.push('.json_encode($status, JSON_HEX_QUOT).');'; 
-	
-	?>
-	var options	=	listOptions;
-	displayInvAsset(data, photos, cats, item_status, options);
-}
-getAssetData(listOptions);
+var data		=	<?php echo json_encode($asset->data, JSON_HEX_QUOT); ?>;
+var photos		=	<?php echo json_encode($asset->photos); ?>;
+var cats		=	<?php echo json_encode($asset->categories); ?>;
+var item_status	=	[];
+<?php 
+foreach ($asset->status as $status)
+echo 'item_status.push('.json_encode($status, JSON_HEX_QUOT).');'; 
+?>
+displayInvAsset(data, photos, cats, item_status, listOptions);
 </script>

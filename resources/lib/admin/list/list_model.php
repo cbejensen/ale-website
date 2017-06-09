@@ -581,6 +581,9 @@ class DataList extends Paginator
 		
 		// Models
 		$q		=	"SELECT id, model, function_desc FROM models WHERE active=1 ORDER BY model";
+// 		$q		=	"SELECT model_mnfr.modelID, models.model FROM model_mnfr
+// 					JOIN models ON model_mnfr.modelID = models.id
+// 					WHERE models.active=1 ORDER BY models.model";
 		$r		=	db_query($q, $this->conn);
 		for ($j = 0 ; $j < $r->num_rows ; $j++)
 		{
@@ -627,6 +630,36 @@ class DataList extends Paginator
 			$r->data_seek($j);
 			$row		=	$r->fetch_array(MYSQLI_ASSOC);
 			$this->options['status'][$row['id']]	=	$row['status'];
+		}
+		
+		// model_mnfr
+		$q		=	"SELECT mnfrID, modelID FROM model_mnfr WHERE active=1";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['model_mnfr'][]	=	array('mnfr'=>$row['mnfrID'], 'model'=>$row['modelID']);
+		}
+		
+		// mnfr_brand
+		$q		=	"SELECT mnfrID, brandID FROM mnfr_brand WHERE active=1";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['mnfr_brand'][]	=	array('mnfr'=>$row['mnfrID'], 'brand'=>$row['brandID']);
+		}
+		
+		//functions
+		$q		=	"SELECT id, function_desc FROM models WHERE active=1";
+		$r		=	db_query($q, $this->conn);
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$this->options['functions'][$row['id']]	=	$row['function_desc'];
 		}
 	}
 }
