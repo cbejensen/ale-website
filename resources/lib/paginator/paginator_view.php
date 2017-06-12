@@ -1,11 +1,18 @@
-<?php 
-	$url	=	'?controller=public&action=store&section=store&title=Search%20Results';
-	$url	.=	(isset($_GET['category'])) ? '&category=' . htmlspecialchars($_GET['category'], ENT_QUOTES) : '';
-	$url	.=	(isset($_GET['q'])) ? '&q=' . htmlspecialchars($_GET['q'], ENT_QUOTES) : '';
-	$url	.=	'&limit=' . $this->limit;
-	//$url	.=	'&rp=' . ($this->_page - 1);
-	$url	.=	(isset($_GET['lc'])) ? '&lc=' . htmlspecialchars($_GET['lc'], ENT_QUOTES) : '';
-	$url	.=	(isset($_GET['lo'])) ? '&lo=' . htmlspecialchars($_GET['lo'], ENT_QUOTES) : '';
+<?php
+	(isset($_GET['ltype'])) ? $list	= $_GET['ltype'] : $list = null;  
+	if ($list != null)
+	{
+// 		print_r($this->url);
+		$url	=	$this->url;
+	} else {
+			$url	=	'?controller=public&action=store&section=store&title=Search%20Results';
+			$url	.=	(isset($_GET['category'])) ? '&category=' . htmlspecialchars($_GET['category'], ENT_QUOTES) : '';
+			$url	.=	(isset($_GET['q'])) ? '&q=' . htmlspecialchars($_GET['q'], ENT_QUOTES) : '';
+			$url	.=	'&limit=' . $this->limit;
+			//$url	.=	'&rp=' . ($this->_page - 1);
+			$url	.=	(isset($_GET['lc'])) ? '&lc=' . htmlspecialchars($_GET['lc'], ENT_QUOTES) : '';
+			$url	.=	(isset($_GET['lo'])) ? '&lo=' . htmlspecialchars($_GET['lo'], ENT_QUOTES) : '';
+	}
 ?>
 
 <ul class="<?php echo $list_class; ?>">

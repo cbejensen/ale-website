@@ -28,8 +28,8 @@
 			renderList();
 			insertListData();
 		</script>
-		<div class="list-pagination">
-			<?php $list->createLinks(5); ?>
-		</div>
+	</div>
+	<div class="list-pagination">
+		<?php echo $list->links; ?>
 	</div>
 </main>

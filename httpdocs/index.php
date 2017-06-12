@@ -69,6 +69,9 @@ else
 				case 'inventory':
 					$subsect = 'inventory';
 					break;
+				case 'gen_listings':
+					$subsect	=	'gen_listings';
+					break;
 				default:
 					$subsect = 'home';
 			}

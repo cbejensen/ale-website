@@ -38,6 +38,14 @@ class Paginator {
 		{
 			$results[]	=	$row;
 		}
+		// NULL to Empty String
+		foreach ($results as &$rrr)
+		{
+			foreach ($rrr as &$f)
+			{
+				if ($f === null) $f	=	'';
+			}
+		}
 		$result			=	new stdClass();
 		$result->page	=	$this->page;
 		$result->limit	=	$this->limit;

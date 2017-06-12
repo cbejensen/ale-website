@@ -47,6 +47,7 @@ class AdminController
 					$list		=	new ItemList($this->conn);
 					break;
 				case 'lis':
+					require_once ADMIN_PATH . '/list/models/listings.php';
 					$list		=	new ListingList($this->conn);
 					break;
 				case 'ads':

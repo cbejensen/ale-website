@@ -10262,3 +10262,86 @@ Stack trace:
 [09-Jun-2017 10:12:23 America/New_York] PHP Notice:  Undefined index: status in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\list_model.php on line 642
 [12-Jun-2017 11:01:33 America/New_York] PHP Fatal error:  Class 'ItemList' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\admin_controller.php on line 46
 [12-Jun-2017 11:01:38 America/New_York] PHP Fatal error:  Class 'ItemList' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\admin_controller.php on line 46
+[12-Jun-2017 14:58:57 America/New_York] PHP Notice:  Use of undefined constant batch_name - assumed 'batch_name' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\list_view.php on line 24
+[12-Jun-2017 15:08:01 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 54
+[12-Jun-2017 15:08:15 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 54
+[12-Jun-2017 15:10:18 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:19 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:19 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:19 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:19 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:19 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:21 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:23 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:24 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:24 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:10:24 America/New_York] PHP Warning:  number_format() expects parameter 1 to be double, string given in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\public\view\inc\ads\featured_ad.php on line 16
+[12-Jun-2017 15:12:25 America/New_York] PHP Parse error:  syntax error, unexpected ';', expecting ')' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\items.php on line 101
+[12-Jun-2017 15:33:52 America/New_York] PHP Fatal error:  Class 'ListingList' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\admin_controller.php on line 50
+[12-Jun-2017 15:34:03 America/New_York] PHP Fatal error:  Class 'ListingList' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\admin_controller.php on line 50
+[12-Jun-2017 15:42:24 America/New_York] PHP Fatal error:  Call to undefined method ListingList::setOptions() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 19
+[12-Jun-2017 15:59:49 America/New_York] PHP Notice:  Array to string conversion in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\items.php on line 26
+[12-Jun-2017 16:19:22 America/New_York] PHP Notice:  Undefined variable: meta in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 265
+[12-Jun-2017 17:29:05 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:29:05 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:29:05 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:29:05 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:29:05 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:29:48 America/New_York] PHP Notice:  Undefined property: ListingList::$url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 5
+[12-Jun-2017 17:29:48 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:29:48 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:29:48 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:29:48 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:29:48 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:29:56 America/New_York] PHP Fatal error:  Cannot access private property ListingList::$url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 5
+[12-Jun-2017 17:30:06 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:30:06 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:30:06 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:30:06 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:30:06 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:30:14 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:30:14 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:30:14 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:30:14 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:30:14 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:35:31 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:35:31 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:35:31 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:35:31 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:35:31 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:38:16 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:38:16 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:38:16 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:38:16 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:38:16 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:39:11 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:39:11 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:11 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:11 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:11 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:39:24 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:39:24 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:24 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:24 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:24 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 20
+[12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
+[12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53

@@ -81,7 +81,7 @@ ul.dropDown li a {
 	top: 0;
 /* 	border-top: 2px solid red; */
 /* 	border-bottom: 2px solid blue; */
-	z-index: 3;
+/* 	z-index: 3; */
 	display: block;
 	margin: 0 auto;
 	position: relative;
@@ -94,9 +94,10 @@ ul.dropDown li a {
 	margin: 0vh auto 1vh;
 }
 .list-wrap {
+	overflow-y: scroll;
 	width: 98%;
-	height: 73vh;
-	padding-bottom: 5vh;
+	max-height: 73vh;
+/* 	padding-bottom: 5vh; */
 	border-radius: 2px;
 	margin: 0 auto;
 	font-size: 85%;
@@ -134,7 +135,14 @@ table.list-table {
 	font-family: 'Open Sans', calibri, helvetica, sans-serif;
 	border-right: 1px solid #ddd;
 	text-align: left;
-	padding: 0.45em 0.33em;
+/* 	padding: 0.45em 0.33em; */
+	padding-left: 0.25rem;
+	height: 2.75vh;
+	vertical-align: middle;
+}
+.list-table td:first-child,
+.list-tabel th:first-child {
+	padding: 0;
 }
 .list-table td:last-child, 
 .list-table th:last-child {
@@ -175,6 +183,14 @@ span.status-rm {
 	padding: 0.1rem 0.25rem;
 	font-size: 0.8rem;
 	display: inline-block;
+}
+.list-main .list-pagination {
+	width: 98%;
+	margin: 0 auto;
+	padding-top: 0.5rem;
+}
+.list-main .std-pg {
+	margin-top: 0;
 }
 
 /*=================================================================================

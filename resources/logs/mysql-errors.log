@@ -701,3 +701,19 @@
 [08-Jun-2017 11:59:44 America/New_York] Photo Update Failed Itemlist Photo Update: bind_param() failed: 
 [08-Jun-2017 12:00:27 America/New_York] Photo Update Failed Could not move photo.
 [09-Jun-2017 14:24:33 America/New_York] Item Update Failed Update Error: Itemlist. Key: modelID Value: Select a Manufacturer or Add a New Record. InvItem Data UPDATE: execute() failed: Cannot add or update a child row: a foreign key constraint fails (`al_db`.`itemlist`, CONSTRAINT `model_item` FOREIGN KEY (`modelID`) REFERENCES `models` (`id`))
+[12-Jun-2017 15:34:51 America/New_York] Database Query Failed. Unknown column 'general_listings.reviewed' in 'where clause'
+[12-Jun-2017 15:34:51 America/New_York] Database Query Failed. Unknown column 'general_listings.reviewed' in 'where clause'
+[12-Jun-2017 15:34:51 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[12-Jun-2017 15:34:51 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[12-Jun-2017 15:35:00 America/New_York] Database Query Failed. Unknown column 'general_listings.reviewed' in 'where clause'
+[12-Jun-2017 15:35:00 America/New_York] Database Query Failed. Unknown column 'general_listings.reviewed' in 'where clause'
+[12-Jun-2017 15:35:00 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[12-Jun-2017 15:35:00 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[12-Jun-2017 15:37:46 America/New_York] Database Query Failed. Unknown column 'general_listings.reviewed' in 'where clause'
+[12-Jun-2017 15:37:46 America/New_York] Database Query Failed. Unknown column 'general_listings.reviewed' in 'where clause'
+[12-Jun-2017 15:37:46 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[12-Jun-2017 15:37:46 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[12-Jun-2017 15:40:38 America/New_York] Database Query Failed. Unknown column 'itemlist.mnfrID' in 'on clause'
+[12-Jun-2017 15:40:38 America/New_York] Database Query Failed. Unknown column 'itemlist.mnfrID' in 'on clause'
+[12-Jun-2017 15:40:38 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[12-Jun-2017 15:40:38 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37

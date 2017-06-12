@@ -64,14 +64,14 @@
 				</li>
 				<!-- Begin Products and Services button -->
 				<li id="navBtn_prod" class="<?php if ($subsect == 'inventory') echo 'activeNavBtn';?>" onmouseover="moveArrow('inventory');">
-					<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&limit=20&rp=1" style="cursor: default;">Inventory</a>
+					<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&limit=20&rp=1&srt_f=019&srt_d=asc" style="cursor: default;">Inventory</a>
  					<div id="navDrop_prod" class="dropDown">
 	 					<ul class="dropDown">
 	 						<li>
-	 							<a href="?controller=public&action=services&section=services&title=Premium%20Services">All Inventory</a>
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&limit=20&rp=1&srt_f=019&srt_d=asc">All Inventory</a>
 	 						</li>
 	 						<li>
-	 							<a href="?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services">
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=complete&limit=20&rp=1&srt_f=019&srt_d=asc">
 	 							Complete</a>
 	 						</li>
 	 						<li>
@@ -89,23 +89,26 @@
 						</ul>
 					</div>
 				</li>
-				<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
-					<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Premium Equipment</a>
-	<!-- 							<div id="navDrop_store" class="dropDown"> -->
-	<!-- 								<ul class="dropDown"> -->
-	<!-- 									<li> -->
-	<!-- 										<a href="?controller=public&action=store&section=store&title=Products">Products Home</a> -->
-	<!-- 									</li> -->
-	<!-- 									<li> -->
-	<!-- 										<a href="?controller=public&action=store&page=new_arrivals&title=New%20Arrivals&section=store"> -->
-	<!-- 										New Arrivals</a> -->
-	<!-- 									</li> -->
-	<!-- 									<li> -->
-	<!-- 										<a href="?controller=public&action=store&page=monthly_specials&title=Monthly%20Specials&section=store"> -->
-	<!-- 										Monthly Specials</a> -->
-	<!-- 									</li> -->
-	<!-- 								</ul> -->
-	<!-- 							</div> -->
+				<li id="navBtn_store" class="<?php if ($subsect == 'gen_listings') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
+					<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&limit=20&rp=1&srt_f=037&srt_d=asc" style="cursor: default;">General Listings</a>
+						<div id="navDrop_store" class="dropDown">
+							<ul class="dropDown">
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&limit=20&rp=1&srt_f=037&srt_d=asc">All Listings</a>
+								</li>
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=Listings&ltype=lis&lscp=complete&limit=20&rp=1&srt_f=037&srt_d=asc">Complete</a>
+								</li>
+	 							<li>
+ 									<a href="?controller=admin&action=showList&subsect=gen_listings&title=Review%20Listings&ltype=lis&lscp=review&limit=20&rp=1&srt_f=037&srt_d=asc">
+									Under Review</a>
+								</li>
+	 							<li>
+									<a href="?controller=public&action=store&page=monthly_specials&title=Monthly%20Specials&section=store">
+ 									General Listing Ads</a>
+	 							</li> 
+							</ul>
+	 					</div>
 				</li>
 	<!--						<li id="navBtn_news" class="<?php if ($section == 'news') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('news');">-->
 	<!-- 							<a href="?controller=public&action=news&page=newsletters&section=news&title=Newsletters">News</a> -->

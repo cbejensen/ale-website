@@ -26,7 +26,7 @@ class ItemList extends DataList
 		foreach ($this->data as $row)
 		{
 			$cells			=	$this->getCells($row);
-			$this->rows[$row['aleAsset']]	=	$cells;
+			$this->rows[]	=	$cells;
 		}
 	}
 	
@@ -53,9 +53,9 @@ class ItemList extends DataList
 					);
 		}
 		$status	=	$imgs;
-		$row['status']	=	$status;
+		$row['item_status']	=	$status;
 		$this->fieldMeta[$k++]	=	array(
-				'field'	=>	'status',
+				'field'	=>	'item_status',
 				'label'	=>	'Status'
 		);
 		
@@ -79,7 +79,7 @@ class ItemList extends DataList
 					// If the field is an inv. item's asset #, add its prefix
 				case 'itemlist.aleAsset':
 					$row['aleAsset']		=	$dataRow['suffix'] . $dataRow['aleAsset'];
-					$row['num_asset']		=	$dataRow['aleAsset'];
+					$row['id']				=	$dataRow['aleAsset'];
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	'aleAsset',
 							'label'	=>	'Asset'
@@ -98,7 +98,7 @@ class ItemList extends DataList
 					$row[$f[1]]	=	$dataRow[$f[1]];
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	$f[1],
-							'label'	=>	$f[1]
+							'label'	=>	$field['label']
 					);
 			}
 		}
