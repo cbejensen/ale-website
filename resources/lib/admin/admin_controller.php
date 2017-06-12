@@ -37,7 +37,44 @@ class AdminController
 	{
 		AdminController::loadList();
 		AdminController::loadItemModel();
-		$list		=	new DataList($this->conn); // Any exceptions thrown should be caught by the router by default.
+		if (isset($_GET['ltype']))
+		{
+			switch ($_GET['ltype'])
+			{
+				// Any exceptions thrown should be caught by the router by default.
+				case 'itm':
+					require_once ADMIN_PATH . '/list/models/items.php';
+					$list		=	new ItemList($this->conn);
+					break;
+				case 'lis':
+					$list		=	new ListingList($this->conn);
+					break;
+				case 'ads':
+					$list		=	new AdList($this->conn);
+					break;
+				case 'sub':
+					$list		=	new SubitemList($this->conn);
+					break;
+				case 'mnf':
+					$list		=	new MnfrList($this->conn);
+					break;
+				case 'mod':
+					$list		=	new ModelList($this->conn);
+					break;
+				case 'brd':
+					$list		=	new BrandList($this->conn);
+					break;
+				case 'lbl':
+					$list		=	new LabelList($this->conn);
+					break;
+				default:
+					throw new Exception('Invalid List Type');
+					break;
+			}
+		} else {
+			throw new Exception('Missing List Type');
+		}
+		$list->setRows();
 		require_once ADMIN_PATH . '/list/list_view.php';
 		// If the 'inv' parameter is set, the user has requested an item's data
 		if (isset($_GET['inv']))

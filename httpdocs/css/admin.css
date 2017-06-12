@@ -123,10 +123,10 @@ table.list-table {
 .list-table tr:hover td {
 	color: #217723;
 }
-.list-table tr.even-row {
+.list-table tr:nth-child(even) {
 	background-color: #fbfbfb;
 }
-.list-table tr.odd-row {
+.list-table tr:nth-child(odd) {
 	background-color: #eee;
 }
 .list-table td, 

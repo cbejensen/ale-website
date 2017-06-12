@@ -17,11 +17,13 @@ class DataList extends Paginator
 			$result_pg,
 			$list_class;
 	
-	public $data		=	array();	
-	public $options		=	array();
+	public 	$data			=	array();
+	public	$rows			=	array();
+	public	$options		=	array();
 			
-	private $fieldMap 	=	array();
-	private $fields		=	array();
+	protected 	$fieldMap 	=	array();
+	protected	$fields		=	array();
+	public		$fieldMeta	=	array();
 	
 	public function __construct(&$conn)
 	{
@@ -69,105 +71,13 @@ class DataList extends Paginator
 		}
 	}
 	
-	private function getCells($mode = 0, $row = 0)
+	protected function initFields()
 	{
-		/* 
-		 * Mode 0: header cell.
-		 * Mode 1: table cell.
-		 * This method is called by the getHeaders() and getRows() methods.
-		 * 
-		 * THIS METHOD is called by a row. It generates the content for a row.
-		 */
-		$out	=	array(); // The output array of cell content
-		
-		// For table content before default rows (e.g. Select, Flags)
-		if ($mode === 1)
-		{
-			// First, a select field. Then, an optional "status" field.
-			$out[]	=	'<input class="item-select" type="checkbox" name="select" value="' . $row['aleAsset'] . '">';
-			switch ($this->ltype)
-			{
-				case 'items':
-					$status	=	InvItem::getStatus($row['aleAsset'], $this->conn);
-					$imgs	=	'';
-					foreach ($status as $stat)
-					{
-						$imgs	.=	"<img class=\"status-flag\" src=\"img/interface/status_$stat[0].png\" alt=\"$stat[1]\">";
-					}
-					$out[]	=	$imgs;
-					break;
-			}
-		}
-		
-		// For header content before default rows (e.g. Select, Flags)
-		if ($mode === 0)
-		{
-			$out[]	=	'';
-			switch ($this->ltype)
-			{
-				case 'items':
-					$out[]	=	'Status';
-			}
-		}
-		
-		// Begin default rows
-		foreach ($this->fields as $field)
-		{
-			/*
-			 * THIS SWITCH can be used to alter the default rendering of a field.
-			 * The default setting creates a column with the label on file, and inserts the raw data.
-			 */
-			switch ($field['field_name'])
-			{
-				// If the field is an inv. item's prefix, skip creating a column
-				case 'item_track.suffix':
-				case 'models.model':
-				case 'brands.brand':
-				case 'models.function_desc':
-				case 'itemlist.title_extn':
-					continue;
-					break;
-					// If the field is an inv. item's asset #, add its prefix
-				case 'itemlist.aleAsset':
-					switch ($mode)
-					{
-						case 0:
-							$out[]		=	'Asset';
-							break;
-						case 1:
-							$out[]		=	$row['suffix'] . $row['aleAsset'];
-							break;
-					}
-					break;
-				case 'manufacturers.mnfr':
-					switch ($mode)
-					{
-						case 0:
-							$out[]		=	'Title';
-							break;
-						case 1:
-							$out[]		=	$row['mnfr'].' '.$row['brand'].' '.$row['model'].' '.$row['function_desc'].' '.$row['title_extn'];
-							break;
-					}
-					break;
-					// By default, just add the contents of the field to the column
-				default:
-					switch ($mode)
-					{
-						case 0:
-							$out[]		=	$field['label'];
-							break;
-						case 1:
-							$f			=	explode('.', $field['field_name']);
-							$out[]		=	$row[$f[1]];
-							break;
-					}
-			}
-		}
-		return $out;
+		$this->setFieldMap();
+		$this->setFields();
 	}
 	
-	private function setFieldMap()
+	protected function setFieldMap()
 	{
 		/*
 		 * Takes no args, simply goes into database to retreive names of necessary fields.
@@ -179,106 +89,19 @@ class DataList extends Paginator
 		{
 			$r->data_seek($j);
 			$row						=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->fieldMap[$row['id']]	=	array('field_name' => $row['field_name'], 'label' => $row['label']);	
+			$this->fieldMap[$row['id']]	=	array('field_name' => $row['field_name'], 'label' => $row['label']);
 		}
 	}
 	
-	private function setListType()
-	{
-		/* 
-		 * Determine which list to generate.
-		 * Takes no args, looks for $_GET['ltype'], the URL param for "list type"
-		 */
-		if (isset($_GET['ltype']))
-		{
-			switch ($_GET['ltype'])
-			{
-				case 'itm':
-					$this->ltype	=	'items';
-					break;
-				case 'lis':
-					$this->ltype	=	'listings';
-					break;
-				case 'ads':
-					$this->ltype	=	'ads';
-					break;
-				case 'sub':
-					$this->ltype	=	'subitem_of';
-					break;
-				case 'mnf':
-					$this->ltype	=	'mnfr';
-					break;
-				case 'mod':
-					$this->ltype	=	'models';
-					break;
-				case 'brd':
-					$this->ltype	=	'brands';
-					break;
-				case 'lbl':
-					$this->ltype	=	'labels';
-					break;
-				default:
-					throw new Exception('Invalid List Type');
-					break;
-			}
-		} else {
-			throw new Exception('Missing List Type');
-		}
-	}
-	
-	private function setListScope()
-	{
-		/*
-		 * Set the scope property. This property determines the set of results based on completion/review status.
-		 * Takes no args, looks for $_GET['lscp'], the URL param for 'list scope'
-		 */ 
-		if (isset($_GET['lscp']))
-		{
-			switch ($_GET['lscp'])
-			{
-				case 'all':
-					$this->lscope	=	'all';
-					break;
-				case 'complete':
-					$this->lscope	=	'complete';
-					break;
-				case 'review':
-					$this->lscope	=	'review';
-					break;
-				default:
-					throw new Exception('Invalid List Scope');
-					break;
-			}
-		} else {
-			$this->lscope	=	'all';
-		}
-	}
-	
-	private function setSearchKey()
-	{
-		/* 
-		 * Sets the searchKey property, which is used to filter results based on the terms given.
-		 * Set $searchKey as an array of the given input (delimited by spaces), else set it to NULL if not supplied.
-		 * 
-		 */
-		if (isset($_GET['q']))
-		{
-			$q				=	mysql_entities_fix_string($this->conn, $_GET['q']);
-			$this->searchKey	=	explode(' ', $q);
-		} else {
-			$this->searchKey	=	null;
-		}
-	}
-	
-	private function setFields()
+	protected function setFields()
 	{
 		/*
 		 * Sets the fields property, which is an array of field names.
-		 * This property represents the default fields, based on entries in the database, in addition to any added fields. 
+		 * This property represents the default fields, based on entries in the database, in addition to any added fields.
 		 */
-		$q		=	"SELECT default_fields.field_name, field_map.label FROM default_fields 
-					LEFT JOIN field_map ON default_fields.field_name = field_map.field_name
-					WHERE list='$this->ltype' AND field_order!=0 ORDER BY field_order";
+		$q		=	"SELECT default_fields.field_name, field_map.label FROM default_fields
+		LEFT JOIN field_map ON default_fields.field_name = field_map.field_name
+		WHERE list='$this->ltype' AND field_order!=0 ORDER BY field_order";
 		$r		=	db_query($q, $this->conn);
 		for ($j = 0 ; $j < $r->num_rows ; $j++)
 		{
@@ -309,8 +132,59 @@ class DataList extends Paginator
 			}
 		}
 	}
-		
-	private function setSortField()
+
+	protected function setFilters()
+	{
+		$this->setListScope();
+		$this->setSearchKey();
+		$this->setSortField();
+	}
+	
+	protected function setListScope()
+	{
+		/*
+		 * Set the scope property. This property determines the set of results based on completion/review status.
+		 * Takes no args, looks for $_GET['lscp'], the URL param for 'list scope'
+		 */
+		if (isset($_GET['lscp']))
+		{
+			switch ($_GET['lscp'])
+			{
+				case 'all':
+					$this->lscope	=	'all';
+					break;
+				case 'complete':
+					$this->lscope	=	'complete';
+					break;
+				case 'review':
+					$this->lscope	=	'review';
+					break;
+				default:
+					throw new Exception('Invalid List Scope');
+					break;
+			}
+		} else {
+			$this->lscope	=	'all';
+		}
+	}
+	
+	protected function setSearchKey()
+	{
+		/*
+		 * Sets the searchKey property, which is used to filter results based on the terms given.
+		 * Set $searchKey as an array of the given input (delimited by spaces), else set it to NULL if not supplied.
+		 *
+		 */
+		if (isset($_GET['q']))
+		{
+			$q				=	mysql_entities_fix_string($this->conn, $_GET['q']);
+			$this->searchKey	=	explode(' ', $q);
+		} else {
+			$this->searchKey	=	null;
+		}
+	}
+	
+	protected function setSortField()
 	{
 		/*
 		 * Sets the sortField property, which determines the field to sort by.
@@ -348,7 +222,7 @@ class DataList extends Paginator
 		}
 	}
 	
-	private function setPaginationOptions()
+	protected function setPaginationOptions()
 	{
 		/*
 		 * Set pagination options. 
@@ -369,7 +243,7 @@ class DataList extends Paginator
 		$this->list_class	=	(isset($_GET['lc'])) ? htmlspecialchars($_GET['lc'], ENT_QUOTES) : null;
 	}
 	
-	private function setQuery()
+	protected function setQuery()
 	{
 		/* 
 		 * Define default table/field, to be used for query construction. 
@@ -427,7 +301,7 @@ class DataList extends Paginator
 		
 	}
 	
-	private function getSelectClause($default_field)
+	protected function getSelectClause($default_field)
 	{
 		$select		=	"SELECT $default_field, ";
 		foreach ($this->fields as $field)
@@ -439,7 +313,7 @@ class DataList extends Paginator
 		return $select;
 	}
 	
-	private function getFromClause($default_table, $tables)
+	protected function getFromClause($default_table, $tables)
 	{
 		$from		=	" FROM $default_table";
 		
@@ -472,7 +346,7 @@ class DataList extends Paginator
 		return $from;
 	}
 	
-	private function getWhereClause($table, $tables)
+	protected function getWhereClause($table, $tables)
 	{
 		switch ($this->lscope)
 		{
@@ -529,7 +403,7 @@ class DataList extends Paginator
 		return $where;
 	}
 	
-	private function setData()
+	protected function setData()
 	{
 		/*
 		 * Given parameters set at construction of object, gather data from the database.
@@ -557,109 +431,46 @@ class DataList extends Paginator
 		}
 	}
 	
-	private function setOptions()
-	{
-		// Vendors
-		$q		=	"SELECT id, vendor FROM vendors WHERE active=1 ORDER BY vendor";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['vendors'][$row['id']]	=	$row['vendor'];
-		}
-		
-		// Manufacturers
-		$q		=	"SELECT id, mnfr FROM manufacturers WHERE active=1 ORDER BY mnfr";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['mnfrs'][$row['id']]	=	$row['mnfr'];
-		}
-		
-		// Models
-		$q		=	"SELECT id, model, function_desc FROM models WHERE active=1 ORDER BY model";
-// 		$q		=	"SELECT model_mnfr.modelID, models.model FROM model_mnfr
-// 					JOIN models ON model_mnfr.modelID = models.id
-// 					WHERE models.active=1 ORDER BY models.model";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['models'][$row['id']]	=	$row['model'] . ' [' . $row['function_desc'] .']';
-		}
-		
-		// Brands
-		$q		=	"SELECT id, brand FROM brands WHERE active=1 ORDER BY brand";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['brands'][$row['id']]	=	$row['brand'];
-		}
-		
-		// Batches
-		$q		=	"SELECT id, batch_name FROM inv_batch ORDER BY batch_name";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['batch'][$row['id']]	=	$row['batch_name'];
-		}
-		
-		// Nov. Prev. Owners 
-		$q		=	"SELECT id, prev_owner FROM emp_prev_owners ORDER BY prev_owner";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['prev_owner'][$row['id']]	=	$row['prev_owner'];
-		}
-		
-		// Statuses
-		$q		=	"SELECT id, status FROM item_status ORDER BY status";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['status'][$row['id']]	=	$row['status'];
-		}
-		
-		// model_mnfr
-		$q		=	"SELECT mnfrID, modelID FROM model_mnfr WHERE active=1";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['model_mnfr'][]	=	array('mnfr'=>$row['mnfrID'], 'model'=>$row['modelID']);
-		}
-		
-		// mnfr_brand
-		$q		=	"SELECT mnfrID, brandID FROM mnfr_brand WHERE active=1";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['mnfr_brand'][]	=	array('mnfr'=>$row['mnfrID'], 'brand'=>$row['brandID']);
-		}
-		
-		//functions
-		$q		=	"SELECT id, function_desc FROM models WHERE active=1";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['functions'][$row['id']]	=	$row['function_desc'];
-		}
-	}
+	// 	private function setListType()
+	// 	{
+	// 		/*
+	// 		 * Determine which list to generate.
+	// 		 * Takes no args, looks for $_GET['ltype'], the URL param for "list type"
+	// 		 */
+	// 		if (isset($_GET['ltype']))
+		// 		{
+		// 			switch ($_GET['ltype'])
+		// 			{
+		// 				case 'itm':
+		// 					$this->ltype	=	'items';
+		// 					break;
+		// 				case 'lis':
+		// 					$this->ltype	=	'listings';
+		// 					break;
+		// 				case 'ads':
+		// 					$this->ltype	=	'ads';
+		// 					break;
+		// 				case 'sub':
+		// 					$this->ltype	=	'subitem_of';
+		// 					break;
+		// 				case 'mnf':
+		// 					$this->ltype	=	'mnfr';
+		// 					break;
+		// 				case 'mod':
+		// 					$this->ltype	=	'models';
+		// 					break;
+		// 				case 'brd':
+		// 					$this->ltype	=	'brands';
+		// 					break;
+		// 				case 'lbl':
+		// 					$this->ltype	=	'labels';
+		// 					break;
+		// 				default:
+		// 					throw new Exception('Invalid List Type');
+		// 					break;
+		// 			}
+		// 		} else {
+		// 			throw new Exception('Missing List Type');
+		// 		}
+		// 	}
 }
