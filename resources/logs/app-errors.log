@@ -10345,3 +10345,73 @@ Stack trace:
 [12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
 [12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 37
 [12-Jun-2017 17:39:39 America/New_York] PHP Notice:  Undefined variable: url in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 53
+[13-Jun-2017 09:23:14 America/New_York] PHP Fatal error:  Access level to ListingList::$url must be public (as in class DataList) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 141
+[13-Jun-2017 09:24:16 America/New_York] PHP Fatal error:  Access level to ListingList::$url must be public (as in class DataList) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 142
+[13-Jun-2017 10:08:33 America/New_York] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 149
+[13-Jun-2017 10:08:39 America/New_York] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 149
+[13-Jun-2017 10:08:40 America/New_York] PHP Parse error:  syntax error, unexpected '}' in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 149
+[13-Jun-2017 10:09:43 America/New_York] PHP Fatal error:  Call to undefined function htmlentites() in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 26
+[13-Jun-2017 10:12:37 America/New_York] PHP Notice:  Undefined index: limit in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator_view.php on line 7
+[13-Jun-2017 10:30:21 America/New_York] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\routes.php on line 93
+[13-Jun-2017 10:31:47 America/New_York] Action Called Threw an Exception. Invalid List Scope
+[13-Jun-2017 10:32:02 America/New_York] Action Called Threw an Exception: Invalid List Scope
+[13-Jun-2017 10:32:14 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 10:32:14 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 10:32:21 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 10:32:21 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 10:32:23 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 10:32:23 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 10:32:28 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 10:32:28 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 10:33:59 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 10:33:59 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 10:37:40 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 10:37:40 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 10:37:42 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 10:37:42 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 10:40:18 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 10:40:18 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 11:12:56 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 11:12:56 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 11:13:01 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 11:13:02 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 11:14:25 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 11:14:25 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 11:14:42 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\templates\layout_aldb.php:119) in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 85
+[13-Jun-2017 11:14:42 America/New_York] List Limit cookie could not be set.
+[13-Jun-2017 11:24:17 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:24:17 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:24:21 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:24:21 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:24:23 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:24:23 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:26:27 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:26:27 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:26:32 America/New_York] PHP Notice:  Undefined index: limit in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 51
+[13-Jun-2017 11:26:45 America/New_York] PHP Notice:  Undefined index: limit in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\user_init.php on line 51
+[13-Jun-2017 11:26:55 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:26:55 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:26:57 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:26:57 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:26:59 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:26:59 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 11:27:03 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 157
+[13-Jun-2017 11:27:03 America/New_York] PHP Notice:  Undefined variable: title in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\listings.php on line 158
+[13-Jun-2017 15:15:48 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:15:52 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:17:46 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:17:50 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:20:10 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:20:20 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:21:33 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:22:44 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:22:46 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:24:45 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:24:47 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:25:47 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:26:05 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:26:34 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:26:38 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:26:40 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 15:27:55 America/New_York] Action Called Threw an Exception: Invalid list type.
+[13-Jun-2017 16:35:48 America/New_York] PHP Fatal error:  Class 'GenListingAdList' not found in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\admin_controller.php on line 54

@@ -12,8 +12,8 @@ function renderList()
 	var headerRow	=	createHeaderRow();
 	var rows	=	[];
 	Object.keys(tableRows).forEach(function(curRow){
-		console.log('Current Iteration: '+ curRow);
-		console.log(tableRows[curRow]);
+		//console.log('Current Iteration: '+ curRow);
+		//console.log(tableRows[curRow]);
 		var row	=	createTableRow(tableRows[curRow]);
 		rows.push(row);
 		//dataFields.push(row);

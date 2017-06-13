@@ -72,6 +72,9 @@ else
 				case 'gen_listings':
 					$subsect	=	'gen_listings';
 					break;
+				case 'misc_records':
+					$subsect	=	'misc_records';
+					break;
 				default:
 					$subsect = 'home';
 			}

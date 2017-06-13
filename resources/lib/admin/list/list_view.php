@@ -1,5 +1,6 @@
 <main class="list-main" id="list-main">
 	<div class="list-toolbar material">
+		<div class="page-info" id="page-info"></div>
 	<?php 
 // 		foreach ($list->tools as $tool)
 // 		{

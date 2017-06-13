@@ -88,6 +88,8 @@ function call($controller, $action)
 		$controller->{ $action }();
 	} 
 	catch (Exception $e) {
-		// Do something if the action throws an exception
+		$errorData	=	array('title' => 'Action Called Threw an Exception:', 'error' => $e->getMessage());
+		ini_set('error_log', LOGS_PATH . '/app-errors.log');
+		error_log($errorData['title'] . ' ' . $errorData['error']);
 	}
 }

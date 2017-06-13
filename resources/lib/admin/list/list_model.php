@@ -15,7 +15,9 @@ class DataList extends Paginator
 			$sortOrder,
 			$links,
 			$result_pg,
-			$list_class;
+			$list_class,
+			$url,
+			$title;
 	
 	public 	$data			=	array();
 	public	$rows			=	array();
@@ -32,6 +34,7 @@ class DataList extends Paginator
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
+		$this->url		=	'?controller=admin&action=showList';
 		$this->setFieldMap();
 		$this->setListType();
 		$this->setListScope();
@@ -118,6 +121,7 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['f']))
 		{
+			$this->url		.=	'&f=' . $_GET['f'];
 			$fields	=	explode(',', $_GET['f']);
 			foreach ($fields as $fieldId)
 			{
@@ -148,6 +152,7 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['lscp']))
 		{
+			$this->url		.=	'&lscp=' . $_GET['lscp'];
 			switch ($_GET['lscp'])
 			{
 				case 'all':
@@ -158,6 +163,12 @@ class DataList extends Paginator
 					break;
 				case 'review':
 					$this->lscope	=	'review';
+					break;
+				case 'active':
+					$this->lscope	=	'active';
+					break;
+				case 'inactive':
+					$this->lscope	=	'inactive';
 					break;
 				default:
 					throw new Exception('Invalid List Scope');
@@ -179,6 +190,7 @@ class DataList extends Paginator
 		{
 			$q				=	mysql_entities_fix_string($this->conn, $_GET['q']);
 			$this->searchKey	=	explode(' ', $q);
+			$this->url			.=	'&q=' . urlencode($_GET['q']);
 		} else {
 			$this->searchKey	=	null;
 		}
@@ -196,6 +208,7 @@ class DataList extends Paginator
 			if (array_key_exists($_GET['srt_f'], $this->fieldMap))
 			{
 				$this->sortField	=	$this->fieldMap[$_GET['srt_f']]['field_name'];
+				$this->url			.=	'&srt_f=' . $_GET['srt_f'];
 			} else {
 				// Defaults to ALE Asset if given id is invalid, sends error report
 				$this->sortField	=	'itemlist.aleAsset';
@@ -208,6 +221,7 @@ class DataList extends Paginator
 		
 		if (isset($_GET['srt_d']))
 		{
+			$this->url	.=	'&srt_d=' . $_GET['srt_d'];
 			switch ($_GET['srt_d'])
 			{
 				case 'asc':
@@ -257,8 +271,11 @@ class DataList extends Paginator
 			case 'listings':
 				$default_table	=	array('general_listings', 'id');
 				break;
-			case 'ads':
+			case 'gl_ads':
 				$default_table	=	array('adverts_listings', 'id');
+				break;
+			case 'item_ads':
+				$default_table	=	array('adverts_items', 'id');
 				break;
 			case 'subitem_of':
 				$default_table	=	array('subitem_of', 'id');
@@ -274,6 +291,12 @@ class DataList extends Paginator
 				break;
 			case 'labels':
 				$default_table	=	array('labels', 'id');
+				break;
+			case 'vendors':
+				$default_table	=	array('vendors', 'id');
+				break;
+			case 'batches':
+				$default_table	=	array('inv_batch', 'id');
 				break;
 			default:
 				throw new Exception('Invalid list type.');
@@ -365,6 +388,18 @@ class DataList extends Paginator
 				break;
 			case 'review':
 				$where	=	" WHERE $table.reviewed=0";
+				if (isset($this->searchKey)) {
+					$where .= ' AND (';
+				}
+				break;
+			case 'active':
+				$where	=	" WHERE $table.active=1";
+				if (isset($this->searchKey)) {
+					$where .= ' AND (';
+				}
+				break;
+			case 'inactive':
+				$where	=	" WHERE $table.active=0";
 				if (isset($this->searchKey)) {
 					$where .= ' AND (';
 				}
@@ -464,6 +499,15 @@ class DataList extends Paginator
 		// 					break;
 		// 				case 'lbl':
 		// 					$this->ltype	=	'labels';
+		// 					break;
+		//				case 'sub':
+		//					$this->ltype	=	'subitems';
+		// 					break;
+		// 				case 'ven':
+		// 					$this->ltype	=	'vendors';
+		// 					break;
+		// 				case 'bat':
+		// 					$this->ltype	=	'batches';
 		// 					break;
 		// 				default:
 		// 					throw new Exception('Invalid List Type');

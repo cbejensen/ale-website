@@ -64,14 +64,14 @@
 				</li>
 				<!-- Begin Products and Services button -->
 				<li id="navBtn_prod" class="<?php if ($subsect == 'inventory') echo 'activeNavBtn';?>" onmouseover="moveArrow('inventory');">
-					<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&limit=20&rp=1&srt_f=019&srt_d=asc" style="cursor: default;">Inventory</a>
+					<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc" style="cursor: default;">Inventory</a>
  					<div id="navDrop_prod" class="dropDown">
 	 					<ul class="dropDown">
 	 						<li>
-	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&limit=20&rp=1&srt_f=019&srt_d=asc">All Inventory</a>
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc">All Inventory</a>
 	 						</li>
 	 						<li>
-	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=complete&limit=20&rp=1&srt_f=019&srt_d=asc">
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=complete&rp=1&srt_f=019&srt_d=asc">
 	 							Complete</a>
 	 						</li>
 	 						<li>
@@ -90,23 +90,56 @@
 					</div>
 				</li>
 				<li id="navBtn_store" class="<?php if ($subsect == 'gen_listings') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
-					<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&limit=20&rp=1&srt_f=037&srt_d=asc" style="cursor: default;">General Listings</a>
+					<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&rp=1&srt_f=037&srt_d=asc" style="cursor: default;">General Listings</a>
 						<div id="navDrop_store" class="dropDown">
 							<ul class="dropDown">
 								<li>
-	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&limit=20&rp=1&srt_f=037&srt_d=asc">All Listings</a>
+	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&rp=1&srt_f=037&srt_d=asc">All Listings</a>
 								</li>
 								<li>
-	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=Listings&ltype=lis&lscp=complete&limit=20&rp=1&srt_f=037&srt_d=asc">Complete</a>
+	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=Listings&ltype=lis&lscp=complete&rp=1&srt_f=037&srt_d=asc">Complete</a>
 								</li>
 	 							<li>
- 									<a href="?controller=admin&action=showList&subsect=gen_listings&title=Review%20Listings&ltype=lis&lscp=review&limit=20&rp=1&srt_f=037&srt_d=asc">
+ 									<a href="?controller=admin&action=showList&subsect=gen_listings&title=Review%20Listings&ltype=lis&lscp=review&srt_f=037&srt_d=asc">
 									Under Review</a>
 								</li>
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=Active%20Listings&ltype=lis&lscp=active&rp=1&srt_f=037&srt_d=asc">All Active</a>
+								</li>
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=gen_listings&title=Inactive%20Listings&ltype=lis&lscp=inactive&&rp=1&srt_f=037&srt_d=asc">All Inactive</a>
+								</li>
 	 							<li>
-									<a href="?controller=public&action=store&page=monthly_specials&title=Monthly%20Specials&section=store">
+									<a href="?controller=admin&action=showList&subsect=gen_listings&title=All+Gen.+Listing+Ads&ltype=gl_ads&lscp=all&srt_f=019">
  									General Listing Ads</a>
-	 							</li> 
+	 							</li>
+							</ul>
+	 					</div>
+				</li>
+				<li id="navBtn_store" class="<?php if ($subsect == 'misc_records') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
+					<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&rp=1&srt_f=037&srt_d=asc" style="cursor: default;">Misc. Records</a>
+						<div id="navDrop_store" class="dropDown">
+							<ul class="dropDown">
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All%20Manufacturers&ltype=mnf&lscp=all&srt_f=019">All Manufacturers</a>
+								</li>
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All%20Models&ltype=mod&lscp=all&srt_f=021">All Models</a>
+								</li>
+	 							<li>
+ 									<a href="?controller=admin&action=showList&subsect=misc_records&title=All%20Brands&ltype=brd&lscp=all&srt_f=023">
+									All Brands</a>
+								</li>
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All+QB+Master+Items&ltype=sub&lscp=all&srt_f=020">All QB Master Items</a>
+								</li>
+								<li>
+	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Vendors&ltype=ven&lscp=all&srt_f=046">All Vendors</a>
+								</li>
+	 							<li>
+									<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Batches&ltype=bat&lscp=all&srt_f=049">
+ 									All Batches</a>
+	 							</li>
 							</ul>
 	 					</div>
 				</li>

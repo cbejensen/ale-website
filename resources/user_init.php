@@ -42,9 +42,23 @@ if (!isset($_COOKIE['serp-limit']))
 	}
 }
 
-if ($_GET['controller']	== 'admin')
+
+// Admin Cookies
+if ($_GET['controller'] == 'admin')
 {
-	// Set cookies
+	if (!isset($_COOKIE['list-limit']))
+	{
+		if (is_numeric($_GET['limit'])) {
+			setListLimitCookie();
+		}
+	} else {
+		if (isset($_GET['limit']) && $_COOKIE['list-limit'] != $_GET['limit'])
+		{
+			if (is_numeric($_GET['limit'])) {
+				setListLimitCookie();
+			}
+		}
+	}
 }
 
 
@@ -76,5 +90,16 @@ function setLimitCookie()
 	if (!setcookie('serp-limit', $limit, time()+60*60*24*30*2, '/'))
 	{
 		// send report that cookie could not be sent.
+	}
+}
+
+function setListLimitCookie()
+{
+	$limit	=	$_GET['limit'];
+	if (!setcookie('list-limit', $limit, time()+60*60*24*30*2, '/'))
+	{
+		// send report that cookie could not be sent.
+		ini_set('error_log', LOGS_PATH . '/app-errors.log');
+		error_log('List Limit cookie could not be set.');
 	}
 }

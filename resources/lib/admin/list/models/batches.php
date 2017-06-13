@@ -1,6 +1,6 @@
 <?php
 
-class BrandList extends DataList
+class BatchList extends DataList
 {
 	public function __construct(&$conn)
 	{
@@ -9,8 +9,8 @@ class BrandList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList&subsect=misc_records&ltype=brd';
-		$this->ltype	=	'brands';
+		$this->url		=	'?controller=admin&action=showList&subsect=misc_records&ltype=bat';
+		$this->ltype	=	'batches';
 		$this->initFields();
 		$this->setFilters();
 		$this->setPaginationOptions();
@@ -103,13 +103,13 @@ class BrandList extends DataList
 		switch ($this->lscope)
 		{
 			case 'all':
-				$title	=	'All Brands';
+				$title	=	'All Batches';
 				break;
 			case 'complete':
-				$title	=	'Complete Brands';
+				$title	=	'Complete Batches';
 				break;
 			case 'review':
-				$title	=	'Review Brands';
+				$title	=	'Review Batches';
 				break;
 		}
 		$this->title 	=	$title;

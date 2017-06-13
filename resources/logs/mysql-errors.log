@@ -717,3 +717,27 @@
 [12-Jun-2017 15:40:38 America/New_York] Database Query Failed. Unknown column 'itemlist.mnfrID' in 'on clause'
 [12-Jun-2017 15:40:38 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
 [12-Jun-2017 15:40:38 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[13-Jun-2017 12:13:36 America/New_York] Database Query Failed. Unknown column 'subitem_of.subitem_of' in 'field list'
+[13-Jun-2017 12:13:36 America/New_York] Database Query Failed. Unknown column 'subitem_of.subitem_of' in 'field list'
+[13-Jun-2017 12:13:36 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[13-Jun-2017 12:13:36 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[13-Jun-2017 14:01:04 America/New_York] Database Query Failed. Unknown column 'itemlist.weight' in 'order clause'
+[13-Jun-2017 14:01:04 America/New_York] Database Query Failed. Unknown column 'itemlist.weight' in 'order clause'
+[13-Jun-2017 14:01:04 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[13-Jun-2017 14:01:04 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[13-Jun-2017 14:01:11 America/New_York] Database Query Failed. Unknown column 'itemlist.weight' in 'order clause'
+[13-Jun-2017 14:01:11 America/New_York] Database Query Failed. Unknown column 'itemlist.weight' in 'order clause'
+[13-Jun-2017 14:01:11 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[13-Jun-2017 14:01:11 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[13-Jun-2017 14:03:28 America/New_York] Database Query Failed. Unknown column 'itemlist.weight' in 'order clause'
+[13-Jun-2017 14:03:28 America/New_York] Database Query Failed. Unknown column 'itemlist.weight' in 'order clause'
+[13-Jun-2017 14:03:28 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[13-Jun-2017 14:03:28 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[13-Jun-2017 16:36:20 America/New_York] Database Query Failed. Table 'al_db.general_listngs' doesn't exist
+[13-Jun-2017 16:36:20 America/New_York] Database Query Failed. Table 'al_db.general_listngs' doesn't exist
+[13-Jun-2017 16:36:20 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[13-Jun-2017 16:36:20 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[13-Jun-2017 17:46:37 America/New_York] Database Query Failed. Unknown column 'adverts_listings.active' in 'where clause'
+[13-Jun-2017 17:46:37 America/New_York] Database Query Failed. Unknown column 'adverts_listings.active' in 'where clause'
+[13-Jun-2017 17:46:37 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[13-Jun-2017 17:46:37 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37

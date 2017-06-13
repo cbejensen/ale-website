@@ -1,6 +1,6 @@
 <?php
 
-class ListingList extends DataList
+class GenListingAdList extends DataList
 {
 	public function __construct(&$conn)
 	{
@@ -9,8 +9,8 @@ class ListingList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList&subsect=gen_listings&ltype=lis';
-		$this->ltype	=	'listings';
+		$this->url		=	'?controller=admin&action=showList&subsect=gen_listings&ltype=gl_ads';
+		$this->ltype	=	'gl_ads';
 		$this->initFields();
 		$this->setFilters();
 		$this->setPaginationOptions();
@@ -23,7 +23,6 @@ class ListingList extends DataList
 	
 	public function setRows()
 	{
-// 		echo htmlentities($this->url);
 		foreach ($this->data as $row)
 		{
 			$cells			=	$this->getCells($row);
@@ -43,22 +42,6 @@ class ListingList extends DataList
 				'field'	=>	'select',
 				'label'	=>	''
 		);
-// 		// Item Status Field (For Status Thumbnails).
-// 		$itemStatus	=	InvItem::getStatus($dataRow['aleAsset'], $this->conn);
-// 		$imgs		=	array();
-// 		foreach ($itemStatus as $stat)
-// 		{
-// 			$imgs[]	=	array(
-// 					'src'	=>	"img/interface/status_$stat[0].png",
-// 					'alt'	=>	$stat[1]
-// 			);
-// 		}
-// 		$status	=	$imgs;
-// 		$row['item_status']	=	$status;
-// 		$this->fieldMeta[$k++]	=	array(
-// 				'field'	=>	'item_status',
-// 				'label'	=>	'Status'
-// 		);
 		
 		// Begin default rows
 		foreach ($this->fields as $field)
@@ -78,15 +61,6 @@ class ListingList extends DataList
 				case 'general_listings.title_extn':
 					continue;
 					break;
-					// If the field is an inv. item's asset #, add its prefix
-// 				case 'itemlist.aleAsset':
-// 					$row['id']		=	$dataRow['suffix'] . $dataRow['aleAsset'];
-// 					$row['num_asset']		=	$dataRow['aleAsset'];
-// 					$this->fieldMeta[$k++]	=	array(
-// 							'field'	=>	'aleAsset',
-// 							'label'	=>	'Asset'
-// 					);
-// 					break;
 				case 'manufacturers.mnfr':
 					$row['title']	=	$dataRow['mnfr'].' '.$dataRow['brand'].' '.$dataRow['model'].' '.$dataRow['function_desc'].' '.$dataRow['title_extn'];
 					$this->fieldMeta[$k++]	=	array(
@@ -118,7 +92,11 @@ class ListingList extends DataList
 			switch ($tf)
 			{
 				case 'manufacturers':
-					$from	.=	' LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id';
+					$from	.=	' LEFT JOIN general_listings ON adverts_listings.listingID = general_listings.id
+								LEFT JOIN manufacturers ON general_listings.mnfrID = manufacturers.id';
+					break;
+				case 'subitem_of':
+					$from	.=	' LEFT JOIN subitem_of ON manufacturers.subitem_of = subitem_of.id';
 					break;
 				case 'models':
 					$from	.=	' LEFT JOIN models ON general_listings.modelID = models.id';
@@ -126,15 +104,6 @@ class ListingList extends DataList
 				case 'brands':
 					$from	.=	' LEFT JOIN brands ON general_listings.brandID = brands.id';
 					break;
-// 				case 'item_track':
-// 					$from	.=	' LEFT JOIN item_track ON itemlist.track = item_track.id';
-// 					break;
-// 				case 'inv_batch':
-// 					$from	.=	' LEFT JOIN inv_batch ON itemlist.batch = inv_batch.id';
-// 					break;
-// 				case 'vendors':
-// 					$from	.=	' LEFT JOIN item_accounting ON itemlist.aleAsset = item_accounting.aleAsset';
-// 					$from	.=	' LEFT JOIN vendors ON item_accounting.vendorID = vendors.id';
 			}
 		}
 		return $from;
@@ -145,19 +114,13 @@ class ListingList extends DataList
 		switch ($this->lscope)
 		{
 			case 'all':
-				$title	=	'All Listings';
+				$title	=	'All General Listing Ads';
 				break;
 			case 'complete':
-				$title	=	'Complete Listings';
+				$title	=	'Complete General Listing Ads';
 				break;
 			case 'review':
-				$title	=	'Review Listings';
-				break;
-			case 'active':
-				$title	=	'Active Listings';
-				break;
-			case 'inactive':
-				$title	=	'Inactive Listings';
+				$title	=	'Review General Listing Ads';
 				break;
 		}
 		$this->title 	=	$title;

@@ -50,23 +50,40 @@ class AdminController
 					require_once ADMIN_PATH . '/list/models/listings.php';
 					$list		=	new ListingList($this->conn);
 					break;
-				case 'ads':
-					$list		=	new AdList($this->conn);
+				case 'gl_ads':
+					require_once ADMIN_PATH . '/list/models/gl_ads.php';
+					$list		=	new GenListingAdList($this->conn);
+					break;
+				case 'item_ads':
+					$list		=	new ItemListingAdList($this->conn);
 					break;
 				case 'sub':
+					require_once ADMIN_PATH . '/list/models/subitem_of.php';
 					$list		=	new SubitemList($this->conn);
 					break;
 				case 'mnf':
+					require_once ADMIN_PATH . '/list/models/mnfr.php';
 					$list		=	new MnfrList($this->conn);
 					break;
 				case 'mod':
+					require_once ADMIN_PATH . '/list/models/models.php';
 					$list		=	new ModelList($this->conn);
 					break;
 				case 'brd':
+					require_once ADMIN_PATH . '/list/models/brands.php';
 					$list		=	new BrandList($this->conn);
 					break;
 				case 'lbl':
+					echo 'raerajwedadd';
 					$list		=	new LabelList($this->conn);
+					break;
+				case 'ven':
+					require_once ADMIN_PATH . '/list/models/vendors.php';
+					$list		=	new VendorList($this->conn);
+					break;
+				case 'bat':
+					require_once ADMIN_PATH . '/list/models/batches.php';
+					$list		=	new BatchList($this->conn);
 					break;
 				default:
 					throw new Exception('Invalid List Type');

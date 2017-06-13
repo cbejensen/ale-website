@@ -4,6 +4,12 @@
 	{
 // 		print_r($this->url);
 		$url	=	$this->url;
+// 		if (isset($_GET['limit'])) 
+// 		{
+// 			$url	.=	'&limit=' . $_GET['limit'];
+// 		} else {
+// 			$url	.=	'&limit=' .	$_COOKIE['serp-limit'];
+// 		}
 	} else {
 			$url	=	'?controller=public&action=store&section=store&title=Search%20Results';
 			$url	.=	(isset($_GET['category'])) ? '&category=' . htmlspecialchars($_GET['category'], ENT_QUOTES) : '';
@@ -27,7 +33,7 @@
 		</li>
 	<?php endif; ?>
 	<?php if ($start > 2) : ?>
-		<li class="pg_disabled  material">
+		<li class="pg_disabled material">
 			<span>...</span>
 		</li>
 	<?php endif; ?>
