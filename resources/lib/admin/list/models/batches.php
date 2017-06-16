@@ -9,7 +9,10 @@ class BatchList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList&subsect=misc_records&ltype=bat';
+		$this->url['controller']	=	'admin';
+		$this->url['action']		=	'showList';
+		$this->url['subsect']		=	'misc_records';
+		$this->url['ltype']			=	'bat';
 		$this->ltype	=	'batches';
 		$this->initFields();
 		$this->setFilters();
@@ -113,6 +116,6 @@ class BatchList extends DataList
 				break;
 		}
 		$this->title 	=	$title;
-		$this->url		.=	'&title='.urlencode($title);
+		$this->url['title']	=	urlencode($title);
 	}
 }

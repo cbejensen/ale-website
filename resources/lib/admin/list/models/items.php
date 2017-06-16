@@ -11,14 +11,28 @@ class ItemList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
+		$this->url['controller']	=	'admin';
+		$this->url['action']		=	'showList';
+		$this->url['subsect']		=	'inventory';
+		$this->url['ltype']			=	'itm';
 		$this->ltype	=	'items';
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'Home',
+				'src'		=>	'?controller=admin&action=home&subsect=home&title=Home'
+		);
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'Inventory',
+				'src'		=>	'?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc'
+		);
 		$this->initFields();
 		$this->setFilters();
 		$this->setPaginationOptions();
 		$this->setQuery();
 		$this->setData();
+		$this->setTitle();
 		$this->links	=	$this->createLinks(4, $this->list_class);
 		$this->setOptions();
+		$this->setTools();
 	}
 	
 	public function setRows()
@@ -48,6 +62,7 @@ class ItemList extends DataList
 		foreach ($itemStatus as $stat)
 		{
 			$imgs[]	=	array(
+					'name'	=>	$stat[0],
 					'src'	=>	"img/interface/status_$stat[0].png",
 					'alt'	=>	$stat[1]
 					);
@@ -103,6 +118,72 @@ class ItemList extends DataList
 			}
 		}
 		return $row;
+	}
+	
+	private function setTools()
+	{
+		$this->tools[]	=	array(	
+				'name'	=>	'Export',
+				'action'=>	'doThis()'
+		);
+		$this->tools[]	=	array(	
+				'name'	=>	'Delete',
+				'action'=>	'deleteInvItems()'
+		);
+		
+		if ($this->lscope != 'complete')
+		{
+			$this->tools[]	=	array(
+					'name'	=>	'Commit',
+					'action'=>	'commitInvItems()'
+			);
+			$this->tools[]	=	array(
+					'name'	=>	'Mark Complete',
+					'action'=>	'markInvItemsComplete()'
+			);
+		}
+		
+		if ($this->lscope != 'review')
+		{
+			$this->tools[]	=	array(
+					'name'	=>	'Create Listings',
+					'action'=>	'doThis()'
+			);
+			$this->tools[]	=	array(
+					'name'	=>	'Withdraw Listings',
+					'action'=>	'doThis()'
+			);
+		}
+	}
+	
+	private function setTitle()
+	{
+		switch ($this->lscope)
+		{
+			case 'all':
+				$title					=	'All Items';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'All Inventory',
+						'src'		=>	''
+				);
+				break;
+			case 'complete':
+				$title					=	'Complete Items';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'Completed Inventory',
+						'src'		=>	''
+				);
+				break;
+			case 'review':
+				$title					=	'Review Items';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'Review List',
+						'src'		=>	''
+				);
+				break;
+		}
+		$this->title 	=	$title;
+		$this->url['title']		=	urlencode($title);
 	}
 	
 	private function setOptions()

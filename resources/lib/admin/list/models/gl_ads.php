@@ -9,7 +9,10 @@ class GenListingAdList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList&subsect=gen_listings&ltype=gl_ads';
+		$this->url['controller']	=	'admin';
+		$this->url['action']		=	'showList';
+		$this->url['subsect']		=	'gen_listings';
+		$this->url['ltype']			=	'gl_ads';
 		$this->ltype	=	'gl_ads';
 		$this->initFields();
 		$this->setFilters();
@@ -124,6 +127,6 @@ class GenListingAdList extends DataList
 				break;
 		}
 		$this->title 	=	$title;
-		$this->url		.=	'&title='.urlencode($title);
+		$this->url['title']		=	urlencode($title);
 	}
 }

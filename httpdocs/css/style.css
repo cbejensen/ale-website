@@ -545,8 +545,8 @@ ul.dropDown li a:hover {
 .tertiary-button {
 	background: linear-gradient(
 					to bottom,
-					#eee,
-					#ccc 100%
+					rgba(0,0,0, 0.02),
+					rgba(0,0,0, 0.1) 100%
 				);
 	text-align: center;
 	color: #777;
@@ -556,9 +556,9 @@ ul.dropDown li a:hover {
 }
 .tertiary-button:hover {
 	background: linear-gradient(
-					to bottom,
-					#ddd,
-					#eee 100%
+					to top,
+					rgba(0,0,0, 0.02),
+					rgba(0,0,0, 0.1) 100%
 				);
 }
 .gradient-button:hover {

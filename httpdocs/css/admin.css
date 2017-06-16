@@ -78,6 +78,7 @@ ul.dropDown li a {
 .list-main {
 	width: 100%;
 	height: calc(100vh - 5.3rem - 1vh);
+/* 	min-height: 500px; */
 	top: 0;
 /* 	border-top: 2px solid red; */
 /* 	border-bottom: 2px solid blue; */
@@ -91,6 +92,7 @@ ul.dropDown li a {
 .list-toolbar {
 	width: 98%;
 	height: 10vh;
+/* 	min-height: 100px; */
 	margin: 0vh auto 1vh;
 }
 .list-wrap {
@@ -135,7 +137,7 @@ table.list-table {
 	font-family: 'Open Sans', calibri, helvetica, sans-serif;
 	border-right: 1px solid #ddd;
 	text-align: left;
-/* 	padding: 0.45em 0.33em; */
+/* 	padding: 0.25em 0em; */
 	padding-left: 0.25rem;
 	height: 2.75vh;
 	vertical-align: middle;
@@ -143,6 +145,7 @@ table.list-table {
 .list-table td:first-child,
 .list-tabel th:first-child {
 	padding: 0;
+	min-width: 1.5rem;
 }
 .list-table td:last-child, 
 .list-table th:last-child {
@@ -171,13 +174,15 @@ table.list-table {
 	display: block;
 	height: 1rem;
     margin: 0 auto;
+    padding: 0 5rem;
 }
 /*--------------------------------------------
 	X.X - Status Flags
 ----------------------------------------------*/
 img.status-flag {
 	width: 1.15rem;
-	filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.15)) invert(50%);
+	filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.65)) invert(0%);
+/* 	padding: 0.63rem; */
 }
 span.status-rm {
 	padding: 0.1rem 0.25rem;
@@ -191,6 +196,92 @@ span.status-rm {
 }
 .list-main .std-pg {
 	margin-top: 0;
+}
+.list-main tr.inv-complete {
+	background: linear-gradient(
+					to bottom,
+					rgba(0, 87, 209, 0.05),
+					rgba(0, 87, 209, 0.2) 100%
+				);
+}
+.list-main tr.inv-complete td {
+	color: rgba(0, 87, 209, 0.33);
+	font-weight: bold;
+/* 	font-style: italic; */
+}
+.list-main tr.inv-reassess {
+	background: linear-gradient(
+					to bottom,
+					rgba(216, 50, 50, 0.30),
+					rgba(216, 50, 50, 0.65) 100%
+				);
+}
+.list-main tr.inv-reassess td {
+	color: rgba(88, 8, 8, 0.98);
+/* 	font-weight: bold; */
+}
+
+/*=================================================================================
+	X.0 - List Toolbar
+=================================================================================*/
+.list-toolbar {
+	padding: 0.25rem;
+	position: relative;
+	background: #f9f9f9;
+}
+.page-info {
+	height: 1.5rem;
+	width: 32%;
+/* 	border: 1px solid #eee; */
+/* 	margin: 0 auto; */
+}
+.admin-search-bar {
+	position: absolute;
+	right: 0.75rem;
+	top: 0.75rem;
+	width: 20%;
+	min-width: 20rem;
+}
+.admin-search-bar input {
+	border: 1px solid #ccc;
+	background: linear-gradient(
+					to top,
+					rgba(0,0,0, 0.01),
+					rgba(0,0,0, 0.06) 100%
+				);
+	border-radius: 2px;
+	display: inline-block;
+	height: 2rem;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	font-size: 80%;
+	width: calc(100% - 2rem);
+}
+.admin-search-bar span {
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-left: 0;
+}
+.toolbar-btns {
+	position: absolute;
+	bottom: 0.65rem;
+	left: 0.5rem;
+}
+.toolbar-btn {
+	padding: 0.15rem 0.5rem;
+	margin-right: 0.25rem;
+	color: #444;
+	border: 0;
+}
+.toolbar-btn:hover {
+	cursor: default;
+}
+.serp-info {
+	display: block;
+	margin-top: 0.25rem;
 }
 
 /*=================================================================================
@@ -663,6 +754,14 @@ h1.asset-view {
 }
 .novartis-section table {
 	line-height: 1.25;
+}
+@media only screen and (max-width: 47rem) { /* 752px */
+	.topNavBar-hide {
+		top: -200px !important;
+	}
+	.topNavBar-show {
+		top: 50px !important;
+	}
 }
 
 @media only screen and (min-width: 63rem) { /* 1008px */

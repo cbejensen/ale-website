@@ -9,7 +9,10 @@ class ModelList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList&subsect=misc_records&ltype=mod';
+		$this->url['controller']	=	'admin';
+		$this->url['action']		=	'showList';
+		$this->url['subsect']		=	'misc_records';
+		$this->url['ltype']			=	'mod';
 		$this->ltype	=	'models';
 		$this->initFields();
 		$this->setFilters();
@@ -113,6 +116,6 @@ class ModelList extends DataList
 				break;
 		}
 		$this->title 	=	$title;
-		$this->url		.=	'&title='.urlencode($title);
+		$this->url['title']		=	urlencode($title);
 	}
 }

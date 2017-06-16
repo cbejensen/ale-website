@@ -16,8 +16,11 @@ class DataList extends Paginator
 			$links,
 			$result_pg,
 			$list_class,
-			$url,
 			$title;
+	
+	public 	$url			=	array();
+	public	$breadcrumbs	=	array();
+	public	$tools			=	array();
 	
 	public 	$data			=	array();
 	public	$rows			=	array();
@@ -34,7 +37,8 @@ class DataList extends Paginator
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList';
+		$this->url['controller']	=	'admin';
+		$this->url['action']		=	'showList';
 		$this->setFieldMap();
 		$this->setListType();
 		$this->setListScope();
@@ -60,7 +64,7 @@ class DataList extends Paginator
 			$rows	=	array();
 			foreach ($this->data as $row)
 			{
-				$cells	=	$this->getCells(1, $row);
+				$cells	=	$this->getCells($row);
 				$rows[]	=	$cells;
 			}
 			echo json_encode($rows);
@@ -72,6 +76,15 @@ class DataList extends Paginator
 				$class++;
 			}
 		}
+	}
+	
+	public function sendUpdates()
+	{
+		$json	=	array(
+				'rows'		=>	$this->rows,
+				'results'	=>	$this->total
+		);
+		echo json_encode($json);
 	}
 	
 	protected function initFields()
@@ -121,7 +134,7 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['f']))
 		{
-			$this->url		.=	'&f=' . $_GET['f'];
+			$this->url['f']	= $_GET['f'];
 			$fields	=	explode(',', $_GET['f']);
 			foreach ($fields as $fieldId)
 			{
@@ -152,7 +165,7 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['lscp']))
 		{
-			$this->url		.=	'&lscp=' . $_GET['lscp'];
+			$this->url['lscp'] = $_GET['lscp'];
 			switch ($_GET['lscp'])
 			{
 				case 'all':
@@ -190,7 +203,7 @@ class DataList extends Paginator
 		{
 			$q				=	mysql_entities_fix_string($this->conn, $_GET['q']);
 			$this->searchKey	=	explode(' ', $q);
-			$this->url			.=	'&q=' . urlencode($_GET['q']);
+			$this->url['q']	= urlencode($_GET['q']);
 		} else {
 			$this->searchKey	=	null;
 		}
@@ -208,7 +221,7 @@ class DataList extends Paginator
 			if (array_key_exists($_GET['srt_f'], $this->fieldMap))
 			{
 				$this->sortField	=	$this->fieldMap[$_GET['srt_f']]['field_name'];
-				$this->url			.=	'&srt_f=' . $_GET['srt_f'];
+				$this->url['srt_f']			=	$_GET['srt_f'];
 			} else {
 				// Defaults to ALE Asset if given id is invalid, sends error report
 				$this->sortField	=	'itemlist.aleAsset';
@@ -221,7 +234,7 @@ class DataList extends Paginator
 		
 		if (isset($_GET['srt_d']))
 		{
-			$this->url	.=	'&srt_d=' . $_GET['srt_d'];
+			$this->url['srt_d']	= $_GET['srt_d'];
 			switch ($_GET['srt_d'])
 			{
 				case 'asc':
@@ -455,6 +468,9 @@ class DataList extends Paginator
 			case 'items':
 				$id	=	'aleAsset';
 				break;
+			case 'labels':
+				$id	=	'label_num';
+				break;
 			default:
 				$id	=	'id';
 		}
@@ -464,6 +480,8 @@ class DataList extends Paginator
 		{
 			$this->data[$r->data[$j][$id]]	=	$r->data[$j];	
 		}
+		
+		$this->url['page']	=	$this->page;
 	}
 	
 	// 	private function setListType()

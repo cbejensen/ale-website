@@ -741,3 +741,21 @@
 [13-Jun-2017 17:46:37 America/New_York] Database Query Failed. Unknown column 'adverts_listings.active' in 'where clause'
 [13-Jun-2017 17:46:37 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
 [13-Jun-2017 17:46:37 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[14-Jun-2017 11:16:53 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LIMIT 0, 20' at line 1
+[14-Jun-2017 11:16:53 America/New_York] PHP Warning:  mysqli::query(): Empty query in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\functions.php on line 51
+[14-Jun-2017 11:16:53 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LIMIT 0, 20' at line 1
+[14-Jun-2017 11:16:53 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 34
+[14-Jun-2017 11:16:53 America/New_York] PHP Fatal error:  Call to a member function fetch_array() on boolean in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\paginator\paginator.php on line 37
+[16-Jun-2017 11:32:50 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:32:50 WHERE aleAsset=10001' at line 1
+[16-Jun-2017 11:32:50 America/New_York] Item Update Failed Commit Item failed: Query failed.
+[16-Jun-2017 11:35:37 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:35:37 WHERE aleAsset=10001' at line 1
+[16-Jun-2017 11:35:37 America/New_York] Item Update Failed Commit Item failed: Query failed.
+[16-Jun-2017 11:44:16 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:44:16 WHERE aleAsset=10001' at line 1
+[16-Jun-2017 11:44:16 America/New_York] Item Update Failed Commit Item failed: Query failed.
+[16-Jun-2017 11:44:33 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:44:33 WHERE aleAsset=10001' at line 1
+[16-Jun-2017 11:44:33 America/New_York] Item Update Failed Commit Item failed: Query failed.
+[16-Jun-2017 11:45:01 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:45:01 WHERE aleAsset=10001' at line 1
+[16-Jun-2017 11:45:01 America/New_York] Item Update Failed Commit Item failed: Query failed.
+[16-Jun-2017 11:46:46 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:46:46 WHERE aleAsset=10001' at line 1
+[16-Jun-2017 11:46:46 America/New_York] Item Update Failed Commit Item failed: Query failed.
+[16-Jun-2017 15:57:16 America/New_York] Item Update Failed Type Error: Ale Asset must be an integer.

@@ -3,7 +3,18 @@
 	if ($list != null)
 	{
 // 		print_r($this->url);
-		$url	=	$this->url;
+		$url	=	'?';
+		foreach ($this->url as $key => $value)
+		{
+			static $count	=	0;
+			if ($count === 0) {
+				$url	.=	"$key=$value";
+				$count++;
+			} else {
+				$url	.=	"&$key=$value";
+			}
+		}
+// 		echo $url;
 // 		if (isset($_GET['limit'])) 
 // 		{
 // 			$url	.=	'&limit=' . $_GET['limit'];

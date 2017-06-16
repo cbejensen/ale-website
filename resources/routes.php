@@ -10,7 +10,8 @@ $controllers	= array('public' 			=>	[	'home', 	'services',
 		
 						'admin'				=>	[	'showList',			'updateInvItem',
 													'getVendors', 		'updateItemPhotos',
-													'imagePreprocess', 	'getInvAssetData'
+													'imagePreprocess', 	'getInvAssetData',
+													'invAction',		'updateList'
 													],
 		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',
@@ -88,7 +89,7 @@ function call($controller, $action)
 		$controller->{ $action }();
 	} 
 	catch (Exception $e) {
-		$errorData	=	array('title' => 'Action Called Threw an Exception:', 'error' => $e->getMessage());
+		$errorData	=	array('title' => "Action: $action Threw an Exception:", 'error' => $e->getMessage());
 		ini_set('error_log', LOGS_PATH . '/app-errors.log');
 		error_log($errorData['title'] . ' ' . $errorData['error']);
 	}

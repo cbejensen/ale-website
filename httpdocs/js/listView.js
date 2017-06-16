@@ -27,6 +27,38 @@ function renderList()
 	});
 }
 
+function buildBreadcrumbs()
+{
+	var div		=	document.getElementById('page-info');
+	var span	=	document.createElement('span');
+	Object.keys(crumbs).forEach(function(j){
+		if (j != 0) {
+			var carat	=	document.createElement('span');
+			var txt		=	document.createTextNode('>');
+			carat.appendChild(txt);
+			span.appendChild(carat);
+		}
+		if (crumbs[j].src == '') {
+			var crumb	=	document.createElement('span');
+		} else {
+			var crumb	=	document.createElement('a');
+			crumb.href	=	crumbs[j].src;
+		}
+		crumb.className	=	'breadcrumb';
+		var txt		=	document.createTextNode(crumbs[j].anchor);
+		crumb.appendChild(txt);
+		span.appendChild(crumb);
+	});
+	div.appendChild(span);
+
+	// Begin Page Num/# of Results
+	var span	=	document.createElement('span');
+	span.className	=	'serp-info';
+	var txt		=	document.createTextNode('Page '+current_page+' of '+totalResults+' results.');
+	span.appendChild(txt);
+	div.appendChild(span);
+}
+
 function insertListData()
 {
 
@@ -34,8 +66,14 @@ function insertListData()
 
 function createTableRow(row)
 {
-	var tr	=	document.createElement('tr');
+	var tr			=	document.createElement('tr');
+	var recordGetter	=	getRecordGetter();
 	tr.setAttribute('id', row.id);
+	//switch (list_type) {
+	//	case 'items':
+	//		tr.setAttribute('onclick', 'getInvAssetView('+row.id+')');
+	//		break;
+	//}
 	Object.keys(fieldMeta).forEach(function(cv){
 		var td		=	document.createElement('td');
 		td.setAttribute('id', row.id + '_' + fieldMeta[cv].field);
@@ -50,22 +88,46 @@ function createTableRow(row)
 				var content	=	cb;
 				break;
 			case 'item_status':
+				td.addEventListener('click', recordGetter);
 				var span	=	document.createElement('span');
 				Object.keys(row.item_status).forEach(function(itSt){
+					switch (row.item_status[itSt].name)
+					{
+						case 'Pending Review':
+							tr.className += ' inv-complete';
+							return;
+						case 'Reassess':
+							tr.className =	'inv-reassess';
+							return;
+						case 'Incomplete':
+							return;
+					}
 					var img	=	document.createElement('img');
 					img.src	=	row.item_status[itSt].src;
 					img.alt	=	row.item_status[itSt].alt;
+					img.className	=	'status-flag';
 					span.appendChild(img);
 				});
 				var content	=	span;
 				break;
 			default:
 				var content	=	document.createTextNode(row[field]);
+				td.addEventListener('click', recordGetter);
 		}
 		td.appendChild(content);
 		tr.appendChild(td);
 	});
 	return tr;
+}
+
+function getRecordGetter()
+{
+	switch (list_type) {
+		case 'items':
+			var getter	=	getInvAssetView;
+			break;
+	}
+	return getter;
 }
 
 function createHeaderRow()
@@ -79,4 +141,59 @@ function createHeaderRow()
 		tr.appendChild(td);
 	});
 	return tr;
+}
+
+function renderTools()
+{
+	var div		=	document.getElementById('toolbar-btns');
+	Object.keys(tools).forEach(function(j){
+		var span	=	document.createElement('span');
+		span.className	=	'tertiary-button toolbar-btn material';
+		span.setAttribute('onclick', tools[j].action);
+		var txt		=	document.createTextNode(tools[j].name);
+		span.appendChild(txt);
+		div.appendChild(span);
+	});
+}
+
+function deleteInvItems()
+{
+	var obj		=	new Object;
+	obj.selected	=	getSelectedRows();
+	obj.action	=	'testFunc';
+	var url		=	'ajax_handler.php?controller=admin&action=invAction';
+	var json	=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, deleteInvItemsResponse);
+}
+
+function deleteInvItemsResponse(req)
+{
+	console.log(req);
+}
+
+function commitInvItems()
+{
+	var obj		=	new Object;
+	obj.selected	=	getSelectedRows();
+	obj.action	=	'commitItem';
+	var url		=	'ajax_handler.php?controller=admin&action=invAction';
+	var json	=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, commitInvItemsResponse);
+}
+
+function commitInvItemsResponse(req)
+{
+	console.log(req);
+	updateList('itm');
+}
+
+function getSelectedRows()
+{
+	var selected	=	[];
+	Object.keys(dataFields).forEach(function(j){
+		if (dataFields[j].children[j+'_select'].children[0].checked == true) {
+			selected.push(j);
+		}
+	});
+	return selected;
 }

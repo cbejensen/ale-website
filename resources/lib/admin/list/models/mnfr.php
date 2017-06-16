@@ -9,7 +9,10 @@ class MnfrList extends DataList
 		 * sort order, the table fields, pagination options, and the data for each list item.
 		 */
 		$this->conn		=	$conn;
-		$this->url		=	'?controller=admin&action=showList&subsect=misc_records&ltype=mnf';
+		$this->url['controller']	=	'admin';
+		$this->url['action']		=	'showList';
+		$this->url['subsect']		=	'misc_records';
+		$this->url['ltype']			=	'mnf';
 		$this->ltype	=	'mnfr';
 		$this->initFields();
 		$this->setFilters();
@@ -113,6 +116,6 @@ class MnfrList extends DataList
 				break;
 		}
 		$this->title 	=	$title;
-		$this->url		.=	'&title='.urlencode($title);
+		$this->url['title']		=	urlencode($title);
 	}
 }

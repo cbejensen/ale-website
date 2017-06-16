@@ -675,4 +675,112 @@ class InvItem
 		}
 		return $status;
 	}
+	
+	public static function deleteItem($asset, &$conn)
+	{
+		InvItem::checkAleAsset($asset);
+		$queries	=	array(
+				"DELETE FROM item_photos WHERE aleAsset=$asset",
+				"DELETE FROM emp WHERE aleAsset=$asset",
+				"DELETE FROM item_category WHERE aleAsset=$asset",
+				"DELETE FROM item_accounting WHERE aleAsset=$asset",
+				"DELETE FROM itemlist WHERE aleAsset=$asset"
+		);
+		$conn->autocommit(false);
+		$conn->begin_transaction();
+		try {
+			foreach ($queries as $q)
+			{
+				$r	=	db_query($q, $conn);
+				if (!$r) {
+					throw new Exception('Could not delete record.');
+				}
+			}
+			$conn->commit();
+		} catch (Exception $e) {
+			$conn->rollback();
+			throw new Exception('Delete record failed: ' . $e->getMessage());
+		}
+	}
+	
+	public static function commitItem($aleAsset, &$conn)
+	{
+		$conn->autocommit(false);
+		$conn->begin_transaction();
+		try {
+			foreach ($aleAsset as $asset)
+			{
+				InvItem::checkAleAsset($asset);
+				$date	=	date("Y-m-d H:i:s");
+				$qs		=	array(
+						"UPDATE itemlist SET reviewed=1, date_completed='$date' WHERE aleAsset=$asset",
+						"DELETE FROM status WHERE (aleAsset=$asset) AND (status=1 OR status=5 OR status=8)"
+				);	
+			
+			
+				foreach ($qs as $q)
+				{
+					$r	=	db_query($q, $conn);
+					if (!$r) {
+						throw new Exception('Query failed.');
+					}
+				}
+			}
+			$conn->commit();
+		} catch (Exception $e) {
+			$conn->rollback();
+			throw new Exception('Commit Item failed: ' . $e->getMessage());
+		}
+	}
+	
+	public static function assignStatus($aleAsset, &$conn)
+	{
+		// NOTE: $asset is an array of Item ID keys which index arrays of items', status ID's and actions
+		$conn->autocommit(false);
+		$conn->begin_transaction();
+		try {
+			foreach ($aleAsset as $asset => $data)
+			{
+				InvItem::checkAleAsset($asset);
+				foreach ($data['status'] as $stat)
+				{
+					if (!is_numeric($stat['id'])) {
+						throw new Exception('Assign Status failed: Invalid status ID given.');
+					}
+					switch ($stat['action'])
+					{
+						case 'remove':
+							$q	=	"DELETE FROM status WHERE aleAsset=$asset AND status={$stat['id']})";
+							break;
+						case 'assign':
+							$q	=	"INSERT INTO status (aleAsset, status) VALUES ($asset, {$stat['id']})";
+							break;
+						default:
+							throw new Exception('Invalid action given.');
+					}
+					$r	=	db_query($q, $conn);
+					if (!$r)
+					{
+						throw new Exception('Query Failed');
+					}
+				}
+			}
+			$conn->commit();
+		} catch (Exception $e) {
+			$conn->rollback();
+			throw new Exception('Assign Status failed: ' . $e->getMessage());
+		}
+	}
+	
+	public static function testFunc()
+	{
+		echo 'It Works!';
+	}
+	
+	private static function checkAleAsset($asset)
+	{
+		if (!is_numeric($asset)) {
+			throw new Exception('Invalid Asset Number');
+		} 
+	}
 }

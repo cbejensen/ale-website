@@ -151,6 +151,13 @@ function checkInput(newVal, field)
 	}
 }
 
+function closeAssetView() 
+{
+	var main	=	document.getElementById('list-main');
+	var view 	=	document.getElementById('asset-view');
+	main.removeChild(view);
+}
+
 function updateInvAsset(json)
 {
 	//console.log(newVal);
@@ -183,9 +190,48 @@ function updateInvAssetResponse(response, nextField)
 	console.log('Done');
 }
 
-function updateInvAssetView()
+function getInvAssetView(evt)
 {
-	
+	asset			=	evt.target.parentNode.id;
+	var obj			=	new Object;
+	obj.aleAsset	=	asset;
+	var url		=	'ajax_handler.php?controller=admin&action=getInvAssetData';
+	var json		=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, getInvAssetViewResponse);
+}
+
+function getInvAssetViewResponse(res)
+{
+	var res	=	JSON.parse(res);
+	var exists	=	document.getElementById('loader');
+	if (exists != null){
+		hideLoadTimer();
+	}
+	data		=	res.data;
+	photos		=	res.photos;
+	categories	=	res.categories;
+	item_status	=	res.status;
+	testThis()
+}
+
+function updateList(list)
+{
+	var final_url	=	'ajax_handler.php?controller=admin&action=updateList&ltype=' + list + '&lscp=' + url.lscp + '&srt_d=' + url.srt_d + '&srt_f=' + url.srt_f + '&rp=' + url.page;
+	var json=	'';
+	makeRequest(final_url, json, updateListResponse);
+}
+
+function updateListResponse(res)
+{
+	console.log(res);
+	var listTable	=	document.getElementById('list-table-body');
+	while (listTable.hasChildNodes()) {
+		listTable.removeChild(listTable.lastChild);
+	}
+	json		=	JSON.parse(res);
+	tableRows	=	json.rows;
+	totalResults=	json.results;
+	renderList();
 }
 
 function isValidDate(dateString) {

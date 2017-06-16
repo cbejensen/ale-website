@@ -75,7 +75,7 @@
 	 							Complete</a>
 	 						</li>
 	 						<li>
-	 							<a href="?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services">
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=review&rp=1&srt_f=019&srt_d=asc">
 	 							Under Review</a>
 	 						</li>
 							<li>
@@ -139,6 +139,10 @@
 	 							<li>
 									<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Batches&ltype=bat&lscp=all&srt_f=049">
  									All Batches</a>
+	 							</li>
+	 							<li>
+									<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Labels&ltype=lbl&lscp=all">
+ 									All Labels</a>
 	 							</li>
 							</ul>
 	 					</div>
