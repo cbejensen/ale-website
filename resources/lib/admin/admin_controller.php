@@ -165,6 +165,23 @@ class AdminController
 		}
 	}
 	
+	public function itemImport() 
+	{
+		require_once ADMIN_PATH . '/inventory/importer.php';
+		require_once ADMIN_PATH . '/inventory/itemImport_view.php';
+	}
+	
+	public function submitItemImport()
+	{
+		require_once ADMIN_PATH . '/inventory/importer.php';
+		$imp	=	new ItemImporter($this->conn);
+		$imp->setImportData(AdminController::decodeJSON());
+		$imp->import();
+		if ($imp->numErrors() !== 0) {
+			echo json_encode($imp->getReport());
+		}
+	}
+	
 	private function getListModel()
 	{
 		if (isset($_GET['ltype']))

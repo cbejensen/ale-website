@@ -100,7 +100,7 @@ function createTableRow(row)
 							tr.className =	'inv-reassess';
 							return;
 						case 'Incomplete':
-							return;
+					//		return;
 					}
 					var img	=	document.createElement('img');
 					img.src	=	row.item_status[itSt].src;
@@ -160,7 +160,7 @@ function deleteInvItems()
 {
 	var obj		=	new Object;
 	obj.selected	=	getSelectedRows();
-	obj.action	=	'testFunc';
+	obj.action	=	'deleteItem';
 	var url		=	'ajax_handler.php?controller=admin&action=invAction';
 	var json	=	encodeURIComponent(JSON.stringify(obj));
 	makeRequest(url, json, deleteInvItemsResponse);
@@ -169,6 +169,7 @@ function deleteInvItems()
 function deleteInvItemsResponse(req)
 {
 	console.log(req);
+	updateList('itm');
 }
 
 function commitInvItems()

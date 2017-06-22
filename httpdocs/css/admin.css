@@ -141,6 +141,7 @@ table.list-table {
 	padding-left: 0.25rem;
 	height: 2.75vh;
 	vertical-align: middle;
+/* 	min-width: 7rem; */
 }
 .list-table td:first-child,
 .list-tabel th:first-child {
@@ -398,11 +399,13 @@ h1.asset-view {
 	font-size: 0.8rem;
 	font-family: 'Open Sans', calibri, helvetica, sans-serif;
 }
+.item-import-main .invalid-input,
 .asset-view .invalid-input {
 	color: #b94a48;
     border: 1px solid #b94a48!important;
     background-color: #FFEEEE;
 }
+.item-import-main .invalid-input:focus,
 .asset-view .invalid-input:focus {
 	 border-color: #942a25;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #dd7a75!important;
@@ -803,4 +806,64 @@ h1.asset-view {
 	top: 50%;
 	transform: translateY(-50%) translateX(-50%);
 	filter: brightness(200%);
+}
+
+/*=================================================================================
+	X.0 - Import Items
+=================================================================================*/
+.new-import {
+	width: 40rem;
+	padding: 3rem 2.25rem;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	border-radius: 2px;
+	background: #f6f6f6;
+}
+.new-import h1 {
+	font-weight: bold;
+	margin-bottom: 1rem;
+	color: #333;
+}
+.new-import p {
+	color: #555;
+/* 	margin-bottom: 0.25rem; */
+}
+.new-import label {
+	margin-top: 1rem;
+	color: #444;
+}
+.new-import input[type="file"] {
+	border: 0;
+	padding: 0.25rem 0;
+}
+.item-import-main td {
+	padding: 0;
+}
+.item-import-main th,
+.item-import-main td {
+/* 	min-width: 7rem;	 */
+}
+.item-import-main input[type="text"] {
+	border: 1px solid #eee;
+	border-left: 0;
+	border-radius: 0;
+/* 	padding: 0; */
+	margin: 0;
+	width: 7rem;
+}
+.item-import-main input[type="text"].small-cell {
+	width: 2rem;
+}
+img.import-result {
+/* 	width: 50%; */
+    margin: 0 auto;
+    display: block;
+}
+.item-import-main tr {
+	background: rgba(0,0,0,0) !important;
+}
+.item-import-main tr:hover {
+    background: rgba(0,0,0,0);
 }

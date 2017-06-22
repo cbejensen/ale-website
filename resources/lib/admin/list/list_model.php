@@ -27,7 +27,7 @@ class DataList extends Paginator
 	public	$options		=	array();
 			
 	protected 	$fieldMap 	=	array();
-	protected	$fields		=	array();
+	public	$fields		=	array();
 	public		$fieldMeta	=	array();
 	
 	public function __construct(&$conn)
@@ -483,56 +483,4 @@ class DataList extends Paginator
 		
 		$this->url['page']	=	$this->page;
 	}
-	
-	// 	private function setListType()
-	// 	{
-	// 		/*
-	// 		 * Determine which list to generate.
-	// 		 * Takes no args, looks for $_GET['ltype'], the URL param for "list type"
-	// 		 */
-	// 		if (isset($_GET['ltype']))
-		// 		{
-		// 			switch ($_GET['ltype'])
-		// 			{
-		// 				case 'itm':
-		// 					$this->ltype	=	'items';
-		// 					break;
-		// 				case 'lis':
-		// 					$this->ltype	=	'listings';
-		// 					break;
-		// 				case 'ads':
-		// 					$this->ltype	=	'ads';
-		// 					break;
-		// 				case 'sub':
-		// 					$this->ltype	=	'subitem_of';
-		// 					break;
-		// 				case 'mnf':
-		// 					$this->ltype	=	'mnfr';
-		// 					break;
-		// 				case 'mod':
-		// 					$this->ltype	=	'models';
-		// 					break;
-		// 				case 'brd':
-		// 					$this->ltype	=	'brands';
-		// 					break;
-		// 				case 'lbl':
-		// 					$this->ltype	=	'labels';
-		// 					break;
-		//				case 'sub':
-		//					$this->ltype	=	'subitems';
-		// 					break;
-		// 				case 'ven':
-		// 					$this->ltype	=	'vendors';
-		// 					break;
-		// 				case 'bat':
-		// 					$this->ltype	=	'batches';
-		// 					break;
-		// 				default:
-		// 					throw new Exception('Invalid List Type');
-		// 					break;
-		// 			}
-		// 		} else {
-		// 			throw new Exception('Missing List Type');
-		// 		}
-		// 	}
 }

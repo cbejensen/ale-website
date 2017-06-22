@@ -79,7 +79,7 @@
 	 							Under Review</a>
 	 						</li>
 							<li>
-								<a href="http://stores.ebay.com/ale-lab-equipment-outlet" target="_blank">
+								<a href="?controller=admin&action=itemImport&subsect=inventory&title=List%20Test">
 								Import from CSV</a>
 				 			</li>
 							<li>

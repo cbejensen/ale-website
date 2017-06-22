@@ -11,7 +11,8 @@ $controllers	= array('public' 			=>	[	'home', 	'services',
 						'admin'				=>	[	'showList',			'updateInvItem',
 													'getVendors', 		'updateItemPhotos',
 													'imagePreprocess', 	'getInvAssetData',
-													'invAction',		'updateList'
+													'invAction',		'updateList',
+													'itemImport',		'submitItemImport'
 													],
 		
 						'admin_pages'		=> 	[	'dashboard',	'documentation',

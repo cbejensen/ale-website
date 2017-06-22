@@ -125,8 +125,8 @@ function getGenListingTitle($id)
 	$conn		=	db_connect(AL_DB, $userData);
 	require_once PUBLIC_PATH . '/listing.php';
 	try {
-	$listing	=	new GenListing($id, $conn);
-	$r			=	$listing->title;
+		$listing	=	new GenListing($id, $conn);
+		$r			=	$listing->title;
 	} catch (Exception $e) {
 		// error - constructor method threw an exception	
 		$r	=	false;
@@ -228,6 +228,8 @@ function getMetaDescription($title, $section)
 			case 'centrifuges':
 				$meta	=	'ALE carries a selection of automation-ready centrifuges for integration with your liquid handling platform.';
 				break;
+			default:
+				$meta	=	'';
 		}
 	}
 	elseif (isset($_GET['page']))
@@ -236,8 +238,12 @@ function getMetaDescription($title, $section)
 		{
 			case 'premium_equipment':
 				$meta	=	'A Selection of ALE\'s Premium Equipment. This instrumentation is automation-enabled and ready to be integrated with your lab\'s liquid handing platform.';
+				break;
 			case 'new_arrivals':
 				$meta	=	'Our newest collection of equipment. We\'re always bringing in new instruments to help labs with automation.';
+				break;
+			default:
+				$meta	=	'';
 		}
 	} else {
 		switch ($section)

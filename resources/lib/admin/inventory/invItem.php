@@ -676,24 +676,27 @@ class InvItem
 		return $status;
 	}
 	
-	public static function deleteItem($asset, &$conn)
+	public static function deleteItem($assets, &$conn)
 	{
-		InvItem::checkAleAsset($asset);
-		$queries	=	array(
-				"DELETE FROM item_photos WHERE aleAsset=$asset",
-				"DELETE FROM emp WHERE aleAsset=$asset",
-				"DELETE FROM item_category WHERE aleAsset=$asset",
-				"DELETE FROM item_accounting WHERE aleAsset=$asset",
-				"DELETE FROM itemlist WHERE aleAsset=$asset"
-		);
 		$conn->autocommit(false);
 		$conn->begin_transaction();
 		try {
-			foreach ($queries as $q)
+			foreach ($assets as $asset)
 			{
-				$r	=	db_query($q, $conn);
-				if (!$r) {
-					throw new Exception('Could not delete record.');
+				InvItem::checkAleAsset($asset);
+				$queries	=	array(
+						"DELETE FROM item_photos WHERE aleAsset=$asset",
+						"DELETE FROM emp WHERE aleAsset=$asset",
+						"DELETE FROM item_category WHERE aleAsset=$asset",
+						"DELETE FROM item_accounting WHERE aleAsset=$asset",
+						"DELETE FROM itemlist WHERE aleAsset=$asset"
+				);
+				foreach ($queries as $q)
+				{
+					$r	=	db_query($q, $conn);
+					if (!$r) {
+						throw new Exception('Could not delete record: ' . $asset);
+					}
 				}
 			}
 			$conn->commit();
@@ -703,12 +706,12 @@ class InvItem
 		}
 	}
 	
-	public static function commitItem($aleAsset, &$conn)
+	public static function commitItem($aleAssets, &$conn)
 	{
 		$conn->autocommit(false);
 		$conn->begin_transaction();
 		try {
-			foreach ($aleAsset as $asset)
+			foreach ($aleAssets as $asset)
 			{
 				InvItem::checkAleAsset($asset);
 				$date	=	date("Y-m-d H:i:s");
@@ -779,8 +782,8 @@ class InvItem
 	
 	private static function checkAleAsset($asset)
 	{
-		if (!is_numeric($asset)) {
-			throw new Exception('Invalid Asset Number');
+		if (!is_numeric($asset) || strlen($asset) != 5) {
+			throw new Exception('Invalid Asset Number: ' . $asset);
 		} 
 	}
 }

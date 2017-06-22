@@ -759,3 +759,5 @@
 [16-Jun-2017 11:46:46 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '11:46:46 WHERE aleAsset=10001' at line 1
 [16-Jun-2017 11:46:46 America/New_York] Item Update Failed Commit Item failed: Query failed.
 [16-Jun-2017 15:57:16 America/New_York] Item Update Failed Type Error: Ale Asset must be an integer.
+[22-Jun-2017 11:51:40 America/New_York] Item Update Failed Invalid Asset Number
+[22-Jun-2017 11:59:53 America/New_York] Item Update Failed Invalid Asset Number: Array
