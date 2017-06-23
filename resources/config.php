@@ -17,6 +17,7 @@ define('PUBLIC_PATH', '../resources/lib/public');
 define('ADMIN_PATH', '../resources/lib/admin');
 define('PAGE_PATH', '../resources/lib/public/view/pages');
 define('LOGS_PATH', '../resources/logs');
+define('SENTINEL_PATH', '../resources/lib/vendor/cartalyst/sentinel');
 
 require_once LIB_PATH . '/functions.php';
 

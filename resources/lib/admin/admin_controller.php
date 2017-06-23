@@ -182,6 +182,33 @@ class AdminController
 		}
 	}
 	
+	public function createBatch()
+	{
+		try {
+			$json	=	AdminController::decodeJSON();
+			$q		=	"INSERT INTO inv_batch (batch_name, description) VALUES (?,?)";
+			$stmt		=	$this->conn->prepare($q);
+			if ($stmt === false)
+			{
+				throw new Exception('createBatch: prepare() failed: ' . htmlspecialchars($this->conn->error));
+			}
+			// Bind Parameters
+			$rc		=	$stmt->bind_param('ss', $json['name'], $json['desc']);
+			if ($rc === false)
+			{
+				throw new Exception('createBatch: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('createBatch: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+			echo json_encode(array('result' => 'pass', 'id' => $this->conn->insert_id));
+		} catch (Exception $e) {
+			echo json_encode(array('result' => 'fail', 'error' => $e->getMessage()));
+		}
+	}
+	
 	private function getListModel()
 	{
 		if (isset($_GET['ltype']))

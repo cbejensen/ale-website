@@ -5,6 +5,8 @@
  */
 
 uploadCount	=	0;
+itemData	=	[];
+currentBatch	=	0;
 
 function handleFiles(files) {
 	if (window.FileReader) {
@@ -23,7 +25,7 @@ function getAsText(fileToRead) {
 
 function loadHandler(event) {
 	var csv		=	event.target.result;
-	itemData	=	processData(csv);
+	processData(csv);
 	displayData();
 }
 
@@ -58,10 +60,17 @@ function processData(csv) {
 			tarr[labels[j]].valid	=	'';
 		}
 		//console.log(headers);
+		//lines.push(tarr);
+		tarr['batch']		=	new Object;
+		tarr['batch'].value	=	currentBatch;
+		tarr['batch'].valid	=	true;
 		lines.push(tarr);
 	}
 	console.log(lines);
-	return lines;
+	for (var i=0 ; i<lines.length ; i++)
+	{
+		itemData.push(lines[i]);
+	}
 }
 
 function errorHandler(evt) {
@@ -97,6 +106,7 @@ function displayData()
 		//console.log(item);
 		//console.log(itemData[i]);
 		Object.keys(item).forEach(function(j) {
+			if (j == 'batch') return;
 			var td		=	document.createElement('td');
 			var input	=	document.createElement('input');  //TextNode(item[headers[j]]);
 			input.addEventListener('keyup', updateItemData);
@@ -104,14 +114,14 @@ function displayData()
 			input.name	=	j;
 			input.value	=	item[j].value;
 			input.type	=	'text';
-			switch ()
+			switch (j)
 			{
-				case '':
-				case '':
-				case '':
-				case '':
-				case '':
-
+				case 'cost':
+				case 'quantity':
+				case 'price':
+				case 'weight':
+				case 'yom':
+					input.className	=	"small-cell";
 					break;
 			}
 			var pass	=	validateInput(input.name, input.value);
@@ -320,6 +330,17 @@ function displayImportResults(mode)
 	
 	if (mode === 1) {
 		// All items passed
+		for (var i=1 ; i<table.children.length ; i++)
+		{
+			var td	=	document.createElement('td');
+			var img	=	document.createElement('img');
+			td.style.width	=	'1rem';
+			img.className	=	'import-result';
+			img.src		=	'img/interface/okaygo.png';
+			td.appendChild(img);
+			table.childNodes[i].insertBefore(td, table.childNodes[i].children[0]);
+
+		}
 
 	} else {
 		for (var i=1 ; i<table.children.length ; i++)
@@ -340,5 +361,66 @@ function displayImportResults(mode)
 			td.appendChild(img);
 			table.childNodes[i].insertBefore(td, table.childNodes[i].children[0]);
 		}
+	}
+}
+
+function renderBatches()
+{
+	var select	=	document.getElementById('batch-select');
+	select.setAttribute('onchange', 'updateCurrentBatch(this.value)');
+	var option	=	document.createElement('option');
+	option.selected	=	true;
+	option.disabled	=	true;
+	var txt		=	document.createTextNode('Select a batch');
+	option.appendChild(txt);
+	select.appendChild(option);
+	Object.keys(batches).forEach(function(i){
+		var option	=	document.createElement('option');
+		option.value	=	batches[i].id;
+		var txt		=	document.createTextNode(batches[i].batch_name + ': ' + batches[i].description);
+		option.appendChild(txt);
+		select.appendChild(option);
+	});
+}
+
+function updateCurrentBatch(val)
+{
+//	console.log(val);
+	currentBatch	=	val;
+}
+
+function addBatchDialog()
+{
+	var diag	=	document.getElementById('add-batch');
+	diag.style.display	=	'block';
+}
+
+function submitBatch()
+{
+	var obj		=	new Object;
+	obj.name	=	document.getElementById('batch-name-input').value;
+	obj.desc	=	document.getElementById('desc-input').value;
+	var url		=	'ajax_handler.php?controller=admin&action=createBatch';
+	var json	=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, submitBatchResponse);
+}
+
+function submitBatchResponse(res)
+{
+	var res	=	JSON.parse(res);
+	if (res.result !== 'pass') {
+		buildAlert('Server Error - Could not create batch.', res.error);
+	} else {
+		var select	=	document.getElementById('batch-select');
+		var name	=	document.getElementById('batch-name-input').value;
+		var desc	=	document.getElementById('desc-input').value;
+		var option	=	document.createElement('option');
+		option.value	=	res.id;
+		currentBatch	=	res.id;
+		option.selected	=	true;
+		var txt		=	document.createTextNode(name + ': ' + desc);
+		option.appendChild(txt);
+		select.appendChild(option);
+		closeDialog('add-batch');
 	}
 }

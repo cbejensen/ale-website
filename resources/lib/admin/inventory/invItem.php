@@ -689,6 +689,7 @@ class InvItem
 						"DELETE FROM emp WHERE aleAsset=$asset",
 						"DELETE FROM item_category WHERE aleAsset=$asset",
 						"DELETE FROM item_accounting WHERE aleAsset=$asset",
+						"DELETE FROM status WHERE aleAsset=$asset",
 						"DELETE FROM itemlist WHERE aleAsset=$asset"
 				);
 				foreach ($queries as $q)

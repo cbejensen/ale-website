@@ -460,6 +460,7 @@ class DataList extends Paginator
 		 */
 		
 		// Get results
+// 		print_r($this->query);
 		$r	=	$this->getPageData($this->limit, $this->result_pg, 1);
 		
 		// Declare field to use as $this->data index

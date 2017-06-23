@@ -72,6 +72,7 @@ class ItemImporter
 		$item['brandID']=	$this->getBrandId($item['brand']);
 		$this->addToItemlist($item);
 		$this->addToAccounting($item);
+		$this->addStatus($item);
 		switch ($item['track'])
 		{
 			case 2:
@@ -84,6 +85,27 @@ class ItemImporter
 				{
 					$this->addToEmp($item);
 				}
+		}
+	}
+	
+	private function addStatus($item)
+	{
+		$q		=	"INSERT INTO status (aleAsset, status) VALUES (?, 8)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('addStatus: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('i', $item['aleAsset']);
+		if ($rc === false)
+		{
+			throw new Exception('addStatus: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('addStatus: execute() failed: ' . htmlspecialchars($stmt->error));
 		}
 	}
 	
@@ -394,6 +416,20 @@ class ItemImporter
 		return $stat;
 	}
 	
+	public static function getBatches($conn)
+	{
+		$q	=	"SELECT id, batch_name, description FROM inv_batch ORDER BY batch_name";
+		$r	=	db_query($q, $conn);
+		$batches	=	array();
+		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		{
+			$r->data_seek($j);
+			$row		=	$r->fetch_array(MYSQLI_ASSOC);
+			$batches[]	=	$row;
+		}
+		return $batches;
+	}
+	
 	public static function getTools()
 	{
 		$tools	=	array();
@@ -403,16 +439,16 @@ class ItemImporter
 		);
 		$tools[]=	array(
 				'name'	=>	'Clear',
-				'action'=>	'clearSpreadsheet()'
+				'action'=>	"window.location = '?controller=admin&action=itemImport&subsect=inventory&title=Import+from+CSV'"
 		);
-		$tools[]=	array(
-				'name'	=>	'Add Spreadsheet',
-				'action'=>	'addDataDialog()'
-		);
-		$tools[]=	array(
-				'name'	=>	'Add Blank Row',
-				'action'=>	'addBlankRow()'
-		);
+// 		$tools[]=	array(
+// 				'name'	=>	'Add Spreadsheet',
+// 				'action'=>	'addDataDialog()'
+// 		);
+// 		$tools[]=	array(
+// 				'name'	=>	'Add Blank Row',
+// 				'action'=>	'addBlankRow()'
+// 		);
 		return $tools;
 	}
 }

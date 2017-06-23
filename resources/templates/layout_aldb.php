@@ -79,7 +79,7 @@
 	 							Under Review</a>
 	 						</li>
 							<li>
-								<a href="?controller=admin&action=itemImport&subsect=inventory&title=List%20Test">
+								<a href="?controller=admin&action=itemImport&subsect=inventory&title=Import+from+CSV">
 								Import from CSV</a>
 				 			</li>
 							<li>
@@ -134,10 +134,10 @@
 	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All+QB+Master+Items&ltype=sub&lscp=all&srt_f=020">All QB Master Items</a>
 								</li>
 								<li>
-	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Vendors&ltype=ven&lscp=all&srt_f=046">All Vendors</a>
+	 								<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Vendors&ltype=ven&lscp=all&srt_f=035">All Vendors</a>
 								</li>
 	 							<li>
-									<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Batches&ltype=bat&lscp=all&srt_f=049">
+									<a href="?controller=admin&action=showList&subsect=misc_records&title=All+Batches&ltype=bat&lscp=all&srt_f=033">
  									All Batches</a>
 	 							</li>
 	 							<li>
