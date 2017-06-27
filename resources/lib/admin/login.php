@@ -1,0 +1,1 @@
+<script>window.location.href='admin_login.php?uri=<?php echo $_SERVER['REQUEST_URI']?>';</script>

@@ -54,6 +54,11 @@ function call($controller, $action)
 				$controller	= new AdminController();
 			} catch (Exception $e) {
 				// if the controller cannot be constructed:
+				$error	=	array(
+						'title'		=>	'500: Internal Server Error',
+						'message'	=>	'You\'re likely seeing this error because of a problem with the server. We track these errors automatically, but if the problem persists please contact the administrator.'
+				);
+				require_once PUBLIC_PATH . '/view/pages/error.php';
 			}
 			
 			break;
@@ -94,5 +99,10 @@ function call($controller, $action)
 		$errorData	=	array('title' => "Action: $action Threw an Exception:", 'error' => $e->getMessage());
 		ini_set('error_log', LOGS_PATH . '/app-errors.log');
 		error_log($errorData['title'] . ' ' . $errorData['error']);
+		$error	=	array(
+				'title'		=>	'500: Internal Server Error',
+				'message'	=>	'You\'re likely seeing this error because of a problem with the server. We track these errors automatically, but if the problem persists please contact the administrator.'
+		);
+		require_once PUBLIC_PATH . '/view/pages/error.php';
 	}
 }

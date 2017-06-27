@@ -1,4 +1,5 @@
 <?php
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
 class InvItem
 {
@@ -678,6 +679,17 @@ class InvItem
 	
 	public static function deleteItem($assets, &$conn)
 	{
+		global $_USER;
+		echo $_USER;
+		exit;
+		$user	=	Sentinel::check();
+		if (!$user) {
+			
+		}
+		if (!$user->hasAccess(['itemlist.delete']))
+		{
+			throw new Exception('Not Authorized');
+		}
 		$conn->autocommit(false);
 		$conn->begin_transaction();
 		try {

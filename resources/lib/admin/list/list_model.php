@@ -352,8 +352,7 @@ class DataList extends Paginator
 	protected function getFromClause($default_table, $tables)
 	{
 		$from		=	" FROM $default_table";
-		
-		//print_r($tables);
+// 		print_r($tables);
 		
 		foreach ($tables as $tf)
 		{
@@ -377,6 +376,9 @@ class DataList extends Paginator
 				case 'vendors':
 					$from	.=	' LEFT JOIN item_accounting ON itemlist.aleAsset = item_accounting.aleAsset';
 					$from	.=	' LEFT JOIN vendors ON item_accounting.vendorID = vendors.id';
+					break;
+				case 'users':
+					$from	.=	' LEFT JOIN users ON itemlist.modified_by = users.id';
 			}
 		}
 		return $from;

@@ -35,6 +35,10 @@
 				<img src="img/interface/menu-button.png" alt="Main Menu">
 			</div>
 		</div>
+		<div class="user-info">
+			<span><?php echo $_USER->email; ?></span>
+			<img src="img/interface/acct_circle.png">
+		</div>
 	</div>
 	<nav class="topNavBar topNavBar-hide" id="ale-main-menu">
 		<div>

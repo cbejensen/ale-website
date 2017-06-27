@@ -71,6 +71,24 @@ ul.dropDown li a {
 /* 	height: 4rem; */
 	padding: 2rem;
 }
+.user-info {
+	position: absolute;
+	right: 1rem;
+	top: 0.75rem;
+}
+.user-info span {
+	color: #888;
+	font-size: 0.85rem;
+	vertical-align: middle;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.10);
+/*     line-height: 0.75rem; */
+}
+.user-info img {
+	filter: invert(70%);
+	display: inline-block;
+	width: 1.25rem;
+	vertical-align: middle;
+}
 
 /*=================================================================================
 	2.0 - Lists

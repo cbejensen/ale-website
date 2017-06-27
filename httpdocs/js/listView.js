@@ -169,7 +169,13 @@ function deleteInvItems()
 function deleteInvItemsResponse(req)
 {
 	console.log(req);
-	updateList('itm');
+	res	=	JSON.parse(req);
+	console.log(res);
+	if (res[0] === 0) {
+		buildAlert(res[1], res[2]);
+	} else {
+		updateList('itm');
+	}
 }
 
 function commitInvItems()

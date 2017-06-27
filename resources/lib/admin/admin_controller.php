@@ -5,6 +5,7 @@
  * 
  * Users must be logged in, and should be authorized and validated with each request.
  */
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
 class AdminController
 {	
@@ -12,24 +13,30 @@ class AdminController
 	
 	public function __construct()
 	{
-		// DEV ONLY
-		$newUser	=	AdminController::getNewUser();
-		// END DEV ONLY
-		$this->conn		=	db_connect(AL_DB, $newUser);
+		$user			=	AdminController::getNewUser();
+		$this->conn		=	db_connect(AL_DB, $user);
+		if (!$this->conn) {
+			throw new Exception('Could not establish database connection.');
+		}
+		
 	}
 	
 	// DEV ONLY
 	private static function getNewUser()
 	{
-		$newUser	=	array(	'db'	=>	array(
-								'user'	=>	'admin',
-								'pass'	=>	'euphrates8@N@N@$'
-						),
-								'user'	=>	array(
-										'name'	=>	'admin'
-								)
-						);
-		return $newUser;
+		$user	=	array(
+				'db'	=>	array(
+						'user'	=>	'admin',
+						'pass'	=>	'euphrates8@N@N@$'
+				),
+				'user'	=>	array(
+// 						'first_name'	=>	Sentinel::getUser()->first_name,
+// 						'last_name'		=>	Sentinel::getUser()->last_name,
+// 						'email'			=>	Sentinel::getUser()->email,
+// 						'id'			=>	Sentinel::getUser()->id
+				)
+		);
+		return $user;
 	}
 	// END DEV ONLY
 	
@@ -93,11 +100,14 @@ class AdminController
 			
 		} catch (Exception $e) {
 			// If the request could not be decoded, alert the user with a message and error code.
-			$errorData	=	array(	'title'		=>	'Item Update Failed',
-					'message'	=>	'The server was unable to process your request.',
-					'error' 	=>	$e->getMessage()
-			);
-			handleError($errorData, $this->conn, 0, 1);
+			if ($e->getMessage() == 'Not Authorized') {
+				$msg	=	$e->getMessage();
+			} else $msg	=	'The server was unable to process your request.';
+			handleError([
+					'title'		=>	'Item Update Failed',
+					'message'	=>	$msg,
+					'error'		=>	$e->getMessage()
+			], $this->conn, 0, 1);
 		}
 	}
 	
@@ -269,7 +279,7 @@ class AdminController
 		}
 	}
 	
-	private static function decodeJSON()
+	public static function decodeJSON()
 	{
 		if (!isset($_POST['json'])) {
 			throw new Exception('JSON not found.');

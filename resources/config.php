@@ -21,6 +21,65 @@ define('SENTINEL_PATH', '../resources/lib/vendor/cartalyst/sentinel');
 
 require_once LIB_PATH . '/functions.php';
 
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+require '../resources/lib/vendor/autoload.php';
+
+$capsule	=	new Capsule;
+
+$capsule->addConnection([
+		'driver'	=>	'mysql',
+		'host'		=>	'localhost',
+		'database'	=>	'al_db',
+		'username'	=>	'admin',
+		'password'	=>	'euphrates8@N@N@$',
+		'charset'	=>	'utf8',
+		'collation'	=>	'utf8_unicode_ci',
+]);
+
+$capsule->bootEloquent();
+
+if (isset($_GET['controller']) && $_GET['controller'] == 'admin')
+{
+	$_USER	=	Sentinel::check();
+	if (!$_USER)
+	{
+		if (isset($_POST['reqIsAjax'])) {
+			// Tell JS to open a login dialog
+		} else {
+			// Send to login page via script
+			//require_once ADMIN_PATH . '/login.php';
+			require_once 'admin_login.php';
+			//echo $_SERVER['REQUEST_URI'];
+			exit;
+		}
+	} else {
+// 		Sentinel::logout();
+	}
+}
+// if (Sentinel::guest())
+// {
+	//echo 'No user is logged in.';
+// 	Sentinel::register([
+// 			'email'		=>	'adam@atlanticlabequipment.com',
+// 			'password'	=>	'nullUserFalseNet',
+// 			'first_name'=>	'Null',
+// 			'last_name'	=>	'User'
+// 	]);
+// 	$user	=	Sentinel::findById(2);
+// 	Sentinel::login($user);
+	//echo 'DONE';
+// } else {
+// 	if ($userr	=	Sentinel::getUser())
+// 	{
+// 		$role	=	Sentinel::findRoleByName('Admin');
+// 		$role->addPermission('itemlist.delete');
+// 		$role->save();
+		//Sentinel::logout();
+//  	echo $userr->first_name;
+// 	}
+// }
 /*
 $db_config	=	array(
 					AL_DB	=>	array(

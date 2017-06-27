@@ -89,6 +89,7 @@ class ItemList extends DataList
 				case 'brands.brand':
 				case 'models.function_desc':
 				case 'itemlist.title_extn':
+				case 'users.last_name':
 					continue;
 					break;
 					// If the field is an inv. item's asset #, add its prefix
@@ -105,6 +106,13 @@ class ItemList extends DataList
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	'title',
 							'label'	=>	'Title'
+					);
+					break;
+				case 'users.first_name':
+					$row['modified_by']	=	$dataRow['first_name'] . ' ' . $dataRow['last_name'];
+					$this->fieldMeta[$k++]	=	array(
+							'field'	=>	'modified_by',
+							'label'	=>	'Modified By'
 					);
 					break;
 					// By default, just add the contents of the field to the column

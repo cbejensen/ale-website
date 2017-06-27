@@ -1,15 +1,16 @@
 <?php
 function setDefaultUser()
 {
-	$userData	=	array(	'db'	=>	array(
-								'user'	=>	'guest',
-								'pass'	=>	'default_ale_guest'
-							),
-							'user'	=>	array(
-								'name'		=>	'Guest'
-							)
-					);
-	return $userData;
+	$user	=	array(
+			'db'	=>	array(
+					'user'	=>	'guest',
+					'pass'	=>	'default_ale_guest'
+			),
+			'user'	=>	array(
+					'name'	=>	'Guest'
+			)
+	);
+	return $user;
 }
 
 function db_connect($database, $userData = 0)
@@ -41,7 +42,7 @@ function db_connect($database, $userData = 0)
 							'message'	=>	'The server failed to connect. Please retry your request. If the problem persists, please report this error.',
 							'error'		=>	$conn->connect_error
 						);
-		handleError($errorData, $conn, 'mysql');
+		handleError($errorData, $conn, 'mysql', 0);
 		$conn	=	false;
 	}
 	return $conn;
@@ -275,7 +276,6 @@ function mysql_entities_fix_string($conn, $string)
 {
 	return htmlentities(mysql_fix_string($conn, $string), ENT_QUOTES);
 }
-
 
 function mysql_fix_string($conn, $string)
 {
