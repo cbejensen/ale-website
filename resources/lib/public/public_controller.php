@@ -25,7 +25,7 @@ class PublicController
 		 *  	else //alert the user they've been logged out.
 		 *  }
 		 */
-		
+		require_once PUBLIC_PATH . '/public_model.php';
 		// Create an instance of the model.
 		$this->model	=	new PublicModel;
 		
@@ -40,6 +40,10 @@ class PublicController
 
 	public function error()
 	{
+		$error	=	array(
+				'title'		=>	'500: Internal Server Error',
+				'message'	=>	'You\'re likely seeing this error because of a problem with the server. We track these errors automatically, but if the problem persists please contact the administrator.'
+		);
 		require_once PAGE_PATH . '/error.php';
 	}
 	

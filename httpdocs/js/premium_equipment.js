@@ -11,6 +11,8 @@ var container = document.querySelector('.equipment-array');
 
 container.addEventListener('click', function(e) 
 {
+	console.log(e.target);
+	console.log(e.currentTarget);
 	if (e.target != e.currentTarget)
 	{
 		e.preventDefault();

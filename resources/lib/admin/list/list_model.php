@@ -11,6 +11,7 @@ class DataList extends Paginator
 	public	$ltype, 
 			$lscope, 
 			$searchKey, 
+			$srt_f,
 			$sortField,
 			$sortOrder,
 			$links,
@@ -218,6 +219,7 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['srt_f']))
 		{
+			$this->srt_f	=	$_GET['srt_f'];
 			if (array_key_exists($_GET['srt_f'], $this->fieldMap))
 			{
 				$this->sortField	=	$this->fieldMap[$_GET['srt_f']]['field_name'];
@@ -229,6 +231,7 @@ class DataList extends Paginator
 			}
 		} else {
 			// Defaults to ALE Asset if $_GET['srt_f'] is not set.
+			$this->srt_f		=	'001';
 			$this->sortField	=	'itemlist.aleAsset';
 		}
 		

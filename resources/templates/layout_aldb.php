@@ -35,9 +35,19 @@
 				<img src="img/interface/menu-button.png" alt="Main Menu">
 			</div>
 		</div>
-		<div class="user-info">
-			<span><?php echo $_USER->email; ?></span>
-			<img src="img/interface/acct_circle.png">
+		<script>var userData	=	<?php echo json_encode($_USER); ?>;</script>
+		<div class="user-info" id="user-info">
+			<span class="user-login"><?php echo $_USER->email; ?></span>
+			<img src="img/interface/acct_circle.png" onclick="toggleUserInfo()">
+			<div class="user-data material" id="user-data">
+				<span class="user-arrow"></span>
+				<h2><?php echo $_USER->first_name . ' ' . $_USER->last_name; ?></h2>
+				<div class="user-email"><?php echo $_USER->email; ?></div>
+				<div class="user-options">
+					<span onclick="changePassword()">Change Password</span>
+					<span onclick="signOut()">Sign Out</span>
+				</div>
+			</div>
 		</div>
 	</div>
 	<nav class="topNavBar topNavBar-hide" id="ale-main-menu">
@@ -68,18 +78,18 @@
 				</li>
 				<!-- Begin Products and Services button -->
 				<li id="navBtn_prod" class="<?php if ($subsect == 'inventory') echo 'activeNavBtn';?>" onmouseover="moveArrow('inventory');">
-					<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc" style="cursor: default;">Inventory</a>
+					<a href="?controller=admin&action=showList&subsect=inventory&title=All+Inventory&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc" style="cursor: default;">Inventory</a>
  					<div id="navDrop_prod" class="dropDown">
 	 					<ul class="dropDown">
 	 						<li>
-	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc">All Inventory</a>
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=All+Inventory&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc">All Inventory</a>
 	 						</li>
 	 						<li>
-	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=complete&rp=1&srt_f=019&srt_d=asc">
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=Completed+Inventory&ltype=itm&lscp=complete&rp=1&srt_f=019&srt_d=asc">
 	 							Complete</a>
 	 						</li>
 	 						<li>
-	 							<a href="?controller=admin&action=showList&subsect=inventory&title=List%20Test&ltype=itm&lscp=review&rp=1&srt_f=019&srt_d=asc">
+	 							<a href="?controller=admin&action=showList&subsect=inventory&title=New+Inventory&ltype=itm&lscp=review&rp=1&srt_f=019&srt_d=asc">
 	 							Under Review</a>
 	 						</li>
 							<li>
@@ -87,7 +97,7 @@
 								Import from CSV</a>
 				 			</li>
 							<li>
-								<a href="?controller=public&action=products_services&page=waters_equipment&title=WATERS%20Equipment&section=products">
+								<a href="?controller=public&action=products_services&page=waters_equipment&title=Export+To+Spreadsheet&section=products">
 								Export to Spreadsheet</a>
 							</li>
 						</ul>

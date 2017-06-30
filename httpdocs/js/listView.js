@@ -64,6 +64,58 @@ function insertListData()
 
 }
 
+function getURI()
+{
+	var url		=	'?controller=admin&action=showList&lscp=' + listInfo.scope + '&rp=' + listInfo.rp + '&srt_f=' + listInfo.sortBy + '&srt_d=' + listInfo.sortDir;
+	url		+=	'&title=' + encodeURIComponent(window.document.title.substring(0, window.document.title.length - 8));
+	switch (listInfo.type)
+	{
+		case 'items':
+			url		+=	'&ltype=itm&subsect=inventory';
+	}
+	return url;
+}
+
+function updatePageState(evt)
+{
+	console.log(evt.target.parentNode);
+	console.log(evt.currentTarget);
+	var data	=	evt.target.parentNode.id;
+	var url		=	getURI();
+	url		+=	'&inv=' + data;
+	history.pushState(data, null, url);
+}
+
+window.addEventListener('popstate', function(e) {
+	console.log(e.state);
+	var asset	=	e.state;
+	if (asset == null) {
+		var title	=	'';
+		switch (listInfo.scope)
+		{
+			case 'all':
+				title += 'All ';
+				break;
+			case 'complete':
+				title += 'Completed ';
+				break;
+			case 'review':
+				title += 'New ';
+				break;
+		}
+		switch (listInfo.type)
+		{
+			case 'items':
+				title += 'Inventory';
+				break;
+		}
+		closeAssetView();
+		document.title	=	title + ' | al.db';
+	} else {
+		getInvAssetView(asset, 1);
+	}
+});
+
 function createTableRow(row)
 {
 	var tr			=	document.createElement('tr');
@@ -89,6 +141,7 @@ function createTableRow(row)
 				break;
 			case 'item_status':
 				td.addEventListener('click', recordGetter);
+				td.addEventListener('click', updatePageState);
 				var span	=	document.createElement('span');
 				Object.keys(row.item_status).forEach(function(itSt){
 					switch (row.item_status[itSt].name)
@@ -113,6 +166,7 @@ function createTableRow(row)
 			default:
 				var content	=	document.createTextNode(row[field]);
 				td.addEventListener('click', recordGetter);
+				td.addEventListener('click', updatePageState);
 		}
 		td.appendChild(content);
 		tr.appendChild(td);
@@ -168,10 +222,10 @@ function deleteInvItems()
 
 function deleteInvItemsResponse(req)
 {
-	console.log(req);
-	res	=	JSON.parse(req);
-	console.log(res);
-	if (res[0] === 0) {
+//	console.log(req);
+	if (req !== '') {
+		res	=	JSON.parse(req);
+//		console.log(res);
 		buildAlert(res[1], res[2]);
 	} else {
 		updateList('itm');

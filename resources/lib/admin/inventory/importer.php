@@ -71,6 +71,9 @@ class ItemImporter
 		$item['modelID']=	$this->getModelId($item['model']);
 		$item['brandID']=	$this->getBrandId($item['brand']);
 		$this->addToItemlist($item);
+		$this->linkMnfrToModel($item['mnfrID'], $item['modelID']);
+		$this->linkBrandToModel($item['brandID'], $item['modelID']);
+		$this->linkMnfrToBrand($item['mnfrID'], $item['brandID']);
 		$this->addToAccounting($item);
 		$this->addStatus($item);
 		switch ($item['track'])
@@ -199,7 +202,7 @@ class ItemImporter
 	
 	private function addToItemList($item)
 	{
-		if ($item['aleAsset'] == 10002) throw new Exception('TEST');
+// 		if ($item['aleAsset'] == 10002) throw new Exception('TEST');
 		$q	=	"INSERT INTO itemlist (
 				aleAsset, 	track, 		mnfrID, 
 				modelID, 	brandID, 	addtl_model, 
@@ -343,6 +346,60 @@ class ItemImporter
 			throw new Exception('addToBrands: execute() failed: ' . htmlspecialchars($stmt->error));
 		}
 		return $this->conn->insert_id;
+	}
+	
+	private function linkMnfrToModel($mnfr, $model)
+	{
+		$q	=	"INSERT IGNORE INTO model_mnfr (mnfrID, modelID) VALUES (?,?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false) {
+			throw new Exception('linkMnfrToModel: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('ii', $mnfr, $model);
+		if ($rc === false) {
+			throw new Exception('linkMnfrToModel: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false) {
+			throw new Exception('linkMnfrToModel: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+	}
+	
+	private function linkMnfrToBrand($mnfr, $brand)
+	{
+		$q	=	"INSERT IGNORE INTO mnfr_brand (mnfrID, brandID) VALUES (?,?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false) {
+			throw new Exception('linkMnfrToBrand: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('ii', $mnfr, $brand);
+		if ($rc === false) {
+			throw new Exception('linkMnfrToBrand: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false) {
+			throw new Exception('linkMnfrToBrand: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+	}
+	
+	private function linkBrandToModel($brand, $model)
+	{
+		$q	=	"INSERT IGNORE INTO model_brand (brandID, modelID) VALUES (?,?)";
+		$stmt	=	$this->conn->prepare($q);
+		if ($stmt === false) {
+			throw new Exception('linkBrandToModel: prepare() failed: ' . htmlspecialchars($this->conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('ii', $brand, $model);
+		if ($rc === false) {
+			throw new Exception('linkBrandToModel: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false) {
+			throw new Exception('linkBrandToModel: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
 	}
 	
 	public static function getTracks($conn)

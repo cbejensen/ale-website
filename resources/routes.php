@@ -1,38 +1,31 @@
 <?php
 // list of controllers and their actions -- allowed values
-$controllers	= array('public' 			=>	[	'home', 	'services',
-													'store',	'news',
-													'contact', 	'estimates', 
-													'error', 	'test',
-													'submitForm',
-													'listing'
-													],
-		
-						'admin'				=>	[	'showList',			'updateInvItem',
-													'getVendors', 		'updateItemPhotos',
-													'imagePreprocess', 	'getInvAssetData',
-													'invAction',		'updateList',
-													'itemImport',		'submitItemImport',
-													'createBatch'
-													],
-		
-						'admin_pages'		=> 	[	'dashboard',	'documentation',
-													''
-													],
-		
-						'admin_inventory'	=> 	[	'addManufacturer'
-													]
-						//''			=> ['', '']
+$controllers	=	array(
+		'public'	=>	[
+				'home',			'services',
+				'store',		'news',
+				'contact',		'estimates',
+				'error',		'test',
+				'submitForm',	'listing'
+		],
+		'admin'		=>	[
+				'hdome',				'showList',
+				'updateInvItem',	'getVendors',
+				'updateItemPhotos',	'imagePreprocess',
+				'getInvAssetData',	'invAction',
+				'updateList',		'itemImport',
+				'submitItemImport',	'createBatch'
+		]
 );
 
 // check that requested controller and action are allowed
 if (array_key_exists($controller, $controllers))
 {
-	(in_array($action, $controllers[$controller])) ? call($controller, $action) : call('pages', 'error');
+	(in_array($action, $controllers[$controller])) ? call($controller, $action) : call('public', 'error');
 }
 else
 {
-	call('pages', 'error');
+	call('public', 'error');
 }
 // End of script
 

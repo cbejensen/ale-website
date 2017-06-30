@@ -145,6 +145,7 @@ class InvItem
 			foreach ($json as $key => $value)
 			{
 				if ($key == 'aleAsset') continue;
+				$this->adjustKeyValuePair($key, $value);
 				switch (gettype($value))
 				{
 					case 'boolean':
@@ -154,45 +155,8 @@ class InvItem
 					default:
 						$type	=	's';
 				}
-				if ($value== '') $value = null;
 				switch ($key)
 				{
-					case 'brand':
-						$key	=	'brandID';
-						break;
-					case 'shipping_class':
-						$key	=	'ship_class';
-						break;
-					case 'm_desc':
-						$key	=	'description';
-						break;
-					case 'vendor':
-						$key	=	'vendorID';
-						break;
-					case 'batch_name':
-						$key	=	'batch';
-						break;
-					case 'mnfr':
-						$key	=	'mnfrID';
-						break;
-					case 'model':
-						$key	=	'modelID';
-						break;
-					case 'emp_category':
-						$key	= 'category';
-						break;
-					case 'emp_status':
-						$key	= 'status';
-						break;
-				}
-				switch ($key)
-				{
-		// 			case 'brand':
-		// 				$this->updateBrand($field, $newVal, $type);
-		// 				break;
-		// 			case 'batch_name':
-		// 				$this->updateBatch($field, $newVal, $type);
-		// 				break;
 					case 'vendorID':
 					case 'cost':
 						try {
@@ -201,11 +165,10 @@ class InvItem
 							throw new Exception('Update Error: Accounting. Key: ' . $key . ' Value: ' . $value . '. ' . $e->getMessage());
 						}
 						break;
-					//case 'model':
 					case 'description':
 					case 'function_desc':
 						try {
-							$this->updateModel($key, $value, $type);
+							$this->updateModel($key, $value, $type, $json['model']);
 						} catch (Exception $e) {
 							throw new Exception('Update Error: Model. Key: ' . $key . ' Value: ' . $value . '. ' . $e->getMessage());
 						}
@@ -237,10 +200,6 @@ class InvItem
 			} 
 			$this->conn->commit();
 			$this->conn->autocommit(true);
-			$result	=	1;
-			$title	=	'Update Complete';
-			$message=	'This item has been updated successfully.';
-			ajaxResponse_alert($result, $title, $message);
 		} catch (Exception $e) {
 			$this->conn->rollback();
 			$errorData	=	array(	'title'		=>	'Item Update Failed',
@@ -254,12 +213,47 @@ class InvItem
 	public function getAssetData()
 	{
 		$data	=	array(
-			'data'		=>	$this->data,
-			'photos'	=>	$this->photos,
-			'categories'=>	$this->categories,
-			'status'	=>	$this->status
+			'data'			=>	$this->data,
+			'photos'		=>	$this->photos,
+			'categories'	=>	$this->categories,
+			'item_status'	=>	$this->status
 		);
 		echo json_encode($data);
+	}
+	
+	private function adjustKeyValuePair(&$key, &$value)
+	{
+		if ($value== '') $value = null;
+		switch ($key)
+		{
+			case 'brand':
+				$key	=	'brandID';
+				break;
+			case 'shipping_class':
+				$key	=	'ship_class';
+				break;
+			case 'm_desc':
+				$key	=	'description';
+				break;
+			case 'vendor':
+				$key	=	'vendorID';
+				break;
+			case 'batch_name':
+				$key	=	'batch';
+				break;
+			case 'mnfr':
+				$key	=	'mnfrID';
+				break;
+			case 'model':
+				$key	=	'modelID';
+				break;
+			case 'emp_category':
+				$key	= 'category';
+				break;
+			case 'emp_status':
+				$key	= 'status';
+				break;
+		}
 	}
 	
 	private function updateBatch($field, $newVal, $type)
@@ -319,16 +313,16 @@ class InvItem
 		$row	=	$r->fetch_array(MYSQLI_NUM);
 	}
 	
-	private function updateModel($field, $newVal, $type)
+	private function updateModel($field, $newVal, $type, $modelID)
 	{
-		$q	=	"UPDATE models SET $field = ? WHERE model = ?";
+		$q	=	"UPDATE models SET $field = ? WHERE id = ?";
 		$stmt		=	$this->conn->prepare($q);
 		if ($stmt === false)
 		{
 			throw new Exception('InvItem UPDATE: prepare() failed: ' . htmlspecialchars($this->conn->error));
 		}
 		// Bind Parameters
-		$rc		=	$stmt->bind_param($type.'s', $newVal, $this->data['model']);
+		$rc		=	$stmt->bind_param($type.'i', $newVal, $modelID);
 		if ($rc === false)
 		{
 			throw new Exception('InvItem Data UPDATE: bind_param() failed: ' . htmlspecialchars($stmt->error));
@@ -339,7 +333,7 @@ class InvItem
 			throw new Exception('InvItem Data UPDATE: execute() failed: ' . htmlspecialchars($stmt->error));
 		}
 		
-		$q	=	"SELECT $field FROM models where model = '{$this->data['model']}'";
+		$q	=	"SELECT $field FROM models where id = $modelID";
 		$r	=	db_query($q, $this->conn);
 		$r->data_seek(0);
 		$row	=	$r->fetch_array(MYSQLI_NUM);
@@ -600,8 +594,8 @@ class InvItem
 			$r->data_seek($j);
 			$row			=	$r->fetch_array(MYSQLI_ASSOC);
 			$this->status[]	=	array(
-									'status'		=>	$row['status'],
-									'description'	=>	$row['description']
+									'statusName'		=>	$row['status'],
+									'description'		=>	$row['description']
 								);
 		}
 	}
@@ -680,14 +674,7 @@ class InvItem
 	public static function deleteItem($assets, &$conn)
 	{
 		global $_USER;
-		echo $_USER;
-		exit;
-		$user	=	Sentinel::check();
-		if (!$user) {
-			
-		}
-		if (!$user->hasAccess(['itemlist.delete']))
-		{
+		if (!$_USER || !$_USER->hasAccess(['itemlist.delete'])) {
 			throw new Exception('Not Authorized');
 		}
 		$conn->autocommit(false);

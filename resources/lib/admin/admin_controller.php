@@ -21,7 +21,6 @@ class AdminController
 		
 	}
 	
-	// DEV ONLY
 	private static function getNewUser()
 	{
 		$user	=	array(
@@ -38,7 +37,11 @@ class AdminController
 		);
 		return $user;
 	}
-	// END DEV ONLY
+	
+	public function home()
+	{
+		
+	}
 	
 	public function showList()
 	{
@@ -97,7 +100,6 @@ class AdminController
 		try {
 			$json	=	AdminController::decodeJSON();
 			InvItem::{$json['action']}($json['selected'], $this->conn);
-			
 		} catch (Exception $e) {
 			// If the request could not be decoded, alert the user with a message and error code.
 			if ($e->getMessage() == 'Not Authorized') {
@@ -114,10 +116,15 @@ class AdminController
 	public function updateInvItem()
 	{
 		AdminController::loadItemModel();
+		AdminController::loadList();
 		try {
 			$json	=	AdminController::decodeJSON();
 			$asset	=	new InvItem($json['aleAsset'], $this->conn);
 			$asset->update($json);
+			require_once ADMIN_PATH . '/list/models/items.php';
+			$title	=	'Update Complete';
+			$message=	'This item has been updated successfully.';
+			echo json_encode(array(1, $title, $message, ItemList::getOptions($this->conn)));
 		} catch (Exception $e) {
 			// If the request could not be decoded, alert the user with a message and error code.
 			$errorData	=	array(	'title'		=>	'Item Update Failed',

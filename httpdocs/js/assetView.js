@@ -1,351 +1,912 @@
-function displayInvAsset(data, photos, categories, status, options)
+/*
+ * This is a refactor of assetView.js
+ *
+ */
+
+function displayInvAsset()
 {
-// Initialization
-	showLoadTimer();
-	//ar data	=	data.replace('\u0022', '\\u0022');
-	
-	console.log(data);
-	console.log(options);
-	console.log('PHOTOS:');
-	console.log(photos);
-	//var data		=	JSON.parse(data);
-	//var photos		=	JSON.parse(photos);
-	//var categories	=	JSON.parse(categories);
-	//var status		=	JSON.parse(status);
-	//var options		=	JSON.parse(options);	
-	var vendors		=	options.vendors;
-	var mnfrs		=	options.mnfrs;
-	var models		=	options.models;
-	var brands		=	options.brands;
-	var batch		=	options.batch;
-	var prevOwners	=	options.prev_owner;
-	var statuses	=	status;
-	var statOpt		=	options.status;
-	var model_mnfr	=	options.model_mnfr;
-	
-	// Convert NULL to empty string
-	Object.keys(data).forEach(function(cv) {
-		if (data[cv] == null) data[cv] = '';
-	});
-	
-//	Convert NULL url to placeholder
-//	Object.keys(photos).forEach(function(cv) {
-//		if (photos[cv] == null) photos[cv] = 'fix me!';
-//	});
-	
-	// Check for empty photos array:
-	if (Object.keys(photos).length === 0) {
-		console.log('NO PHOTOS!');
-		for (j = 1 ; j <= 6 ; j++)
-		{
-			var img	=	new Object;
-			img.url	=	'img/interface/image_needed.png';
-			photos.push(img);
-		}
-		console.log('PHOTOS:');
-		console.log(photos);
-	}
-	
-	
-	
-	console.log('JSON parsed.');
-	console.log('Constructing Asset View.');
-// Initialization Complete.
-	
-	
-	// Define the view's parent container (the list's main element)
+//	View's Parent
 	var listMain	=	document.getElementById('list-main');
+
+//	Initialization
+	closeAssetViewIfExists(listMain);
+	showLoadTimer();
+	data	=	nullToEmptyStr(data);
+	checkPhotos();
+
+	var assetCont	=	createAssetViewContainer();
+	var assetNav	=	createAssetViewNavBar();
+	var assetTitle	=	createAssetTitle();
+	var overview	=	createOverviewSection();
+	var assetStatus	=	createStatusSection();
+	var basicInfo	=	createBasicInfoSection();
+	var accounting	=	createAccountingSection();
+	var listingData	=	createListingSection();
+	var assetCats	=	createCategoriesSection();
 	
-	/*
-	 * Create the container of the view.
-	 * Class/ID	=	asset-view
-	 * begins @ 100% to left
-	 */ 
-	var elemExists	=	document.getElementById('asset-view');
-	if (elemExists != null) {
-		listMain.removeChild(elemExists);
+	assetCont.appendChild(assetNav);
+	assetCont.appendChild(assetTitle);
+	assetCont.appendChild(overview);
+	assetCont.appendChild(assetStatus);
+	assetCont.appendChild(basicInfo);
+	assetCont.appendChild(accounting);
+	assetCont.appendChild(listingData);
+	assetCont.appendChild(assetCats);
+	
+	switch (data.track) 
+	{
+		case 'Novartis':
+		case 'Novartis/ALOE':
+		case 'EMP':
+			var novartis	=	createNovartisSection();
+			assetCont.appendChild(novartis);
+			break;
 	}
-	var assetView	=	document.createElement('div');
-	assetView.setAttribute('class', 'asset-view material');
-	assetView.setAttribute('id', 'asset-view');
-//	assetView.style.left = '0%';
+
+	hideLoadTimer();
+	listMain.appendChild(assetCont);
+	assetCont.style.right	=	'0%';
+	filterModelsByMnfr();
+	filterBrandsByMnfr();
+}
+
+function createAssetViewContainer()
+{
+	var cont	=	document.createElement('div');
+	cont.className	=	'asset-view material';
+	cont.setAttribute('id', 'asset-view');
+
+	return cont;
+}
+
+function createAssetViewNavBar()
+{
+	var nav		=	document.createElement('nav');
+	nav.className	=	'asset-view material window-header';
 	
-	/*
-	 * Create the nav/task bar
-	 * Class = asset-view
-	 */ 
-	var navBar	=	document.createElement('nav');
-	navBar.setAttribute('class', 'asset-view material window-header');
 	var btns	=	document.createElement('span');
-	btns.setAttribute('class', 'btns-cont');
-	// Save button
-	var saveBtn	=	document.createElement('span');
-	saveBtn.setAttribute('onclick', 'saveAssetData()');
-	saveBtn.setAttribute('class', 'gradient-button save-btn');
-	var sbtn	=	document.createTextNode('Save');
-	saveBtn.appendChild(sbtn);
+	btns.className	=	'btns-cont';
+
+	var saveBtn	=	createButton({
+		'className':	'gradient-button save-btn',
+		'onclickEvent':	'saveAssetData()',
+		'text':		'Save'
+	});
+
+	var exitBtn	=	createButton({
+		'className':	'close-asset-view tertiary-button',
+		'onclickEvent':	'closeAssetViewAndPushState()',
+		'text':		'Close'
+	});
+
 	btns.appendChild(saveBtn);
-	// Close Button
-	var exitBtn	=	document.createElement('span');
-	exitBtn.setAttribute('onclick', 'closeAssetView()');
-	exitBtn.setAttribute('class', 'close-asset-view tertiary-button');//close-asset-view
-	var ebtn	=	document.createTextNode('Close');
-	exitBtn.appendChild(ebtn);
 	btns.appendChild(exitBtn);
-	
-	// Append Buttons
-	navBar.appendChild(btns);
-	
-	// Create the title
-	var h1		= document.createElement('h1');
-	var title	= document.createTextNode(data.mnfr + ' ' + data.brand + ' ' + data.model + ' ' + data.function_desc + ' ' + data.title_extn);
-	h1.appendChild(title);
-	h1.setAttribute('class', 'asset-view');
-	
-	/*
-	 * Begin Overview Box.
-	 * Contains photo overview, very basic identifying data, 
-	 * and the item's transavtion log.
-	 */
-	var overview	=	document.createElement('div');
-	overview.setAttribute('class', 'asset-section overview');
-	var imgGallery	=	createImgGallery(photos);
-	var info		=	createOverviewInfo(data);
-	overview.appendChild(imgGallery);
-	overview.appendChild(info);
-	
-	//Statuses
-	var statusSect		=	document.createElement('div');
-	statusSect.setAttribute('class', 'asset-section basic-sect');
-	var h2 				=	document.createElement('h2');
-	var header			=	document.createTextNode('Item Status');
-	h2.appendChild(header);
-	var status			=	document.createElement('div');
-	status.setAttribute('class', 'table-wrap status-table material');
-//	var h2 				=	document.createElement('h2');
-//	var header			=	document.createTextNode('Item Status');
-//	h2.appendChild(header);
-//	status.appendChild(h2);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createHeadRow(detailTable, 'Status', 'Description');
-	//Header Rows
-	// HEADER ROWS GO HERE!
-	// Rows
-	Object.keys(statuses).forEach(function(cv) {
-		console.log('this ' + statuses[cv]);
-		createStatusRow(detailTable, statuses[cv].status, statuses[cv].description);
-	});
-	status.appendChild(detailTable);
-	//var addStatus	=	document.createElement('select');
-//	createDataFormRow(detailTable, 'Add Status', '', 'mnfr', 'select', statOpt);
-	// BUTTONS
-	var btnWrap	=	document.createElement('div');
-	var add	=	document.createElement('span');
-	var clear	=	document.createElement('span');
-	var addNode=	document.createTextNode('Add');
-	var clrNode	=	document.createTextNode('Clear');
-	btnWrap.setAttribute('class', 'status-btn-wrap');
-	add.setAttribute('class', 'gradient-button');
-	add.setAttribute('onclick', 'addStatusDialog()');
-	clear.setAttribute('class', 'tertiary-button');
-	add.appendChild(addNode);
-	clear.appendChild(clrNode);
-	btnWrap.appendChild(add);
-	btnWrap.appendChild(clear);
-	statusSect.appendChild(h2);
-	statusSect.appendChild(status);
-	statusSect.appendChild(btnWrap);
-	
-	
-	// Basic Data
-	var basicInfo	=	document.createElement('div');
-	basicInfo.setAttribute('class', 'asset-section basic-sect');
-	var basic			=	getBasicInfo(data, mnfrs, models, brands);
-//	var itemStatusListing	=	createItemStatusListing(data, status, cate);
-	// Compile Children
-	basicInfo.appendChild(basic);
-//	detailedInfo.appendChild(itemStatusListing);
-	
-	
-	// Accounting Data
-	var accountingInfo	=	document.createElement('div');
-	accountingInfo.setAttribute('class', 'asset-section accounting-sect');
-	var acc			=	createAccountingInfo(data, vendors);
-	accountingInfo.appendChild(acc);
-	
-	// Listing Data
-	var listingInfo	=	document.createElement('div');
-	listingInfo.setAttribute('class', 'asset-section listing-sect');
-	var acc			=	createListingInfo(data);
-	listingInfo.appendChild(acc);
-	
-	// Categories
-	var categ	=	document.createElement('div');
-	categ.setAttribute('class', 'asset-section category-sect');
-	var cat			=	createCategoriesSection(categories);
-	categ.appendChild(cat);
-	
-	// Novartis
-	var novartis	=	document.createElement('div');
-	novartis.setAttribute('class', 'asset-section category-sect');
-	var cat			=	createNovartis(data, prevOwners);
-	novartis.appendChild(cat);
-	hideLoadTimer()
-	// Assemble Sections
-	assetView.appendChild(navBar);
-	assetView.appendChild(h1);
-	assetView.appendChild(overview);
-	assetView.appendChild(statusSect);
-	assetView.appendChild(basicInfo);
-	assetView.appendChild(accountingInfo);
-	assetView.appendChild(listingInfo);
-	assetView.appendChild(categ);
-	assetView.appendChild(novartis);
-	listMain.appendChild(assetView);
-//	assetView.style.left = '100%';
-	assetView.style.right = '0%';
-	
-	// Listen for Changes to model
-	var model	=	document.getElementById('model');
-	model.addEventListener('change', function(e) {
-		//if (e.target != e.currentTarget)
-		//console.log(e.target); // Returns the whole select element
-		//console.log(e.currentTarget);
-	}, false);
-	
-	// Filter Models
-	filterModelsByMnfr()
-	filterBrandsByMnfr()
-	
-	var mnfr	=	document.getElementById('mnfr');
-	mnfr.setAttribute('onchange', 'updateModelList(this.value); updateBrandList(this.value)');
-	
-	var model	=	document.getElementById('model');
-	model.setAttribute('onchange', 'updateFunctionDesc(this.value)');
-	
-//	var model	=	document.getElementById('model');
-//	model.setAttribute('onchange', 'updateBrandList(this.value)')
+
+	nav.appendChild(btns);
+	return nav;
 }
 
-function createImgGallery(phot)
+function createAssetTitle()
 {
-	// Img Gallery Container
-	var imgGallery	=	document.createElement('div');
-	imgGallery.setAttribute('class', 'asset-gallery');
-	// Main Image Container
+	var h1	=	document.createElement('h1');
+	var txt	=	document.createTextNode(
+		data.mnfr + ' ' + 
+		data.brand + ' ' + 
+		data.model + ' ' + 
+		data.function_desc + ' ' + 
+		data.title_extn
+	);
+	h1.appendChild(txt);
+	h1.className	=	'asset-view';
+	return h1;
+}
+
+function createOverviewSection()
+{
+	var ovr		=	document.createElement('div');
+	ovr.className	=	'asset-section overview';
+	var imgGallery	=	createAssetImgGallery();
+	var info	=	createOverviewDataView();
+	ovr.appendChild(imgGallery);
+	ovr.appendChild(info);
+	return ovr;
+}
+
+function createAssetImgGallery()
+{
+	var imGal	=	document.createElement('div');
+	imGal.className	=	'asset-gallery';
+
 	var mainImgCont		=	document.createElement('div');
-	mainImgCont.setAttribute('class', 'main-img-cont material');
-	// Main Image
-	var mainImg			=	document.createElement('img');
-	mainImg.setAttribute('class', 'main-img');
-	mainImg.setAttribute('src', phot[0].url);
-	mainImg.setAttribute('data-added', phot[0].added);
-	mainImg.setAttribute('data-update', phot[0].update);
+	mainImgCont.className	=	'main-img-cont material';
+
+	var mainImg		=	document.createElement('img');
+	mainImg.className	=	'main-img';
+	mainImg.src		=	photos[0].url;
+	mainImg.dataset.added	=	photos[0].added;
+	mainImg.dataset.update	=	photos[0].update;
 	mainImgCont.appendChild(mainImg);
-	// Small-Image Reel
-	var smImgReel	=	document.createElement('div');
-	smImgReel.setAttribute('class', 'img-reel-container');
-	var reelWrap	=	document.createElement('span');
-	reelWrap.setAttribute('class', 'reel-wrap');
-	// For each photo, create an img, with wrapper, and append to reelWrap
-	Object.keys(phot).forEach(function(cv) {
-		if (cv == 0) return;
-		//console.log(cv, phot[cv]);
-		//console.log(cv);
-		//console.log(phot[cv].url); // Prints each url
+
+	var smImgReel		=	document.createElement('div');
+	smImgReel.className	=	'img-reel-container';
+
+	var reelWrap		=	document.createElement('span');
+	reelWrap.className	=	'reel-wrap';
+	for (i=1 ; i<photos.length ; i++)
+	{
 		var wrap	=	document.createElement('div');
-		wrap.setAttribute('class', 'smImg-wrap material');
-		var smImg	=	document.createElement('img');
-		smImg.setAttribute('class', 'smImg');
-		smImg.setAttribute('src', phot[cv].url);
-		smImg.setAttribute('data-added', phot[cv].added)
-		smImg.setAttribute('data-update', phot[cv].update)
-		wrap.appendChild(smImg);
+		wrap.className	=	'smImg-wrap material';
+
+		var img			=	document.createElement('img');
+		img.className		=	'smImg';
+		img.src			=	photos[i].url;
+		img.dataset.added	=	photos[i].added;
+		img.dataset.update	=	photos[i].update;
+		wrap.appendChild(img);
 		reelWrap.appendChild(wrap);
+	}
+
+	var btns		=	document.createElement('div');
+	var editBtn		=	createButton({
+		'className':	'gradient-button',
+		'onclickEvent':	'editAssetPhotoDialog()',
+		'text':		'Add/Edit'
 	});
-	// Buttons
-	var btnWrap	=	document.createElement('div');
-	var edit	=	document.createElement('span');
-	var clear	=	document.createElement('span');
-	var editNode=	document.createTextNode('Add/Edit');
-	var clrNode	=	document.createTextNode('Clear');
-	btnWrap.setAttribute('class', 'img-gallery-btn-wrap');
-	edit.setAttribute('class', 'gradient-button');
-	edit.setAttribute('onclick', 'photoEditDialog('+JSON.stringify(phot)+')');
-	clear.setAttribute('class', 'tertiary-button');
-	edit.appendChild(editNode);
-	clear.appendChild(clrNode);
-	btnWrap.appendChild(edit);
-	btnWrap.appendChild(clear);
-	//Complete Gallery
+	var clearBtn		=	createButton({
+		'className':	'tertiary-button',
+		'onclickEvent':	'clearAssetPhotos()',
+		'text':		'Clear All'
+	});
+	btns.className	=	'img-gallery-btn-wrap';
+	btns.appendChild(editBtn);
+	btns.appendChild(clearBtn);
+
 	smImgReel.appendChild(reelWrap);
-	imgGallery.appendChild(mainImgCont);
-	imgGallery.appendChild(smImgReel);
-	imgGallery.appendChild(btnWrap);
-	return imgGallery;
+	imGal.appendChild(mainImgCont);
+	imGal.appendChild(smImgReel);
+	imGal.appendChild(btns);
+	return imGal;
 }
 
-function photoEditDialog(photos)
+function createOverviewDataView()
 {
-//	var photos = JSON.parse(photos);
-	console.log(photos);
-	// Define the view's parent container (the list's main element)
-	var body	=	document.getElementById('ale-body');
+	var info	=	document.createElement('div');
+	info.className	=	'overview-info';
+
+	var condNote		=	document.createElement('div');
+	condNote.className	=	'condition-note';
+	var p		=	document.createElement('p');
+	var span	=	document.createElement('span');
+	var label	=	document.createTextNode('Condition Note: ');
+	var note	=	document.createElement('span');
+	var text	=	document.createTextNode(data.condition_note);
+	note.dataset.value	=	data.condition_note;
+	note.setAttribute('id', 'condition_note');
+	note.appendChild(text);
+	span.style.fontWeight	=	'bold';
+	span.appendChild(label);
+	p.appendChild(span);
+	p.appendChild(note);
+	condNote.appendChild(p);
+
+	var wrap	=	document.createElement('div');
+	wrap.className	=	'table-wrap';
+
+	var table1	=	document.createElement('table');
+	table1.className=	'dataTable';
+
+	var aleAssetRow	=	createAleAssetRow();
+	var locationRow	=	createDataFormRow({
+		'fieldLabel':	'Location',
+		'curVal':	data.wh_location,
+		'dataName':	'wh_location'
+	});
+	table1.appendChild(aleAssetRow);
+	table1.appendChild(locationRow);
+
+	var table2	=	document.createElement('table');
+	table2.className=	'dataTable';
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'Track',
+			'curVal':	data.track,
+			'dataName':	'track',
+			'inputType':	'select',
+			'options':	listOptions.tracks
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Batch',
+			'curVal':	data.batch_name,
+			'dataName':	'batch_name',
+			'inputType':	'select',
+			'options':	listOptions.batch
+
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Received',
+			'curVal':	data.date_received,
+			'dataName':	'date_received'
 	
-	// Define the container, elements
-	var container	=	document.createElement('div');
-	var h2			=	document.createElement('h2');
-	var h2Text		=	document.createTextNode('Add/Edit Photos');
+		}),
+		createDataTableRow({
+			'fieldLabel':	'Added',
+			'curVal':	data.date_added,
+			'dataName':	'date_added',
+		}),
+		createDataTableRow({
+			'fieldLabel':	'Completed',
+			'curVal':	data.date_completed,
+			'dataName':	'date_completed'
+		}),
+		createDataTableRow({
+			'fieldLabel':	'Last Update',
+			'curVal':	data.last_update,
+			'dataName':	'last_update'
+		}),
+		createDataTableRow({
+			'fieldLabel':	'Modified By',
+			'curVal':	listOptions.users[data.modified_by],
+			'dataName':	'modified_by'
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		table2.appendChild(rows[i]);
+	});
+	wrap.appendChild(table1);
+	wrap.appendChild(table2);
+	info.appendChild(condNote);
+	info.appendChild(wrap);
+	return info;
+}
+
+function createStatusSection()
+{
+	var section	=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Item Status');
+	var tableWrap	=	document.createElement('div');
+	var table	=	document.createElement('table');
+	var tableHeads	=	createTableHeadRow(['Status','Description','']);
+	var btnWrap	=	document.createElement('div');
+	var addBtn	=	createButton({
+		'className':		'gradient-button',
+		'onclickEvent':		'addStatusDialog()',
+		'text':			'Add'
+	});
+	var clearBtn	=	createButton({
+		'className':		'tertiary-button',
+		'onclickEvent':		'clearAssetStatuses()',
+		'text':			'Clear All'
+	});
+
+	section.className	=	'asset-section basic-sect';
+	tableWrap.className	=	'table-wrap status-table material';
+	table.className		=	'dataTable';
+	btnWrap.className	=	'status-btn-wrap';
+	
+	h2.appendChild(h2Txt);
+
+	table.appendChild(tableHeads);
+	Object.keys(item_status).forEach(function(i){
+		var row	=	createStatusTableRow([
+			item_status[i].statusName,
+			item_status[i].description,
+			createButton({
+				'className':	'status-rm warning-button',
+				'onClickEvent':	'removeStatus()',
+				'text':		'Remove'
+			})
+		]);
+		table.appendChild(row);
+	});
+
+	tableWrap.appendChild(table);
+	btnWrap.appendChild(addBtn);
+	btnWrap.appendChild(clearBtn);
+	section.appendChild(h2);
+	section.appendChild(tableWrap);
+	section.appendChild(btnWrap);
+	return section;
+}
+
+function createBasicInfoSection()
+{
+	var section	=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Basic Info');
+	var topTable	=	document.createElement('table');
+	var btmTable	=	document.createElement('table');
+
+	h2.appendChild(h2Txt);
+	topTable.className	=	'dataTable';
+	btmTable.className	=	'dataTable';
+	section.className	=	'item-detail-wrap asset-section';
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'Mnfr.',
+			'curVal':	data.mnfr,
+			'dataName':	'mnfr',
+			'inputType':	'select',
+			'options':	listOptions.mnfrs,
+			'onchangeEvent':'updateModelList(this.value); updateBrandList(this.value)'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Brand',
+			'curVal':	data.brand,
+			'dataName':	'brand',
+			'inputType':	'select',
+			'options':	listOptions.brands
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Model',
+			'curVal':	data.modelID,
+			'dataName':	'model',
+			'inputType':	'select',
+			'options':	listOptions.models,
+			'onchangeEvent':'updateFunctionDesc(this.value)'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Function',
+			'curVal':	data.function_desc,
+			'dataName':	'function_desc'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Title Extn.',
+			'curVal':	data.title_extn,
+			'dataName':	'title_extn'
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		topTable.appendChild(rows[i]);
+	});
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'Serial No.',
+			'curVal':	data.serial_num,
+			'dataName':	'serial_num'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Model No.',
+			'curVal':	data.addtl_model,
+			'dataName':	'addtl_model',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Mnfr. Part No.',
+			'curVal':	data.mpn,
+			'dataName':	'mpn',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Year of Mnfr.',
+			'curVal':	data.yom,
+			'dataName':	'yom',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Weight',
+			'curVal':	data.weight,
+			'dataName':	'weight',
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		btmTable.appendChild(rows[i]);
+	});
+
+	section.appendChild(h2);
+	section.appendChild(topTable);
+	section.appendChild(btmTable);
+	return section;
+}
+
+function createAccountingSection()
+{
+	var section	=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Accounting Data');
+	var table	=	document.createElement('table');
+
+	section.className	=	'item-detail-wrap asset-section';
+	table.className		=	'dataTable';
+	h2.appendChild(h2Txt);
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'Price',
+			'curVal':	data.price,
+			'dataName':	'price'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Cost',
+			'curVal':	data.cost,
+			'dataName':	'cost'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Qty.',
+			'curVal':	data.quantity,
+			'dataName':	'quantity'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Vendor',
+			'curVal':	data.vendor,
+			'dataName':	'vendor',
+			'inputType':	'select',
+			'options':	listOptions.vendors
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		table.appendChild(rows[i]);
+	});
+
+	section.appendChild(h2);
+	section.appendChild(table);
+	return section;
+}
+
+function createListingSection()
+{
+	var section	=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Listing Data');
+	var table	=	document.createElement('table');
+
+	section.className	=	'item-detail-wrap asset-section';
+	table.className		=	'dataTable';
+	h2.appendChild(h2Txt);
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'Condition',
+			'curVal':	data.item_condition,
+			'dataName':	'item_condition',
+			'inputType':	'select',
+			'options':	listOptions.item_condition
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Cosmetic',
+			'curVal':	data.cosmetic,
+			'dataName':	'cosmetic',
+			'inputType':	'select',
+			'options':	listOptions.cosmetic
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Testing',
+			'curVal':	data.testing,
+			'dataName':	'testing',
+			'inputType':	'select',
+			'options':	listOptions.testing
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Components',
+			'curVal':	data.components,
+			'dataName':	'components',
+			'inputType':	'textarea'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Shipping Class',
+			'curVal':	data.shipping_class,
+			'dataName':	'shipping_class',
+			'inputType':	'select',
+			'options':	listOptions.shipping_class
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Description',
+			'curVal':	data.m_desc,
+			'dataName':	'm_desc',
+			'inputType':	'textarea'
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		table.appendChild(rows[i]);
+	});
+	section.appendChild(h2);
+	section.appendChild(table);
+	return section;
+}
+
+function createCategoriesSection()
+{
+	var section	=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('ALE Store Categories');
+	var tableWrap	=	document.createElement('div');
+	var table	=	document.createElement('table');
+	var tableHeads	=	createTableHeadRow(['Category','Subcategory','']);
+	var btnWrap	=	document.createElement('div');
+	var addBtn	=	createButton({
+		'className':		'gradient-button',
+		'onclickEvent':		'addCategoryDialog()',
+		'text':			'Add'
+	});
+	var clearBtn	=	createButton({
+		'className':		'tertiary-button',
+		'onclickEvent':		'clearAssetCategories()',
+		'text':			'Clear All'
+	});
+
+	section.className	=	'asset-section basic-sect';
+	tableWrap.className	=	'table-wrap status-table material';
+	table.className		=	'dataTable';
+	btnWrap.className	=	'status-btn-wrap';
+	
+	h2.appendChild(h2Txt);
+
+	table.appendChild(tableHeads);
+	Object.keys(categories).forEach(function(i){
+		var row	=	createStatusTableRow([
+			categories[i].category,
+			categories[i].subcategory,
+			createButton({
+				'className':	'status-rm warning-button',
+				'onClickEvent':	'removeCategory()',
+				'text':		'Remove'
+			})
+		]);
+		table.appendChild(row);
+	});
+
+	tableWrap.appendChild(table);
+	btnWrap.appendChild(addBtn);
+	btnWrap.appendChild(clearBtn);
+	section.appendChild(h2);
+	section.appendChild(tableWrap);
+	section.appendChild(btnWrap);
+	return section;
+}
+
+function createNovartisSection()
+{
+	var section	=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Novartis Data');
+	var table	=	document.createElement('table');
+
+	section.className	=	'asset-section novartis-section';
+	table.className		=	'dataTable';
+	table.dataset.empCatId	=	data.emp_cat_id;
+	h2.appendChild(h2Txt);
+
+	var emp_categories	=	new Object();
+	Object.keys(listOptions.emp_category).forEach(function(i){
+		var exists	=	false;
+		Object.keys(emp_categories).forEach(function(j){
+			if (emp_categories[j] == listOptions.emp_category[i].category) {
+				exists = true;
+			}
+		});
+		if (exists === false) {
+			emp_categories[i]	=	listOptions.emp_category[i].category
+		}
+	});
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'EMP Status',
+			'curVal':	data.emp_status,
+			'dataName':	'emp_status',
+			'inputType':	'select',
+			'options':	listOptions.emp_status
+		}),
+		createDataFormRow({
+			'fieldLabel':	'EMP Category',
+			'curVal':	data.emp_category,
+			'dataName':	'emp_category',
+			'inputType':	'select',
+			'options':	emp_categories,
+			'onblurEvent':	'getEmpSubcategories()'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'EMP Subcategory',
+			'curVal':	data.emp_category,
+			'dataName':	'emp_subcategory',
+			'inputType':	'select',
+			'options':	listOptions.emp_category
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Prev. Owner',
+			'curVal':	data.prev_owner,
+			'dataName':	'prev_owner',
+			'inputType':	'select',
+			'options':	listOptions.prev_owner
+		}),
+		createDataFormRow({
+			'fieldLabel':	'NBV',
+			'curVal':	data.nbv,
+			'dataName':	'nbv',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'NIBR',
+			'curVal':	data.nibr,
+			'dataName':	'nibr',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'TM0',
+			'curVal':	data.tm0,
+			'dataName':	'tm0',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'SAP',
+			'curVal':	data.sap,
+			'dataName':	'sap',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Src. Building',
+			'curVal':	data.src_building,
+			'dataName':	'src_building',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Src. Floor',
+			'curVal':	data.src_floor,
+			'dataName':	'src_floor',
+		}),
+		createDataFormRow({
+			'fieldLabel':	'Src. Room',
+			'curVal':	data.src_room,
+			'dataName':	'src_room',
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		table.appendChild(rows[i]);
+	});
+
+	section.append(h2);
+	section.append(table);
+	return section;
+}
+
+function editAssetPhotoDialog()
+{
+	var body	=	document.getElementById('ale-body');
+	var box		=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Add/Edit Photos');
 	var inputWrap	=	document.createElement('div');
-	var input		=	document.createElement('input');
+	var input	=	document.createElement('input');
 	var tableWrap	=	document.createElement('div');
 	var imgTable	=	document.createElement('table');
-	var btnWrap		=	document.createElement('div');
-	var update		=	document.createElement('span');
-	
-	container.setAttribute('id', 'photo-editor');
-	container.setAttribute('class', 'photo-editor material');
-	inputWrap.setAttribute('class', 'file-drop-wrap');
-	input.setAttribute('class', 'file-drop');
+	var btnWrap	=	document.createElement('div');
+	var update	=	createButton({
+		"className":	"gradient-button",
+		"onclickEvent":	"updatePhotos()",
+		"text":		"Update"
+	});
+
+	box.className		=	'photo-editor material';
+	box.setAttribute('id', 'photo-editor');
+
+	inputWrap.className	=	'file-drop-wrap';
+
+	input.className		=	'file-drop';
 	input.setAttribute('id', 'file-drop');
 	input.setAttribute('onchange', 'imgPreprocess()');
-	tableWrap.setAttribute('class', 'img-list-wrap material');
-	imgTable.setAttribute('class', 'img-list');
-	imgTable.setAttribute('id', 'img-list');
-	
-	// Header
-	h2.appendChild(h2Text);
-	
-	// Input
-	input.multiple = 'true';
 	input.setAttribute('type', 'file');
-	
-	// Image Table
-	Object.keys(photos).forEach(function(cv){
-		if (photos[cv].url != 'img/interface/image_needed.png') {
-			createImageDetailRow(photos, cv, imgTable);
-		}
-}); // End Image Table Loop
-	
-	// Btns
-	var txt		=	document.createTextNode('Update');
-	update.appendChild(txt);
-	update.className	=	'gradient-button';
-	update.setAttribute('onclick', 'updatePhotos()');
-	btnWrap.appendChild(update);
+	input.multiple		=	true;
+
+	tableWrap.className	=	'img-list-wrap material';
+
+	imgTable.className	=	'img-list';
+	imgTable.setAttribute('id', 'img-list');
+
 	btnWrap.className	=	'img-edit-btns';
-	
-	// Complete
+
+	h2.appendChild(h2Txt);
+
+	Object.keys(photos).forEach(function(i){
+		if (photos[i].url != 'img/interface/image_needed.png') {
+			var row	=	createImageDetailRow(photos, i);
+			imgTable.appendChild(row);
+		}
+	});
+
+	btnWrap.appendChild(update);
+
 	inputWrap.appendChild(input);
 	tableWrap.appendChild(imgTable);
-	addCloseButton(container, 'photo-editor');
-	container.appendChild(h2);
-	container.appendChild(inputWrap);
-	container.appendChild(tableWrap);
-	container.appendChild(btnWrap);
-	body.appendChild(container);
+	addCloseButton(box, 'photo-editor');
+	box.appendChild(h2);
+	box.appendChild(inputWrap);
+	box.appendChild(tableWrap);
+	box.appendChild(btnWrap);
+	body.appendChild(box);
+}
+
+function createImageDetailRow(photos, i)
+{
+	var tr		=	document.createElement('tr');
+	var picTd	=	document.createElement('td');
+	var infoTd	=	document.createElement('td');
+	var actTd	=	document.createElement('td');
+	var img		=	document.createElement('img');
+	var select	=	document.createElement('select');
+	var subTable	=	document.createElement('table');
+	var rowId	=	i;
+	var rmBtn	=	createButton({
+		"className":	"status-rm warning-button",
+		"onclickEvent":	"removePhoto('img"+i+"')",
+		"text":		"Remove"
+	});
+
+
+	tr.className		=	'img-row';
+	tr.setAttribute('id', 'img'+rowId);
+	subTable.className	=	'info-table';
+	img.className		=	'material';
+	img.src			=	photos[i].url;
+	select.setAttribute('onchange', "changeOrder('"+tr.id+"', this.value)");
+
+	while (document.getElementById('img' + rowId) != null) {
+		rowId++;
+	}
+
+	tr.setAttribute('id', 'img'+rowId);
+	tr.dataset.url	=	photos[i].url;
+	tr.dataset.rowid=	photos[i].id;
+	tr.dataset.order=	photos[i].order;
 	
+	var options	=	[
+		'Select Image Order',1,2,3,4,5,6
+	];
+	
+	var count	=	0;
+
+	Object.keys(options).forEach(function(j) {
+		var opt		=	document.createElement('option');
+		var txt		=	document.createTextNode(options[j]);
+		opt.value	=	options[j];
+		if (j == 0) {
+			opt.id		=	'default-opt';
+			opt.selected	=	true;
+			opt.disabled	=	true;
+			opt.value	=	null;
+		}
+		if (j == photos[i].order) {
+			opt.selected	=	true;
+			count++;
+		}
+		opt.appendChild(txt);
+		select.appendChild(opt);
+	});
+
+	subTable.appendChild(createStatusTableRow([
+		'Order',
+		select
+	]));
+	subTable.appendChild(createStatusTableRow([
+		'Date Added',
+		photos[i].added
+	]));
+	subTable.appendChild(createStatusTableRow([
+		'Date Updated',
+		photos[i].update
+	]));
+
+	picTd.appendChild(img);
+	infoTd.appendChild(subTable);
+	actTd.appendChild(rmBtn);
+
+	tr.appendChild(picTd);
+	tr.appendChild(infoTd);
+	tr.appendChild(actTd);
+
+	return tr;
+}
+
+function imgPreprocess()
+{
+	showLoadTimer('The server is processing your images. This may take a few moments.');
+	var aleAsset	=	document.getElementById('ale-asset-num').dataset.asset;
+	var inputElement=	document.getElementById('file-drop');
+	var imgTable	=	document.getElementById('img-list');
+	var fileList	=	inputElement.files;
+	var phot	=	new Object;
+	phot.count	=	0;
+
+	for (i=0 ; i<6 ; i++)
+	{
+		var row	=	document.getElementById('img'+i);
+		if (row) phot.count++;
+	}
+
+// 	Validate
+	if (fileList.length > 6 - phot.count) {
+		hideLoadTimer();
+		buildAlert('User Error', 'You\'ve added too many photos. Maximum 6 per item.');
+		inputElement.value	=	'';
+	} else {
+		var formData	=	new FormData();
+		for (i=0 ; i<fileList.length ; i++)
+		{
+			var file	=	fileList[i];
+			if (!file.type.match('image.*')) continue;
+			formData.append('image[]', file, file.name);
+		}
+		formData.append('asset', aleAsset);
+		formData.append('reqIsAjax', 'true');
+
+		req	=	new XMLHttpRequest();
+		req.onreadystatechange	=	alertContents;
+		req.open('POST', 'ajax_handler.php?controller=admin&action=imagePreprocess', true);
+		req.send(formData);
+
+		function alertContents()
+		{
+			if (req.readyState === XMLHttpRequest.DONE)
+			{
+				if (req.status === 200)
+				{
+					hideLoadTimer();
+					var data	=	JSON.parse(req.responseText);
+					var imgTable	=	document.getElementById('img-list');
+					var phot	=	data[1];
+					if (data[0] === 1) {
+						Object.keys(phot).forEach(function(j){
+							var row	=	createImageDetailRow(phot, j);
+							imgTable.appendChild(row);
+						});
+					}
+				} else {
+					hideLoadTimer();
+					buildAlert('Connection Error', 'An error occurred while trying to process your image(s). Please try again');
+				}
+			}
+		}
+	}
+	
+}
+
+function updatePhotos()
+{
+	var imgs	=	[];
+	var obj		=	new Object;
+	obj.aleAsset	=	document.getElementById('ale-asset-num').dataset.asset;
+
+//	Get Photo Data
+	for (j=0 ; j<7 ; j++)
+	{
+		var row	=	document.getElementById('img' + j);
+		if (row) {
+			var img	=	{
+				"url":	row.dataset.url,
+				"id":	row.dataset.rowid,
+				"order":row.dataset.order
+			};
+			imgs.push(img);
+		} else {
+			// Do something if there's no row? Photo never existed or was removed.
+		}
+	}
+
+//	Validate Data
+	var fail	=	false;
+	Object.keys(imgs).forEach(function(i) {
+		if (imgs[i].order == '') {
+			fail	=	true;
+		}
+	});
+
+	if (fail === false) {
+		obj.imgs	=	imgs;
+		var url		=	'ajax_handler.php?controller=admin&action=updateItemPhotos';
+		var json	=	encodeURIComponent(JSON.stringify(obj));
+		showLoadTimer();
+		makeRequest(url, json, updatePhotoResponse);
+	} else {
+		buildAlert(
+			'Photo Update Fail',
+			'Please ensure each photo has been assigned a valid order.'
+		);
+	}
+}
+
+function updatePhotoResponse(res)
+{
+	updateAssetView();
+	closeDialog('photo-editor');
+}
+
+function changeOrder(rowID, newVal)
+{
+	var row			=	document.getElementById(rowID);
+	row.dataset.order	=	newVal;
 }
 
 function removePhoto(id)
@@ -355,192 +916,216 @@ function removePhoto(id)
 	table.removeChild(row);
 }
 
-function updatePhotos()
+function createTableHeadRow(labels)
 {
-	var obj		=	new Object;
-	obj.aleAsset=	document.getElementById('ale-asset-num').dataset.asset;
-	var imgs	=	[];
-	
-	// Get photo data
-	for (j = 0 ; j < 7 ; j++)
-	{
-		var row	=	document.getElementById('img' + j);
-		if (row) {
-			// Get the data
-			var img		=	new Object;
-			img.url		=	row.dataset.url;
-			img.id		=	row.dataset.rowid;
-			img.order	=	row.dataset.order;
-			console.log(img);
-			imgs.push(img);
-		} else {
-			// Do something if there's no row? Photo never existed or was removed.
-		}
-	}
-	
-	// Validate data
-	var fail	=	false;
-	Object.keys(imgs).forEach(function(cv){
-		if (imgs[cv].order == ''){
-//			console.log('OHNO');
-			console.log('No order supplied.');
-			fail	=	true;
-		}
+	var row		=	document.createElement('tr');
+	Object.keys(labels).forEach(function(i){
+		var th	=	document.createElement('th');
+		var txt	=	document.createTextNode(labels[i]);
+		th.appendChild(txt);
+		row.appendChild(th);
 	});
-	
-	if (fail === false){
-		console.log(imgs);
-		obj.imgs	=	imgs;
-//		console.log(imgs[1].url)
-		var url		=	'ajax_handler.php?controller=admin&action=updateItemPhotos';
-		var json		=	encodeURIComponent(JSON.stringify(obj));
-		showLoadTimer();
-		makeRequest(url, json, updatePhotoResponse)
-	} else {
-		var title	=	'Photo Update Fail';
-		var message	=	'Please ensure each photo has been assigned a valid Order.';
-		buildAlert(title, message);
+	return row;
+}
+
+function createStatusTableRow(contents)
+{
+	var row		=	document.createElement('tr');
+	Object.keys(contents).forEach(function(i){
+		var td	=	document.createElement('td');
+		switch (typeof contents[i])
+		{
+			case 'string':
+			case 'number':
+				var txt	=	document.createTextNode(contents[i]);
+				td.appendChild(txt);
+				break;
+			case 'object':
+				td.appendChild(contents[i]);
+				break;
+		}
+		row.appendChild(td);
+	});
+	return row;
+}
+
+/*
+ * createDataFormRow() requires a specs object as an argument:
+ * 
+ * specs	=	{
+ *	'fieldLabel':		'The label for the field',
+ *	'curVal':		'The item's current value for the field',
+ *	'dataName':		'The name of the property',
+ *	'inputType':		'The type of input field (defaults to 'text'),
+ *	'options':		'For select type: provides the list of options',
+ *	'addOptBtnEvent':	'The action to perform when the user clicks the 'Add Option' button, if applicable'
+ * };
+ *
+ */
+function createDataFormRow(specs)
+{
+	specs.inputType	=	specs.inputType || 'text';
+	specs.options	=	specs.options	|| 0;
+
+	var row		=	document.createElement('tr');
+	var td1		=	document.createElement('td');
+	var td2		=	document.createElement('td');
+	var label	=	document.createTextNode(specs.fieldLabel);
+	td1.appendChild(label);
+
+	switch (specs.inputType)
+	{
+		case 'text':
+			var input		=	document.createElement('input');
+			input.type		=	'text';
+			input.dataset.name	=	specs.fieldLabel;
+			input.value		=	specs.curVal;
+			input.setAttribute('id', specs.dataName);
+			input.setAttribute('onblur', 'checkInput(this.value, \''+specs.dataName+'\')');
+			td2.appendChild(input);
+			break;
+		case 'select':
+			var select		=	document.createElement('select');
+			select.dataset.name	=	specs.fieldLabel;
+			select.setAttribute('onblur', 'checkInput(this.value, \''+specs.dataName+'\')');
+			if (specs.hasOwnProperty('onblurEvent')) {
+				select.setAttribute('onblur', specs.onblurEvent);
+			}
+			if (specs.hasOwnProperty('onchangeEvent')) {
+				select.setAttribute('onchange', specs.onchangeEvent);
+			}
+			select.setAttribute('id', specs.dataName);
+//			For creating 'N/A' option for fields that allow NULL values
+			switch (specs.dataName)
+			{
+				case 'brand':
+				case 'batch_name':
+					var option	=	document.createElement('option');
+					var txt		=	document.createTextNode('N/A');
+					option.appendChild(txt);
+					option.value	=	'';
+					if (specs.curVal == '') option.selected = true;
+					select.appendChild(option);
+					break;
+			}
+			Object.keys(specs.options).forEach(function(i){
+				var option	=	document.createElement('option');
+				var txt		=	document.createTextNode(specs.options[i]);
+				option.value	=	i;
+				if (specs.options[i] == specs.curVal) {
+					option.selected	= true;
+				} else {
+					if (i == Number(specs.curVal) && specs.dataName == 'model') {
+						option.selected = true;
+					}
+				}
+				option.appendChild(txt);
+				select.appendChild(option);
+			});
+//			For determining whether to add an 'Add New Option' button to the select field
+			switch (specs.dataName)
+			{
+				case 'batch_name':
+				case 'brand':
+				case 'model':
+				case 'mnfr':
+				case 'prev_owner':
+					select.className	=	'select-add-opt';
+					var btn			=	createButton({
+						'className':	'add-opt-btn gradient-button',
+						'onclickEvent':	specs.addOptBtnEvent,
+						'img':		{
+							'className':	'',
+							'src':		'img/interface/add-g8a.png'
+						}
+					});
+					td2.appendChild(select);
+					td2.appendChild(btn);
+					break;
+				default:
+					td2.appendChild(select);
+			}
+			break;
+		case 'textarea':
+			var textarea	=	document.createElement('textarea');
+			var txt		=	document.createTextNode(specs.curVal);
+			textarea.appendChild(txt);
+			textarea.setAttribute('id', specs.dataName);
+			textarea.setAttribute('rows', '10');
+			textarea.setAttribute('onblur', 'checkInput(this.value, \''+specs.dataName+'\')');
+			textarea.dataset.name	=	specs.fieldLabel;
+			td2.appendChild(textarea);
+			break;
 	}
+	row.appendChild(td1);
+	row.appendChild(td2);
+	return row;
 }
 
-function updatePhotoResponse(req)
+/*
+ * See arg specs for createDataFormRow()
+ * Only requires 'fieldLabel', 'dataName', and 'curVal'
+ */
+function createDataTableRow(specs)
 {
-	console.log('Update Photo Response');
-	updateAssetView();
-	closeDialog('photo-editor');
-	console.log(req);
+	var row		=	document.createElement('tr');
+	var td1		=	document.createElement('td');
+	var td2		=	document.createElement('td');
+	var label	=	document.createTextNode(specs.fieldLabel);
+	var content	=	document.createTextNode(specs.curVal);
+	td2.setAttribute('id', specs.dataName);
+	td1.appendChild(label);
+	td2.appendChild(content);
+	row.appendChild(td1);
+	row.appendChild(td2);
+	return row;
 }
 
-function updateAssetView()
+function createAleAssetRow()
 {
-	var obj		=	new Object;
-	obj.aleAsset=	document.getElementById('ale-asset-num').dataset.asset;
-	var url		=	'ajax_handler.php?controller=admin&action=getInvAssetData';
-	var json		=	encodeURIComponent(JSON.stringify(obj));
-	makeRequest(url, json, updateAssetViewResponse);
+	var row		=	document.createElement('tr');
+	var td1		=	document.createElement('td');
+	var td2		=	document.createElement('td');
+	var txt1	=	document.createTextNode('ALE Asset');
+	var txt2	=	document.createTextNode(data.prefix);
+	var span	=	document.createElement('span');
+	var txt3	=	document.createTextNode(data.aleAsset);
+	span.dataset.asset	=	data.aleAsset;
+	span.setAttribute('id', 'ale-asset-num');
+	span.appendChild(txt3);
+	td2.appendChild(txt2);
+	td2.appendChild(span);
+	td1.appendChild(txt1);
+	row.appendChild(td1);
+	row.appendChild(td2);
+	return row;
 }
 
-function updateAssetViewResponse(res)
+function createButton(specs)
 {
-	var res	=	JSON.parse(res);
-	console.log(res);
-	console.log(listOptions);
-	var exists	=	document.getElementById('loader');
-	if (exists != null){
-		hideLoadTimer();
+	var btn		=	document.createElement('span');
+	btn.className	=	specs.className;
+	if (specs.onclickEvent !== null) {
+		btn.setAttribute('onclick', specs.onclickEvent);
 	}
-	data		=	res.data;
-	photos		=	res.photos;
-	categories	=	res.categories;
-	item_status	=	res.status;
-	testThis()
+	if (specs.hasOwnProperty('text')) {
+		var txt		=	document.createTextNode(specs.text);
+		btn.appendChild(txt);
+	}
+	if ((specs.hasOwnProperty('img')) && !specs.hasOwnProperty('text'))
+	{
+		var img		=	document.createElement('img');
+		img.className	=	specs.img.className;
+		img.src		=	specs.img.src;
+		btn.appendChild(img);
+	}
+	return btn;
 }
 
-function testThis()
+function updateModelList(newVal)
 {
-	displayInvAsset(data, photos, categories, item_status, listOptions);
-}
-
-function changeOrder(rowID, newVal)
-{
-	var row	=	document.getElementById(rowID);
-//	console.log(newVal);
-	row.dataset.order	=	newVal;
-}
-
-function createOverviewInfo(data, batch)
-{
-	// Info Wrapper
-	var infoWrap	=	document.createElement('div');
-	infoWrap.setAttribute('class', 'overview-info');
-	
-	// Condition Note Wrap/Content
-	var condNoteBox	=	document.createElement('div');
-	condNoteBox.setAttribute('class', 'condition-note');
-	var p			=	document.createElement('p');
-	var label		=	document.createTextNode('Condition Note: ');
-	var labelSpan	=	document.createElement('span');
-	labelSpan.appendChild(label);
-	labelSpan.style.fontWeight = 'bold';
-	
-	var noteSpan	=	document.createElement('span');
-	noteSpan.setAttribute('id', 'condition_note');
-	noteSpan.setAttribute('data-value', data.condition_note);
-	var condNote	=	document.createTextNode( data.condition_note);
-	noteSpan.appendChild(condNote);
-
-	p.appendChild(labelSpan);
-	p.appendChild(noteSpan);
-	condNoteBox.appendChild(p);
-	
-	// Left Table Wrap
-	var leftTableWrap	=	document.createElement('div');
-	leftTableWrap.setAttribute('class', 'table-wrap');
-	// Top Left Table
-	var leftTable		=	document.createElement('table');
-	leftTable.setAttribute('class', 'dataTable');
-	//createDataTableRow(leftTable, 'ALE Asset', data.prefix + data.aleAsset, 'aleAsset');
-	
-		// Create AleAsset View
-		var row			=	document.createElement('tr');
-		//row.setAttribute('onclick', 'getUpdateDialog(\'' + id + '\'');
-		var td1			=	document.createElement('td');
-		var tn1			=	document.createTextNode('ALE Asset');
-		td1.appendChild(tn1);
-		td1.style.fontWeight = 'bold';
-		var td2			=	document.createElement('td');
-		var tn2			=	document.createTextNode(data.prefix);
-		td2.appendChild(tn2);
-		var span		=	document.createElement('span');
-		span.setAttribute('id', 'ale-asset-num');
-		span.setAttribute('data-asset', data.aleAsset);
-		var tn3			=	document.createTextNode(data.aleAsset);
-		span.appendChild(tn3);
-		td2.appendChild(span);
-		row.appendChild(td1);
-		row.appendChild(td2);
-		leftTable.appendChild(row);
-		// END
-
-		
-	createDataFormRow(leftTable, 'Location', data.wh_location, 'wh_location');
-				//createDataTableRow(leftTable, 'ALE Asset', data.prefix + data.aleAsset, 'aleAsset');
-				//createDataTableRow(leftTable, 'Location', data.wh_location, 'wh_location');
-	leftTableWrap.appendChild(leftTable);
-	// Bottom Left Table
-	var leftTable		=	document.createElement('table');
-	leftTable.setAttribute('class', 'dataTable');
-	var trackArray	=	{	
-							01:	'ALOE',
-							02:	'Novartis',
-							04:	'EMP',
-							05:	'Novartis/ALOE',
-							06:	'Consignment',
-							08:	'ALE'
-	};
-	createDataFormRow(leftTable, 'Track', data.track, 'track', 'select', trackArray);
-	createDataFormRow(leftTable, 'Batch', data.batch_name, 'batch_name', 'select', batch);
-	createDataFormRow(leftTable, 'Received', data.date_received, 'date_received');
-	createDataTableRow(leftTable, 'Added', data.date_added, 'date_added');
-	createDataTableRow(leftTable, 'Completed', data.date_completed, 'date_completed');
-	createDataTableRow(leftTable, 'Modified', data.last_update, 'last_update');
-	createDataTableRow(leftTable, 'Modified By', data.modified_by, 'modified_by');
-	leftTableWrap.appendChild(leftTable);
-	
-// Finish Basic Info Box
-	infoWrap.appendChild(condNoteBox);
-	infoWrap.appendChild(leftTableWrap);
-	//infoWrap.appendChild(rightTableWrap);	
-	//infoWrap.appendChild(subWrap);
-	return infoWrap;
-}
-
-function updateFunctionDesc(newVal)
-{
-	data.modelID	=	newVal;
-	
-	var funcDesc	=	document.getElementById('function_desc');
-	funcDesc.value	=	listOptions.functions[newVal];
+	data.mnfrID	=	newVal;
+	filterModelsByMnfr();
 }
 
 function updateBrandList(newVal)
@@ -549,675 +1134,225 @@ function updateBrandList(newVal)
 	filterBrandsByMnfr();
 }
 
-function updateModelList(newVal)
-{
-	console.log(newVal); // New mnfr ID
-	data.mnfrID	=	newVal;
-	filterModelsByMnfr();
-}
-
 function filterModelsByMnfr()
 {
-	var modelSelect 	=	document.getElementById('model');
-	var models			=	[];
-	Object.keys(listOptions.model_mnfr).forEach(function(cv){
-		if (listOptions.model_mnfr[cv].mnfr == data.mnfrID) {
-//			console.log(listOptions.model_mnfr[cv].model)
-			models.push(listOptions.model_mnfr[cv].model)
+	var select	=	document.getElementById('model');
+	var models	=	[];
+	var defOp	=	document.createElement('option');
+	var defOpTxt	=	document.createTextNode('Select a Model or Add a New Record');
+
+	defOp.selected	=	true;
+	defOp.disabled	=	true;
+	defOp.value	=	'';
+	defOp.appendChild(defOpTxt);
+
+	Object.keys(listOptions.model_mnfr).forEach(function(i){
+		if (listOptions.model_mnfr[i].mnfr == data.mnfrID) {
+			models.push(listOptions.model_mnfr[i].model);
 		}
-	});	
-	
-	
-	console.log(models);
-	
-	while (modelSelect.hasChildNodes()) {
-		modelSelect.removeChild(modelSelect.lastChild);
+	});
+
+	while (select.hasChildNodes()) {
+		select.removeChild(select.lastChild);
 	}
-	
-	// Default
-	var option	=	document.createElement('option');
-	option.selected = true;
-	option.disabled = true;
-	var tn		=	document.createTextNode('Select a Model or Add a New Record');
-	option.appendChild(tn);
-	modelSelect.appendChild(option);
-	
-	Object.keys(models).forEach(function(curVal) {
-//		// Create Options
-		var id	=	models[curVal];
-		console.log(id);
-		console.log(listOptions.models[id]);
+
+	select.appendChild(defOp);
+	Object.keys(models).forEach(function(i){
+		var id		=	models[i];
 		var option	=	document.createElement('option');
-		option.setAttribute('value', models[curVal]);
+		var txt		=	document.createTextNode(listOptions.models[id]);
+		option.appendChild(txt);
+		option.value	=	id;
 		if (id == data.modelID) {
 			option.selected = true;
-		}// else {
-//			if (curVal == Number(cv) && dataName == 'model') {
-//				option.selected = true;
-//			}
-//		}
-		var tn		=	document.createTextNode(listOptions.models[id]);
-		option.appendChild(tn);
-		modelSelect.appendChild(option);
+		}
+		select.appendChild(option);
 	});
 }
 
 function filterBrandsByMnfr()
 {
-	var brandSelect 	=	document.getElementById('brand');
-	var brands			=	[];
-	Object.keys(listOptions.mnfr_brand).forEach(function(cv){
-		if (listOptions.mnfr_brand[cv].mnfr == data.mnfrID) {
-//			console.log(listOptions.model_mnfr[cv].model)
-			brands.push(listOptions.mnfr_brand[cv].brand)
+	var select	=	document.getElementById('brand');
+	var brands	=	[];
+	var defOp	=	document.createElement('option');
+	var defOpTxt	=	document.createTextNode('Select a Brand or Add a New Record');
+
+	defOp.selected	=	true;
+	defOp.disabled	=	true;
+	defOp.value	=	'';
+	defOp.appendChild(defOpTxt);
+
+	Object.keys(listOptions.mnfr_brand).forEach(function(i){
+		if (listOptions.mnfr_brand[i].mnfr == data.mnfrID) {
+			brands.push(listOptions.mnfr_brand[i].brand);
 		}
 	});
 	
-	while (brandSelect.hasChildNodes()) {
-		brandSelect.removeChild(brandSelect.lastChild);
+	while (select.hasChildNodes()) {
+		select.removeChild(select.lastChild);
 	}
-	
-	// Default
-	var option	=	document.createElement('option');
-	option.selected = true;
-	option.disabled = true;
-	var tn		=	document.createTextNode('Select a Brand or Add a New Record');
-	option.appendChild(tn);
-	brandSelect.appendChild(option);
-	
-	// NA
-	var option	=	document.createElement('option');
-	option.setAttribute('value', '');
-	if (data.brandID == '') option.selected = true;
-	var tn		=	document.createTextNode('N/A');
-	option.appendChild(tn);
-	brandSelect.appendChild(option);
-	
-	Object.keys(brands).forEach(function(curVal) {
-//		// Create Options
-		var id	=	brands[curVal];
-		console.log(id);
-		console.log(listOptions.brands[id]);
+
+	select.appendChild(defOp);
+	Object.keys(brands).forEach(function(i){
+		var id		=	brands[i];
 		var option	=	document.createElement('option');
-		option.setAttribute('value', brands[curVal]);
+		var txt		=	document.createTextNode(listOptions.brands[id]);
+		option.appendChild(txt);
+		option.value	=	id;
 		if (id == data.brandID) {
 			option.selected = true;
-		}// else {
-//			if (curVal == Number(cv) && dataName == 'model') {
-//				option.selected = true;
-//			}
-//		}
-		var tn		=	document.createTextNode(listOptions.brands[id]);
-		option.appendChild(tn);
-		brandSelect.appendChild(option);
+		}
+		select.appendChild(option);
 	});
 }
 
-function getBasicInfo(data, mnfrs, models, brands)
+function updateFunctionDesc(newVal)
 {
-	// Create list of models for the given manufacturer:
-	
-	
-	
-	
-	
-	var itemDetails		=	document.createElement('div');
-	itemDetails.setAttribute('class', 'item-detail-wrap');
-	var h2 				=	document.createElement('h2');
-	var header			=	document.createTextNode('Basic Info');
-	h2.appendChild(header);
-	itemDetails.appendChild(h2);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Mnfr.', data.mnfr, 'mnfr', 'select', mnfrs);
-	createDataFormRow(detailTable, 'Brand', data.brand, 'brand', 'select', brands);
-	createDataFormRow(detailTable, 'Model', data.modelID, 'model', 'select', models);
-	createDataFormRow(detailTable, 'Function', data.function_desc, 'function_desc');
-	createDataFormRow(detailTable, 'Title Extn.', data.title_extn, 'title_extn');
-	itemDetails.appendChild(detailTable);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Serial No.', data.serial_num, 'serial_num');
-	createDataFormRow(detailTable, 'Model No.', data.addtl_model, 'addtl_model');
-	createDataFormRow(detailTable, 'Mnfr. Part No.', data.mpn, 'mpn');
-	createDataFormRow(detailTable, 'Year of Mnfr.', data.yom, 'yom');
-	createDataFormRow(detailTable, 'Weight', data.weight, 'weight');
-	itemDetails.appendChild(detailTable);
-	return itemDetails;
+	data.modelID	=	newVal;
+	var funcDesc	=	document.getElementById('function_desc');
+	funcDesc.value	=	listOptions.functions[newVal];
 }
 
-function createAccountingInfo(data, vendors)
+function updateAssetView()
 {
-	var itemDetails		=	document.createElement('div');
-	itemDetails.setAttribute('class', 'item-detail-wrap');
-	var h2 				=	document.createElement('h2');
-	var header			=	document.createTextNode('Accounting Data');
-	h2.appendChild(header);
-	itemDetails.appendChild(h2);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Price', data.price, 'price');
-	createDataFormRow(detailTable, 'Cost', data.cost, 'cost');
-	createDataFormRow(detailTable, 'Quantity', data.quantity, 'quantity');
-	createDataFormRow(detailTable, 'Vendor', data.vendor, 'vendor', 'select', vendors);
-	itemDetails.appendChild(detailTable);
-	return itemDetails;
+	var obj		=	new Object;
+	var url		=	'ajax_handler.php?controller=admin&action=getInvAssetData';
+	obj.aleAsset	=	document.getElementById('ale-asset-num').dataset.asset;
+	var json	=	encodeURIComponent(JSON.stringify(obj));
+	makeRequest(url, json, updateAssetViewResponse);
 }
 
-function createListingInfo(data)
+function updateAssetViewResponse(res)
 {
-	var conditions	=	{
-							01: 'Used',
-							02:	'New',
-							03:	'Like-New'
-	};
-	var cosmetics	=	{
-							1:	'Used',
-							2:	'Like-New',
-							3:	'Refurbished',
-							4:	'New',
-							5:	'Original Packaging'
-	};
-	var testings	=	{
-							01:	'Tested',
-							02:	'Not Tested',
-							03:	'Powers Up',
-							04:	'AS-IS'
-	};
-	var	shipClasses	=	{
-							1:	'LAB-SM',
-							2:	'LAB-MED',
-							3:	'LAB-LG',
-							4:	'LAB-XL',
-							5:	'LAB-LTL'
-	};
-	var itemDetails		=	document.createElement('div');
-	itemDetails.setAttribute('class', 'item-detail-wrap');
-	var h2 				=	document.createElement('h2');
-	var header			=	document.createTextNode('Listing Data');
-	h2.appendChild(header);
-	itemDetails.appendChild(h2);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Condition', data.item_condition, 'item_condition', 'select', conditions);
-	createDataFormRow(detailTable, 'Cosmetic', data.cosmetic, 'cosmetic', 'select', cosmetics);
-	createDataFormRow(detailTable, 'Testing', data.testing, 'testing', 'select', testings);
-	createDataFormRow(detailTable, 'Components', data.components, 'components', 'textarea');
-	createDataFormRow(detailTable, 'Shipping Class', data.shipping_class, 'shipping_class', 'select', shipClasses);
-	itemDetails.appendChild(detailTable);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Description', data.m_desc, 'm_desc', 'textarea');
-	//createDataFormRow(detailTable, 'Specifications', '', 'specs', 'textarea');
-	itemDetails.appendChild(detailTable);
-	return itemDetails;
+	var res		=	JSON.parse(res);
+	var exists	=	document.getElementById('loader');
+	if (exists != null) {
+		hideLoadTimer();
+	}
+	data		=	res.data;
+	photos		=	res.photos;
+	categories	=	res.categories;
+	item_status	=	res.item_status;
+	displayInvAsset();
+	updateList('itm');
 }
 
-function createCategoriesSection(cate)
+function closeAssetViewIfExists(parentElem)
 {
-//	console.log('building categories...')
-	var subWrap			=	document.createElement('div');
-	subWrap.setAttribute('class', 'info-wrap');
-	var h2 				=	document.createElement('h2');
-	var header			=	document.createTextNode('ALE Catalog Categories');
-	h2.appendChild(header);
-	subWrap.appendChild(h2);
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'cat-dataTable');
-	createHeadRow(detailTable, 'Category', 'Subcategory');
-//	console.log(cate);
-	Object.keys(cate).forEach(function(cv) {
-//		console.log(cv, cate[cv]);
-		createStatusRow(detailTable, cate[cv].category, cate[cv].subcategory);
+	var elemExists	=	document.getElementById('asset-view');
+	if (elemExists != null) {
+		parentElem.removeChild(elemExists);
+	}
+}
+
+function nullToEmptyStr(obj) {
+	Object.keys(obj).forEach(function(i) {
+		if (obj[i] == null) obj[i] = '';
 	});
-	subWrap.appendChild(detailTable);
-	return subWrap;
+	return obj;
 }
 
-function createNovartis(data, prevOwners) 
+function checkPhotos()
 {
-	var empStatus	=	{
-							01: 'Available for Purchase',
-							02:	'Ready for Upload',
-							03:	'Requires Testing for EMP',
-							04:	'Not an EMP Item'
+	if (Object.keys(photos).length === 0) {
+		for (i=1 ; i<=6 ; i++) {
+			var img	=	new Object;
+			img.url	=	'img/interface/image_needed.png';
+			photos.push(img);
+		}
+
+	}
+}
+
+function getAssetData()
+{
+	var data	=	{
+		"aleAsset":		document.getElementById('ale-asset-num').dataset.asset,
+		"condition_note":	document.getElementById('condition_note').value,
+		"wh_location":		document.getElementById('wh_location').value,
+		"track":		document.getElementById('track').value,
+		"batch_name":		document.getElementById('batch_name').value,
+		"date_received":	document.getElementById('date_received').value,
+		"mnfr":			document.getElementById('mnfr').value,
+		"brand":		document.getElementById('brand').value,
+		"model":		document.getElementById('model').value,
+		"function_desc":	document.getElementById('function_desc').value,
+		"title_extn":		document.getElementById('title_extn').value,
+		"serial_num":		document.getElementById('serial_num').value,
+		"addtl_model":		document.getElementById('addtl_model').value,
+		"mpn":			document.getElementById('mpn').value,
+		"yom":			document.getElementById('yom').value,
+		"weight":		document.getElementById('weight').value,
+		"price":		document.getElementById('price').value,
+		"cost":			document.getElementById('cost').value,
+		"quantity":		document.getElementById('quantity').value,
+		"vendor":		document.getElementById('vendor').value,
+		"item_condition":	document.getElementById('item_condition').value,
+		"cosmetic":		document.getElementById('cosmetic').value,
+		"testing":		document.getElementById('testing').value,
+		"components":		document.getElementById('components').value,
+		"shipping_class":	document.getElementById('shipping_class').value,
+		"m_desc":		document.getElementById('m_desc').value,
+		"emp_status":		document.getElementById('emp_status').value,
+//		"emp_cat":		document.getElementById('').value,
+		"prev_owner":		document.getElementById('prev_owner').value,
+		"nbv":			document.getElementById('nbv').value,
+		"nibr":			document.getElementById('nibr').value,
+		"tm0":			document.getElementById('tm0').value,
+		"sap":			document.getElementById('sap').value,
+		"src_building":		document.getElementById('src_building').value,
+		"src_floor":		document.getElementById('src_floor').value,
+		"src_room":		document.getElementById('src_room').value,
 	};
-	var novartis	=	document.createElement('div');
-	novartis.setAttribute('class', 'asset-section novartis-section');
-	var h2			=	document.createElement('h2');
-	var head		=	document.createTextNode('Novartis Data');
-	h2.appendChild(head);
-	novartis.appendChild(h2);
-	// Left Nov Section
-	var section		=	document.createElement('div');
-	section.setAttribute('class', 'nov-sect');
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	detailTable.setAttribute('data-empCatId', data.emp_cat_id);
-	createDataFormRow(detailTable, 'EMP Status', data.emp_status, 'emp_status', 'select', empStatus);
-	createDataTableRow(detailTable, 'EMP Category', data.emp_category + '/' + data.emp_subcategory, 'emp_category');
-	createDataFormRow(detailTable, 'Prev. Owner', data.prev_owner, 'prev_owner', 'select', prevOwners);
-	createDataFormRow(detailTable, 'NBV', data.nbv, 'nbv');
-	section.appendChild(detailTable);
-	novartis.appendChild(section);
-	// Middle Nov Section
-	var section		=	document.createElement('div');
-	section.setAttribute('class', 'nov-sect');
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'NIBR', data.nibr, 'nibr');
-	createDataFormRow(detailTable, 'TM0', data.tm0, 'tm0');
-	createDataFormRow(detailTable, 'SAP', data.sap, 'sap');
-	section.appendChild(detailTable);
-	novartis.appendChild(section);
-	// Right Nov Section
-	var section		=	document.createElement('div');
-	section.setAttribute('class', 'nov-sect');
-	var detailTable		=	document.createElement('table');
-	detailTable.setAttribute('class', 'dataTable');
-	createDataFormRow(detailTable, 'Src. Building', data.src_building, 'src_building');
-	createDataFormRow(detailTable, 'Src. Floor', data.src_floor, 'src_floor');
-	createDataFormRow(detailTable, 'Src. Room', data.src_room, 'src_room');
-	section.appendChild(detailTable);
-	novartis.appendChild(section);
-	return novartis;
+	return data;
 }
 
-function createDataTableRow(table, name, data, id)
+function addCategoryDialog()
 {
-	var row			=	document.createElement('tr');
-	//row.setAttribute('onclick', 'getUpdateDialog(\'' + id + '\'');
-	var td1			=	document.createElement('td');
-	var tn1			=	document.createTextNode(name);
-	td1.appendChild(tn1);
-	td1.style.fontWeight = 'bold';
-	var td2			=	document.createElement('td');
-	var tn2			=	document.createTextNode(data);
-	td2.appendChild(tn2);
-	row.appendChild(td1);
-	row.appendChild(td2);
-	table.appendChild(row);
-}
-
-function createDataFormRow(table, fieldName, cv, dataName, type, optArray)
-{
-	console.log('OPT ARRAY:');
-	console.log(optArray);
-	var type 		=	type || 'text';
-	var optArray	=	optArray || 0;
-	// Create Row
-	var row		=	document.createElement('tr');
-	// Create first cell, cell content
-	var td1		=	document.createElement('td');
-	var tn1		=	document.createTextNode(fieldName);
-	// Append content to cell
-	td1.style.fontWeight = 'bold';
-	td1.appendChild(tn1);
-	
-	// Create second cell
-	var td2		=	document.createElement('td');
-	// Generate Inputs
-	if (type == 'text') {
-		var input	=	document.createElement('input');
-		input.setAttribute('type', type);
-		input.setAttribute('data-name', fieldName);
-		input.setAttribute('value', cv);
-		input.setAttribute('id', dataName);
-		input.setAttribute('onblur', 'checkInput(this.value, \''+dataName+'\')');
-		td2.appendChild(input);
-	}
-	if (type == 'select') {
-		var select	=	document.createElement('select');
-		switch (dataName)
-		{
-			case 'brand':
-			case 'batch_name':
-				var option	=	document.createElement('option');
-				option.setAttribute('value', '');
-				if (cv == '') option.selected = true;
-				var tn		=	document.createTextNode('N/A');
-				option.appendChild(tn);
-				select.appendChild(option);
-				break;
-		}
-		Object.keys(optArray).forEach(function(curVal) {
-			// Create Options
-			var option	=	document.createElement('option');
-			option.setAttribute('value', curVal);
-			if (optArray[curVal] == cv) {
-				option.selected = true;
-			} else {
-				if (curVal == Number(cv) && dataName == 'model') {
-					option.selected = true;
-				}
-			}
-			var tn		=	document.createTextNode(optArray[curVal]);
-			option.appendChild(tn);
-			select.appendChild(option);
-		});
-		select.setAttribute('onblur', 'checkInput(this.value, \''+dataName+'\')');
-		select.setAttribute('data-name', fieldName);
-		select.setAttribute('id', dataName);
-		// Determines whether or not to add an "Add New Option" button to the select field
-		switch (dataName)
-		{
-			case 'batch_name':
-			case 'brand':
-			case 'model':
-			case 'mnfr':
-			case 'prev_owner':
-				select.setAttribute('class', 'select-add-opt');
-				var btn	=	document.createElement('div');
-				btn.setAttribute('class', 'add-opt-btn gradient-button');
-				var img	=	document.createElement('img');
-				img.setAttribute('src', 'img/interface/add-g8a.png');
-				btn.appendChild(img);
-				var i	=	1;
-			default:
-				// Append Select to Table Cell, as well as the button, if applicable
-				td2.appendChild(select);
-				if (i === 1) {
-					td2.appendChild(btn);
-				}
-		}
-		
-	}
-	if (type == 'textarea') {
-		var textarea	=	document.createElement('textarea');
-		var tn			=	document.createTextNode(cv);
-		textarea.appendChild(tn);
-		textarea.setAttribute('onblur', 'checkInput(this.value, \''+dataName+'\')');
-		textarea.setAttribute('rows', '10');
-		textarea.setAttribute('id', dataName);
-		textarea.setAttribute('data-name', fieldName);
-		td2.appendChild(textarea);
-	}
-	row.appendChild(td1);
-	row.appendChild(td2);
-	table.appendChild(row);
-	
-}
-
-function createStatusRow(table, status, desc, bold)
-{
-//	console.log('building categories!')
-	var bold = bold || 0;
-	var row		=	document.createElement('tr');
-	var td1		=	document.createElement('td');
-	var tn1		=	document.createTextNode(status);
-	td1.appendChild(tn1);
-	var td2		=	document.createElement('td');
-	var tn2		=	document.createTextNode(desc);
-	td2.appendChild(tn2);
-	var td3		=	document.createElement('td');
-	var tn3		=	document.createElement('span');
-	tn3.setAttribute('class', 'status-rm warning-button');
-	var tn4		=	document.createTextNode('Remove');
-	tn3.appendChild(tn4);
-	td3.appendChild(tn3);
-	if (bold != 0) {
-		td1.style.fontWeight = 'bold';
-		td2.style.fontWeight = 'bold';
-	}
-	row.appendChild(td1);
-	row.appendChild(td2);
-	row.appendChild(td3);
-	table.appendChild(row);
-}
-
-function createHeadRow(table, col1, col2)
-{
-	var bold = 0;
-	var row		=	document.createElement('tr');
-	var td1		=	document.createElement('th');
-	var tn1		=	document.createTextNode(col1);
-	td1.appendChild(tn1);
-	var td2		=	document.createElement('th');
-	var tn2		=	document.createTextNode(col2);
-	td2.appendChild(tn2);
-	var td3		=	document.createElement('th');
-	var tn3		=	document.createElement('span');
-	td3.appendChild(tn3);
-	if (bold != 0) {
-		td1.style.fontWeight = 'bold';
-		td2.style.fontWeight = 'bold';
-	}
-	row.appendChild(td1);
-	row.appendChild(td2);
-	row.appendChild(td3);
-	row.setAttribute('class', 'header');
-	table.appendChild(row);
-}
-
-function createImageDetailRow(photos, cv, imgTable)
-{
-	// Add a Row for each table
-	var tr		=	document.createElement('tr');
-	var picTd	=	document.createElement('td');
-	var infoTd	=	document.createElement('td');
-	var actTd	=	document.createElement('td');
-	var img		=	document.createElement('img');
-	var rmBtn	=	document.createElement('span');
-	var select	=	document.createElement('select');
-	var subTable=	document.createElement('table');
-	subTable.className	=	'info-table';
-	
-	// Row
-	tr.setAttribute('class', 'img-row');
-	
-	var rowId	=	cv;
-	while (document.getElementById('img' + rowId) != null)
-	{
-		rowId++;
-	}
-	tr.setAttribute('id', 'img' + rowId);
-	
-	
-	tr.dataset.url	=	photos[cv].url;
-	tr.dataset.rowid=	photos[cv].id;
-	tr.dataset.order=	photos[cv].order;
-	
-	var options	=	[];
-	var txt		=	document.createTextNode('Select Image Order');
-	options.push('Select Image Order');
-	
-	// Select
-	select.setAttribute('onchange', "changeOrder('"+tr.id+"', this.value)");
-	for (j = 1 ; j<=6 ; j++)
-	{
-		options.push(j);
-	}
-//	console.log('OPT1: ' + options);
-	
-	var count	=	new Object;
-	count.count	=	0;	
-	
-	// Create Options
-	Object.keys(options).forEach(function(cvOpt) {
-//		console.log(options[cvOpt]);
-		var opt	=	document.createElement('option');
-		var txt	=	document.createTextNode(options[cvOpt])
-		opt.setAttribute('value', options[cvOpt]);
-		if (cvOpt == 0) {
-			opt.id			=	'default-opt';
-			opt.selected	=	'true';
-			opt.disabled	=	'true';
-			opt.value		=	'null';
-		}
-		if (cvOpt == photos[cv].order)
-		{
-			opt.selected	=	'true';
-			count.count++;
-		}
-		opt.appendChild(txt);
-		select.appendChild(opt);
+	var body	=	document.getElementById('ale-body');
+	var box		=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Add a Category');
+	var table	=	document.createElement('table');
+	var btns	=	document.createElement('btns');
+	var accept	=	createButton({
+		"className":	"gradient-button",
+		"onclickEvent":	"addCategory()",
+		"text":		"Accept"
 	});
-	
-	
-	// Images
-	img.setAttribute('src', photos[cv].url);
-	img.setAttribute('class', 'material');
-	
-	// Info Table
-	var ordTr	=	document.createElement('tr');
-	var addTr	=	document.createElement('tr');
-	var upTr	=	document.createElement('tr');
-	var ord1	=	document.createElement('td');
-	var ord2	=	document.createElement('td');
-	var add1	=	document.createElement('td');
-	var add2	=	document.createElement('td');
-	var up1		=	document.createElement('td');
-	var up2		=	document.createElement('td');
-	
-	var ordTn	=	document.createTextNode('Order');
-	var addTn	=	document.createTextNode('Date Added');
-	var upTn	=	document.createTextNode('Date Updated');
-	
-	var ordData	=	select;
-	var addData	=	document.createTextNode(photos[cv].added);
-	var upData	=	document.createTextNode(photos[cv].update);
-	
-	ord1.appendChild(ordTn);
-	add1.appendChild(addTn);
-	up1.appendChild(upTn);
-	
-	ord2.appendChild(ordData);
-	add2.appendChild(addData);
-	up2.appendChild(upData);
-	
-	ordTr.appendChild(ord1);
-	ordTr.appendChild(ord2);
-	addTr.appendChild(add1);
-	addTr.appendChild(add2);
-	upTr.appendChild(up1);
-	upTr.appendChild(up2);
-	subTable.appendChild(ordTr);
-	subTable.appendChild(addTr);
-	subTable.appendChild(upTr);
-	// END INFO TABLE
-	
-	// Remove Btn
-	rmBtn.className	=	'status-rm warning-button';
-	rmBtn.setAttribute('onclick', "removePhoto('img"+cv+"')");
-	var txt			=	document.createTextNode('Remove');
-	rmBtn.appendChild(txt);
-	
-	
-	// Assemble td's
-	picTd.appendChild(img);
-	infoTd.appendChild(subTable);
-	actTd.appendChild(rmBtn);
-	
-	// Assemble tr
-	tr.appendChild(picTd);
-	tr.appendChild(infoTd);
-	tr.appendChild(actTd);
-	imgTable.appendChild(tr);
-}
 
-function imgPreprocess() {
-	showLoadTimer('The server is processing your images. This may take a few moments.');
-	var aleAsset		=	document.getElementById('ale-asset-num').dataset.asset;
-	var inputElement	= 	document.getElementById('file-drop');
-	var imgTable		=	document.getElementById('img-list');
-	var photos			=	new Object;
-	photos.count 		= 	0
-	for (j = 0 ; j < 6 ; j++)
-	{
-		var row	=	document.getElementById('img' + j);
-		if (row) photos.count++;
-	}
-	
-	var fileList=	inputElement.files;
-	console.log(photos.count);
-	console.log('inputElement.files LENGTH (number of files submitted): ' + fileList.length);
-	
-	// Validate
-	if (fileList.length > 6 - photos.count) {
-		console.log('You\'ve added too many photos.');
-		buildAlert('User Error', 'You\'ve added too many photos. Maximum 6 per Item.');
-		inputElement.value = '';
-	} else {
-		var formData	=	new FormData();
-		for (j = 0 ; j < fileList.length ; j++)
-		{
-			var file = fileList[j];
-			// Check the file type.
-			if (!file.type.match('image.*')) 
-			{
-				continue;
-			}
-			// Add the file to the request.
-			formData.append('image[]', file, file.name);
-		}
-		formData.append('asset', aleAsset);
-		formData.append('reqIsAjax', 'true');
-		console.log('FORM DATA: ');
-		console.log(formData);
-		
-		req = new XMLHttpRequest();
-		req.onreadystatechange = alertContents;
-		req.open('POST', 'ajax_handler.php?controller=admin&action=imagePreprocess', true);
-		req.send(formData);
-		
-		function alertContents()
-		{
-			if (req.readyState === XMLHttpRequest.DONE) 
-			{
-				if (req.status === 200)
-				{
-					hideLoadTimer();
-					console.log('File(s) pre-processed' + req.responseText);
-					var data 		= 	JSON.parse(req.responseText);
-					var imgTable	=	document.getElementById('img-list');
-					var photos		=	data[1];
-					console.log('DATA[0]: ' + data[0]);
-					if (data[0] === 1) {
-//						console.log('YESTES');
-						Object.keys(photos).forEach(function(cv){
-							createImageDetailRow(photos, cv, imgTable)
-						});
-					}
-//					alertUser(data);
-					//var div			= document.getElementById('photoDataArea');
-					for (j = 0 ; j < data.length ; j++)
-					{
-//						console.log(j);
-					}
-					//upBut.value	= 'Upload';
-					//document.getElementById("demo1").style.display = "none";
-					//getData(asset, ord);
-				}
-				else
-				{
-					alert('An error occurred while trying to process your image(s). Please try again.');
-					//upBut.value	= 'Upload';
-				}
-			}
-		}
-//		req.onload	= function() 
-//		{
-//			if (req.status === 200)
-//			{
-//				console.log('File(s) pre-processed' + req.responseText);
-//				var data 		= req.responseText;
-//				alertUser(data);
-//				//var div			= document.getElementById('photoDataArea');
-//				for (j = 0 ; j < data.length ; j++)
-//				{
-//					//div.innerHTML += data[j];
-//				}
-//				//upBut.value	= 'Upload';
-//				//document.getElementById("demo1").style.display = "none";
-//				//getData(asset, ord);
-//			}
-//			else
-//			{
-//				alert('An error occurred while trying to process your image(s). Please try again.');
-//				//upBut.value	= 'Upload';
-//			}
-//		};	
-//		var json		=	encodeURIComponent(JSON.stringify(formData))
-//		createImageDetailRow(photos, cv, imgTable)
-	} // END ELSE
+	h2.appendChild(h2Txt);
+	h2.className	=	'section-head';
+	box.className	=	'admin-dialog material';
+	box.id		=	'category-dialog';
+	table.className	=	'';
+	btns.appendChild(accept);
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'ALE Category',
+			'curVal':	'',
+			'dataName':	'category',
+			'inputType':	'select',
+			'options':	listOptions.categories.category,
+			'onblurEvent':	'getEmpSubcategories()'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'ALE Subcategory',
+			'curVal':	'',
+			'dataName':	'subcategory',
+			'inputType':	'select',
+			'options':	'',
+			'onblurEvent':	'getEmpSubcategories()'
+		})
+	];
+	Object.keys(rows).forEach(function(i){
+		table.appendChild(rows[i]);
+	});
+
+	addCloseButton(box, 'category-dialog');
+	box.appendChild(h2);
+	box.appendChild(table);
+	box.appendChild(btns);
+	body.appendChild(box);
 }

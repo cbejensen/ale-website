@@ -45,6 +45,14 @@
 			var url				=	<?php echo json_encode($list->url); ?>;
 			var tools			=	<?php echo json_encode($list->tools); ?>;
 			var list_type		=	<?php echo json_encode($list->ltype); ?>;
+			var list_scope		=	<?php echo json_encode($list->lscope); ?>;
+			var listInfo		=	<?php echo json_encode(array(
+					'scope'		=>	$list->lscope,
+					'type'		=>	$list->ltype,
+					'sortBy'	=>	$list->srt_f,
+					'sortDir'	=>	$list->sortOrder,
+					'rp'		=>	$list->page
+			)); ?>;
 			var current_page	=	<?php echo json_encode($list->page); ?>;
 			renderList();
 			insertListData();

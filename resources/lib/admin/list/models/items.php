@@ -196,107 +196,157 @@ class ItemList extends DataList
 	
 	private function setOptions()
 	{
-		// Vendors
-		$q		=	"SELECT id, vendor FROM vendors WHERE active=1 ORDER BY vendor";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		$options	=	ItemList::getOptions($this->conn);
+		foreach ($options as $key => $value)
 		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['vendors'][$row['id']]	=	$row['vendor'];
+			$this->options[$key]	=	$value;
 		}
+	}
+	
+	public static function getOptions($conn)
+	{
+		$options	=	array();
+		$spec		=	array(
+				array(
+						'key'		=>	'vendors',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, vendor FROM vendors WHERE active=1 ORDER BY vendor",
+						'subject'	=>	function($row){return $row['vendor'];}
+				),
+				array(
+						'key'		=>	'mnfrs',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, mnfr FROM manufacturers WHERE active=1 ORDER BY mnfr",
+						'subject'	=>	function($row){return $row['mnfr'];}
+				),
+				array(
+						'key'		=>	'brands',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, brand FROM brands WHERE active=1 ORDER BY brand",
+						'subject'	=>	function($row){return $row['brand'];}
+				),
+				array(
+						'key'		=>	'batch',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, batch_name FROM inv_batch ORDER BY batch_name",
+						'subject'	=>	function($row){return $row['batch_name'];}
+				),
+				array(
+						'key'		=>	'prev_owner',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, prev_owner FROM emp_prev_owners ORDER BY prev_owner",
+						'subject'	=>	function($row){return $row['prev_owner'];}
+				),
+				array(
+						'key'		=>	'status',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, status FROM item_status ORDER BY status",
+						'subject'	=>	function($row){return $row['status'];}
+				),
+// 				array(
+// 						'key'		=>	'batch',
+// 						'idKey'		=>	'id',
+// 						'query'		=>	"SELECT id, batch_name FROM inv_batch ORDER BY batch_name",
+// 						'subject'	=>	'batch_name'
+// 				),
+				array(
+						'key'		=>	'functions',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, function_desc FROM models WHERE active=1",
+						'subject'	=>	function($row){return $row['function_desc'];}
+				),
+				array(
+						'key'		=>	'tracks',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, track FROM item_track",
+						'subject'	=>	function($row){return $row['track'];}
+				),
+				array(
+						'key'		=>	'item_condition',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, item_condition FROM item_condition",
+						'subject'	=>	function($row){return $row['item_condition'];}
+				),
+				array(
+						'key'		=>	'cosmetic',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, cosmetic FROM cosmetic_status",
+						'subject'	=>	function($row){return $row['cosmetic'];}
+				),
+				array(
+						'key'		=>	'testing',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, testing FROM testing_status",
+						'subject'	=>	function($row){return $row['testing'];}
+				),
+				array(
+						'key'		=>	'shipping_class',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, shipping_class FROM shipping_class",
+						'subject'	=>	function($row){return $row['shipping_class'];}
+				),
+				array(
+						'key'		=>	'emp_status',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, status FROM emp_status",
+						'subject'	=>	function($row){return $row['status'];}
+				),
+				array(
+						'key'		=>	'models',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, model, function_desc FROM models WHERE active=1 ORDER BY model",
+						'subject'	=>	function($row){return $row['model'] . ' [' . $row['function_desc'] .']';}
+				),
+				array(
+						'key'		=>	'model_mnfr',
+						'idKey'		=>	'',
+						'query'		=>	"SELECT mnfrID, modelID FROM model_mnfr WHERE active=1",
+						'subject'	=>	function($row){return array('mnfr'=>$row['mnfrID'], 'model'=>$row['modelID']);}
+				),
+				array(
+						'key'		=>	'mnfr_brand',
+						'idKey'		=>	'',
+						'query'		=>	"SELECT mnfrID, brandID FROM mnfr_brand WHERE active=1",
+						'subject'	=>	function($row){return array('mnfr'=>$row['mnfrID'], 'brand'=>$row['brandID']);}
+				),
+				array(
+						'key'		=>	'users',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, first_name, last_name FROM users",
+						'subject'	=>	function($row){return $row['first_name'] . ' ' . $row['last_name'];}
+				),
+				array(
+						'key'		=>	'emp_category',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, category, subcategory FROM emp_category",
+						'subject'	=>	function($row){return array('category'=>$row['category'], 'subcategory'=>$row['subcategory']);}
+				),
+				array(
+						'key'		=>	'ale_category',
+						'idKey'		=>	'ale_category',
+						'query'		=>	"SELECT id, ale_category, ale_subcategory FROM ale_category ORDER BY ale_category, ale_subcategory",
+						'subject'	=>	function($row){return $row['ale_subcategory'];}
+				),
+		);
 		
-		// Manufacturers
-		$q		=	"SELECT id, mnfr FROM manufacturers WHERE active=1 ORDER BY mnfr";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
+		foreach ($spec as $specs)
 		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['mnfrs'][$row['id']]	=	$row['mnfr'];
+			$q	=	$specs['query'];
+			$r	=	db_query($q, $conn);
+			for ($j = 0 ; $j < $r->num_rows ; $j++)
+			{
+				$r->data_seek($j);
+				$row		=	$r->fetch_array(MYSQLI_ASSOC);
+				if ($specs['key'] == 'ale_category') {
+					$options[$specs['key']][$row[$specs['idKey']]][$row['id']]	=	$specs['subject']($row);
+				}
+				elseif ($specs['idKey'] !== '') {
+					$options[$specs['key']][$row[$specs['idKey']]]	=	$specs['subject']($row);
+				} else {
+					$options[$specs['key']][]	=	$specs['subject']($row);
+				}
+			}
 		}
-		
-		// Models
-		$q		=	"SELECT id, model, function_desc FROM models WHERE active=1 ORDER BY model";
-		// 		$q		=	"SELECT model_mnfr.modelID, models.model FROM model_mnfr
-		// 					JOIN models ON model_mnfr.modelID = models.id
-		// 					WHERE models.active=1 ORDER BY models.model";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['models'][$row['id']]	=	$row['model'] . ' [' . $row['function_desc'] .']';
-		}
-		
-		// Brands
-		$q		=	"SELECT id, brand FROM brands WHERE active=1 ORDER BY brand";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['brands'][$row['id']]	=	$row['brand'];
-		}
-		
-		// Batches
-		$q		=	"SELECT id, batch_name FROM inv_batch ORDER BY batch_name";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['batch'][$row['id']]	=	$row['batch_name'];
-		}
-		
-		// Nov. Prev. Owners
-		$q		=	"SELECT id, prev_owner FROM emp_prev_owners ORDER BY prev_owner";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['prev_owner'][$row['id']]	=	$row['prev_owner'];
-		}
-		
-		// Statuses
-		$q		=	"SELECT id, status FROM item_status ORDER BY status";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['status'][$row['id']]	=	$row['status'];
-		}
-		
-		// model_mnfr
-		$q		=	"SELECT mnfrID, modelID FROM model_mnfr WHERE active=1";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['model_mnfr'][]	=	array('mnfr'=>$row['mnfrID'], 'model'=>$row['modelID']);
-		}
-		
-		// mnfr_brand
-		$q		=	"SELECT mnfrID, brandID FROM mnfr_brand WHERE active=1";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['mnfr_brand'][]	=	array('mnfr'=>$row['mnfrID'], 'brand'=>$row['brandID']);
-		}
-		
-		//functions
-		$q		=	"SELECT id, function_desc FROM models WHERE active=1";
-		$r		=	db_query($q, $this->conn);
-		for ($j = 0 ; $j < $r->num_rows ; $j++)
-		{
-			$r->data_seek($j);
-			$row		=	$r->fetch_array(MYSQLI_ASSOC);
-			$this->options['functions'][$row['id']]	=	$row['function_desc'];
-		}
+		return $options;
 	}
 }
