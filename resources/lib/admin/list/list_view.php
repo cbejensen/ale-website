@@ -18,7 +18,7 @@
 		</div>
 		<div class="admin-search-bar" id="search-bar">
 			<input type="text" placeholder="Search" id="search-input" class="">
-			<span class="tertiary-button"></span>
+			<span class="tertiary-button" onclick="searchList()"></span>
 		</div>
 		<div class="toolbar-btns" id="toolbar-btns"></div>
 	</div>
@@ -37,7 +37,7 @@
 		</table>
 		<script src="js/listView.js"></script>
 		<script>
-			var ff				=	<?php echo json_encode($list->fields); ?>;
+			var fields			=	<?php echo json_encode($list->fields); ?>;
 			var tableRows		=	<?php echo json_encode($list->rows); ?>;
 			var totalResults	=	<?php echo json_encode($list->total); ?>;
 			var fieldMeta		=	<?php echo json_encode($list->fieldMeta); ?>;
@@ -55,7 +55,6 @@
 			)); ?>;
 			var current_page	=	<?php echo json_encode($list->page); ?>;
 			renderList();
-			insertListData();
 			buildBreadcrumbs();
 			renderTools();
 		</script>

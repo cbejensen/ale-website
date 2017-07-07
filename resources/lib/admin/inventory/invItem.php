@@ -87,23 +87,6 @@ class InvItem
 					{
 						throw new Exception('Photo Update: execute() failed: ' . htmlspecialchars($stmt->error));
 					}
-					
-// 					$stmt		=	$this->conn->prepare($qq);
-// 					if ($stmt === false)
-// 					{
-// 						throw new Exception('Itemlist Photo Update: prepare() failed: ' . htmlspecialchars($this->conn->error));
-// 					}
-// 					// Bind Parameters
-// 					$rc		=	$stmt->bind_param('i', $this->aleAsset);
-// 					if ($rc === false)
-// 					{
-// 						throw new Exception('Itemlist Photo Update: bind_param() failed: ' . htmlspecialchars($stmt->error));
-// 					}
-// 					$rc		=	$stmt->execute();
-// 					if ($rc === false)
-// 					{
-// 						throw new Exception('Itemlist Photo Update: execute() failed: ' . htmlspecialchars($stmt->error));
-// 					}
 				} else {
 					$q	=	"UPDATE item_photos SET img_order = ? WHERE id = ?";
 					$stmt		=	$this->conn->prepare($q);
@@ -157,6 +140,16 @@ class InvItem
 				}
 				switch ($key)
 				{
+					case 'ale_categories':
+						try {
+							$this->updateAleCategories($key, $value);
+						} catch (Exception $e) {
+							throw new Exception('Update Error: ALE Categories.'.$e->getMessage());
+						}
+						break;
+					case 'item_status':
+						$this->updateItemStatus($value);
+						break;
 					case 'vendorID':
 					case 'cost':
 						try {
@@ -206,7 +199,8 @@ class InvItem
 					'message'	=>	'The server was unable to process your request.',
 					'error' 	=>	$e->getMessage()
 			);
-			handleError($errorData, $this->conn, 0, 1);
+			handleError($errorData, $this->conn, 0, 0);
+			throw new Exception($e->getMessage());
 		}
 	}
 	
@@ -247,7 +241,7 @@ class InvItem
 			case 'model':
 				$key	=	'modelID';
 				break;
-			case 'emp_category':
+			case 'emp_subcategory':
 				$key	= 'category';
 				break;
 			case 'emp_status':
@@ -256,9 +250,74 @@ class InvItem
 		}
 	}
 	
-	private function updateBatch($field, $newVal, $type)
+	private function updateAleCategories($key, $array)
 	{
-		
+		try {
+			$this->conn->autocommit(false);
+			$this->conn->begin_transaction();
+			$q	=	"DELETE FROM item_category WHERE aleAsset=$this->aleAsset";
+			$r	=	db_query($q, $this->conn);
+			foreach ($array as $category)
+			{
+				if (empty($category)) continue;
+				$q		=	"INSERT INTO item_category (aleAsset, category) VALUES (?,?)";
+				$stmt	=	$this->conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('updateAleCategories: prepare() failed: ' . htmlspecialchars($this->conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param('ii', $this->aleAsset, $category['id']);
+				if ($rc === false)
+				{
+					throw new Exception('updateAleCategories: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('updateAleCategories: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+			}
+			$this->conn->commit();
+		} catch (Exception $e) {
+			$this->conn->rollback();
+			throw new Exception($e->getMessage());
+		}
+	}
+	
+	private function updateItemStatus($array)
+	{
+		try {
+			$this->conn->autocommit(false);
+			$this->conn->begin_transaction();
+			$q	=	"DELETE FROM status WHERE aleAsset=$this->aleAsset";
+			$r	=	db_query($q, $this->conn);
+			foreach ($array as $status)
+			{
+				if (empty($status)) continue;
+				$q		=	"INSERT INTO status (aleAsset, status) VALUES (?,?)";
+				$stmt	=	$this->conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('updateItemStatus: prepare() failed: ' . htmlspecialchars($this->conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param('ii', $this->aleAsset, $status['id']);
+				if ($rc === false)
+				{
+					throw new Exception('updateItemStatus: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('updateItemStatus: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+			}
+			$this->conn->commit();
+		} catch (Exception $e) {
+			$this->conn->rollback();
+			throw new Exception($e->getMessage());
+		}
 	}
 	
 	private function updateEmp($field, $newVal, $type)
@@ -568,7 +627,7 @@ class InvItem
 	
 	private function setStatus()
 	{
-		$q		=	"SELECT item_status.status, item_status.description FROM item_status
+		$q		=	"SELECT item_status.id, item_status.status, item_status.description FROM item_status
 					JOIN status ON item_status.id = status.status
 					WHERE status.aleAsset=?";
 		$stmt	=	$this->conn->prepare($q);
@@ -595,7 +654,8 @@ class InvItem
 			$row			=	$r->fetch_array(MYSQLI_ASSOC);
 			$this->status[]	=	array(
 									'statusName'		=>	$row['status'],
-									'description'		=>	$row['description']
+									'description'		=>	$row['description'],
+									'id'				=>	$row['id']
 								);
 		}
 	}

@@ -35,6 +35,11 @@ function saveAssetData()
 	var numErrs 	=	0;
 	var fieldErrs	=	[];
 	Object.keys(data).forEach(function(i) {
+		switch (i) {
+			case 'ale_categories':
+			case 'item_status':
+				return;
+		}
 		var curItem		=	document.getElementById(i);
 		if (i != 'aleAsset' && curItem.dataset.val == 'false') {
 			fieldErrs.push(curItem.dataset.name);
@@ -96,6 +101,7 @@ function updateInvAsset(json)
 
 function updateInvAssetResponse(response, nextField)
 {
+	//console.log(response);
 	var res	=	JSON.parse(response);
 	console.log(res);
 	if (res[0] == 0)
@@ -208,6 +214,11 @@ function validateInput(val, field)
 			var val = Number(val);
 			if (Number.isInteger(val)) var result	=	1;
 			else var result	=	0;
+			break;
+		case 'emp_subcategory':
+			console.log('aeraet ' + val);
+			if (isNaN(val) || val === 0) var result = 0;
+			else var result = 1;
 			break;
 		default:
 			var result = 1;

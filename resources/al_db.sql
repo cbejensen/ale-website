@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2017 at 10:52 PM
+-- Generation Time: Jul 07, 2017 at 10:19 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -17,17 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: al_db
+-- Database: `al_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table activations
+-- Table structure for table `activations`
 --
 
-DROP TABLE IF EXISTS activations;
-CREATE TABLE activations (
+DROP TABLE IF EXISTS `activations`;
+CREATE TABLE `activations` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -38,20 +38,20 @@ CREATE TABLE activations (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table activations
+-- Dumping data for table `activations`
 --
 
-INSERT INTO activations (id, user_id, `code`, completed, completed_at, created_at, updated_at) VALUES
+INSERT INTO `activations` (`id`, `user_id`, `code`, `completed`, `completed_at`, `created_at`, `updated_at`) VALUES
 (1, 2, 'a2km0mvBaxeSUJubeFBxH5nbdABIf6YX', 1, '2017-06-26 14:54:09', '2017-06-26 14:50:02', '2017-06-26 14:54:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table adverts_listings
+-- Table structure for table `adverts_listings`
 --
 
-DROP TABLE IF EXISTS adverts_listings;
-CREATE TABLE adverts_listings (
+DROP TABLE IF EXISTS `adverts_listings`;
+CREATE TABLE `adverts_listings` (
   `id` mediumint(7) UNSIGNED ZEROFILL NOT NULL,
   `listingID` mediumint(7) UNSIGNED ZEROFILL NOT NULL,
   `type` varchar(15) NOT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE adverts_listings (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table adverts_listings
+-- Dumping data for table `adverts_listings`
 --
 
-INSERT INTO adverts_listings (id, listingID, `type`, start_date, end_date, date_added) VALUES
+INSERT INTO `adverts_listings` (`id`, `listingID`, `type`, `start_date`, `end_date`, `date_added`) VALUES
 (0000001, 0000001, 'featured', '2017-03-16', '2099-12-31', '2017-06-13 20:28:10'),
 (0000002, 0000002, 'featured', '2017-03-19', '2099-12-31', '2017-06-13 20:28:10'),
 (0000003, 0000003, 'featured', '2017-03-20', '2099-12-31', '2017-06-13 20:28:10'),
@@ -118,11 +118,11 @@ INSERT INTO adverts_listings (id, listingID, `type`, start_date, end_date, date_
 -- --------------------------------------------------------
 
 --
--- Table structure for table ad_photos
+-- Table structure for table `ad_photos`
 --
 
-DROP TABLE IF EXISTS ad_photos;
-CREATE TABLE ad_photos (
+DROP TABLE IF EXISTS `ad_photos`;
+CREATE TABLE `ad_photos` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `listingID` mediumint(7) UNSIGNED ZEROFILL NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -132,10 +132,10 @@ CREATE TABLE ad_photos (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table ad_photos
+-- Dumping data for table `ad_photos`
 --
 
-INSERT INTO ad_photos (id, listingID, url, alt, display_order, time_added) VALUES
+INSERT INTO `ad_photos` (`id`, `listingID`, `url`, `alt`, `display_order`, `time_added`) VALUES
 (00001, 0000001, 'img/ads/1_1.jpg', 'Eppendorf DASGIP Bioblock Reactors', 1, '2017-03-17 20:11:48'),
 (00002, 0000002, 'img/ads/2_1.jpg', 'Sartorius Stedim ambr 15 Cell Culture Automated Micro Bioreactor for sale b', 1, '2017-03-20 21:38:58'),
 (00003, 0000003, 'img/ads/3_1.png', 'Tecan M200 Plate Reader for sale by ALE.', 1, '2017-03-21 18:13:01'),
@@ -189,21 +189,21 @@ INSERT INTO ad_photos (id, listingID, url, alt, display_order, time_added) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table ale_category
+-- Table structure for table `ale_category`
 --
 
-DROP TABLE IF EXISTS ale_category;
-CREATE TABLE ale_category (
+DROP TABLE IF EXISTS `ale_category`;
+CREATE TABLE `ale_category` (
   `id` int(5) UNSIGNED ZEROFILL NOT NULL,
   `ale_category` varchar(30) DEFAULT NULL,
   `ale_subcategory` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table ale_category
+-- Dumping data for table `ale_category`
 --
 
-INSERT INTO ale_category (id, ale_category, ale_subcategory) VALUES
+INSERT INTO `ale_category` (`id`, `ale_category`, `ale_subcategory`) VALUES
 (00001, 'Automation & Robotics', 'Liquid Handlers'),
 (00002, 'Automation & Robotics', 'Other'),
 (00003, 'Analytical Instruments', 'HPLC Systems & Parts'),
@@ -273,11 +273,11 @@ INSERT INTO ale_category (id, ale_category, ale_subcategory) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table asset_labels
+-- Table structure for table `asset_labels`
 --
 
-DROP TABLE IF EXISTS asset_labels;
-CREATE TABLE asset_labels (
+DROP TABLE IF EXISTS `asset_labels`;
+CREATE TABLE `asset_labels` (
   `label_num` mediumint(5) UNSIGNED NOT NULL,
   `asset_type` varchar(5) NOT NULL,
   `purpose` varchar(75) DEFAULT NULL,
@@ -290,10 +290,10 @@ CREATE TABLE asset_labels (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table asset_labels
+-- Dumping data for table `asset_labels`
 --
 
-INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes, `value`, assigned_by, date_added) VALUES
+INSERT INTO `asset_labels` (`label_num`, `asset_type`, `purpose`, `serial_num`, `yom`, `notes`, `value`, `assigned_by`, `date_added`) VALUES
 (23376, 'ale', 'ALE Stickers', '', NULL, 'Orig. Date: 11/1/16', '', 'JBB', '2017-01-03'),
 (23377, 'ale', 'ALE Stickers', '', NULL, 'Orig. Date: 11/1/16', '', 'JBB', '2017-01-03'),
 (23378, 'ale', 'ALE Stickers', '', NULL, 'Orig. Date: 11/1/16', '', 'JBB', '2017-01-03'),
@@ -818,8 +818,7 @@ INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes
 (25041, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
 (25042, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
 (25043, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
-(25044, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24');
-INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes, `value`, assigned_by, date_added) VALUES
+(25044, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
 (25045, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
 (25046, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
 (25047, 'A', 'ALOE/GSK', '', NULL, 'To reduce the possibility of future asset number overlaps I started a new range beginning at 25000', '', 'JBB', '2017-01-24'),
@@ -1241,7 +1240,8 @@ INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes
 (25463, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
 (25464, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
 (25465, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
-(25466, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
+(25466, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24');
+INSERT INTO `asset_labels` (`label_num`, `asset_type`, `purpose`, `serial_num`, `yom`, `notes`, `value`, `assigned_by`, `date_added`) VALUES
 (25467, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
 (25468, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
 (25469, 'N', 'Novartis Stickers', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-04-24'),
@@ -1381,8 +1381,7 @@ INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes
 (25603, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
 (25604, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
 (25605, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
-(25606, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31');
-INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes, `value`, assigned_by, date_added) VALUES
+(25606, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
 (25607, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
 (25608, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
 (25609, 'N', 'Novartis Items', '', NULL, 'Per Caleb''s Request', '', 'JBB', '2017-05-31'),
@@ -1440,21 +1439,21 @@ INSERT INTO asset_labels (label_num, asset_type, purpose, serial_num, yom, notes
 -- --------------------------------------------------------
 
 --
--- Table structure for table asset_type
+-- Table structure for table `asset_type`
 --
 
-DROP TABLE IF EXISTS asset_type;
-CREATE TABLE asset_type (
+DROP TABLE IF EXISTS `asset_type`;
+CREATE TABLE `asset_type` (
   `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `type` varchar(20) NOT NULL,
   `suffix` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table asset_type
+-- Dumping data for table `asset_type`
 --
 
-INSERT INTO asset_type (id, `type`, suffix) VALUES
+INSERT INTO `asset_type` (`id`, `type`, `suffix`) VALUES
 (01, 'ALE', ''),
 (02, 'Novartis', 'N'),
 (03, 'Novartis/ALOE', 'AN'),
@@ -1464,43 +1463,46 @@ INSERT INTO asset_type (id, `type`, suffix) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table brands
+-- Table structure for table `brands`
 --
 
-DROP TABLE IF EXISTS brands;
-CREATE TABLE brands (
+DROP TABLE IF EXISTS `brands`;
+CREATE TABLE `brands` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `brand` varchar(50) NOT NULL,
   `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `reviewed` tinyint(1) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1'
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `added_by` int(10) UNSIGNED NOT NULL DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table brands
+-- Dumping data for table `brands`
 --
 
-INSERT INTO brands (id, brand, time_added, reviewed, active) VALUES
-(00001, 'Velocity11', '2017-04-28 13:45:23', 1, 1),
-(00003, 'Isotemp', '2017-06-22 14:46:11', 0, 1);
+INSERT INTO `brands` (`id`, `brand`, `time_added`, `reviewed`, `active`, `added_by`) VALUES
+(00001, 'Velocity11', '2017-04-28 13:45:23', 1, 1, 4),
+(00003, 'Isotemp', '2017-06-22 14:46:11', 0, 1, 4),
+(00004, 'Test Brand 1', '2017-07-07 14:04:14', 0, 1, 2),
+(00005, 'dabrand', '2017-07-07 14:26:43', 0, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table cosmetic_status
+-- Table structure for table `cosmetic_status`
 --
 
-DROP TABLE IF EXISTS cosmetic_status;
-CREATE TABLE cosmetic_status (
+DROP TABLE IF EXISTS `cosmetic_status`;
+CREATE TABLE `cosmetic_status` (
   `id` tinyint(1) UNSIGNED ZEROFILL NOT NULL,
   `cosmetic` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table cosmetic_status
+-- Dumping data for table `cosmetic_status`
 --
 
-INSERT INTO cosmetic_status (id, cosmetic) VALUES
+INSERT INTO `cosmetic_status` (`id`, `cosmetic`) VALUES
 (1, 'Used'),
 (2, 'Like-New'),
 (3, 'Refurbished'),
@@ -1510,11 +1512,11 @@ INSERT INTO cosmetic_status (id, cosmetic) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table default_fields
+-- Table structure for table `default_fields`
 --
 
-DROP TABLE IF EXISTS default_fields;
-CREATE TABLE default_fields (
+DROP TABLE IF EXISTS `default_fields`;
+CREATE TABLE `default_fields` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `list` varchar(45) NOT NULL,
   `field_name` varchar(80) NOT NULL,
@@ -1522,10 +1524,10 @@ CREATE TABLE default_fields (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table default_fields
+-- Dumping data for table `default_fields`
 --
 
-INSERT INTO default_fields (id, `list`, field_name, field_order) VALUES
+INSERT INTO `default_fields` (`id`, `list`, `field_name`, `field_order`) VALUES
 (00001, 'items', 'itemlist.aleAsset', 4),
 (00002, 'items', 'itemlist.quantity', 10),
 (00003, 'items', 'itemlist.title_extn', 9),
@@ -1596,11 +1598,11 @@ INSERT INTO default_fields (id, `list`, field_name, field_order) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table emp
+-- Table structure for table `emp`
 --
 
-DROP TABLE IF EXISTS emp;
-CREATE TABLE emp (
+DROP TABLE IF EXISTS `emp`;
+CREATE TABLE `emp` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `aleAsset` smallint(5) NOT NULL,
   `nibr` varchar(8) DEFAULT NULL,
@@ -1617,10 +1619,10 @@ CREATE TABLE emp (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table emp
+-- Dumping data for table `emp`
 --
 
-INSERT INTO emp (id, aleAsset, nibr, tm0, sap, `status`, category, nbv, img_url, prev_owner, src_building, src_floor, src_room) VALUES
+INSERT INTO `emp` (`id`, `aleAsset`, `nibr`, `tm0`, `sap`, `status`, `category`, `nbv`, `img_url`, `prev_owner`, `src_building`, `src_floor`, `src_room`) VALUES
 (00001, 23831, NULL, '0020107393', NULL, 01, 078, NULL, NULL, 0005, '250MA', '1', '1'),
 (00002, 23830, NULL, NULL, NULL, 01, 078, 0, NULL, 0005, '181MA', '4', '4'),
 (00003, 23832, '10006580', NULL, '1002236', 02, 068, 0, NULL, 0005, '181MA', '0', '212'),
@@ -1638,21 +1640,21 @@ INSERT INTO emp (id, aleAsset, nibr, tm0, sap, `status`, category, nbv, img_url,
 -- --------------------------------------------------------
 
 --
--- Table structure for table emp_category
+-- Table structure for table `emp_category`
 --
 
-DROP TABLE IF EXISTS emp_category;
-CREATE TABLE emp_category (
+DROP TABLE IF EXISTS `emp_category`;
+CREATE TABLE `emp_category` (
   `id` tinyint(3) UNSIGNED ZEROFILL NOT NULL,
   `category` varchar(30) NOT NULL,
   `subcategory` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table emp_category
+-- Dumping data for table `emp_category`
 --
 
-INSERT INTO emp_category (id, category, subcategory) VALUES
+INSERT INTO `emp_category` (`id`, `category`, `subcategory`) VALUES
 (001, 'Genetic/Protein System', 'Array Detector'),
 (002, 'Genetic/Protein System', 'Array Scanner'),
 (003, 'Genetic/Protein System', 'Bioanalyzer'),
@@ -1841,47 +1843,49 @@ INSERT INTO emp_category (id, category, subcategory) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table emp_prev_owners
+-- Table structure for table `emp_prev_owners`
 --
 
-DROP TABLE IF EXISTS emp_prev_owners;
-CREATE TABLE emp_prev_owners (
+DROP TABLE IF EXISTS `emp_prev_owners`;
+CREATE TABLE `emp_prev_owners` (
   `id` smallint(4) UNSIGNED ZEROFILL NOT NULL,
   `prev_owner` varchar(50) NOT NULL,
   `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `reviewed` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `added_by` int(10) UNSIGNED NOT NULL DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table emp_prev_owners
+-- Dumping data for table `emp_prev_owners`
 --
 
-INSERT INTO emp_prev_owners (id, prev_owner, active, reviewed, date_added) VALUES
-(0001, 'Shawn Salesky', 1, 1, '2017-05-24 15:53:15'),
-(0002, 'Nathaniel Kirkpatric', 1, 1, '2017-05-24 15:53:15'),
-(0003, 'Daniel Wall', 1, 1, '2017-05-24 15:53:15'),
-(0004, 'Hetal Katakia', 1, 1, '2017-05-24 15:53:15'),
-(0005, 'N/A', 1, 1, '2017-05-24 15:53:15');
+INSERT INTO `emp_prev_owners` (`id`, `prev_owner`, `active`, `reviewed`, `date_added`, `added_by`) VALUES
+(0001, 'Shawn Salesky', 1, 1, '2017-05-24 15:53:15', 4),
+(0002, 'Nathaniel Kirkpatric', 1, 1, '2017-05-24 15:53:15', 4),
+(0003, 'Daniel Wall', 1, 1, '2017-05-24 15:53:15', 4),
+(0004, 'Hetal Katakia', 1, 1, '2017-05-24 15:53:15', 4),
+(0005, 'N/A', 1, 1, '2017-05-24 15:53:15', 4),
+(0006, 'TestPrev1', 1, 0, '2017-07-07 14:06:18', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table emp_status
+-- Table structure for table `emp_status`
 --
 
-DROP TABLE IF EXISTS emp_status;
-CREATE TABLE emp_status (
+DROP TABLE IF EXISTS `emp_status`;
+CREATE TABLE `emp_status` (
   `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `status` varchar(30) NOT NULL,
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table emp_status
+-- Dumping data for table `emp_status`
 --
 
-INSERT INTO emp_status (id, `status`, description) VALUES
+INSERT INTO `emp_status` (`id`, `status`, `description`) VALUES
 (01, 'Available for Purchase', 'Item may be purchased by ALE from Novartis; ALE may sell this item.'),
 (02, 'Ready for Upload', 'Item is ready to be listed on EMP.'),
 (03, 'Requires Testing for EMP', 'Item is ready to be listed on EMP, but will need to be tested if reserved.'),
@@ -1890,11 +1894,11 @@ INSERT INTO emp_status (id, `status`, description) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table field_map
+-- Table structure for table `field_map`
 --
 
-DROP TABLE IF EXISTS field_map;
-CREATE TABLE field_map (
+DROP TABLE IF EXISTS `field_map`;
+CREATE TABLE `field_map` (
   `id` smallint(3) UNSIGNED ZEROFILL NOT NULL,
   `field_name` varchar(150) NOT NULL,
   `label` varchar(50) DEFAULT NULL,
@@ -1902,10 +1906,10 @@ CREATE TABLE field_map (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table field_map
+-- Dumping data for table `field_map`
 --
 
-INSERT INTO field_map (id, field_name, label, time_added) VALUES
+INSERT INTO `field_map` (`id`, `field_name`, `label`, `time_added`) VALUES
 (001, 'itemlist.aleAsset', 'Asset', '2017-05-15 14:50:08'),
 (002, 'itemlist.addtl_model', 'Addtl. Model', '2017-05-15 14:50:08'),
 (003, 'itemlist.serial_num', 'Serial Num.', '2017-05-15 14:50:08'),
@@ -1969,16 +1973,17 @@ INSERT INTO field_map (id, field_name, label, time_added) VALUES
 (063, 'asset_labels.notes', 'Notes', '2017-06-14 15:15:27'),
 (064, 'asset_labels.value', 'Value', '2017-06-14 15:15:27'),
 (065, 'asset_labels.assigned_by', 'Assigned By', '2017-06-14 15:15:27'),
-(066, 'asset_labels.date_added', 'Date Added', '2017-06-14 15:15:27');
+(066, 'asset_labels.date_added', 'Date Added', '2017-06-14 15:15:27'),
+(067, 'users.last_name', 'Modified By', '2017-07-07 18:38:06');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table general_listings
+-- Table structure for table `general_listings`
 --
 
-DROP TABLE IF EXISTS general_listings;
-CREATE TABLE general_listings (
+DROP TABLE IF EXISTS `general_listings`;
+CREATE TABLE `general_listings` (
   `id` mediumint(7) UNSIGNED ZEROFILL NOT NULL,
   `mnfrID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `modelID` smallint(5) UNSIGNED ZEROFILL DEFAULT NULL,
@@ -1998,10 +2003,10 @@ CREATE TABLE general_listings (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table general_listings
+-- Dumping data for table `general_listings`
 --
 
-INSERT INTO general_listings (id, mnfrID, modelID, brandID, title_extn, description, price, item_condition, testing, warranty, components, condition_note, active, reviewed, date_added, last_update) VALUES
+INSERT INTO `general_listings` (`id`, `mnfrID`, `modelID`, `brandID`, `title_extn`, `description`, `price`, `item_condition`, `testing`, `warranty`, `components`, `condition_note`, `active`, `reviewed`, `date_added`, `last_update`) VALUES
 (0000001, 00001, 00001, NULL, 'Bioblock', 'Industry standard design and comprehensive control options are prerequisite for establishing scalable processes. Eppendorfs autoclavable DASGIP Benchtop Bioreactors offer highest flexibility regarding instrumentation and setup. 16 industry-standard ports, direct overhead drives and pitched-blade impellers ensure optimal conditions for advanced cell culture research and process development. All parts are laser-labelled with part numbers and have certificates of origin available.', NULL, 'Like-New', NULL, NULL, NULL, 'Like-New Instrument, Excellent Condition.\n\nFully serviced and tested, with 90-Day complete parts and labor warranty.', 0, 1, '2017-04-26 14:07:02', '2017-06-12 19:40:34'),
 (0000002, 00003, 00002, NULL, NULL, 'The ambr 15 cell culture is an automated microscale bioreactor system that replicates classical laboratory-scale bioreactors. It is widely used by major Pharma and biologics companies, academic and research institutes as a reliable microscale model for a range of upstream processes.', '1995.00', 'Used', 'Tested', '90-Day Complete Parts and Labor', NULL, 'Almost brand-new, from a working facility.', 0, 1, '2017-04-26 14:07:02', '2017-06-12 19:40:34'),
 (0000003, 00004, 00003, NULL, NULL, 'Modes of detection included: Absorbance, Top and Bottom Fluoresence, Luminescence.', '10500.00', NULL, NULL, NULL, 'iControl Operating Software, Windows 7 Computer, Monitor.', NULL, 0, 1, '2017-04-26 14:07:02', '2017-06-12 19:40:34'),
@@ -2056,40 +2061,45 @@ INSERT INTO general_listings (id, mnfrID, modelID, brandID, title_extn, descript
 -- --------------------------------------------------------
 
 --
--- Table structure for table inv_batch
+-- Table structure for table `inv_batch`
 --
 
-DROP TABLE IF EXISTS inv_batch;
-CREATE TABLE inv_batch (
+DROP TABLE IF EXISTS `inv_batch`;
+CREATE TABLE `inv_batch` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `batch_name` varchar(80) NOT NULL,
   `reviewed` tinyint(1) NOT NULL DEFAULT '0',
-  `added_by` smallint(5) UNSIGNED ZEROFILL NOT NULL DEFAULT '00000',
+  `added_by` int(10) UNSIGNED NOT NULL DEFAULT '4',
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table inv_batch
+-- Dumping data for table `inv_batch`
 --
 
-INSERT INTO inv_batch (id, batch_name, reviewed, added_by, date_added, description) VALUES
-(00001, 'Test 1', 0, 00000, '2017-06-23 14:11:57', 'This is test 1'),
-(00002, 'Test 2', 0, 00000, '2017-06-23 14:11:57', 'This is test 2'),
-(00003, 'Test Batch 3', 0, 00000, '2017-06-23 19:14:24', 'The third test batch.'),
-(00004, 'Test 4', 0, 00000, '2017-06-23 19:17:50', 'You know.'),
-(00005, 'Test 5', 0, 00000, '2017-06-23 19:33:05', 'Yup'),
-(00006, 'Test 6', 0, 00000, '2017-06-26 18:48:52', '6th Test'),
-(00007, 'Test 7', 0, 00000, '2017-06-28 18:53:03', 'Test 7777');
+INSERT INTO `inv_batch` (`id`, `batch_name`, `reviewed`, `added_by`, `date_added`, `description`) VALUES
+(00001, 'Test 1', 0, 4, '2017-06-23 14:11:57', 'This is test 1'),
+(00002, 'Test 2', 0, 4, '2017-06-23 14:11:57', 'This is test 2'),
+(00003, 'Test Batch 3', 0, 4, '2017-06-23 19:14:24', 'The third test batch.'),
+(00004, 'Test 4', 0, 4, '2017-06-23 19:17:50', 'You know.'),
+(00005, 'Test 5', 0, 4, '2017-06-23 19:33:05', 'Yup'),
+(00006, 'Test 6', 0, 4, '2017-06-26 18:48:52', '6th Test'),
+(00007, 'Test 7', 0, 4, '2017-06-28 18:53:03', 'Test 7777'),
+(00008, 'TestBatch12', 0, 2, '2017-07-06 20:48:04', 'Nmbr12'),
+(00009, 'TestBatch57', 0, 2, '2017-07-07 13:48:05', 'TEST57'),
+(00011, 'TestBatch23', 0, 2, '2017-07-07 14:15:14', 'TSDDA'),
+(00012, 'Tesdt3', 0, 2, '2017-07-07 14:24:33', 'tahsd2'),
+(00013, 'Glopt', 0, 2, '2017-07-07 14:25:04', 'Flasdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table itemlist
+-- Table structure for table `itemlist`
 --
 
-DROP TABLE IF EXISTS itemlist;
-CREATE TABLE itemlist (
+DROP TABLE IF EXISTS `itemlist`;
+CREATE TABLE `itemlist` (
   `aleAsset` mediumint(5) UNSIGNED NOT NULL,
   `track` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `mnfrID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
@@ -2118,7 +2128,6 @@ CREATE TABLE itemlist (
   `img_count` smallint(3) UNSIGNED NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `reviewed` tinyint(1) NOT NULL DEFAULT '0',
-  `status` tinyint(2) UNSIGNED ZEROFILL NOT NULL DEFAULT '06',
   `date_received` date DEFAULT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -2127,33 +2136,33 @@ CREATE TABLE itemlist (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table itemlist
+-- Dumping data for table `itemlist`
 --
 
-INSERT INTO itemlist (aleAsset, track, mnfrID, modelID, brandID, addtl_model, serial_num, title_extn, price, mpn, wh_location, quantity, batch, yom, condition_note, item_condition, testing, weight, ship_class, cosmetic, components, warranty, ale_qb, nov_qb, ebay, img_count, active, reviewed, `status`, date_received, date_added, last_update, date_completed, modified_by) VALUES
-(10001, 02, 00024, 00043, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 01, 01, NULL, 1, 1, NULL, NULL, 0, 0, 0, 106, 1, 1, 06, NULL, '2017-06-06 20:19:03', '2017-06-27 14:47:48', '2017-06-16 18:47:20', 4),
-(10003, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00001, 2004, NULL, 01, 01, 32, 3, 1, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:16', '2017-06-28 12:53:16', '0000-00-00 00:00:00', 4),
-(10004, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:16', '2017-06-27 16:38:16', '0000-00-00 00:00:00', 4),
-(10005, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:16', '2017-06-27 16:38:16', '0000-00-00 00:00:00', 4),
-(10006, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 24, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-30 15:20:13', '0000-00-00 00:00:00', 4),
-(10007, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, NULL, 2004, NULL, 01, 01, 32, 3, 1, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-27 17:10:43', '0000-00-00 00:00:00', 4),
-(10008, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
-(10009, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
-(10010, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
-(10011, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
-(10012, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, 06, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
-(23830, 02, 00024, 00043, NULL, NULL, 'W113C1496', 'with plastic gable cover', '250.00', NULL, 'NN MC 101 F2', 0, 00004, NULL, 'This unit has been tested and functions normally. CHANGE TESTING VALUE WHEN POSSIBLE', 01, 03, 19, 3, 1, 'Main unit and power cord.', NULL, 0, 0, 0, 6, 1, 1, 06, NULL, '2016-12-16 17:21:44', '2017-06-30 19:06:01', '2016-12-16 17:21:44', 4),
-(23831, 05, 00023, 00042, NULL, NULL, 'PY2152Z1302', 'REF PT10027', '0.00', 'PT10027', 'NN 107C', 1, NULL, NULL, 'This unit powers up, but requires further testing', 01, 03, 32, 3, 1, 'Main Unit, Power Cord.', NULL, 0, 0, 0, 6, 1, 1, 06, NULL, '2016-12-16 14:46:29', '2017-06-26 18:19:34', '2016-12-16 14:46:29', 4),
-(23832, 02, 00025, 00044, NULL, NULL, '562-013-V7', NULL, NULL, '10K', NULL, 0, NULL, NULL, 'This item has been tested to power up only.', 01, 03, 245, 5, 1, 'Main Unit & Power Cord.', NULL, 0, 0, 0, 6, 1, 1, 06, NULL, '2016-12-16 17:21:54', '2017-06-26 18:19:34', '2016-12-16 17:21:54', 4);
+INSERT INTO `itemlist` (`aleAsset`, `track`, `mnfrID`, `modelID`, `brandID`, `addtl_model`, `serial_num`, `title_extn`, `price`, `mpn`, `wh_location`, `quantity`, `batch`, `yom`, `condition_note`, `item_condition`, `testing`, `weight`, `ship_class`, `cosmetic`, `components`, `warranty`, `ale_qb`, `nov_qb`, `ebay`, `img_count`, `active`, `reviewed`, `date_received`, `date_added`, `last_update`, `date_completed`, `modified_by`) VALUES
+(10001, 02, 00024, 00043, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 01, 01, NULL, 1, 1, NULL, NULL, 0, 0, 0, 106, 1, 1, NULL, '2017-06-06 20:19:03', '2017-06-27 14:47:48', '2017-06-16 18:47:20', 4),
+(10003, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00001, 2004, NULL, 01, 01, 32, 3, 1, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:16', '2017-06-28 12:53:16', '0000-00-00 00:00:00', 4),
+(10004, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:16', '2017-06-27 16:38:16', '0000-00-00 00:00:00', 4),
+(10005, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:16', '2017-06-27 16:38:16', '0000-00-00 00:00:00', 4),
+(10006, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 24, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-30 15:20:13', '0000-00-00 00:00:00', 4),
+(10007, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, NULL, 2004, NULL, 01, 01, 32, 3, 1, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-27 17:10:43', '0000-00-00 00:00:00', 4),
+(10008, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
+(10009, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
+(10010, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
+(10011, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
+(10012, 02, 00033, 00052, NULL, '3214', 'JP90232', NULL, '2000.00', '384', '64-D', 1, 00006, 2004, NULL, NULL, NULL, 32, 3, NULL, NULL, NULL, 0, 0, 0, 0, 1, 0, NULL, '2017-06-27 16:38:17', '2017-06-27 16:38:17', '0000-00-00 00:00:00', 4),
+(23830, 05, 00024, 00006, NULL, NULL, 'W113C1496', 'with plastic gable cover', '250.00', NULL, 'NN MC 101 F2', 0, 00004, NULL, 'This unit has been tested and functions normally. CHANGE TESTING VALUE WHEN POSSIBLE', 01, 03, 19, 3, 1, 'Main unit and power cord.', NULL, 0, 0, 0, 6, 1, 1, NULL, '2016-12-16 17:21:44', '2017-07-07 17:39:21', '2016-12-16 17:21:44', 4),
+(23831, 05, 00023, 00042, NULL, NULL, 'PY2152Z1302', 'REF PT10027', '0.00', 'PT10027', 'NN 107C', 1, NULL, NULL, 'This unit powers up, but requires further testing', 01, 03, 32, 3, 1, 'Main Unit, Power Cord.', NULL, 0, 0, 0, 6, 1, 1, NULL, '2016-12-16 14:46:29', '2017-06-26 18:19:34', '2016-12-16 14:46:29', 4),
+(23832, 02, 00025, 00044, NULL, NULL, '562-013-V7', NULL, NULL, '10K', NULL, 0, NULL, NULL, 'This item has been tested to power up only.', 01, 03, 245, 5, 1, 'Main Unit & Power Cord.', NULL, 0, 0, 0, 6, 1, 1, NULL, '2016-12-16 17:21:54', '2017-06-26 18:19:34', '2016-12-16 17:21:54', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table item_accounting
+-- Table structure for table `item_accounting`
 --
 
-DROP TABLE IF EXISTS item_accounting;
-CREATE TABLE item_accounting (
+DROP TABLE IF EXISTS `item_accounting`;
+CREATE TABLE `item_accounting` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `aleAsset` mediumint(5) UNSIGNED NOT NULL,
   `vendorID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
@@ -2166,10 +2175,10 @@ CREATE TABLE item_accounting (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table item_accounting
+-- Dumping data for table `item_accounting`
 --
 
-INSERT INTO item_accounting (id, aleAsset, vendorID, cost, asset_acct, cogs_acct, income_acct, tax_code, owned_by) VALUES
+INSERT INTO `item_accounting` (`id`, `aleAsset`, `vendorID`, `cost`, `asset_acct`, `cogs_acct`, `income_acct`, `tax_code`, `owned_by`) VALUES
 (00001, 23831, 00001, 0, NULL, NULL, NULL, NULL, NULL),
 (00002, 23830, 00001, NULL, NULL, NULL, NULL, NULL, NULL),
 (00003, 23832, 00001, 0, NULL, NULL, NULL, NULL, NULL),
@@ -2187,11 +2196,11 @@ INSERT INTO item_accounting (id, aleAsset, vendorID, cost, asset_acct, cogs_acct
 -- --------------------------------------------------------
 
 --
--- Table structure for table item_category
+-- Table structure for table `item_category`
 --
 
-DROP TABLE IF EXISTS item_category;
-CREATE TABLE item_category (
+DROP TABLE IF EXISTS `item_category`;
+CREATE TABLE `item_category` (
   `aleAsset` mediumint(5) UNSIGNED NOT NULL,
   `category` int(5) UNSIGNED ZEROFILL NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2200,31 +2209,31 @@ CREATE TABLE item_category (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table item_category
+-- Dumping data for table `item_category`
 --
 
-INSERT INTO item_category (aleAsset, category, date_added, last_update, reviewed) VALUES
-(23830, 00023, '2017-05-25 14:45:29', '2017-05-25 14:45:29', 0),
+INSERT INTO `item_category` (`aleAsset`, `category`, `date_added`, `last_update`, `reviewed`) VALUES
+(23830, 00023, '2017-07-07 17:39:49', '2017-07-07 17:39:49', 0),
 (23831, 00060, '2017-05-25 14:45:29', '2017-05-25 14:45:29', 0),
 (23832, 00019, '2017-05-25 14:45:30', '2017-05-25 14:45:30', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table item_condition
+-- Table structure for table `item_condition`
 --
 
-DROP TABLE IF EXISTS item_condition;
-CREATE TABLE item_condition (
+DROP TABLE IF EXISTS `item_condition`;
+CREATE TABLE `item_condition` (
   `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `item_condition` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table item_condition
+-- Dumping data for table `item_condition`
 --
 
-INSERT INTO item_condition (id, item_condition) VALUES
+INSERT INTO `item_condition` (`id`, `item_condition`) VALUES
 (01, 'Used'),
 (02, 'New'),
 (03, 'Like-New');
@@ -2232,11 +2241,11 @@ INSERT INTO item_condition (id, item_condition) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table item_photos
+-- Table structure for table `item_photos`
 --
 
-DROP TABLE IF EXISTS item_photos;
-CREATE TABLE item_photos (
+DROP TABLE IF EXISTS `item_photos`;
+CREATE TABLE `item_photos` (
   `id` mediumint(7) UNSIGNED ZEROFILL NOT NULL,
   `aleAsset` mediumint(5) UNSIGNED NOT NULL,
   `img_url` varchar(255) NOT NULL,
@@ -2246,10 +2255,10 @@ CREATE TABLE item_photos (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table item_photos
+-- Dumping data for table `item_photos`
 --
 
-INSERT INTO item_photos (id, aleAsset, img_url, img_order, date_added, last_update) VALUES
+INSERT INTO `item_photos` (`id`, `aleAsset`, `img_url`, `img_order`, `date_added`, `last_update`) VALUES
 (0000115, 23831, 'img/ale_aloe/N23831_1.jpg', 1, '2017-05-25 14:45:29', '2017-05-25 14:45:29'),
 (0000116, 23831, 'img/ale_aloe/N23831_2.jpg', 2, '2017-05-25 14:45:29', '2017-05-25 14:45:29'),
 (0000117, 23831, 'img/ale_aloe/N23831_3.jpg', 3, '2017-05-25 14:45:29', '2017-05-25 14:45:29'),
@@ -2283,38 +2292,37 @@ INSERT INTO item_photos (id, aleAsset, img_url, img_order, date_added, last_upda
 -- --------------------------------------------------------
 
 --
--- Table structure for table item_status
+-- Table structure for table `item_status`
 --
 
-DROP TABLE IF EXISTS item_status;
-CREATE TABLE item_status (
+DROP TABLE IF EXISTS `item_status`;
+CREATE TABLE `item_status` (
   `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `status` varchar(30) NOT NULL,
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table item_status
+-- Dumping data for table `item_status`
 --
 
-INSERT INTO item_status (id, `status`, description) VALUES
+INSERT INTO `item_status` (`id`, `status`, `description`) VALUES
 (01, 'Pending Review', 'Item has been flagged as complete, pending final review.'),
 (02, 'Scrap', 'Item has been flagged for disposal.'),
 (03, 'Out of Stock', 'Item has been sold or otherwise removed from inventory.'),
 (04, 'Lost', 'Item cannot be located.'),
 (05, 'Reassess', 'Item requires revised/additional data for completion.'),
-(06, 'Normal', 'Item with no special status.'),
 (07, 'HVE', 'High Value Equipment.'),
 (08, 'Incomplete', 'Item is missing data. Pending completion.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table item_track
+-- Table structure for table `item_track`
 --
 
-DROP TABLE IF EXISTS item_track;
-CREATE TABLE item_track (
+DROP TABLE IF EXISTS `item_track`;
+CREATE TABLE `item_track` (
   `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `track` varchar(80) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -2322,10 +2330,10 @@ CREATE TABLE item_track (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table item_track
+-- Dumping data for table `item_track`
 --
 
-INSERT INTO item_track (id, track, description, suffix) VALUES
+INSERT INTO `item_track` (`id`, `track`, `description`, `suffix`) VALUES
 (01, 'ALOE', 'Items to be sold via the eBay store.', 'A'),
 (02, 'Novartis', 'Items owned by Novartis which are not to be sold on ALOE or listed on EMP.', 'N'),
 (04, 'EMP', 'Items from Novartis to be listed on their electronic marketplace.', 'N'),
@@ -2336,11 +2344,11 @@ INSERT INTO item_track (id, track, description, suffix) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table leads
+-- Table structure for table `leads`
 --
 
-DROP TABLE IF EXISTS leads;
-CREATE TABLE leads (
+DROP TABLE IF EXISTS `leads`;
+CREATE TABLE `leads` (
   `id` int(10) UNSIGNED ZEROFILL NOT NULL,
   `fname` varchar(100) NOT NULL,
   `lname` varchar(100) NOT NULL,
@@ -2358,10 +2366,10 @@ CREATE TABLE leads (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table leads
+-- Dumping data for table `leads`
 --
 
-INSERT INTO leads (id, fname, lname, email, phone, street_addr, city, state, postal_code, country, newsletter, `status`, date_added, last_update) VALUES
+INSERT INTO `leads` (`id`, `fname`, `lname`, `email`, `phone`, `street_addr`, `city`, `state`, `postal_code`, `country`, `newsletter`, `status`, `date_added`, `last_update`) VALUES
 (0000000002, 'Jack', 'Brown', 'jack@atlanticlabequipment.com', '9783984229', NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-04-07 14:49:33', '2017-05-04 21:24:38'),
 (0000000003, 'John', 'Doe', 'john@example.com', '978-555-5555', NULL, NULL, NULL, NULL, NULL, 1, 0, '2017-04-12 15:20:14', '2017-05-02 18:46:58'),
 (0000000004, 'Victoria', 'Jackson', 'victoria@atlanticlabequipment.com', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2017-04-25 22:00:46', '2017-05-02 18:46:58'),
@@ -2382,20 +2390,20 @@ INSERT INTO leads (id, fname, lname, email, phone, street_addr, city, state, pos
 -- --------------------------------------------------------
 
 --
--- Table structure for table listing_category
+-- Table structure for table `listing_category`
 --
 
-DROP TABLE IF EXISTS listing_category;
-CREATE TABLE listing_category (
+DROP TABLE IF EXISTS `listing_category`;
+CREATE TABLE `listing_category` (
   `listingID` mediumint(7) UNSIGNED ZEROFILL NOT NULL,
   `categoryID` int(5) UNSIGNED ZEROFILL NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table listing_category
+-- Dumping data for table `listing_category`
 --
 
-INSERT INTO listing_category (listingID, categoryID) VALUES
+INSERT INTO `listing_category` (`listingID`, `categoryID`) VALUES
 (0000001, 00060),
 (0000002, 00060),
 (0000003, 00008),
@@ -2453,59 +2461,65 @@ INSERT INTO listing_category (listingID, categoryID) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table manufacturers
+-- Table structure for table `manufacturers`
 --
 
-DROP TABLE IF EXISTS manufacturers;
-CREATE TABLE manufacturers (
+DROP TABLE IF EXISTS `manufacturers`;
+CREATE TABLE `manufacturers` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `mnfr` varchar(35) NOT NULL,
   `subitem_of` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `reviewed` tinyint(1) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1'
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `added_by` int(10) UNSIGNED NOT NULL DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table manufacturers
+-- Dumping data for table `manufacturers`
 --
 
-INSERT INTO manufacturers (id, mnfr, subitem_of, time_added, reviewed, active) VALUES
-(00001, 'EPPENDORF', 00001, '2017-03-13 13:31:54', 1, 1),
-(00002, 'AGILENT', 00002, '2017-03-13 20:03:02', 1, 1),
-(00003, 'SARTORIUS STEDIM', 00003, '2017-03-20 21:24:22', 1, 1),
-(00004, 'TECAN', 00004, '2017-03-21 17:53:20', 1, 1),
-(00005, 'BIOTEK', 00005, '2017-03-21 17:53:20', 1, 1),
-(00006, 'HAMILTON', 00006, '2017-03-21 19:28:44', 1, 1),
-(00007, 'WATERS', 00007, '2017-03-30 15:35:50', 1, 1),
-(00008, 'ABI', 00008, '2017-04-28 13:37:48', 1, 1),
-(00009, 'BECKMAN COULTER', 00009, '2017-04-28 13:38:17', 1, 1),
-(00011, 'ILLUMINA', 00015, '2017-04-28 13:42:12', 1, 1),
-(00012, 'HETTICH', 00010, '2017-04-28 13:42:30', 1, 1),
-(00013, 'LABCYTE', 00003, '2017-04-28 13:42:45', 1, 1),
-(00014, 'MOLECULAR DEVICES', 00013, '2017-04-28 13:43:01', 1, 1),
-(00015, 'PERKIN ELMER', 00014, '2017-04-28 13:43:35', 1, 1),
-(00016, 'THERMO SCIENTIFIC', 00012, '2017-04-28 13:43:55', 1, 1),
-(00017, 'ANDREW ALLIANCE', 00003, '2017-05-04 15:53:46', 1, 1),
-(00018, 'BROOKS AUTOMATION', 00003, '2017-05-04 15:53:46', 1, 1),
-(00019, 'AB SCIEX', 00003, '2017-05-09 13:27:36', 1, 1),
-(00020, 'EDC BIOSYSTEMS', 00003, '2017-05-09 13:37:32', 1, 1),
-(00021, 'SHIMADZU', 00016, '2017-05-12 19:54:00', 1, 1),
-(00022, 'BRUKER', 00003, '2017-05-12 19:54:00', 1, 1),
-(00023, 'DAKO', 00003, '2017-05-24 21:33:12', 1, 1),
-(00024, 'VWR', 00018, '2017-05-24 21:33:13', 1, 1),
-(00025, 'TAYLOR WHARTON', 00003, '2017-05-24 21:33:13', 1, 1),
-(00030, 'FISHER', 00003, '2017-06-22 14:46:11', 0, 1),
-(00033, 'ZEISS', 00003, '2017-06-22 15:31:40', 0, 1);
+INSERT INTO `manufacturers` (`id`, `mnfr`, `subitem_of`, `time_added`, `reviewed`, `active`, `added_by`) VALUES
+(00001, 'EPPENDORF', 00001, '2017-03-13 13:31:54', 1, 1, 4),
+(00002, 'AGILENT', 00002, '2017-03-13 20:03:02', 1, 1, 4),
+(00003, 'SARTORIUS STEDIM', 00003, '2017-03-20 21:24:22', 1, 1, 4),
+(00004, 'TECAN', 00004, '2017-03-21 17:53:20', 1, 1, 4),
+(00005, 'BIOTEK', 00005, '2017-03-21 17:53:20', 1, 1, 4),
+(00006, 'HAMILTON', 00006, '2017-03-21 19:28:44', 1, 1, 4),
+(00007, 'WATERS', 00007, '2017-03-30 15:35:50', 1, 1, 4),
+(00008, 'ABI', 00008, '2017-04-28 13:37:48', 1, 1, 4),
+(00009, 'BECKMAN COULTER', 00009, '2017-04-28 13:38:17', 1, 1, 4),
+(00011, 'ILLUMINA', 00015, '2017-04-28 13:42:12', 1, 1, 4),
+(00012, 'HETTICH', 00010, '2017-04-28 13:42:30', 1, 1, 4),
+(00013, 'LABCYTE', 00003, '2017-04-28 13:42:45', 1, 1, 4),
+(00014, 'MOLECULAR DEVICES', 00013, '2017-04-28 13:43:01', 1, 1, 4),
+(00015, 'PERKIN ELMER', 00014, '2017-04-28 13:43:35', 1, 1, 4),
+(00016, 'THERMO SCIENTIFIC', 00012, '2017-04-28 13:43:55', 1, 1, 4),
+(00017, 'ANDREW ALLIANCE', 00003, '2017-05-04 15:53:46', 1, 1, 4),
+(00018, 'BROOKS AUTOMATION', 00003, '2017-05-04 15:53:46', 1, 1, 4),
+(00019, 'AB SCIEX', 00003, '2017-05-09 13:27:36', 1, 1, 4),
+(00020, 'EDC BIOSYSTEMS', 00003, '2017-05-09 13:37:32', 1, 1, 4),
+(00021, 'SHIMADZU', 00016, '2017-05-12 19:54:00', 1, 1, 4),
+(00022, 'BRUKER', 00003, '2017-05-12 19:54:00', 1, 1, 4),
+(00023, 'DAKO', 00003, '2017-05-24 21:33:12', 1, 1, 4),
+(00024, 'VWR', 00018, '2017-05-24 21:33:13', 1, 1, 4),
+(00025, 'TAYLOR WHARTON', 00003, '2017-05-24 21:33:13', 1, 1, 4),
+(00030, 'FISHER', 00003, '2017-06-22 14:46:11', 0, 1, 4),
+(00033, 'ZEISS', 00003, '2017-06-22 15:31:40', 0, 1, 4),
+(00034, 'TESTMNFR', 00003, '2017-07-07 13:50:45', 0, 1, 2),
+(00035, 'TESTYTEST', 00003, '2017-07-07 14:17:08', 0, 1, 2),
+(00036, 'TESTOP', 00003, '2017-07-07 14:25:19', 0, 1, 2),
+(00037, 'BAGSD', 00003, '2017-07-07 14:26:00', 0, 1, 2),
+(00038, 'WHOOPS', 00003, '2017-07-07 14:26:27', 0, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table migrator_error
+-- Table structure for table `migrator_error`
 --
 
-DROP TABLE IF EXISTS migrator_error;
-CREATE TABLE migrator_error (
+DROP TABLE IF EXISTS `migrator_error`;
+CREATE TABLE `migrator_error` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `type` varchar(30) DEFAULT NULL,
   `asset` varchar(30) DEFAULT NULL,
@@ -2513,10 +2527,10 @@ CREATE TABLE migrator_error (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table migrator_error
+-- Dumping data for table `migrator_error`
 --
 
-INSERT INTO migrator_error (id, `type`, asset, note) VALUES
+INSERT INTO `migrator_error` (`id`, `type`, `asset`, `note`) VALUES
 (00001, 'Failed Record', 'N23831', 'Itemlist: execute() failed: Column ''reviewed'' cannot be null'),
 (00002, 'Failed Record', 'N23830', 'Itemlist: execute() failed: Column ''reviewed'' cannot be null'),
 (00003, 'Failed Record', 'N23832', 'Itemlist: execute() failed: Column ''reviewed'' cannot be null');
@@ -2524,11 +2538,11 @@ INSERT INTO migrator_error (id, `type`, asset, note) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table mnfr_brand
+-- Table structure for table `mnfr_brand`
 --
 
-DROP TABLE IF EXISTS mnfr_brand;
-CREATE TABLE mnfr_brand (
+DROP TABLE IF EXISTS `mnfr_brand`;
+CREATE TABLE `mnfr_brand` (
   `mnfrID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `brandID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
@@ -2536,89 +2550,94 @@ CREATE TABLE mnfr_brand (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table mnfr_brand
+-- Dumping data for table `mnfr_brand`
 --
 
-INSERT INTO mnfr_brand (mnfrID, brandID, active, time_added) VALUES
+INSERT INTO `mnfr_brand` (`mnfrID`, `brandID`, `active`, `time_added`) VALUES
 (00002, 00001, 1, '2017-06-09 18:50:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table models
+-- Table structure for table `models`
 --
 
-DROP TABLE IF EXISTS models;
-CREATE TABLE models (
+DROP TABLE IF EXISTS `models`;
+CREATE TABLE `models` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `model` varchar(60) NOT NULL,
   `function_desc` varchar(60) DEFAULT NULL,
   `description` text,
   `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `reviewed` tinyint(1) NOT NULL DEFAULT '0',
-  `active` tinyint(1) NOT NULL DEFAULT '1'
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `added_by` int(10) UNSIGNED NOT NULL DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table models
+-- Dumping data for table `models`
 --
 
-INSERT INTO models (id, model, function_desc, description, time_added, reviewed, active) VALUES
-(00001, 'DASGIP Benchtop Bioreactor', 'for Cell Culture', NULL, '2017-03-16 15:18:29', 1, 1),
-(00002, 'ambr 15', 'Cell Culture Automated Micro Bioreactor, 10-15mL', NULL, '2017-03-20 21:28:14', 1, 1),
-(00003, 'M200', 'Plate Reader', 'Teuia\n\nKAsjAsd\n\nAKsdWAIr!)@#I$)#Q04!@#$%^&*()_+=-{}[]":;''|\\?><,./', '2017-03-21 17:55:56', 1, 1),
-(00004, 'Synergy 2', 'Plate Reader', NULL, '2017-03-21 17:55:56', 1, 1),
-(00005, 'Hydroflex', 'Strip Washer', NULL, '2017-03-21 17:59:25', 1, 1),
-(00006, 'ELx405', 'Plate Washer', NULL, '2017-03-21 17:59:25', 1, 1),
-(00007, 'Microlab STAR', 'Automated Liquid Handler', NULL, '2017-03-21 19:32:07', 1, 1),
-(00008, 'Microlab STARlet', 'Automated Liquid Handler', NULL, '2017-03-21 19:32:07', 1, 1),
-(00009, '2414', 'Refractive Index (RI) Detector', NULL, '2017-03-30 17:25:11', 1, 1),
-(00010, '2424', 'Evaporative Light Scattering (ELS) Detector', NULL, '2017-03-30 17:25:11', 1, 1),
-(00011, '2465', 'Electrochemical Detector for HPLC Systems', NULL, '2017-03-30 17:25:11', 1, 1),
-(00012, '2475', 'Fluorescence (FLR) Detector', NULL, '2017-03-30 17:25:11', 1, 1),
-(00013, '2489', 'UV/Visible (UV/Vis) Detector', NULL, '2017-03-30 17:25:11', 1, 1),
-(00014, '3730xl', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00015, '3500xl', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00016, '7500 Fast real Time PCR', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00017, '9700 Fast Real Time PCR', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00018, 'ViiA7', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00019, 'NXP', 'Liquid Handling Automation Workstation', NULL, '2017-04-28 13:30:19', 1, 1),
-(00020, 'FXP', 'Liquid Handling Automation Workstation', NULL, '2017-04-28 13:30:19', 1, 1),
-(00021, 'HiSeq 2500 v4', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00022, 'MiSeq', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00023, 'NextSeq', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00024, 'Echo 550', 'Liquid Handler', NULL, '2017-04-28 13:30:19', 1, 1),
-(00025, 'Echo 555', 'Liquid Handler', NULL, '2017-04-28 13:30:19', 1, 1),
-(00026, 'PlateLoc', 'Plate Sealer', NULL, '2017-04-28 13:30:19', 1, 1),
-(00027, 'Bravo', 'Liquid Handler', NULL, '2017-04-28 13:47:42', 1, 1),
-(00028, 'Vspin', 'Centrifuge', NULL, '2017-04-28 13:47:42', 1, 1),
-(00029, 'Freedom EVO 100', 'Liquid Handler', NULL, '2017-05-04 15:39:52', 1, 1),
-(00030, 'Andrew', 'Liquid Handling Robot', NULL, '2017-05-04 16:02:03', 1, 1),
-(00031, 'XPeel', 'Automated Microplate Seal Remover', NULL, '2017-05-04 16:02:03', 1, 1),
-(00032, 'BenchCel 4R', 'Microplate Handler', NULL, '2017-05-04 16:02:03', 1, 1),
-(00033, 'TripleTOF 5600+', 'LC-MS/MS System', NULL, '2017-05-09 13:36:35', 1, 1),
-(00034, '4000 QTRAP', 'LC-MS/MS System', NULL, '2017-05-09 13:36:35', 1, 1),
-(00035, 'ATS', 'Acoustic Liquid Dispenser', NULL, '2017-05-09 13:36:35', 1, 1),
-(00036, 'SQ Detector 2', 'Single Quadrupole Mass Spectrometer', NULL, '2017-05-09 13:36:35', 1, 1),
-(00037, 'MicroMass LCT Premier', 'Mass Spectrometer', NULL, '2017-05-09 13:36:35', 1, 1),
-(00038, 'MicroMass LCT Premier XE', 'Mass Spectrometer', NULL, '2017-05-09 13:36:35', 1, 1),
-(00039, 'API 4000', 'LC-MS/MS System', NULL, '2017-05-12 20:00:05', 1, 1),
-(00040, 'ultrafleXtreme', 'MALDI-TOF/TOF Mass Spectrometer', NULL, '2017-05-12 20:00:05', 1, 1),
-(00041, 'Xevo QTof', 'Mass Spectrometer', NULL, '2017-05-12 20:00:05', 1, 1),
-(00042, 'PTLink', 'Link Rinse Station', 'PT Link allows the entire pre-treatment process of deparaffinization, rehydration and epitope retrieval to be combined into a well-documented, 3-in-1 specimen preparation procedure. \n\nWith PT Link, pathology laboratories can maximize productivity by reducing the number of operations needed in the pre-treatment process, while saving time by using the same slide rack from pre-treatment all the way through the immunohistochemical staining. Quality control reports from the pre-treatment process can be printed directly from the user-friendly software, while additional confidence in the procedures come from features such as no-boil option and low-fluid warning at 5 mm below the frosted label area of a slide. \n\nOptions such as delayed start and preheat mode provides the flexibility that is required to make pre-treatment work in parallel with other processes.', '2017-05-24 21:33:12', 1, 1),
-(00043, 'WB10', 'Digital Water Bath', NULL, '2017-05-24 21:33:13', 1, 1),
-(00044, 'Kryos', 'Cryostorage System', '', '2017-05-24 21:33:13', 1, 1),
-(00049, '100', NULL, NULL, '2017-06-22 14:46:11', 0, 1),
-(00052, 'Axiofors', NULL, NULL, '2017-06-22 15:31:40', 0, 1);
+INSERT INTO `models` (`id`, `model`, `function_desc`, `description`, `time_added`, `reviewed`, `active`, `added_by`) VALUES
+(00001, 'DASGIP Benchtop Bioreactor', 'for Cell Culture', NULL, '2017-03-16 15:18:29', 1, 1, 4),
+(00002, 'ambr 15', 'Cell Culture Automated Micro Bioreactor, 10-15mL', NULL, '2017-03-20 21:28:14', 1, 1, 4),
+(00003, 'M200', 'Plate Reader', 'Teuia\n\nKAsjAsd\n\nAKsdWAIr!)@#I$)#Q04!@#$%^&*()_+=-{}[]":;''|\\?><,./', '2017-03-21 17:55:56', 1, 1, 4),
+(00004, 'Synergy 2', 'Plate Reader', NULL, '2017-03-21 17:55:56', 1, 1, 4),
+(00005, 'Hydroflex', 'Strip Washer', NULL, '2017-03-21 17:59:25', 1, 1, 4),
+(00006, 'ELx405', 'Plate Washer', NULL, '2017-03-21 17:59:25', 1, 1, 4),
+(00007, 'Microlab STAR', 'Automated Liquid Handler', NULL, '2017-03-21 19:32:07', 1, 1, 4),
+(00008, 'Microlab STARlet', 'Automated Liquid Handler', NULL, '2017-03-21 19:32:07', 1, 1, 4),
+(00009, '2414', 'Refractive Index (RI) Detector', NULL, '2017-03-30 17:25:11', 1, 1, 4),
+(00010, '2424', 'Evaporative Light Scattering (ELS) Detector', NULL, '2017-03-30 17:25:11', 1, 1, 4),
+(00011, '2465', 'Electrochemical Detector for HPLC Systems', NULL, '2017-03-30 17:25:11', 1, 1, 4),
+(00012, '2475', 'Fluorescence (FLR) Detector', NULL, '2017-03-30 17:25:11', 1, 1, 4),
+(00013, '2489', 'UV/Visible (UV/Vis) Detector', NULL, '2017-03-30 17:25:11', 1, 1, 4),
+(00014, '3730xl', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00015, '3500xl', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00016, '7500 Fast real Time PCR', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00017, '9700 Fast Real Time PCR', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00018, 'ViiA7', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00019, 'NXP', 'Liquid Handling Automation Workstation', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00020, 'FXP', 'Liquid Handling Automation Workstation', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00021, 'HiSeq 2500 v4', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00022, 'MiSeq', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00023, 'NextSeq', 'DNA Sequencer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00024, 'Echo 550', 'Liquid Handler', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00025, 'Echo 555', 'Liquid Handler', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00026, 'PlateLoc', 'Plate Sealer', NULL, '2017-04-28 13:30:19', 1, 1, 4),
+(00027, 'Bravo', 'Liquid Handler', NULL, '2017-04-28 13:47:42', 1, 1, 4),
+(00028, 'Vspin', 'Centrifuge', NULL, '2017-04-28 13:47:42', 1, 1, 4),
+(00029, 'Freedom EVO 100', 'Liquid Handler', NULL, '2017-05-04 15:39:52', 1, 1, 4),
+(00030, 'Andrew', 'Liquid Handling Robot', NULL, '2017-05-04 16:02:03', 1, 1, 4),
+(00031, 'XPeel', 'Automated Microplate Seal Remover', NULL, '2017-05-04 16:02:03', 1, 1, 4),
+(00032, 'BenchCel 4R', 'Microplate Handler', NULL, '2017-05-04 16:02:03', 1, 1, 4),
+(00033, 'TripleTOF 5600+', 'LC-MS/MS System', NULL, '2017-05-09 13:36:35', 1, 1, 4),
+(00034, '4000 QTRAP', 'LC-MS/MS System', NULL, '2017-05-09 13:36:35', 1, 1, 4),
+(00035, 'ATS', 'Acoustic Liquid Dispenser', NULL, '2017-05-09 13:36:35', 1, 1, 4),
+(00036, 'SQ Detector 2', 'Single Quadrupole Mass Spectrometer', NULL, '2017-05-09 13:36:35', 1, 1, 4),
+(00037, 'MicroMass LCT Premier', 'Mass Spectrometer', NULL, '2017-05-09 13:36:35', 1, 1, 4),
+(00038, 'MicroMass LCT Premier XE', 'Mass Spectrometer', NULL, '2017-05-09 13:36:35', 1, 1, 4),
+(00039, 'API 4000', 'LC-MS/MS System', NULL, '2017-05-12 20:00:05', 1, 1, 4),
+(00040, 'ultrafleXtreme', 'MALDI-TOF/TOF Mass Spectrometer', NULL, '2017-05-12 20:00:05', 1, 1, 4),
+(00041, 'Xevo QTof', 'Mass Spectrometer', NULL, '2017-05-12 20:00:05', 1, 1, 4),
+(00042, 'PTLink', 'Link Rinse Station', 'PT Link allows the entire pre-treatment process of deparaffinization, rehydration and epitope retrieval to be combined into a well-documented, 3-in-1 specimen preparation procedure. \n\nWith PT Link, pathology laboratories can maximize productivity by reducing the number of operations needed in the pre-treatment process, while saving time by using the same slide rack from pre-treatment all the way through the immunohistochemical staining. Quality control reports from the pre-treatment process can be printed directly from the user-friendly software, while additional confidence in the procedures come from features such as no-boil option and low-fluid warning at 5 mm below the frosted label area of a slide. \n\nOptions such as delayed start and preheat mode provides the flexibility that is required to make pre-treatment work in parallel with other processes.', '2017-05-24 21:33:12', 1, 1, 4),
+(00043, 'WB10', 'Digital Water Bath', NULL, '2017-05-24 21:33:13', 1, 1, 4),
+(00044, 'Kryos', 'Cryostorage System', '', '2017-05-24 21:33:13', 1, 1, 4),
+(00049, '100', NULL, NULL, '2017-06-22 14:46:11', 0, 1, 4),
+(00052, 'Axiofors', NULL, NULL, '2017-06-22 15:31:40', 0, 1, 4),
+(00053, 'TestModel1', 'TestFunc1', NULL, '2017-07-07 13:57:05', 0, 1, 2),
+(00054, 'Gnu Model', 'TJHAsd', NULL, '2017-07-07 14:15:50', 0, 1, 2),
+(00055, 'damodel', 'dafunction', NULL, '2017-07-07 14:26:51', 0, 1, 2),
+(00056, 'danewmodel', 'danewfunc', NULL, '2017-07-07 14:28:23', 0, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table model_brand
+-- Table structure for table `model_brand`
 --
 
-DROP TABLE IF EXISTS model_brand;
-CREATE TABLE model_brand (
+DROP TABLE IF EXISTS `model_brand`;
+CREATE TABLE `model_brand` (
   `modelID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `brandID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
@@ -2628,11 +2647,11 @@ CREATE TABLE model_brand (
 -- --------------------------------------------------------
 
 --
--- Table structure for table model_mnfr
+-- Table structure for table `model_mnfr`
 --
 
-DROP TABLE IF EXISTS model_mnfr;
-CREATE TABLE model_mnfr (
+DROP TABLE IF EXISTS `model_mnfr`;
+CREATE TABLE `model_mnfr` (
   `modelID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `mnfrID` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
@@ -2640,10 +2659,10 @@ CREATE TABLE model_mnfr (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table model_mnfr
+-- Dumping data for table `model_mnfr`
 --
 
-INSERT INTO model_mnfr (modelID, mnfrID, active, time_added) VALUES
+INSERT INTO `model_mnfr` (`modelID`, `mnfrID`, `active`, `time_added`) VALUES
 (00001, 00001, 1, '2017-03-16 15:19:14'),
 (00002, 00003, 1, '2017-03-20 21:30:15'),
 (00003, 00004, 1, '2017-03-21 17:58:12'),
@@ -2665,11 +2684,11 @@ INSERT INTO model_mnfr (modelID, mnfrID, active, time_added) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table persistences
+-- Table structure for table `persistences`
 --
 
-DROP TABLE IF EXISTS persistences;
-CREATE TABLE persistences (
+DROP TABLE IF EXISTS `persistences`;
+CREATE TABLE `persistences` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2678,10 +2697,10 @@ CREATE TABLE persistences (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table persistences
+-- Dumping data for table `persistences`
 --
 
-INSERT INTO persistences (id, user_id, `code`, created_at, updated_at) VALUES
+INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`) VALUES
 (2, 2, 'S3wD2KYDXWzNRFdcqHdrUxsxYDmZtvdb', '2017-06-26 15:59:07', '2017-06-26 15:59:07'),
 (3, 2, 'a3QOuC9MzWCA5e2IKSs6hrrykx4LfvXU', '2017-06-26 18:33:02', '2017-06-26 18:33:02'),
 (4, 2, 'CtjCOeL1dl3gd7Mfs7SPT4BWDf3ryctZ', '2017-06-26 20:23:56', '2017-06-26 20:23:56'),
@@ -2732,16 +2751,53 @@ INSERT INTO persistences (id, user_id, `code`, created_at, updated_at) VALUES
 (69, 2, 'WLZau3OvIgYJckQszeAzPsWtgsCZogCU', '2017-06-30 15:01:03', '2017-06-30 15:01:03'),
 (70, 2, 'dQkwJpp8Z4L4hDbAxcoRQ7EAu8bCQKCk', '2017-06-30 15:04:21', '2017-06-30 15:04:21'),
 (71, 2, 'xdAdiQbTCb15lzcD4IMni7o6Z4Xk6AAe', '2017-06-30 15:17:08', '2017-06-30 15:17:08'),
-(72, 2, 'zyT3xfSZqlwbudtkSIyy0w4H2XZtOda0', '2017-06-30 16:20:23', '2017-06-30 16:20:23');
+(72, 2, 'zyT3xfSZqlwbudtkSIyy0w4H2XZtOda0', '2017-06-30 16:20:23', '2017-06-30 16:20:23'),
+(73, 2, 'nxjk80qymheT04hrSJPc44LUodwND9iC', '2017-07-05 12:52:07', '2017-07-05 12:52:07'),
+(74, 2, 'rKJWPG7NumitswRajyoN9CFuoDZ39y3x', '2017-07-05 13:01:11', '2017-07-05 13:01:11'),
+(75, 2, 'WMQkiWYZmRg8olShlTdbtRCEju2HE432', '2017-07-05 13:40:14', '2017-07-05 13:40:14'),
+(76, 2, 'fLwpY9bcoQXBeAFwfhHp2Qd7h3mkqgNp', '2017-07-05 13:42:12', '2017-07-05 13:42:12'),
+(77, 2, '5lOmxvYFQl3YXFHT8VAPlI3KGdpz0stb', '2017-07-05 14:24:50', '2017-07-05 14:24:50'),
+(78, 2, 'kqPLvMbBYzCbbJE1ZCZs8X4nAnJ2tlre', '2017-07-05 16:01:06', '2017-07-05 16:01:06'),
+(79, 2, '0J8N01i9hpgIXC3hhWkKe3sAS3BS2gSF', '2017-07-05 16:13:43', '2017-07-05 16:13:43'),
+(80, 2, '7NH1prJtRU5GD4u1vgBrifK6eERQeel5', '2017-07-05 16:16:21', '2017-07-05 16:16:21'),
+(81, 2, 'NWprPMpd3xpr5kxD4f566z9fvtgVcmf3', '2017-07-05 16:18:33', '2017-07-05 16:18:33'),
+(82, 2, 'vAfB5iOegSafxyEOXT8sjkKJX2c8EDID', '2017-07-05 16:21:18', '2017-07-05 16:21:18'),
+(83, 2, 'RFGE2gAF45XbwaDiNq40aD0olUSUuH3L', '2017-07-05 16:29:07', '2017-07-05 16:29:07'),
+(84, 2, 'v6GSd2IWUCJ6ZuJZUzSbouJN6Nc4jlPC', '2017-07-05 16:30:35', '2017-07-05 16:30:35'),
+(85, 2, 'HuaFjDVRqwARyTuKIBVodSP6zKE2P3S5', '2017-07-05 16:32:13', '2017-07-05 16:32:13'),
+(86, 2, 'qdvFldbtqvsnoH24GFdHTCTNKeDsY5mX', '2017-07-05 16:46:34', '2017-07-05 16:46:34'),
+(87, 2, 'cpRT8PhEUo0Arr4Gg5nDVygnJDWwGkHP', '2017-07-05 16:47:40', '2017-07-05 16:47:40'),
+(88, 2, 'gs1WZ6LGXyVVqvNctqJMAYYoSPvF4X6Y', '2017-07-05 17:00:29', '2017-07-05 17:00:29'),
+(89, 2, 'ycEnqf47itYKb4To9FNfMbJzc90yBiEq', '2017-07-05 17:14:10', '2017-07-05 17:14:10'),
+(90, 2, 'e2eV9nMqDCBZzvPpMG7Fbygz5pwOWobL', '2017-07-05 17:17:36', '2017-07-05 17:17:36'),
+(91, 2, 'lXWqZuL1fKQRQgCVX9xrSaOb47A0dW04', '2017-07-05 18:32:59', '2017-07-05 18:32:59'),
+(92, 2, 'NlKJa3dmMPur0nSVBRyy1FWcnEJzAebF', '2017-07-05 19:51:39', '2017-07-05 19:51:39'),
+(93, 2, '9YIsAWqWdsbVUfI78IyW82HKGi26s7g3', '2017-07-05 20:06:12', '2017-07-05 20:06:12'),
+(94, 2, 'eMswXjqPGJRfkZZaDjYifyV9P5Fts0Tw', '2017-07-06 13:15:39', '2017-07-06 13:15:39'),
+(95, 2, 'VVMQPBdoTeR7hf2Yl3jgHr9YY4b6N5Y3', '2017-07-06 14:25:54', '2017-07-06 14:25:54'),
+(96, 2, 'MEdocSE8Qw5s696jo6xYdhhnPGa8j54B', '2017-07-06 14:26:42', '2017-07-06 14:26:42'),
+(97, 2, 'GwtvCGjncUhkir8cs8LTgMAwgRFae2dV', '2017-07-06 14:26:57', '2017-07-06 14:26:57'),
+(98, 2, 'L2R9SYWoEcipF2tdgZMW9KfLUMwg5tCl', '2017-07-06 15:48:19', '2017-07-06 15:48:19'),
+(99, 2, 'hX5BLwWcNFW4Q73otrs7V6v49VRWWgLz', '2017-07-06 15:50:47', '2017-07-06 15:50:47'),
+(100, 2, 'ftaTjZs4APbZpK5lJs0eCxQKQ055QxCv', '2017-07-06 15:50:47', '2017-07-06 15:50:47'),
+(101, 2, 'SCxtR2hvwXV8LIIIPpxfe9mkacV8esUr', '2017-07-06 18:16:07', '2017-07-06 18:16:07'),
+(102, 2, 'Qjfn07twmuf5Abw4dk68tGqXaDUB8yfT', '2017-07-06 18:25:57', '2017-07-06 18:25:57'),
+(103, 2, 'lBAtLxtfWF9qcfWhPuAS5LVl7xWSs5ZW', '2017-07-07 13:14:15', '2017-07-07 13:14:15'),
+(104, 2, 'Vx98fNVOPa2TCuyNqRHI6n4LHAMQ95QR', '2017-07-07 13:56:54', '2017-07-07 13:56:54'),
+(105, 2, 'zrWgVxT8vgcxM6gOVdcVMbw33Q0fn6Vw', '2017-07-07 17:32:17', '2017-07-07 17:32:17'),
+(106, 2, '3gq9yd9E0BRtMmOQwRAk2tWZ6X8s5kfO', '2017-07-07 18:06:16', '2017-07-07 18:06:16'),
+(107, 2, 'trWCqavLClK3x5mWU4yPOAAoBRzaVos8', '2017-07-07 18:15:47', '2017-07-07 18:15:47'),
+(108, 2, 'SS1GB2ip5k7dcFNQ8SIz0nMRbc5sMMhv', '2017-07-07 18:29:33', '2017-07-07 18:29:33'),
+(109, 2, 'FEWUIPw1C0cCqeqHcYL2kwClqn6Xcs6w', '2017-07-07 19:31:57', '2017-07-07 19:31:57');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table reminders
+-- Table structure for table `reminders`
 --
 
-DROP TABLE IF EXISTS reminders;
-CREATE TABLE reminders (
+DROP TABLE IF EXISTS `reminders`;
+CREATE TABLE `reminders` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2754,11 +2810,11 @@ CREATE TABLE reminders (
 -- --------------------------------------------------------
 
 --
--- Table structure for table roles
+-- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS roles;
-CREATE TABLE roles (
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2768,20 +2824,20 @@ CREATE TABLE roles (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table roles
+-- Dumping data for table `roles`
 --
 
-INSERT INTO roles (id, slug, `name`, permissions, created_at, updated_at) VALUES
+INSERT INTO `roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Admin', '{"user.delete":true,"user.create":true,"user.view":true,"user.update":true,"itemlist.delete":true}', '2017-06-26 15:53:54', '2017-06-26 20:17:55');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table role_users
+-- Table structure for table `role_users`
 --
 
-DROP TABLE IF EXISTS role_users;
-CREATE TABLE role_users (
+DROP TABLE IF EXISTS `role_users`;
+CREATE TABLE `role_users` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2789,29 +2845,29 @@ CREATE TABLE role_users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table role_users
+-- Dumping data for table `role_users`
 --
 
-INSERT INTO role_users (user_id, role_id, created_at, updated_at) VALUES
+INSERT INTO `role_users` (`user_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (2, 1, '2017-06-26 15:56:49', '2017-06-26 15:56:49');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table shipping_class
+-- Table structure for table `shipping_class`
 --
 
-DROP TABLE IF EXISTS shipping_class;
-CREATE TABLE shipping_class (
+DROP TABLE IF EXISTS `shipping_class`;
+CREATE TABLE `shipping_class` (
   `id` tinyint(1) UNSIGNED ZEROFILL NOT NULL,
   `shipping_class` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table shipping_class
+-- Dumping data for table `shipping_class`
 --
 
-INSERT INTO shipping_class (id, shipping_class) VALUES
+INSERT INTO `shipping_class` (`id`, `shipping_class`) VALUES
 (1, 'LAB-SM'),
 (2, 'LAB-MED'),
 (3, 'LAB-LG'),
@@ -2824,7 +2880,7 @@ INSERT INTO shipping_class (id, shipping_class) VALUES
 -- Table structure for table `status`
 --
 
-DROP TABLE IF EXISTS status;
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE `status` (
   `aleAsset` mediumint(5) UNSIGNED NOT NULL,
   `status` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
@@ -2836,7 +2892,7 @@ CREATE TABLE `status` (
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (aleAsset, `status`, modified_by, date_added) VALUES
+INSERT INTO `status` (`aleAsset`, `status`, `modified_by`, `date_added`) VALUES
 (10001, 07, NULL, '2017-06-09 13:38:45'),
 (10001, 08, NULL, '2017-06-22 21:01:17'),
 (10003, 08, NULL, '2017-06-27 16:38:16'),
@@ -2849,17 +2905,17 @@ INSERT INTO `status` (aleAsset, `status`, modified_by, date_added) VALUES
 (10010, 08, NULL, '2017-06-27 16:38:17'),
 (10011, 08, NULL, '2017-06-27 16:38:17'),
 (10012, 08, NULL, '2017-06-27 16:38:17'),
-(23830, 02, NULL, '2017-06-05 20:47:59'),
-(23830, 04, NULL, '2017-06-05 20:47:59');
+(23830, 02, NULL, '2017-07-07 17:39:49'),
+(23830, 04, NULL, '2017-07-07 17:39:49');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table subitem_of
+-- Table structure for table `subitem_of`
 --
 
-DROP TABLE IF EXISTS subitem_of;
-CREATE TABLE subitem_of (
+DROP TABLE IF EXISTS `subitem_of`;
+CREATE TABLE `subitem_of` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `subitem_of` varchar(60) NOT NULL,
   `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2868,10 +2924,10 @@ CREATE TABLE subitem_of (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table subitem_of
+-- Dumping data for table `subitem_of`
 --
 
-INSERT INTO subitem_of (id, subitem_of, time_added, reviewed, active) VALUES
+INSERT INTO `subitem_of` (`id`, `subitem_of`, `time_added`, `reviewed`, `active`) VALUES
 (00001, 'EPPENDORF', '2017-03-13 13:30:24', 1, 1),
 (00002, 'AGILENT', '2017-03-13 19:18:18', 1, 1),
 (00003, 'OTHER', '2017-03-20 21:21:33', 1, 1),
@@ -2892,11 +2948,11 @@ INSERT INTO subitem_of (id, subitem_of, time_added, reviewed, active) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table support_tickets
+-- Table structure for table `support_tickets`
 --
 
-DROP TABLE IF EXISTS support_tickets;
-CREATE TABLE support_tickets (
+DROP TABLE IF EXISTS `support_tickets`;
+CREATE TABLE `support_tickets` (
   `id` int(10) UNSIGNED ZEROFILL NOT NULL,
   `leadID` int(10) UNSIGNED ZEROFILL NOT NULL,
   `type` varchar(15) NOT NULL,
@@ -2910,10 +2966,10 @@ CREATE TABLE support_tickets (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table support_tickets
+-- Dumping data for table `support_tickets`
 --
 
-INSERT INTO support_tickets (id, leadID, `type`, message, instrument, info_req, referrer, `status`, date_added, last_update) VALUES
+INSERT INTO `support_tickets` (`id`, `leadID`, `type`, `message`, `instrument`, `info_req`, `referrer`, `status`, `date_added`, `last_update`) VALUES
 (0000000094, 0000000005, 'estimate', 'Also looking for NextSeq 550 1-3 units ', 'ILLUMINA NextSeq DNA Sequencer ', 'all', 'labx', 0, '2017-05-02 18:30:28', '2017-05-02 18:30:28'),
 (0000000096, 0000000002, 'contact', 'This is another test of the mail system.', NULL, NULL, NULL, 0, '2017-05-02 19:04:53', '2017-05-02 19:04:53'),
 (0000005200, 0000000002, 'contact', 'Sorry to bother you, I\\&#039;m just testing the message/online form system.', NULL, NULL, NULL, 0, '2017-05-04 19:24:38', '2017-05-04 19:24:38'),
@@ -2935,20 +2991,20 @@ INSERT INTO support_tickets (id, leadID, `type`, message, instrument, info_req, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table testing_status
+-- Table structure for table `testing_status`
 --
 
-DROP TABLE IF EXISTS testing_status;
-CREATE TABLE testing_status (
+DROP TABLE IF EXISTS `testing_status`;
+CREATE TABLE `testing_status` (
   `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL,
   `testing` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table testing_status
+-- Dumping data for table `testing_status`
 --
 
-INSERT INTO testing_status (id, testing) VALUES
+INSERT INTO `testing_status` (`id`, `testing`) VALUES
 (01, 'Tested'),
 (02, 'Not Tested'),
 (03, 'Powers Up'),
@@ -2957,11 +3013,11 @@ INSERT INTO testing_status (id, testing) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table throttle
+-- Table structure for table `throttle`
 --
 
-DROP TABLE IF EXISTS throttle;
-CREATE TABLE throttle (
+DROP TABLE IF EXISTS `throttle`;
+CREATE TABLE `throttle` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2973,11 +3029,11 @@ CREATE TABLE throttle (
 -- --------------------------------------------------------
 
 --
--- Table structure for table users
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2990,21 +3046,21 @@ CREATE TABLE users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table users
+-- Dumping data for table `users`
 --
 
-INSERT INTO users (id, email, `password`, permissions, last_login, first_name, last_name, created_at, updated_at) VALUES
-(2, 'jack@atlanticlabequipment.com', '$2y$10$HZgqaearZErKICXnYfhmK.HhER9vUQ7lthpjYBu3.t3HsWCTAqTYO', NULL, '2017-06-30 16:20:23', 'Jack', 'Brown', '2017-06-26 14:31:59', '2017-06-30 16:20:23'),
+INSERT INTO `users` (`id`, `email`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
+(2, 'jack@atlanticlabequipment.com', '$2y$10$HZgqaearZErKICXnYfhmK.HhER9vUQ7lthpjYBu3.t3HsWCTAqTYO', NULL, '2017-07-07 19:31:57', 'Jack', 'Brown', '2017-06-26 14:31:59', '2017-07-07 19:31:57'),
 (4, 'adam@atlanticlabequipment.com', '$2y$10$TkX0r9PCFtkus/WZeDCiYu7RrNfophPn6WvJOV0vOoDXxBEJBiHJe', NULL, NULL, 'Null', 'User', '2017-06-26 18:18:22', '2017-06-26 18:18:22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table us_states
+-- Table structure for table `us_states`
 --
 
-DROP TABLE IF EXISTS us_states;
-CREATE TABLE us_states (
+DROP TABLE IF EXISTS `us_states`;
+CREATE TABLE `us_states` (
   `id` smallint(3) UNSIGNED ZEROFILL NOT NULL,
   `name` varchar(100) NOT NULL,
   `code` char(2) NOT NULL,
@@ -3012,10 +3068,10 @@ CREATE TABLE us_states (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table us_states
+-- Dumping data for table `us_states`
 --
 
-INSERT INTO us_states (id, `name`, `code`, `status`) VALUES
+INSERT INTO `us_states` (`id`, `name`, `code`, `status`) VALUES
 (001, 'Alabama', 'AL', 1),
 (002, 'Alaska', 'AK', 1),
 (003, 'Arizona', 'AZ', 1),
@@ -3071,11 +3127,11 @@ INSERT INTO us_states (id, `name`, `code`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table vendors
+-- Table structure for table `vendors`
 --
 
-DROP TABLE IF EXISTS vendors;
-CREATE TABLE vendors (
+DROP TABLE IF EXISTS `vendors`;
+CREATE TABLE `vendors` (
   `id` smallint(5) UNSIGNED ZEROFILL NOT NULL,
   `vendor` varchar(80) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
@@ -3083,10 +3139,10 @@ CREATE TABLE vendors (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table vendors
+-- Dumping data for table `vendors`
 --
 
-INSERT INTO vendors (id, vendor, active, date_added) VALUES
+INSERT INTO `vendors` (`id`, `vendor`, `active`, `date_added`) VALUES
 (00001, 'Novartis Inst. of Biomedical Research', 1, '2017-05-24 21:33:12');
 
 --
@@ -3094,123 +3150,125 @@ INSERT INTO vendors (id, vendor, active, date_added) VALUES
 --
 
 --
--- Indexes for table activations
+-- Indexes for table `activations`
 --
-ALTER TABLE activations
+ALTER TABLE `activations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table adverts_listings
+-- Indexes for table `adverts_listings`
 --
-ALTER TABLE adverts_listings
+ALTER TABLE `adverts_listings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `listingID` (`listingID`);
 
 --
--- Indexes for table ad_photos
+-- Indexes for table `ad_photos`
 --
-ALTER TABLE ad_photos
+ALTER TABLE `ad_photos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `gen_listing_photos_fk` (`listingID`);
 
 --
--- Indexes for table ale_category
+-- Indexes for table `ale_category`
 --
-ALTER TABLE ale_category
+ALTER TABLE `ale_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table asset_labels
+-- Indexes for table `asset_labels`
 --
-ALTER TABLE asset_labels
+ALTER TABLE `asset_labels`
   ADD PRIMARY KEY (`label_num`);
 
 --
--- Indexes for table asset_type
+-- Indexes for table `asset_type`
 --
-ALTER TABLE asset_type
+ALTER TABLE `asset_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table brands
+-- Indexes for table `brands`
 --
-ALTER TABLE brands
+ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_brand` (`brand`);
-ALTER TABLE brands ADD FULLTEXT KEY `brand_ft` (`brand`);
+  ADD UNIQUE KEY `unique_brand` (`brand`),
+  ADD KEY `brand_users` (`added_by`);
+ALTER TABLE `brands` ADD FULLTEXT KEY `brand_ft` (`brand`);
 
 --
--- Indexes for table cosmetic_status
+-- Indexes for table `cosmetic_status`
 --
-ALTER TABLE cosmetic_status
+ALTER TABLE `cosmetic_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table default_fields
+-- Indexes for table `default_fields`
 --
-ALTER TABLE default_fields
+ALTER TABLE `default_fields`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table emp
+-- Indexes for table `emp`
 --
-ALTER TABLE emp
+ALTER TABLE `emp`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table emp_category
+-- Indexes for table `emp_category`
 --
-ALTER TABLE emp_category
+ALTER TABLE `emp_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table emp_prev_owners
+-- Indexes for table `emp_prev_owners`
 --
-ALTER TABLE emp_prev_owners
+ALTER TABLE `emp_prev_owners`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prev_owner_users` (`added_by`);
+
+--
+-- Indexes for table `emp_status`
+--
+ALTER TABLE `emp_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table emp_status
+-- Indexes for table `field_map`
 --
-ALTER TABLE emp_status
+ALTER TABLE `field_map`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table field_map
+-- Indexes for table `general_listings`
 --
-ALTER TABLE field_map
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table general_listings
---
-ALTER TABLE general_listings
+ALTER TABLE `general_listings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `genlistings_mnfr` (`mnfrID`),
   ADD KEY `genlistings_model` (`modelID`),
   ADD KEY `genlistings_brand` (`brandID`);
-ALTER TABLE general_listings ADD FULLTEXT KEY `genlist_desc` (`description`);
-ALTER TABLE general_listings ADD FULLTEXT KEY `components_ft` (`components`);
-ALTER TABLE general_listings ADD FULLTEXT KEY `title_extn_ft` (`title_extn`);
-ALTER TABLE general_listings ADD FULLTEXT KEY `item_condition_ft` (`item_condition`);
+ALTER TABLE `general_listings` ADD FULLTEXT KEY `genlist_desc` (`description`);
+ALTER TABLE `general_listings` ADD FULLTEXT KEY `components_ft` (`components`);
+ALTER TABLE `general_listings` ADD FULLTEXT KEY `title_extn_ft` (`title_extn`);
+ALTER TABLE `general_listings` ADD FULLTEXT KEY `item_condition_ft` (`item_condition`);
 
 --
--- Indexes for table inv_batch
+-- Indexes for table `inv_batch`
 --
-ALTER TABLE inv_batch
+ALTER TABLE `inv_batch`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_batch` (`batch_name`);
+  ADD UNIQUE KEY `unique_batch` (`batch_name`),
+  ADD KEY `batch_users` (`added_by`);
 
 --
--- Indexes for table itemlist
+-- Indexes for table `itemlist`
 --
-ALTER TABLE itemlist
+ALTER TABLE `itemlist`
   ADD PRIMARY KEY (`aleAsset`),
   ADD KEY `mnfr_item` (`mnfrID`),
   ADD KEY `model_item` (`modelID`),
   ADD KEY `brand_item` (`brandID`),
   ADD KEY `asset_track` (`track`),
-  ADD KEY `asset_status` (`status`),
   ADD KEY `asset_batch` (`batch`),
   ADD KEY `asset_condition` (`item_condition`),
   ADD KEY `asset_testing` (`testing`),
@@ -3219,134 +3277,136 @@ ALTER TABLE itemlist
   ADD KEY `itemlist_user` (`modified_by`);
 
 --
--- Indexes for table item_accounting
+-- Indexes for table `item_accounting`
 --
-ALTER TABLE item_accounting
+ALTER TABLE `item_accounting`
   ADD PRIMARY KEY (`id`),
   ADD KEY `itemlist_accounting` (`aleAsset`);
 
 --
--- Indexes for table item_category
+-- Indexes for table `item_category`
 --
-ALTER TABLE item_category
+ALTER TABLE `item_category`
   ADD PRIMARY KEY (`aleAsset`,`category`),
   ADD KEY `fk_ic_category` (`category`);
 
 --
--- Indexes for table item_condition
+-- Indexes for table `item_condition`
 --
-ALTER TABLE item_condition
+ALTER TABLE `item_condition`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table item_photos
+-- Indexes for table `item_photos`
 --
-ALTER TABLE item_photos
+ALTER TABLE `item_photos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `asset_photo` (`aleAsset`);
 
 --
--- Indexes for table item_status
+-- Indexes for table `item_status`
 --
-ALTER TABLE item_status
+ALTER TABLE `item_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table item_track
+-- Indexes for table `item_track`
 --
-ALTER TABLE item_track
+ALTER TABLE `item_track`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table leads
+-- Indexes for table `leads`
 --
-ALTER TABLE leads
+ALTER TABLE `leads`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lead_state` (`state`);
 
 --
--- Indexes for table listing_category
+-- Indexes for table `listing_category`
 --
-ALTER TABLE listing_category
+ALTER TABLE `listing_category`
   ADD PRIMARY KEY (`listingID`,`categoryID`),
   ADD KEY `lc_category` (`categoryID`);
 
 --
--- Indexes for table manufacturers
+-- Indexes for table `manufacturers`
 --
-ALTER TABLE manufacturers
+ALTER TABLE `manufacturers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mnfr` (`mnfr`),
   ADD UNIQUE KEY `unique_mnfr` (`mnfr`),
-  ADD KEY `mnfr_subitem` (`subitem_of`);
-ALTER TABLE manufacturers ADD FULLTEXT KEY `mnfr_ft` (`mnfr`);
+  ADD KEY `mnfr_subitem` (`subitem_of`),
+  ADD KEY `mnfr_users` (`added_by`);
+ALTER TABLE `manufacturers` ADD FULLTEXT KEY `mnfr_ft` (`mnfr`);
 
 --
--- Indexes for table migrator_error
+-- Indexes for table `migrator_error`
 --
-ALTER TABLE migrator_error
+ALTER TABLE `migrator_error`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table mnfr_brand
+-- Indexes for table `mnfr_brand`
 --
-ALTER TABLE mnfr_brand
+ALTER TABLE `mnfr_brand`
   ADD PRIMARY KEY (`mnfrID`,`brandID`),
   ADD KEY `mnfr_brand_brand` (`brandID`);
 
 --
--- Indexes for table models
+-- Indexes for table `models`
 --
-ALTER TABLE models
+ALTER TABLE `models`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_model` (`model`);
-ALTER TABLE models ADD FULLTEXT KEY `model_ft` (`model`);
-ALTER TABLE models ADD FULLTEXT KEY `function_desc__ft` (`function_desc`);
+  ADD UNIQUE KEY `unique_model` (`model`),
+  ADD KEY `model_users` (`added_by`);
+ALTER TABLE `models` ADD FULLTEXT KEY `model_ft` (`model`);
+ALTER TABLE `models` ADD FULLTEXT KEY `function_desc__ft` (`function_desc`);
 
 --
--- Indexes for table model_brand
+-- Indexes for table `model_brand`
 --
-ALTER TABLE model_brand
+ALTER TABLE `model_brand`
   ADD PRIMARY KEY (`modelID`,`brandID`),
   ADD KEY `model_brand_brand` (`brandID`);
 
 --
--- Indexes for table model_mnfr
+-- Indexes for table `model_mnfr`
 --
-ALTER TABLE model_mnfr
+ALTER TABLE `model_mnfr`
   ADD PRIMARY KEY (`modelID`,`mnfrID`),
   ADD KEY `model_mnfr_mnfr` (`mnfrID`);
 
 --
--- Indexes for table persistences
+-- Indexes for table `persistences`
 --
-ALTER TABLE persistences
+ALTER TABLE `persistences`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `persistences_code_unique` (`code`);
 
 --
--- Indexes for table reminders
+-- Indexes for table `reminders`
 --
-ALTER TABLE reminders
+ALTER TABLE `reminders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table roles
+-- Indexes for table `roles`
 --
-ALTER TABLE roles
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_slug_unique` (`slug`);
 
 --
--- Indexes for table role_users
+-- Indexes for table `role_users`
 --
-ALTER TABLE role_users
+ALTER TABLE `role_users`
   ADD PRIMARY KEY (`user_id`,`role_id`);
 
 --
--- Indexes for table shipping_class
+-- Indexes for table `shipping_class`
 --
-ALTER TABLE shipping_class
+ALTER TABLE `shipping_class`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3357,49 +3417,49 @@ ALTER TABLE `status`
   ADD KEY `status_to_status` (`status`);
 
 --
--- Indexes for table subitem_of
+-- Indexes for table `subitem_of`
 --
-ALTER TABLE subitem_of
+ALTER TABLE `subitem_of`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `unique_subitem` (`subitem_of`);
 
 --
--- Indexes for table support_tickets
+-- Indexes for table `support_tickets`
 --
-ALTER TABLE support_tickets
+ALTER TABLE `support_tickets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ticket_lead` (`leadID`);
 
 --
--- Indexes for table testing_status
+-- Indexes for table `testing_status`
 --
-ALTER TABLE testing_status
+ALTER TABLE `testing_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table throttle
+-- Indexes for table `throttle`
 --
-ALTER TABLE throttle
+ALTER TABLE `throttle`
   ADD PRIMARY KEY (`id`),
   ADD KEY `throttle_user_id_index` (`user_id`);
 
 --
--- Indexes for table users
+-- Indexes for table `users`
 --
-ALTER TABLE users
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table us_states
+-- Indexes for table `us_states`
 --
-ALTER TABLE us_states
+ALTER TABLE `us_states`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table vendors
+-- Indexes for table `vendors`
 --
-ALTER TABLE vendors
+ALTER TABLE `vendors`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `unique_vendor` (`vendor`);
 
@@ -3408,291 +3468,315 @@ ALTER TABLE vendors
 --
 
 --
--- AUTO_INCREMENT for table activations
+-- AUTO_INCREMENT for table `activations`
 --
-ALTER TABLE activations
+ALTER TABLE `activations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table adverts_listings
+-- AUTO_INCREMENT for table `adverts_listings`
 --
-ALTER TABLE adverts_listings
+ALTER TABLE `adverts_listings`
   MODIFY `id` mediumint(7) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
--- AUTO_INCREMENT for table ad_photos
+-- AUTO_INCREMENT for table `ad_photos`
 --
-ALTER TABLE ad_photos
+ALTER TABLE `ad_photos`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
--- AUTO_INCREMENT for table ale_category
+-- AUTO_INCREMENT for table `ale_category`
 --
-ALTER TABLE ale_category
+ALTER TABLE `ale_category`
   MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
--- AUTO_INCREMENT for table asset_type
+-- AUTO_INCREMENT for table `asset_type`
 --
-ALTER TABLE asset_type
+ALTER TABLE `asset_type`
   MODIFY `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table brands
+-- AUTO_INCREMENT for table `brands`
 --
-ALTER TABLE brands
-  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `brands`
+  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table cosmetic_status
+-- AUTO_INCREMENT for table `cosmetic_status`
 --
-ALTER TABLE cosmetic_status
+ALTER TABLE `cosmetic_status`
   MODIFY `id` tinyint(1) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table default_fields
+-- AUTO_INCREMENT for table `default_fields`
 --
-ALTER TABLE default_fields
+ALTER TABLE `default_fields`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
--- AUTO_INCREMENT for table emp
+-- AUTO_INCREMENT for table `emp`
 --
-ALTER TABLE emp
+ALTER TABLE `emp`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 --
--- AUTO_INCREMENT for table emp_category
+-- AUTO_INCREMENT for table `emp_category`
 --
-ALTER TABLE emp_category
+ALTER TABLE `emp_category`
   MODIFY `id` tinyint(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 --
--- AUTO_INCREMENT for table emp_prev_owners
+-- AUTO_INCREMENT for table `emp_prev_owners`
 --
-ALTER TABLE emp_prev_owners
-  MODIFY `id` smallint(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `emp_prev_owners`
+  MODIFY `id` smallint(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table emp_status
+-- AUTO_INCREMENT for table `emp_status`
 --
-ALTER TABLE emp_status
+ALTER TABLE `emp_status`
   MODIFY `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table field_map
+-- AUTO_INCREMENT for table `field_map`
 --
-ALTER TABLE field_map
-  MODIFY `id` smallint(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+ALTER TABLE `field_map`
+  MODIFY `id` smallint(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
--- AUTO_INCREMENT for table general_listings
+-- AUTO_INCREMENT for table `general_listings`
 --
-ALTER TABLE general_listings
+ALTER TABLE `general_listings`
   MODIFY `id` mediumint(7) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
--- AUTO_INCREMENT for table inv_batch
+-- AUTO_INCREMENT for table `inv_batch`
 --
-ALTER TABLE inv_batch
-  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `inv_batch`
+  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table item_accounting
+-- AUTO_INCREMENT for table `item_accounting`
 --
-ALTER TABLE item_accounting
+ALTER TABLE `item_accounting`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 --
--- AUTO_INCREMENT for table item_condition
+-- AUTO_INCREMENT for table `item_condition`
 --
-ALTER TABLE item_condition
+ALTER TABLE `item_condition`
   MODIFY `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table item_photos
+-- AUTO_INCREMENT for table `item_photos`
 --
-ALTER TABLE item_photos
+ALTER TABLE `item_photos`
   MODIFY `id` mediumint(7) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
 --
--- AUTO_INCREMENT for table item_status
+-- AUTO_INCREMENT for table `item_status`
 --
-ALTER TABLE item_status
+ALTER TABLE `item_status`
   MODIFY `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table item_track
+-- AUTO_INCREMENT for table `item_track`
 --
-ALTER TABLE item_track
+ALTER TABLE `item_track`
   MODIFY `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table leads
+-- AUTO_INCREMENT for table `leads`
 --
-ALTER TABLE leads
+ALTER TABLE `leads`
   MODIFY `id` int(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT for table manufacturers
+-- AUTO_INCREMENT for table `manufacturers`
 --
-ALTER TABLE manufacturers
-  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+ALTER TABLE `manufacturers`
+  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
--- AUTO_INCREMENT for table migrator_error
+-- AUTO_INCREMENT for table `migrator_error`
 --
-ALTER TABLE migrator_error
+ALTER TABLE `migrator_error`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table models
+-- AUTO_INCREMENT for table `models`
 --
-ALTER TABLE models
-  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+ALTER TABLE `models`
+  MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
--- AUTO_INCREMENT for table persistences
+-- AUTO_INCREMENT for table `persistences`
 --
-ALTER TABLE persistences
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+ALTER TABLE `persistences`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 --
--- AUTO_INCREMENT for table reminders
+-- AUTO_INCREMENT for table `reminders`
 --
-ALTER TABLE reminders
+ALTER TABLE `reminders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table roles
+-- AUTO_INCREMENT for table `roles`
 --
-ALTER TABLE roles
+ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table shipping_class
+-- AUTO_INCREMENT for table `shipping_class`
 --
-ALTER TABLE shipping_class
+ALTER TABLE `shipping_class`
   MODIFY `id` tinyint(1) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table subitem_of
+-- AUTO_INCREMENT for table `subitem_of`
 --
-ALTER TABLE subitem_of
+ALTER TABLE `subitem_of`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
--- AUTO_INCREMENT for table support_tickets
+-- AUTO_INCREMENT for table `support_tickets`
 --
-ALTER TABLE support_tickets
+ALTER TABLE `support_tickets`
   MODIFY `id` int(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5215;
 --
--- AUTO_INCREMENT for table testing_status
+-- AUTO_INCREMENT for table `testing_status`
 --
-ALTER TABLE testing_status
+ALTER TABLE `testing_status`
   MODIFY `id` tinyint(2) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table throttle
+-- AUTO_INCREMENT for table `throttle`
 --
-ALTER TABLE throttle
+ALTER TABLE `throttle`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table users
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE users
+ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table us_states
+-- AUTO_INCREMENT for table `us_states`
 --
-ALTER TABLE us_states
+ALTER TABLE `us_states`
   MODIFY `id` smallint(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
--- AUTO_INCREMENT for table vendors
+-- AUTO_INCREMENT for table `vendors`
 --
-ALTER TABLE vendors
+ALTER TABLE `vendors`
   MODIFY `id` smallint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table adverts_listings
+-- Constraints for table `adverts_listings`
 --
-ALTER TABLE adverts_listings
-  ADD CONSTRAINT `adverts_listings_ibfk_1` FOREIGN KEY (`listingID`) REFERENCES general_listings (`id`);
+ALTER TABLE `adverts_listings`
+  ADD CONSTRAINT `adverts_listings_ibfk_1` FOREIGN KEY (`listingID`) REFERENCES `general_listings` (`id`);
 
 --
--- Constraints for table ad_photos
+-- Constraints for table `ad_photos`
 --
-ALTER TABLE ad_photos
-  ADD CONSTRAINT `gen_listing_photos_fk` FOREIGN KEY (`listingID`) REFERENCES general_listings (`id`);
+ALTER TABLE `ad_photos`
+  ADD CONSTRAINT `gen_listing_photos_fk` FOREIGN KEY (`listingID`) REFERENCES `general_listings` (`id`);
 
 --
--- Constraints for table general_listings
+-- Constraints for table `brands`
 --
-ALTER TABLE general_listings
-  ADD CONSTRAINT `genlistings_brand` FOREIGN KEY (`brandID`) REFERENCES brands (`id`),
-  ADD CONSTRAINT `genlistings_mnfr` FOREIGN KEY (`mnfrID`) REFERENCES manufacturers (`id`),
-  ADD CONSTRAINT `genlistings_model` FOREIGN KEY (`modelID`) REFERENCES models (`id`);
+ALTER TABLE `brands`
+  ADD CONSTRAINT `brand_users` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table itemlist
+-- Constraints for table `emp_prev_owners`
 --
-ALTER TABLE itemlist
-  ADD CONSTRAINT `asset_batch` FOREIGN KEY (`batch`) REFERENCES inv_batch (`id`),
-  ADD CONSTRAINT `asset_condition` FOREIGN KEY (`item_condition`) REFERENCES item_condition (`id`),
-  ADD CONSTRAINT `asset_cosmetic` FOREIGN KEY (`cosmetic`) REFERENCES cosmetic_status (`id`),
-  ADD CONSTRAINT `asset_ship_class` FOREIGN KEY (`ship_class`) REFERENCES shipping_class (`id`),
-  ADD CONSTRAINT `asset_status` FOREIGN KEY (`status`) REFERENCES item_status (`id`),
-  ADD CONSTRAINT `asset_testing` FOREIGN KEY (`testing`) REFERENCES testing_status (`id`),
-  ADD CONSTRAINT `asset_track` FOREIGN KEY (`track`) REFERENCES item_track (`id`),
-  ADD CONSTRAINT `brand_item` FOREIGN KEY (`brandID`) REFERENCES brands (`id`),
+ALTER TABLE `emp_prev_owners`
+  ADD CONSTRAINT `prev_owner_users` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `general_listings`
+--
+ALTER TABLE `general_listings`
+  ADD CONSTRAINT `genlistings_brand` FOREIGN KEY (`brandID`) REFERENCES `brands` (`id`),
+  ADD CONSTRAINT `genlistings_mnfr` FOREIGN KEY (`mnfrID`) REFERENCES `manufacturers` (`id`),
+  ADD CONSTRAINT `genlistings_model` FOREIGN KEY (`modelID`) REFERENCES `models` (`id`);
+
+--
+-- Constraints for table `inv_batch`
+--
+ALTER TABLE `inv_batch`
+  ADD CONSTRAINT `batch_users` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `itemlist`
+--
+ALTER TABLE `itemlist`
+  ADD CONSTRAINT `asset_batch` FOREIGN KEY (`batch`) REFERENCES `inv_batch` (`id`),
+  ADD CONSTRAINT `asset_condition` FOREIGN KEY (`item_condition`) REFERENCES `item_condition` (`id`),
+  ADD CONSTRAINT `asset_cosmetic` FOREIGN KEY (`cosmetic`) REFERENCES `cosmetic_status` (`id`),
+  ADD CONSTRAINT `asset_ship_class` FOREIGN KEY (`ship_class`) REFERENCES `shipping_class` (`id`),
+  ADD CONSTRAINT `asset_testing` FOREIGN KEY (`testing`) REFERENCES `testing_status` (`id`),
+  ADD CONSTRAINT `asset_track` FOREIGN KEY (`track`) REFERENCES `item_track` (`id`),
+  ADD CONSTRAINT `brand_item` FOREIGN KEY (`brandID`) REFERENCES `brands` (`id`),
   ADD CONSTRAINT `itemlist_user` FOREIGN KEY (`modified_by`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `mnfr_item` FOREIGN KEY (`mnfrID`) REFERENCES manufacturers (`id`),
-  ADD CONSTRAINT `model_item` FOREIGN KEY (`modelID`) REFERENCES models (`id`);
+  ADD CONSTRAINT `mnfr_item` FOREIGN KEY (`mnfrID`) REFERENCES `manufacturers` (`id`),
+  ADD CONSTRAINT `model_item` FOREIGN KEY (`modelID`) REFERENCES `models` (`id`);
 
 --
--- Constraints for table item_accounting
+-- Constraints for table `item_accounting`
 --
-ALTER TABLE item_accounting
-  ADD CONSTRAINT `itemlist_accounting` FOREIGN KEY (`aleAsset`) REFERENCES itemlist (`aleAsset`);
+ALTER TABLE `item_accounting`
+  ADD CONSTRAINT `itemlist_accounting` FOREIGN KEY (`aleAsset`) REFERENCES `itemlist` (`aleAsset`);
 
 --
--- Constraints for table item_category
+-- Constraints for table `item_category`
 --
-ALTER TABLE item_category
-  ADD CONSTRAINT `fk_ic_aleAsset` FOREIGN KEY (`aleAsset`) REFERENCES itemlist (`aleAsset`),
-  ADD CONSTRAINT `fk_ic_category` FOREIGN KEY (`category`) REFERENCES ale_category (`id`);
+ALTER TABLE `item_category`
+  ADD CONSTRAINT `fk_ic_aleAsset` FOREIGN KEY (`aleAsset`) REFERENCES `itemlist` (`aleAsset`),
+  ADD CONSTRAINT `fk_ic_category` FOREIGN KEY (`category`) REFERENCES `ale_category` (`id`);
 
 --
--- Constraints for table item_photos
+-- Constraints for table `item_photos`
 --
-ALTER TABLE item_photos
-  ADD CONSTRAINT `asset_photo` FOREIGN KEY (`aleAsset`) REFERENCES itemlist (`aleAsset`);
+ALTER TABLE `item_photos`
+  ADD CONSTRAINT `asset_photo` FOREIGN KEY (`aleAsset`) REFERENCES `itemlist` (`aleAsset`);
 
 --
--- Constraints for table leads
+-- Constraints for table `leads`
 --
-ALTER TABLE leads
-  ADD CONSTRAINT `lead_state` FOREIGN KEY (`state`) REFERENCES us_states (`id`);
+ALTER TABLE `leads`
+  ADD CONSTRAINT `lead_state` FOREIGN KEY (`state`) REFERENCES `us_states` (`id`);
 
 --
--- Constraints for table listing_category
+-- Constraints for table `listing_category`
 --
-ALTER TABLE listing_category
-  ADD CONSTRAINT `lc_category` FOREIGN KEY (`categoryID`) REFERENCES ale_category (`id`),
-  ADD CONSTRAINT `lc_listing` FOREIGN KEY (`listingID`) REFERENCES general_listings (`id`);
+ALTER TABLE `listing_category`
+  ADD CONSTRAINT `lc_category` FOREIGN KEY (`categoryID`) REFERENCES `ale_category` (`id`),
+  ADD CONSTRAINT `lc_listing` FOREIGN KEY (`listingID`) REFERENCES `general_listings` (`id`);
 
 --
--- Constraints for table manufacturers
+-- Constraints for table `manufacturers`
 --
-ALTER TABLE manufacturers
-  ADD CONSTRAINT `mnfr_subitem` FOREIGN KEY (`subitem_of`) REFERENCES subitem_of (`id`);
+ALTER TABLE `manufacturers`
+  ADD CONSTRAINT `mnfr_subitem` FOREIGN KEY (`subitem_of`) REFERENCES `subitem_of` (`id`),
+  ADD CONSTRAINT `mnfr_users` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table mnfr_brand
+-- Constraints for table `mnfr_brand`
 --
-ALTER TABLE mnfr_brand
-  ADD CONSTRAINT `mnfr_brand_brand` FOREIGN KEY (`brandID`) REFERENCES brands (`id`),
-  ADD CONSTRAINT `mnfr_brand_mnfr` FOREIGN KEY (`mnfrID`) REFERENCES manufacturers (`id`);
+ALTER TABLE `mnfr_brand`
+  ADD CONSTRAINT `mnfr_brand_brand` FOREIGN KEY (`brandID`) REFERENCES `brands` (`id`),
+  ADD CONSTRAINT `mnfr_brand_mnfr` FOREIGN KEY (`mnfrID`) REFERENCES `manufacturers` (`id`);
 
 --
--- Constraints for table model_brand
+-- Constraints for table `models`
 --
-ALTER TABLE model_brand
-  ADD CONSTRAINT `model_brand_brand` FOREIGN KEY (`brandID`) REFERENCES brands (`id`),
-  ADD CONSTRAINT `model_brand_model` FOREIGN KEY (`modelID`) REFERENCES models (`id`);
+ALTER TABLE `models`
+  ADD CONSTRAINT `model_users` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table model_mnfr
+-- Constraints for table `model_brand`
 --
-ALTER TABLE model_mnfr
-  ADD CONSTRAINT `model_mnfr_mnfr` FOREIGN KEY (`mnfrID`) REFERENCES manufacturers (`id`),
-  ADD CONSTRAINT `model_mnfr_model` FOREIGN KEY (`modelID`) REFERENCES models (`id`);
+ALTER TABLE `model_brand`
+  ADD CONSTRAINT `model_brand_brand` FOREIGN KEY (`brandID`) REFERENCES `brands` (`id`),
+  ADD CONSTRAINT `model_brand_model` FOREIGN KEY (`modelID`) REFERENCES `models` (`id`);
+
+--
+-- Constraints for table `model_mnfr`
+--
+ALTER TABLE `model_mnfr`
+  ADD CONSTRAINT `model_mnfr_mnfr` FOREIGN KEY (`mnfrID`) REFERENCES `manufacturers` (`id`),
+  ADD CONSTRAINT `model_mnfr_model` FOREIGN KEY (`modelID`) REFERENCES `models` (`id`);
 
 --
 -- Constraints for table `status`
 --
 ALTER TABLE `status`
-  ADD CONSTRAINT `asset_to_status` FOREIGN KEY (`aleAsset`) REFERENCES itemlist (`aleAsset`),
-  ADD CONSTRAINT `status_to_status` FOREIGN KEY (`status`) REFERENCES item_status (`id`);
+  ADD CONSTRAINT `asset_to_status` FOREIGN KEY (`aleAsset`) REFERENCES `itemlist` (`aleAsset`),
+  ADD CONSTRAINT `status_to_status` FOREIGN KEY (`status`) REFERENCES `item_status` (`id`);
 
 --
--- Constraints for table support_tickets
+-- Constraints for table `support_tickets`
 --
-ALTER TABLE support_tickets
-  ADD CONSTRAINT `ticket_lead` FOREIGN KEY (`leadID`) REFERENCES leads (`id`);
+ALTER TABLE `support_tickets`
+  ADD CONSTRAINT `ticket_lead` FOREIGN KEY (`leadID`) REFERENCES `leads` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -5,6 +5,7 @@
  * given parameters (or defaults).
  *
  */
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
 
 class DataList extends Paginator
 {
@@ -86,6 +87,242 @@ class DataList extends Paginator
 				'results'	=>	$this->total
 		);
 		echo json_encode($json);
+	}
+	
+	public static function addRecord($type, $value, $conn)
+	{
+		global $_USER;
+		switch ($type)
+		{
+			case 'batch':
+				$id	=	DataList::addBatch($value, $_USER, $conn);
+				break;
+			case 'mnfr':
+				$id	=	DataList::addMnfr($value, $_USER, $conn);
+				break;
+			case 'model':
+				$id	=	DataList::addModel($value, $_USER, $conn);
+				break;
+			case 'brand':
+				$id	=	DataList::addBrand($value, $_USER, $conn);
+				break;
+			case 'prevOwner':
+				$id	=	DataList::addPrevOwner($value, $_USER, $conn);
+				break;
+			default:
+				throw new Exception('Invalid Type given to ItemList::addRecord');
+		}
+		return $id;
+	}
+	
+	private static function addBatch($value, $user, $conn)
+	{
+		$q	=	"INSERT INTO inv_batch (batch_name, description, added_by) VALUES (?,?,?)";
+		$stmt		=	$conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('addBatch: prepare() failed: ' . htmlspecialchars($conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('ssi', $value['batch'], $value['desc'], $user['id']);
+		if ($rc === false)
+		{
+			throw new Exception('addBatch: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('addBatch: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		return $conn->insert_id;
+	}
+	
+	private static function addMnfr($value, $user, $conn)
+	{
+		$value	=	strtoupper($value);
+		$q	=	"INSERT INTO manufacturers (mnfr, subitem_of, added_by) VALUES (?,3,?)";
+		$stmt		=	$conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('addMnfr: prepare() failed: ' . htmlspecialchars($conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('si', $value, $user['id']);
+		if ($rc === false)
+		{
+			throw new Exception('addMnfr: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		try {
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('addMnfr: execute() failed: ' . htmlspecialchars($stmt->error) . ' Error No. ' . $stmt->errno);
+			}
+			$id	= $conn->insert_id;
+		} catch (Exception $e) {
+			if ($stmt->errno == 1062) {
+				$q	=	"SELECT id FROM manufacturers WHERE mnfr=?";
+				$stmt		=	$conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('addMnfr: prepare() failed: ' . htmlspecialchars($conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param('s', $value);
+				if ($rc === false)
+				{
+					throw new Exception('addMnfr: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('addMnfr: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$r 		= $stmt->get_result();
+				if ($r->num_rows === 0) {
+					throw new Exception('Table Constraint failed, but could not find any matches.');
+				} else {
+					$r->data_seek(0);
+					$row	=	$r->fetch_array(MYSQLI_ASSOC);
+					$id	= $row['id'];
+				}
+			} else {
+				throw new Exception($e->getMessage());
+			}
+		}
+		return $id;
+	}
+	
+	private static function addModel($value, $user, $conn)
+	{
+		$q	=	"INSERT INTO models (model, function_desc, added_by) VALUES (?,?,?)";
+		$stmt		=	$conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('addModel: prepare() failed: ' . htmlspecialchars($conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('ssi', $value['model'], $value['function_desc'], $user['id']);
+		if ($rc === false)
+		{
+			throw new Exception('addModel: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		try {
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('addModel: execute() failed: ' . htmlspecialchars($stmt->error) . ' Error No. ' . $stmt->errno);
+			}
+			$id	= $conn->insert_id;
+		} catch (Exception $e) {
+			if ($stmt->errno == 1062) {
+				$q	=	"SELECT id FROM models WHERE model=?";
+				$stmt		=	$conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('addModel: prepare() failed: ' . htmlspecialchars($conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param('s', $value['model']);
+				if ($rc === false)
+				{
+					throw new Exception('addModel: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('addModel: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$r 		= $stmt->get_result();
+				if ($r->num_rows === 0) {
+					throw new Exception('Table Constraint failed, but could not find any matches.');
+				} else {
+					$r->data_seek(0);
+					$row	=	$r->fetch_array(MYSQLI_ASSOC);
+					$id	= $row['id'];
+				}
+			} else {
+				throw new Exception($e->getMessage());
+			}
+		}
+		return $id;
+	}
+	
+	private static function addBrand($value, $user, $conn)
+	{
+		$q	=	"INSERT INTO brands (brand, added_by) VALUES (?,?)";
+		$stmt		=	$conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('addBrand: prepare() failed: ' . htmlspecialchars($conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('si', $value, $user['id']);
+		if ($rc === false)
+		{
+			throw new Exception('addBrand: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		try {
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('addBrand: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+			$id	= $conn->insert_id;
+		} catch (Exception $e) {
+			if ($stmt->errno == 1062) {
+				$q		=	"SELECT id FROM brands WHERE brand=?";
+				$stmt	=	$conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('addBrand: prepare() failed: ' . htmlspecialchars($conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param('s', $value);
+				if ($rc === false)
+				{
+					throw new Exception('addBrand: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('addBrand: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+				$r 		= $stmt->get_result();
+				if ($r->num_rows === 0) {
+					throw new Exception('Table Constraint failed, but could not find any matches.');
+				} else {
+					$r->data_seek(0);
+					$row	=	$r->fetch_array(MYSQLI_ASSOC);
+					$id	= $row['id'];
+				}
+			} else {
+				throw new Exception($e->getMessage());
+			}
+		}
+		return $id;
+	}
+	
+	private static function addPrevOwner($value, $user, $conn)
+	{
+		$q	=	"INSERT INTO emp_prev_owners (prev_owner, added_by) VALUES (?,?)";
+		$stmt		=	$conn->prepare($q);
+		if ($stmt === false)
+		{
+			throw new Exception('addPrevOwner: prepare() failed: ' . htmlspecialchars($conn->error));
+		}
+		// Bind Parameters
+		$rc		=	$stmt->bind_param('si', $value, $user['id']);
+		if ($rc === false)
+		{
+			throw new Exception('addPrevOwner: bind_param() failed: ' . htmlspecialchars($stmt->error));
+		}
+		$rc		=	$stmt->execute();
+		if ($rc === false)
+		{
+			throw new Exception('addPrevOwner: execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		return $conn->insert_id;
 	}
 	
 	protected function initFields()

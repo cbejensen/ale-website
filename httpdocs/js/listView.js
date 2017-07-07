@@ -59,11 +59,6 @@ function buildBreadcrumbs()
 	div.appendChild(span);
 }
 
-function insertListData()
-{
-
-}
-
 function getURI()
 {
 	var url		=	'?controller=admin&action=showList&lscp=' + listInfo.scope + '&rp=' + listInfo.rp + '&srt_f=' + listInfo.sortBy + '&srt_d=' + listInfo.sortDir;
@@ -191,6 +186,7 @@ function createHeaderRow()
 	Object.keys(fieldMeta).forEach(function(cv){
 		var td		=	document.createElement('th');
 		var text	=	document.createTextNode(fieldMeta[cv].label);
+		td.setAttribute('onclick', 'sortList(\''+fieldMeta[cv].table+'\')');
 		td.appendChild(text);
 		tr.appendChild(td);
 	});
@@ -257,4 +253,39 @@ function getSelectedRows()
 		}
 	});
 	return selected;
+}
+
+function sortList(field)
+{
+	var fId;
+	var newURL	=	'';
+	Object.keys(listOptions.field_map).forEach(function(i) {
+		if (listOptions.field_map[i] == field) {
+			fId	=	i;
+		}
+	});
+	if (typeof fId == 'undefined') {
+		return;
+	}
+
+	//console.log(fId);
+	Object.keys(url).forEach(function(i) {
+		if (i == 'srt_f') return;
+		newURL	+=	'&'+i+'='+url[i];
+	});
+	newURL	=	'?' + newURL.substring(1) + '&srt_f=' + fId;
+	console.log(newURL);
+	window.location.href	=	newURL;
+}
+
+function searchList()
+{
+	var query	=	document.getElementById('search-input').value;
+	var newURL	=	'';
+	Object.keys(url).forEach(function(i) {
+		if (i == 'q') return;
+		newURL	+=	'&'+i+'='+url[i];
+	});
+	newURL	=	'?' + newURL.substring(1) + '&q=' + query;
+	window.location.href	=	newURL;
 }

@@ -54,7 +54,8 @@ class ItemList extends DataList
 		$row['select']		=	$select;
 		$this->fieldMeta[$k++]	=	array(
 				'field'	=>	'select',
-				'label'	=>	''
+				'label'	=>	'',
+				'table'	=> 	''
 		);
 		// Item Status Field (For Status Thumbnails).
 		$itemStatus	=	InvItem::getStatus($dataRow['aleAsset'], $this->conn);
@@ -71,7 +72,8 @@ class ItemList extends DataList
 		$row['item_status']	=	$status;
 		$this->fieldMeta[$k++]	=	array(
 				'field'	=>	'item_status',
-				'label'	=>	'Status'
+				'label'	=>	'Status',
+				'table'	=> 	''
 		);
 		
 		// Begin default rows
@@ -98,21 +100,25 @@ class ItemList extends DataList
 					$row['id']				=	$dataRow['aleAsset'];
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	'aleAsset',
-							'label'	=>	'Asset'
+							'label'	=>	'Asset',
+							'table'	=>	$field['field_name']
+							//'action'=>	'sortList()'
 					);
 					break;
 				case 'manufacturers.mnfr':
 					$row['title']	=	$dataRow['mnfr'].' '.$dataRow['brand'].' '.$dataRow['model'].' '.$dataRow['function_desc'].' '.$dataRow['title_extn'];
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	'title',
-							'label'	=>	'Title'
+							'label'	=>	'Title',
+							'table'	=>	$field['field_name']
 					);
 					break;
 				case 'users.first_name':
 					$row['modified_by']	=	$dataRow['first_name'] . ' ' . $dataRow['last_name'];
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	'modified_by',
-							'label'	=>	'Modified By'
+							'label'	=>	'Modified By',
+							'table'	=>	'users.last_name'
 					);
 					break;
 					// By default, just add the contents of the field to the column
@@ -121,7 +127,8 @@ class ItemList extends DataList
 					$row[$f[1]]	=	$dataRow[$f[1]];
 					$this->fieldMeta[$k++]	=	array(
 							'field'	=>	$f[1],
-							'label'	=>	$field['label']
+							'label'	=>	$field['label'],
+							'table'	=>	$field['field_name']
 					);
 			}
 		}
@@ -239,9 +246,9 @@ class ItemList extends DataList
 				),
 				array(
 						'key'		=>	'status',
-						'idKey'		=>	'id',
-						'query'		=>	"SELECT id, status FROM item_status ORDER BY status",
-						'subject'	=>	function($row){return $row['status'];}
+						'idKey'		=>	'status',
+						'query'		=>	"SELECT id, status, description FROM item_status ORDER BY status",
+						'subject'	=>	function($row){return array('id'=>$row['id'],'desc'=>$row['description']);}
 				),
 // 				array(
 // 						'key'		=>	'batch',
@@ -317,15 +324,21 @@ class ItemList extends DataList
 				),
 				array(
 						'key'		=>	'emp_category',
-						'idKey'		=>	'id',
-						'query'		=>	"SELECT id, category, subcategory FROM emp_category",
-						'subject'	=>	function($row){return array('category'=>$row['category'], 'subcategory'=>$row['subcategory']);}
+						'idKey'		=>	'category',
+						'query'		=>	"SELECT id, category, subcategory FROM emp_category ORDER BY category, subcategory",
+						'subject'	=>	function($row){return $row['subcategory'];}
 				),
 				array(
 						'key'		=>	'ale_category',
 						'idKey'		=>	'ale_category',
 						'query'		=>	"SELECT id, ale_category, ale_subcategory FROM ale_category ORDER BY ale_category, ale_subcategory",
 						'subject'	=>	function($row){return $row['ale_subcategory'];}
+				),
+				array(
+						'key'		=>	'field_map',
+						'idKey'		=>	'id',
+						'query'		=>	"SELECT id, field_name FROM field_map ORDER BY id",
+						'subject'	=>	function($row){return $row['field_name'];}
 				),
 		);
 		
@@ -337,12 +350,16 @@ class ItemList extends DataList
 			{
 				$r->data_seek($j);
 				$row		=	$r->fetch_array(MYSQLI_ASSOC);
-				if ($specs['key'] == 'ale_category') {
-					$options[$specs['key']][$row[$specs['idKey']]][$row['id']]	=	$specs['subject']($row);
+				if ($specs['key'] == 'ale_category' || $specs['key'] == 'emp_category') 
+				{
+					$options[$specs['key']][$row[$specs['idKey']]][$specs['subject']($row)]	=	$row['id'];
 				}
-				elseif ($specs['idKey'] !== '') {
+				elseif ($specs['idKey'] !== '') 
+				{
 					$options[$specs['key']][$row[$specs['idKey']]]	=	$specs['subject']($row);
-				} else {
+				} 
+				else 
+				{
 					$options[$specs['key']][]	=	$specs['subject']($row);
 				}
 			}
