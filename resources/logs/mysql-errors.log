@@ -833,3 +833,27 @@
 [30-Jun-2017 16:05:42 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\items.php on line 336
 [30-Jun-2017 16:08:51 America/New_York] Database Query Failed. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'GROUP BY ale_category' at line 1
 [30-Jun-2017 16:08:51 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\items.php on line 336
+[05-Jul-2017 10:27:39 America/New_York] Database Query Failed. Unknown column 'emp_category' in 'order clause'
+[05-Jul-2017 10:27:39 America/New_York] PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\atlanticlabequipment\ale-website\resources\lib\admin\list\models\items.php on line 336
+[05-Jul-2017 11:53:18 America/New_York] Item Update Failed Update Error: Itemlist. Key: emp_subcategory Value: 107. InvItem UPDATE: prepare() failed: Unknown column 'emp_subcategory' in 'field list'
+[05-Jul-2017 15:51:43 America/New_York] Item Update Failed Update Error: Itemlist. Key: ale_categories Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'ale_categories' in 'field list'
+[05-Jul-2017 15:53:28 America/New_York] Item Update Failed Key: ale_categories Value: Array Type: s
+[05-Jul-2017 16:25:21 America/New_York] Item Update Failed Update Error: ALE Categories. Key: ale_categories. Value: Array. Msg: updateAleCategories: execute() failed: Column 'category' cannot be null
+[05-Jul-2017 16:25:50 America/New_York] Item Update Failed Update Error: ALE Categories. Key: ale_categories. Value: Array. Msg: updateAleCategories: execute() failed: Column 'category' cannot be null
+[05-Jul-2017 16:26:02 America/New_York] Item Update Failed Update Error: ALE Categories. Key: ale_categories. Value: Array. Msg: updateAleCategories: execute() failed: Column 'category' cannot be null
+[05-Jul-2017 16:28:33 America/New_York] Item Update Failed Update Error: ALE Categories.updateAleCategories: execute() failed: Column 'category' cannot be null
+[05-Jul-2017 16:28:58 America/New_York] Item Update Failed Update Error: ALE Categories.updateAleCategories: execute() failed: Column 'category' cannot be null
+[05-Jul-2017 16:33:01 America/New_York] Item Update Failed Update Error: ALE Categories.updateAleCategories: execute() failed: Column 'category' cannot be null
+[06-Jul-2017 10:27:02 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 10:30:51 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 10:30:51 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 10:31:05 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 10:31:05 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 10:37:50 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 10:37:50 America/New_York] Item Update Failed Update Error: Itemlist. Key: item_status Value: Array. InvItem UPDATE: prepare() failed: Unknown column 'item_status' in 'field list'
+[06-Jul-2017 15:44:57 America/New_York] Add Record Failed JSON decode error: Syntax error
+[07-Jul-2017 09:48:08 America/New_York] Add Record Failed addBatch: execute() failed: Duplicate entry 'TestBatch57' for key 'unique_batch'
+[07-Jul-2017 10:28:41 America/New_York] Add Record Failed addModel: execute() failed: Duplicate entry 'damodel' for key 'unique_model'
+[07-Jul-2017 10:37:16 America/New_York] Add Record Failed addModel: execute() failed: Duplicate entry 'damodel' for key 'unique_model'
+[07-Jul-2017 10:37:43 America/New_York] Add Record Failed addModel: execute() failed: Duplicate entry 'damodel' for key 'unique_model' Error No. 1062
+[07-Jul-2017 10:39:18 America/New_York] Add Record Failed addModel: execute() failed: Duplicate entry 'damodel' for key 'unique_model' Error No. 1062

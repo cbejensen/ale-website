@@ -8,6 +8,9 @@
  *
  */
 
+var ccount	=	0;
+var scount	=	0;
+
 function displayInvAsset()
 {
 //	View's Parent
@@ -43,6 +46,7 @@ function displayInvAsset()
 		case 'Novartis':
 		case 'Novartis/ALOE':
 		case 'EMP':
+		default: // because I've decided not to hide Novartis info for now, even for unrelated tracks.
 			var novartis	=	createNovartisSection();
 			assetCont.appendChild(novartis);
 			break;
@@ -209,6 +213,23 @@ function createOverviewDataView()
 	table1.appendChild(aleAssetRow);
 	table1.appendChild(locationRow);
 
+	addBatch	=	{
+		"header":	"Add Batch",
+		"rows":		[
+			createDataFormRow({
+				"fieldLabel":	"New Batch",
+				"curVal":	"",
+				"dataName":	"new_batch"
+			}),
+			createDataFormRow({
+				"fieldLabel":	"Description",
+				"curVal":	"",
+				"dataName":	"new_desc"
+			}),
+		],
+		"acceptFunction":"addRecord('batch')"
+	};
+
 	var table2	=	document.createElement('table');
 	table2.className=	'dataTable';
 	var rows	=	[
@@ -287,6 +308,7 @@ function createStatusSection()
 	section.className	=	'asset-section basic-sect';
 	tableWrap.className	=	'table-wrap status-table material';
 	table.className		=	'dataTable';
+	table.id		=	'status-table';
 	btnWrap.className	=	'status-btn-wrap';
 	
 	h2.appendChild(h2Txt);
@@ -298,11 +320,12 @@ function createStatusSection()
 			item_status[i].description,
 			createButton({
 				'className':	'status-rm warning-button',
-				'onClickEvent':	'removeStatus()',
+				'onclickEvent':	'removeStatus('+i+', \''+item_status[i].statusName+'\')',
 				'text':		'Remove'
 			})
 		]);
 		table.appendChild(row);
+		scount++;
 	});
 
 	tableWrap.appendChild(table);
@@ -314,6 +337,11 @@ function createStatusSection()
 	return section;
 }
 
+var addMnfr	=	0;
+var addModel	=	0;
+var addBrand	=	0;
+var addBatch	=	0;
+var addPrevOwner=	0;
 function createBasicInfoSection()
 {
 	var section	=	document.createElement('div');
@@ -327,14 +355,55 @@ function createBasicInfoSection()
 	btmTable.className	=	'dataTable';
 	section.className	=	'item-detail-wrap asset-section';
 
+	addMnfr	=	{
+		'header':	'Add Manufacturer',
+		'rows':		[
+			createDataFormRow({
+				'fieldLabel':	'New Mnfr.',
+				'curVal':	'',
+				'dataName':	'new_mnfr'
+			}),
+		],
+		'acceptFunction':'addRecord(\'mnfr\')'
+	};
+	addModel =	{
+		"header":	"Add Model",
+		"rows":		[
+			createDataFormRow({
+				"fieldLabel":	"New Model",
+				"curVal":	"",
+				"dataName":	"new_model"
+			}),
+			createDataFormRow({
+				"fieldLabel":	"Function Desc.",
+				"curVal":	"",
+				"dataName":	"new_func"
+			}),
+		],
+		"acceptFunction":"addRecord('model')"
+	};
+	addBrand =	{
+		"header":	"Add Brand",
+		"rows":		[
+			createDataFormRow({
+				"fieldLabel":	"New Brand",
+				"curVal":	"",
+				"dataName":	"new_brand"
+			}),
+		],
+		"acceptFunction":"addRecord('brand')"
+	};
+
+
 	var rows	=	[
 		createDataFormRow({
-			'fieldLabel':	'Mnfr.',
-			'curVal':	data.mnfr,
-			'dataName':	'mnfr',
-			'inputType':	'select',
-			'options':	listOptions.mnfrs,
-			'onchangeEvent':'updateModelList(this.value); updateBrandList(this.value)'
+			'fieldLabel':		'Mnfr.',
+			'curVal':		data.mnfr,
+			'dataName':		'mnfr',
+			'inputType':		'select',
+			'options':		listOptions.mnfrs,
+			'onchangeEvent':	'updateModelList(this.value); updateBrandList(this.value)',
+			'addOptBtnEvent':	addMnfr
 		}),
 		createDataFormRow({
 			'fieldLabel':	'Brand',
@@ -344,12 +413,13 @@ function createBasicInfoSection()
 			'options':	listOptions.brands
 		}),
 		createDataFormRow({
-			'fieldLabel':	'Model',
-			'curVal':	data.modelID,
-			'dataName':	'model',
-			'inputType':	'select',
-			'options':	listOptions.models,
-			'onchangeEvent':'updateFunctionDesc(this.value)'
+			'fieldLabel':		'Model',
+			'curVal':		data.modelID,
+			'dataName':		'model',
+			'inputType':		'select',
+			'options':		listOptions.models,
+			'onchangeEvent':	'updateFunctionDesc(this.value)',
+			'addOptBtnEvent':	addModel
 		}),
 		createDataFormRow({
 			'fieldLabel':	'Function',
@@ -532,6 +602,7 @@ function createCategoriesSection()
 	tableWrap.className	=	'table-wrap status-table material';
 	table.className		=	'dataTable';
 	btnWrap.className	=	'status-btn-wrap';
+	table.id		=	'category-table';
 	
 	h2.appendChild(h2Txt);
 
@@ -542,11 +613,12 @@ function createCategoriesSection()
 			categories[i].subcategory,
 			createButton({
 				'className':	'status-rm warning-button',
-				'onClickEvent':	'removeCategory()',
+				'onclickEvent':	"removeCategory("+i+", '"+categories[i].category+"', '"+categories[i].subcategory+"')",
 				'text':		'Remove'
 			})
 		]);
 		table.appendChild(row);
+		ccount++;
 	});
 
 	tableWrap.appendChild(table);
@@ -583,6 +655,20 @@ function createNovartisSection()
 		}
 	});
 
+	var subcats	=	getEmpSubcategoriesByCategory(data.emp_category);
+
+	addPrevOwner =	{
+		"header":	"Add Prev. Owner",
+		"rows":		[
+			createDataFormRow({
+				"fieldLabel":	"New Prev. Owner",
+				"curVal":	"",
+				"dataName":	"new_prev_owner"
+			}),
+		],
+		"acceptFunction":"addRecord('prevOwner')"
+	};
+
 	var rows	=	[
 		createDataFormRow({
 			'fieldLabel':	'EMP Status',
@@ -596,15 +682,16 @@ function createNovartisSection()
 			'curVal':	data.emp_category,
 			'dataName':	'emp_category',
 			'inputType':	'select',
-			'options':	emp_categories,
-			'onblurEvent':	'getEmpSubcategories()'
+			'options':	Object.keys(listOptions.emp_category),
+			'onchangeEvent':'replaceEmpSubcategoryOptions(this.value)'
 		}),
 		createDataFormRow({
 			'fieldLabel':	'EMP Subcategory',
-			'curVal':	data.emp_category,
+			'curVal':	Number(data.emp_cat_id),
 			'dataName':	'emp_subcategory',
 			'inputType':	'select',
-			'options':	listOptions.emp_category
+			'options':	subcats,
+			'keyIndex':	false
 		}),
 		createDataFormRow({
 			'fieldLabel':	'Prev. Owner',
@@ -656,6 +743,49 @@ function createNovartisSection()
 	section.append(h2);
 	section.append(table);
 	return section;
+}
+
+function getEmpSubcategoriesByCategory(category)
+{
+	var subcats	=	{};
+	Object.keys(listOptions.emp_category[category]).forEach(function(i){
+		subcats[i]	=	listOptions.emp_category[category][i];
+	});
+
+	return	subcats;
+}
+
+function replaceEmpSubcategoryOptions(newVal)
+{
+	var select		=	document.getElementById('emp_subcategory');
+	select.dataset.val	=	'false';
+
+	Object.keys(document.getElementById('emp_category').children).forEach(function(i){
+		if (i == newVal) {
+			val	=	document.getElementById('emp_category').children[i].text;
+		}
+	});
+
+	var options	=	getEmpSubcategoriesByCategory(val);
+
+	while (select.hasChildNodes()) {
+		select.removeChild(select.lastChild);
+	}
+
+	var defaultOpt		=	document.createElement('option');
+	var txt			=	document.createTextNode('Select a Subcategory');
+	defaultOpt.appendChild(txt);
+	defaultOpt.selected	=	true;
+	defaultOpt.disabled	=	true;
+	select.appendChild(defaultOpt);
+	
+	Object.keys(options).forEach(function(i){
+		var option	=	document.createElement('option');
+		var txt		=	document.createTextNode(i);
+		option.value	=	options[i];
+		option.appendChild(txt);
+		select.appendChild(option);
+	});
 }
 
 function editAssetPhotoDialog()
@@ -967,6 +1097,7 @@ function createStatusTableRow(contents)
  * };
  *
  */
+var testVar = 0;
 function createDataFormRow(specs)
 {
 	specs.inputType	=	specs.inputType || 'text';
@@ -1000,6 +1131,16 @@ function createDataFormRow(specs)
 				select.setAttribute('onchange', specs.onchangeEvent);
 			}
 			select.setAttribute('id', specs.dataName);
+//			For the directions option (disabled)
+			if (specs.hasOwnProperty('disOpt') && specs.disOpt == 'true'){
+				var option	=	document.createElement('option');
+				var txt		=	document.createTextNode('Please Select an Option');
+				option.appendChild(txt);
+				option.value	= 0;
+				option.selected = true;
+				option.disabled	= true;
+				select.appendChild(option);
+			}
 //			For creating 'N/A' option for fields that allow NULL values
 			switch (specs.dataName)
 			{
@@ -1013,15 +1154,27 @@ function createDataFormRow(specs)
 					select.appendChild(option);
 					break;
 			}
+//			Main Loop
 			Object.keys(specs.options).forEach(function(i){
 				var option	=	document.createElement('option');
-				var txt		=	document.createTextNode(specs.options[i]);
-				option.value	=	i;
+				if (!specs.hasOwnProperty('keyIndex') || specs.keyIndex == true) {
+					var txt		=	document.createTextNode(specs.options[i]);
+					option.value	=	i;
+				} else {
+					var txt		=	document.createTextNode(i);
+					option.value	=	specs.options[i];
+				}
 				if (specs.options[i] == specs.curVal) {
 					option.selected	= true;
 				} else {
-					if (i == Number(specs.curVal) && specs.dataName == 'model') {
-						option.selected = true;
+					if (i == Number(specs.curVal)) {
+						switch (specs.dataName)
+						{
+							case 'model':
+							case 'emp_subcategory':
+								option.selected = true;
+							break;
+						}
 					}
 				}
 				option.appendChild(txt);
@@ -1036,9 +1189,29 @@ function createDataFormRow(specs)
 				case 'mnfr':
 				case 'prev_owner':
 					select.className	=	'select-add-opt';
+					testyVar		=	function() {
+						switch (specs.dataName) {
+							case 'batch_name':
+								var evt	=	'addBatch';
+								break;
+							case 'brand':
+								var evt	=	'addBrand';
+								break;
+							case 'model':
+								var evt	=	'addModel';
+								break;
+							case 'mnfr':
+								var evt	=	'addMnfr';
+								break;
+							case 'prev_owner':
+								var evt	=	'addPrevOwner';
+								break;
+						}
+						return evt;
+					};//specs.addOptBtnEvent;
 					var btn			=	createButton({
 						'className':	'add-opt-btn gradient-button',
-						'onclickEvent':	specs.addOptBtnEvent,
+						'onclickEvent':	'addRecordDialog('+testyVar()+')',
 						'img':		{
 							'className':	'',
 							'src':		'img/interface/add-g8a.png'
@@ -1299,7 +1472,7 @@ function getAssetData()
 		"shipping_class":	document.getElementById('shipping_class').value,
 		"m_desc":		document.getElementById('m_desc').value,
 		"emp_status":		document.getElementById('emp_status').value,
-//		"emp_cat":		document.getElementById('').value,
+		"emp_subcategory":	document.getElementById('emp_subcategory').value,
 		"prev_owner":		document.getElementById('prev_owner').value,
 		"nbv":			document.getElementById('nbv').value,
 		"nibr":			document.getElementById('nibr').value,
@@ -1308,8 +1481,119 @@ function getAssetData()
 		"src_building":		document.getElementById('src_building').value,
 		"src_floor":		document.getElementById('src_floor').value,
 		"src_room":		document.getElementById('src_room').value,
+		"ale_categories":	categories,
+		"item_status":		item_status
 	};
 	return data;
+}
+
+function addStatusDialog()
+{
+	var body	=	document.getElementById('ale-body');
+	var box		=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode('Add Status');
+	var table	=	document.createElement('table');
+	var btns	=	document.createElement('span');
+	var accept	=	createButton({
+		"className":	"gradient-button accept-btn",
+		"onclickEvent":	"addStatus()",
+		"text":		"Accept"
+	});
+
+	h2.appendChild(h2Txt);
+	h2.className	=	'section-head';
+	box.className	=	'admin-dialog material add-record-dialog';
+	box.id		=	'status-dialog';
+	table.className	=	'';
+	btns.appendChild(accept);
+
+	var options	=	[];
+	Object.keys(listOptions.status).forEach(function(i){
+		if (i != 'Incomplete') {
+			options.push(i);
+		}
+	});
+
+	var rows	=	[
+		createDataFormRow({
+			"fieldLabel":	"Status",
+			"curVal":	"",
+			"dataName":	"status",
+			"inputType":	"select",
+			"options":	options,
+			"disOpt":	"true"
+		})
+	];
+	
+	Object.keys(rows).forEach(function(i){
+		table.appendChild(rows[i]);
+	});
+
+	addCloseButton(box, 'status-dialog');
+	box.appendChild(h2);
+	box.appendChild(table);
+	box.appendChild(btns);
+	body.appendChild(box);
+}
+
+function addStatus()
+{
+	var stat	=	document.getElementById('status');
+	var table	=	document.getElementById('status-table');
+	var newStat	=	0;
+
+	Object.keys(listOptions.status).forEach(function(i) {
+		if (i == stat.selectedOptions[0].textContent) {
+			newStat	=	{
+				"id":		listOptions.status[i].id,
+				"statusName":	i,
+				"description":	listOptions.status[i].desc
+			};
+		}
+	});
+
+	if (newStat === 0) {
+		buildAlert('Error','Please try your request again.');
+	} else {
+		var pass = true;
+		Object.keys(table.childNodes).forEach(function(i) {
+			if (i == 0) return;
+			if (newStat.statusName == table.childNodes[i].childNodes[0].textContent) {
+				pass = false;
+			}
+		});
+		if (pass !== true) {
+			buildAlert('User Error', 'That status has already been applied to this item.');
+			return;
+		}
+		item_status.push(newStat);
+		table.appendChild(createStatusTableRow([
+			newStat.statusName,
+			newStat.description,
+			createButton({
+				'className':	'status-rm warning-button',
+				'onclickEvent':	'removeStatus('+ scount +', "'+newStat.statusName+'")',
+				'text':		'Remove'
+			})
+		]));
+		closeDialog('status-dialog');
+		scount++;
+	}
+	
+}
+
+function removeStatus(i, statusName)
+{
+	var table	=	document.getElementById('status-table');
+	Object.keys(table.childNodes).forEach(function(j) {
+		if (!table.childNodes[j]) return;
+		if (table.childNodes[j].childNodes[0].textContent == statusName) {
+			table.removeChild(table.childNodes[j]);
+		}
+	});
+
+	delete item_status[i];
 }
 
 function addCategoryDialog()
@@ -1319,16 +1603,16 @@ function addCategoryDialog()
 	var h2		=	document.createElement('h2');
 	var h2Txt	=	document.createTextNode('Add a Category');
 	var table	=	document.createElement('table');
-	var btns	=	document.createElement('btns');
+	var btns	=	document.createElement('span');
 	var accept	=	createButton({
-		"className":	"gradient-button",
+		"className":	"gradient-button accept-btn",
 		"onclickEvent":	"addCategory()",
 		"text":		"Accept"
 	});
 
 	h2.appendChild(h2Txt);
 	h2.className	=	'section-head';
-	box.className	=	'admin-dialog material';
+	box.className	=	'admin-dialog material add-record-dialog';
 	box.id		=	'category-dialog';
 	table.className	=	'';
 	btns.appendChild(accept);
@@ -1337,18 +1621,19 @@ function addCategoryDialog()
 		createDataFormRow({
 			'fieldLabel':	'ALE Category',
 			'curVal':	'',
-			'dataName':	'category',
+			'dataName':	'ale_category',
 			'inputType':	'select',
-			'options':	listOptions.categories.category,
-			'onblurEvent':	'getEmpSubcategories()'
+			'options':	Object.keys(listOptions.ale_category),
+			'onchangeEvent':'replaceAleSubcategoryOptions(this.value)',
+			'disOpt':	'true'
 		}),
 		createDataFormRow({
 			'fieldLabel':	'ALE Subcategory',
 			'curVal':	'',
-			'dataName':	'subcategory',
+			'dataName':	'ale_subcategory',
 			'inputType':	'select',
 			'options':	'',
-			'onblurEvent':	'getEmpSubcategories()'
+			'onblurEvent':	''
 		})
 	];
 	Object.keys(rows).forEach(function(i){
@@ -1360,4 +1645,248 @@ function addCategoryDialog()
 	box.appendChild(table);
 	box.appendChild(btns);
 	body.appendChild(box);
+}
+
+function addCategory()
+{
+	var sub		=	document.getElementById('ale_subcategory');
+	var table	=	document.getElementById('category-table');
+	var cat		=	0;
+	var subcat	=	0;
+
+	Object.keys(listOptions.ale_category).forEach(function(i){
+		Object.keys(listOptions.ale_category[i]).forEach(function(j){
+			if (listOptions.ale_category[i][j] == sub.value) {
+				cat	=	i;
+				subcat	=	j;
+			}
+		});
+	});
+
+	if (isNaN(sub.value) || sub.value == 0) {
+		buildAlert('User Error','Please select a category/subcategory pair.');
+	} else {
+		categories.push({
+			"id":		sub.value,
+			"category":	cat,
+			"subcategory":	subcat
+		});
+		table.appendChild(createStatusTableRow([
+			cat,
+			subcat,
+			createButton({
+				'className':	'status-rm warning-button',
+				'onclickEvent':	'removeCategory('+ ccount +', "'+cat+'", "'+subcat+'")',
+				'text':		'Remove'
+			})
+		]));
+		closeDialog('category-dialog');
+		ccount++;
+	}
+}
+
+function removeCategory(i, ctg, sctg)
+{
+	var table	=	document.getElementById('category-table');
+	Object.keys(table.childNodes).forEach(function(j) {
+		if (!table.childNodes[j]) return;
+		if (table.childNodes[j].childNodes[0].textContent == ctg &&
+		table.childNodes[j].childNodes[1].textContent == sctg) {
+			table.removeChild(table.childNodes[j]);
+		}
+	});
+
+	delete categories[i];
+	//ccount--;
+}
+
+function getAleSubcategoriesByCategory(category)
+{
+	var subcats	=	{};
+	Object.keys(listOptions.ale_category[category]).forEach(function(i){
+		subcats[i]	=	listOptions.ale_category[category][i];
+	});
+
+	return	subcats;
+}
+
+function replaceAleSubcategoryOptions(newVal)
+{
+	var select		=	document.getElementById('ale_subcategory');
+	select.dataset.val	=	'false';
+
+	Object.keys(document.getElementById('ale_category').children).forEach(function(i){
+		if ((i-1) == newVal) {
+			val	=	document.getElementById('ale_category').children[i].text;
+		}
+	});
+
+	var options	=	getAleSubcategoriesByCategory(val);
+
+	while (select.hasChildNodes()) {
+		select.removeChild(select.lastChild);
+	}
+
+	var defaultOpt		=	document.createElement('option');
+	var txt			=	document.createTextNode('Select a Subcategory');
+	defaultOpt.appendChild(txt);
+	defaultOpt.selected	=	true;
+	defaultOpt.disabled	=	true;
+	select.appendChild(defaultOpt);
+	
+	Object.keys(options).forEach(function(i){
+		var option	=	document.createElement('option');
+		var txt		=	document.createTextNode(i);
+		option.value	=	options[i];
+		option.appendChild(txt);
+		select.appendChild(option);
+	});
+
+}
+
+function addRecord(type)
+{
+	switch (type)
+	{
+		case 'batch':
+			var newRec	=	{
+				"batch":	document.getElementById('new_batch').value,
+				"desc":		document.getElementById('new_desc').value
+			};
+			break;
+		case 'mnfr':
+			var newRec	=	document.getElementById('new_mnfr').value;
+			break;
+		case 'model':
+			var newRec	=	{
+				"model":	document.getElementById('new_model').value,
+				"function_desc":document.getElementById('new_func').value
+			};
+			break;
+		case 'brand':
+			var newRec	=	document.getElementById('new_brand').value;
+			break;
+		case 'prevOwner':
+			var newRec	=	document.getElementById('new_prev_owner').value;
+			break;
+	}
+
+	var json	=	{
+		"newVal":	newRec,
+		"type":		type,
+	};
+
+	var url		=	'ajax_handler.php?controller=admin&action=addRecord';
+	makeRequest(url, encodeURIComponent(JSON.stringify(json)), addRecordResponse);
+}
+
+function addRecordResponse(res)
+{
+	console.log(JSON.parse(res));
+	var res	=	JSON.parse(res);
+
+	if (res[0] === 0) {
+		buildAlert(res[1], res[2]);
+		return;
+	}
+	switch (res.type)
+	{
+		case 'batch':
+			var select	=	document.getElementById('batch_name');
+			var optText	=	res.name.batch;
+			break;
+		case 'mnfr':
+			var select	=	document.getElementById('mnfr');
+			var optText	=	res.name.toUpperCase();
+			break;
+		case 'model':
+			var select	=	document.getElementById('model');
+			var func	=	document.getElementById('function_desc');
+			var optText	=	res.name.model + ' [' + res.name.function_desc + ']';
+			func.value	=	res.name.function_desc;
+			break;
+		case 'brand':
+			var select	=	document.getElementById('brand');
+			var optText	=	res.name;
+			break;
+		case 'prevOwner':
+			var select	=	document.getElementById('prev_owner');
+			var optText	=	res.name;
+			break;
+	}
+
+	var option	=	document.createElement('option');
+	var txt		=	document.createTextNode(optText);
+	option.appendChild(txt);
+	option.selected	=	true;
+	option.value	=	res.id;
+	select.appendChild(option);
+	closeDialog('add-record');
+}
+
+function addRecordDialog(specs)
+{
+	var body	=	document.getElementById('ale-body');
+	var dialog	=	createAddRecDialogContent(specs);
+
+	dialog.className=	'admin-dialog material add-record-dialog';
+	dialog.id	=	'add-record';
+	body.appendChild(dialog);
+}
+
+/*
+ * specs	=	{
+ *	'header',
+ *	'rows',
+ *	'acceptFunction',
+ *
+ * };
+ */
+function createAddRecDialogContent(specs)
+{
+	//console.log(specs);
+	var box		=	document.createElement('div');
+	var h2		=	document.createElement('h2');
+	var h2Txt	=	document.createTextNode(specs.header);
+	var table	=	document.createElement('table');
+	var btns	=	document.createElement('span');
+	var accept	=	createButton({
+		"className":	"gradient-button accept-btn",
+		"onclickEvent":	specs.acceptFunction,
+		"text":		"Accept"
+	});
+
+	h2.appendChild(h2Txt);
+	h2.className	=	'section-head';
+	table.className	=	'';
+	btns.appendChild(accept);
+
+	var rows	=	[
+		createDataFormRow({
+			'fieldLabel':	'ALE Category',
+			'curVal':	'',
+			'dataName':	'ale_category',
+			'inputType':	'select',
+			'options':	Object.keys(listOptions.ale_category),
+			'onchangeEvent':'replaceAleSubcategoryOptions(this.value)',
+			'disOpt':	'true'
+		}),
+		createDataFormRow({
+			'fieldLabel':	'ALE Subcategory',
+			'curVal':	'',
+			'dataName':	'ale_subcategory',
+			'inputType':	'select',
+			'options':	'',
+			'onblurEvent':	''
+		})
+	];
+	Object.keys(specs.rows).forEach(function(i){
+		table.appendChild(specs.rows[i]);
+	});
+
+	addCloseButton(box, 'add-record');
+	box.appendChild(h2);
+	box.appendChild(table);
+	box.appendChild(btns);
+	return box;
 }

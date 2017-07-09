@@ -135,6 +135,28 @@ class AdminController
 		}
 	}
 	
+	public function addRecord()
+	{
+		AdminController::loadList();
+		try {
+			$json	=	AdminController::decodeJSON();
+			$id		=	DataList::addRecord($json['type'], $json['newVal'], $this->conn);
+			echo json_encode([
+					'result'	=>	1,
+					'id'		=>	$id,
+					'name'		=>	$json['newVal'],
+					'type'		=>	$json['type']
+			]);
+		} catch (Exception $e) {
+			// If the request could not be decoded, alert the user with a message and error code.
+			handleError([
+					'title'		=>	'Record Could Not Be Added',
+					'message'	=>	'Please check that there is not a record with the same name.',
+					'error' 	=>	$e->getMessage()
+			], $this->conn, 0, 1);
+		}
+	}
+	
 	public function updateItemPhotos()
 	{
 		AdminController::loadItemModel();

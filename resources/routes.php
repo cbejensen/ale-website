@@ -9,12 +9,13 @@ $controllers	=	array(
 				'submitForm',	'listing'
 		],
 		'admin'		=>	[
-				'hdome',				'showList',
+				'hdome',			'showList',
 				'updateInvItem',	'getVendors',
 				'updateItemPhotos',	'imagePreprocess',
 				'getInvAssetData',	'invAction',
 				'updateList',		'itemImport',
-				'submitItemImport',	'createBatch'
+				'submitItemImport',	'createBatch',
+				'addRecord'
 		]
 );
 
