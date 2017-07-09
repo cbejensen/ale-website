@@ -1,5 +1,10 @@
 /*
- * This is a refactor of assetView.js
+ * This file facilitates the construction of the Inventory Asset view, 
+ * which affords the user an interface through which to edit the
+ * properties of an inventory item.
+ *
+ * There are also functions contained here which drive the
+ * behaviors of the interface, such as the update requests.
  *
  */
 
