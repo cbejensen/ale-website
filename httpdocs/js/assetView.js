@@ -201,17 +201,17 @@ function createOverviewDataView()
 	var wrap	=	document.createElement('div');
 	wrap.className	=	'table-wrap';
 
-	var table1	=	document.createElement('table');
-	table1.className=	'dataTable';
+	var table	=	document.createElement('table');
+	table.className=	'dataTable';
 
-	var aleAssetRow	=	createAleAssetRow();
-	var locationRow	=	createDataFormRow({
-		'fieldLabel':	'Location',
-		'curVal':	data.wh_location,
-		'dataName':	'wh_location'
-	});
-	table1.appendChild(aleAssetRow);
-	table1.appendChild(locationRow);
+	//var aleAssetRow	=	createAleAssetRow();
+	//var locationRow	=	createDataFormRow({
+	//	'fieldLabel':	'Location',
+	//	'curVal':	data.wh_location,
+	//	'dataName':	'wh_location'
+	//});
+	//table.appendChild(aleAssetRow);
+	//table.appendChild(locationRow);
 
 	addBatch	=	{
 		"header":	"Add Batch",
@@ -230,9 +230,16 @@ function createOverviewDataView()
 		"acceptFunction":"addRecord('batch')"
 	};
 
-	var table2	=	document.createElement('table');
-	table2.className=	'dataTable';
+	
 	var rows	=	[
+		createAleAssetRow(),
+		createDataFormRow({
+			'fieldLabel':	'Location',
+			'curVal':	data.wh_location,
+			'dataName':	'wh_location',
+			'rowClass':	'wh_location_row'
+
+		}),
 		createDataFormRow({
 			'fieldLabel':	'Track',
 			'curVal':	data.track,
@@ -276,10 +283,9 @@ function createOverviewDataView()
 		})
 	];
 	Object.keys(rows).forEach(function(i){
-		table2.appendChild(rows[i]);
+		table.appendChild(rows[i]);
 	});
-	wrap.appendChild(table1);
-	wrap.appendChild(table2);
+	wrap.appendChild(table);
 	info.appendChild(condNote);
 	info.appendChild(wrap);
 	return info;
@@ -748,10 +754,11 @@ function createNovartisSection()
 function getEmpSubcategoriesByCategory(category)
 {
 	var subcats	=	{};
-	Object.keys(listOptions.emp_category[category]).forEach(function(i){
-		subcats[i]	=	listOptions.emp_category[category][i];
-	});
-
+	if (category !== '') {
+		Object.keys(listOptions.emp_category[category]).forEach(function(i){
+			subcats[i]	=	listOptions.emp_category[category][i];
+		});
+	}
 	return	subcats;
 }
 
@@ -1094,6 +1101,7 @@ function createStatusTableRow(contents)
  *	'inputType':		'The type of input field (defaults to 'text'),
  *	'options':		'For select type: provides the list of options',
  *	'addOptBtnEvent':	'The action to perform when the user clicks the 'Add Option' button, if applicable'
+ *	'rowClass':		'If included will assign the row to specified class(es).'
  * };
  *
  */
@@ -1107,6 +1115,11 @@ function createDataFormRow(specs)
 	var td1		=	document.createElement('td');
 	var td2		=	document.createElement('td');
 	var label	=	document.createTextNode(specs.fieldLabel);
+
+	if (specs.hasOwnProperty('rowClass')) {
+		row.className	=	specs.rowClass;
+	}
+
 	td1.appendChild(label);
 
 	switch (specs.inputType)
@@ -1249,11 +1262,14 @@ function createDataTableRow(specs)
 	var row		=	document.createElement('tr');
 	var td1		=	document.createElement('td');
 	var td2		=	document.createElement('td');
+	var span	=	document.createElement('span');
 	var label	=	document.createTextNode(specs.fieldLabel);
 	var content	=	document.createTextNode(specs.curVal);
+	span.className	=	'uneditable';
+	span.appendChild(content);
 	td2.setAttribute('id', specs.dataName);
 	td1.appendChild(label);
-	td2.appendChild(content);
+	td2.appendChild(span);
 	row.appendChild(td1);
 	row.appendChild(td2);
 	return row;
@@ -1268,6 +1284,7 @@ function createAleAssetRow()
 	var txt2	=	document.createTextNode(data.prefix);
 	var span	=	document.createElement('span');
 	var txt3	=	document.createTextNode(data.aleAsset);
+	td2.className	=	'uneditable';
 	span.dataset.asset	=	data.aleAsset;
 	span.setAttribute('id', 'ale-asset-num');
 	span.appendChild(txt3);

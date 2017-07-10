@@ -207,7 +207,7 @@ table.list-table {
 	background-color: #fbfbfb;
 }
 .list-table tr:nth-child(odd) {
-	background-color: #eee;
+	background-color: #f3f3f3;
 }
 .list-table td, 
 .list-table th {
@@ -230,7 +230,7 @@ table.list-table {
 	border-right: 0;
 }
 .list-table td {
-	color: #333;
+	color: #454545;
 }
 .list-table th {
 	background: linear-gradient(
@@ -447,6 +447,9 @@ h1.asset-view {
 	min-width: 75px;
 	color: #444;
 	font-weight: normal !important;
+	vertical-align: middle;
+	font-family: 'open sans', calibri, helvetica, arial, sans-serif;
+	font-size: 0.75em;
 }
 .asset-view .dataTable:last-child {
 	margin-bottom: 0;
@@ -454,10 +457,19 @@ h1.asset-view {
 .asset-view .dataTable input,
 .asset-view .dataTable select,
 .asset-view .dataTable textarea {
-	width: 50%;
 	border: 1px solid #ccc;
 	border-radius: 2px;
 	box-shadow:	inset 0 1px 1px rgba(0,0,0,.075);
+}
+.asset-view .dataTable input,
+.asset-view .dataTable select,
+.asset-view .dataTable textarea,
+.asset-view .dataTable .uneditable {
+	width: 50%;
+	font-size: 0.8em;
+    color: #444;
+    font-family: 'open sans', calibri, helvetica, arial, sans-serif;
+    padding-left: .5rem;
 }
 .asset-view .dataTable input:focus,
 .asset-view .dataTable select:focus,
@@ -475,6 +487,7 @@ h1.asset-view {
 	border-radius: 2px;
 	font-size: 0.8rem;
 	font-family: 'Open Sans', calibri, helvetica, sans-serif;
+	width: calc(50% - 0.75rem);
 }
 .item-import-main .invalid-input,
 .asset-view .invalid-input {
@@ -509,7 +522,9 @@ h1.asset-view {
 	margin-right: 0.3rem;
 	cursor: default;
 }
-
+.wh_location_row > td {
+	padding-bottom: 1.65rem !important;
+}
 /*--------------------------------------------
 	X.X - Gallery
 ----------------------------------------------*/ 
@@ -883,7 +898,7 @@ h1.asset-view {
 /* 	background-color: #eee; */
 /* 	border: 1px solid #bbb; */
 	position: relative;
-	height: 1.8rem;
+	height: 2rem;
 	margin-left: 0.5rem;
 }
 .add-opt-btn img {

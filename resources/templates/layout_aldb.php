@@ -54,30 +54,11 @@
 		<div>
 			<ul class="navList material" onmouseleave="moveArrow('<?php echo $section; ?>')">
 	                	<!-- Begin Home button -->
-				<li id="navBtn_home" class="<?php if ($subsect == 'home') echo 'activeNavBtn';?>" onmouseover="moveArrow('admin-home');">
+				<li id="navBtn_home" class="<?php if ($subsect == 'home') echo 'activeNavBtn';?>" onmouseover="//moveArrow('admin-home');">
 					<a href="?controller=admin&action=home&subsect=home&title=Dashboard" style="cursor: default;">Home</a>
-					<!-- <div id="navDrop_home" class="dropDown">
-						<ul class="dropDown">
-							<li>
-								<a href="index.php">Top of Homepage</a>
-							</li>
-							<li>
-								<a href="index.php?#about">About</a>
-							</li>
-							<li>
-								<a href="http://atlanticlabequipment.com/newsletters">Newsletters</a>
-							</li>
-							<li>
-								<a href="index.php?#mission">Mission Statement</a>
-							</li>
-							<li>
-								<a href="index.php?controller=public&action=home&section=home#testimonials">Testimonials</a>
-							</li>
-						</ul>
-					</div> -->
 				</li>
 				<!-- Begin Products and Services button -->
-				<li id="navBtn_prod" class="<?php if ($subsect == 'inventory') echo 'activeNavBtn';?>" onmouseover="moveArrow('inventory');">
+				<li id="navBtn_prod" class="<?php if ($subsect == 'inventory') echo 'activeNavBtn';?>" onmouseover="//moveArrow('inventory');">
 					<a href="?controller=admin&action=showList&subsect=inventory&title=All+Inventory&ltype=itm&lscp=all&rp=1&srt_f=019&srt_d=asc" style="cursor: default;">Inventory</a>
  					<div id="navDrop_prod" class="dropDown">
 	 					<ul class="dropDown">
@@ -103,7 +84,7 @@
 						</ul>
 					</div>
 				</li>
-				<li id="navBtn_store" class="<?php if ($subsect == 'gen_listings') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
+				<li id="navBtn_store" class="<?php if ($subsect == 'gen_listings') echo 'activeNavBtn'; ?>" onmouseover="//moveArrow('store');">
 					<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&rp=1&srt_f=037&srt_d=asc" style="cursor: default;">General Listings</a>
 						<div id="navDrop_store" class="dropDown">
 							<ul class="dropDown">
@@ -130,7 +111,7 @@
 							</ul>
 	 					</div>
 				</li>
-				<li id="navBtn_store" class="<?php if ($subsect == 'misc_records') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
+				<li id="navBtn_store" class="<?php if ($subsect == 'misc_records') echo 'activeNavBtn'; ?>" onmouseover="//moveArrow('store');">
 					<a href="?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&rp=1&srt_f=037&srt_d=asc" style="cursor: default;">Misc. Records</a>
 						<div id="navDrop_store" class="dropDown">
 							<ul class="dropDown">
@@ -160,18 +141,6 @@
 	 							</li>
 							</ul>
 	 					</div>
-				</li>
-	<!--						<li id="navBtn_news" class="<?php if ($section == 'news') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('news');">-->
-	<!-- 							<a href="?controller=public&action=news&page=newsletters&section=news&title=Newsletters">News</a> -->
-	<!-- 						</li> -->
-				<li id="navBtn_outlet" onmouseover="moveArrow('outlet');">
-					<a href="http://stores.ebay.com/ale-lab-equipment-outlet">Outlet Store</a>
-				</li>
-				<li id="navBtn_cont" class="<?php if ($section == 'contact') echo 'activeNavBtn';?>" onmouseover="moveArrow('contact');">
-					<a href="?controller=public&action=contact&title=Contact%20Us&section=contact">Contact Us</a>
-				</li>
-				<li id="navBtn_est" class="<?php if ($section == 'estimates') echo 'activeNavBtn';?>" onmouseover="moveArrow('estimates');">
-					<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">Request a Quote</a>
 				</li>
 			</ul>
 		</div>

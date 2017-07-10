@@ -59,32 +59,59 @@ class NewRecord
 		 * 
 		 *
 		 */
-		$this->setAsset();
-		$this->setTesting();
-		$this->setCosmetic();
-		$this->setCondition();
-		$this->setShipping();
-		$this->setPrevOwner();
-		$this->setEmpStatus();
-		$this->setVendor();
-		$this->setSubitemOf();
-		$this->setMnfr();
-		$this->setModel();
-		$this->setBrand();
-		$this->setBatch();
-		$this->setData();
-		
-		// INSERT NEW ITEM RECORDS
-		$this->insertItem();
-		$this->addPhotos();
-		$this->addCategories();
+		try {
+			$this->setAsset();
+			$this->setTesting();
+			$this->setCosmetic();
+			$this->setCondition();
+			$this->setShipping();
+			$this->setPrevOwner();
+			$this->setEmpStatus();
+			$this->setVendor();
+			$this->setSubitemOf();
+			$this->setMnfr();
+			$this->setModel();
+			$this->setBrand();
+			$this->setBatch();
+			$this->setData();
+			
+			// INSERT NEW ITEM RECORDS
+			$this->insertItem();
+			$this->addPhotos();
+			$this->addCategories();
+		} catch (Exception $e) {
+			$q	=	"INSERT INTO migrator_error (type, asset, note) VALUES ";
+			$q	.=	"(?,?,?)";
+			
+			$stmt	=	$this->conn->prepare($q);
+			if ($stmt === false)
+			{
+				throw new Exception('mig_err: prepare() failed: ' . htmlspecialchars($this->conn->error));
+			}
+			// Bind Parameters
+			$msg	=	'Failed Record';
+			$emsg	=	$e->getMessage();
+			$rc		=	$stmt->bind_param("sss",
+					$msg, $this->oldRec->data['aleAsset'], $emsg
+					);
+			if ($rc === false)
+			{
+				throw new Exception('mig_err: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			// Execute
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('mig_err: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+		}
 		
 	}
 	
 	private function insertItem()
 	{
 		try {
-			// Itemlist
+		// Itemlist
 			$q	=	"INSERT INTO itemlist (
 					aleAsset, 		track, 			mnfrID, 	modelID, 	brandID, 	addtl_model,
 					serial_num,		title_extn, 	price, 		mpn,		wh_location, quantity, 	batch, yom,
@@ -118,7 +145,69 @@ class NewRecord
 				throw new Exception('Itemlist: execute() failed: ' . htmlspecialchars($stmt->error));
 			}
 			
-			// Accounting
+			
+		// Model_Mnfr
+			$q		=	"INSERT IGNORE INTO model_mnfr (modelID, mnfrID) VALUES (?,?)";
+			$stmt	=	$this->conn->prepare($q);
+			if ($stmt === false)
+			{
+				throw new Exception('Model_Mnfr: prepare() failed: ' . htmlspecialchars($this->conn->error));
+			}
+			// Bind Parameters
+			$rc		=	$stmt->bind_param("ii",	$this->data['model'], $this->data['mnfr']);
+			if ($rc === false)
+			{
+				throw new Exception('Model_Mnfr: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			// Execute
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('Model_Mnfr: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+			
+		// Model_Brand
+			if (!empty($this->data['brand'])) {
+				$q		=	"INSERT IGNORE INTO model_brand (modelID, brandID) VALUES (?,?)";
+				$stmt	=	$this->conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('Model_Brand: prepare() failed: ' . htmlspecialchars($this->conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param("ii",	$this->data['model'], $this->data['brand']);
+				if ($rc === false)
+				{
+					throw new Exception('Model_Brand: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				// Execute
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('Model_Brand: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+				
+		// Mnfr Brand
+				$q		=	"INSERT IGNORE INTO mnfr_brand (mnfrID, brandID) VALUES (?,?)";
+				$stmt	=	$this->conn->prepare($q);
+				if ($stmt === false)
+				{
+					throw new Exception('Mnfr Brand: prepare() failed: ' . htmlspecialchars($this->conn->error));
+				}
+				// Bind Parameters
+				$rc		=	$stmt->bind_param("ii",	$this->data['mnfr'], $this->data['brand']);
+				if ($rc === false)
+				{
+					throw new Exception('Mnfr Brand: bind_param() failed: ' . htmlspecialchars($stmt->error));
+				}
+				// Execute
+				$rc		=	$stmt->execute();
+				if ($rc === false)
+				{
+					throw new Exception('Mnfr Brand: execute() failed: ' . htmlspecialchars($stmt->error));
+				}
+			}
+		// Accounting
 			$q	=	"INSERT INTO item_accounting (
 					aleAsset, vendorID, cost
 					)
@@ -143,7 +232,7 @@ class NewRecord
 				throw new Exception('item_accounting: execute() failed: ' . htmlspecialchars($stmt->error));
 			}
 			
-			// Novartis EMP, if applicable
+		// Novartis EMP, if applicable
 			// emp_status, emp_category, emp_img_url
 			if ($this->data['track'] == 2 || $this->data['track'] == 4 || $this->data['track'] == 5)
 			{
@@ -186,8 +275,9 @@ class NewRecord
 			}
 			// Bind Parameters
 			$msg	=	'Failed Record';
+			$emsg	=	$e->getMessage();
 			$rc		=	$stmt->bind_param("sss",
-					$msg, $this->oldRec->data['aleAsset'], $e->getMessage()
+					$msg, $this->oldRec->data['aleAsset'], $emsg
 					);
 			if ($rc === false)
 			{
@@ -229,14 +319,14 @@ class NewRecord
 	private function setAsset()
 	{
 		$aleAsset	=	$this->oldRec->data['aleAsset'];
-		if (is_numeric(substr($aleAsset, 0, 1)))
+		if (is_numeric(substr($aleAsset, 0, 1))) // Checks first char
 		{
 			$this->data['aleAsset']	=	$aleAsset;
 			$this->data['track']	=	8;
 		}
-		elseif (is_numeric(substr($aleAsset, 1, 1)))
+		elseif (is_numeric(substr($aleAsset, 1, 1))) // Checks second char
 		{
-			$this->data['aleAsset']	=	substr($aleAsset, 1);
+			$this->data['aleAsset']	=	substr($aleAsset, 1); // gets all but first letter
 			switch (substr($aleAsset, 0, 1))
 			{
 				case 'A':
@@ -267,12 +357,12 @@ class NewRecord
 		}
 		elseif (is_numeric(substr($aleAsset, 2, 1)))
 		{
-			$this->data['aleAsset']	=	substr($aleAset, 2);
+			$this->data['aleAsset']	=	substr($aleAsset, 2);
 			$this->data['track']	=	5;
 		}
 		else
 		{
-			throw new Exception('ALE Asset is invalid');
+			throw new Exception($aleAsset . ' ALE Asset is invalid');
 		}
 	}
 	
@@ -763,7 +853,35 @@ class OldRecord
 				throw new Exception('Invaild list.');
 				break;
 		}
-		$this->setData();
+		try {
+			$this->setData();
+		} catch (Exception $e)
+		{
+			$q	=	"INSERT INTO migrator_error (type, asset, note) VALUES ";
+			$q	.=	"(?,?,?)";
+			
+			$stmt	=	$this->conn->prepare($q);
+			if ($stmt === false)
+			{
+				throw new Exception('mig_err: prepare() failed: ' . htmlspecialchars($this->conn->error));
+			}
+			// Bind Parameters
+			$msg	=	'Failed Record';
+			$emsg	=	$e->getMessage();
+			$rc		=	$stmt->bind_param("sss",
+					$msg, $this->aleAsset, $emsg
+					);
+			if ($rc === false)
+			{
+				throw new Exception('mig_err: bind_param() failed: ' . htmlspecialchars($stmt->error));
+			}
+			// Execute
+			$rc		=	$stmt->execute();
+			if ($rc === false)
+			{
+				throw new Exception('mig_err: execute() failed: ' . htmlspecialchars($stmt->error));
+			}
+		}
 		
 	}
 	
@@ -782,7 +900,7 @@ class OldRecord
 				// Set all data except: photos, item category
 				$q		=	"SELECT allitems.*,  alestorelistings.*, all_accounting.*, itemsforemp.*, manufacturers.*,
 							models.*, brands.*, vendors.*
-							FROM allitems
+							FROM db_old.allitems
 							LEFT JOIN alestorelistings ON  allitems.aleListingID = alestorelistings.aleListingID
 							LEFT JOIN all_accounting ON allitems.aleAsset = all_accounting.aleAsset
 							LEFT JOIN itemsforemp ON allitems.aleAsset = itemsforemp.aleAsset
@@ -792,12 +910,20 @@ class OldRecord
 							LEFT JOIN vendors ON all_accounting.vendorID = vendors.vendorID
 							WHERE allitems.aleAsset = '$this->aleAsset'";
 				$r		=	db_query($q, $this->conn);
+				if (!$r || $r->num_rows===0) {
+					throw new Exception('ALE Asset get item data failed: ' . $this->aleAsset);
+				}
 				$r->data_seek(0);
 				$this->data	=	$r->fetch_array(MYSQLI_ASSOC);
+				$this->data['aleAsset']=$this->aleAsset;
+// 				print_r($this->data);
 				
 				// Set photos
 				$q		=	"SELECT imgUrl, imgOrder FROM photosalestore WHERE aleAsset='$this->aleAsset'";
 				$r		=	db_query($q, $this->conn);
+				if (!$r) {
+					throw new Exception('ALE Asset get photo data failed: ' . $this->aleAsset);
+				}
 				for ($j = 0 ; $j < $r->num_rows ; $j++)
 				{
 					$r->data_seek($j);
@@ -809,12 +935,18 @@ class OldRecord
 				// Set categories
 				$q		=	"SELECT aleListingID from alestorelistings WHERE modelID = {$this->data['modelID']}";
 				$r		=	db_query($q, $this->conn);
+				if (!$r) {
+					throw new Exception('ALE Asset get listingID data failed: ' . $this->aleAsset);
+				}
 				$r->data_seek(0);
 				$row	=	$r->fetch_array(MYSQLI_NUM);
 				$alid	=	$row[0];
 				
 				$q		=	"SELECT categoryID FROM listing_category WHERE aleListingID = $alid";
 				$r		=	db_query($q, $this->conn);
+				if (!$r) {
+					throw new Exception('ALE Asset get category data failed: ' . $this->aleAsset);
+				}
 				for ($j = 0 ; $j < $r->num_rows ; $j++)
 				{
 					$r->data_seek($j);
@@ -864,14 +996,14 @@ $stop	=	3;
 $k		=	0;
 foreach ($aleAsset as $asset)
 {
-	if ($k == $stop) break;
-	else $k++;
+// 	if ($k == $stop) break;
+// 	else $k++;
 	$record		=	new OldRecord($asset, 'itemlist', $oldConn);
-// 	print_r($record->data);
+	print_r($record->data);
 // 	print_r($record->photos);
 // 	print_r($record->catIDs);
  	$newRecord	=	new NewRecord($record, $newConn);
- 	print_r($newRecord->data);
+ 	//print_r($newRecord->data);
 // 	break;
 }
 echo 'Done';

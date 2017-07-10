@@ -18,7 +18,7 @@
 		</div>
 		<div class="admin-search-bar" id="search-bar">
 			<input type="text" placeholder="Search" id="search-input" class="">
-			<span class="tertiary-button" onclick="searchList()"></span>
+			<span class="tertiary-button" onclick="searchList()"><span style="vertical-align: middle; line-height: 0.5rem; height: 0; cursor: default;">Go</span></span>
 		</div>
 		<div class="toolbar-btns" id="toolbar-btns"></div>
 	</div>

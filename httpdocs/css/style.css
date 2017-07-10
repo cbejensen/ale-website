@@ -407,7 +407,8 @@ ul.dropDown li a:hover {
     border-bottom-color: #245bac;
     margin-right: -2px;
 }
-.std-pg li a {
+.std-pg li a,
+.std-pg li span {
 	color: #656565;
 	padding: 0.5rem 1rem;
 	display: block;
@@ -421,8 +422,9 @@ ul.dropDown li a:hover {
    	cursor: default;
    	background-color: #e1e1e1;
 }
-.std-pg li.pg-disabled a {
-	color: #999;
+.std-pg li.pg-disabled a,
+.std-pg li.pg-disabled span {
+	color: #888;
 }
 .std-pg li.pg-active {
 	background-color: #2059AB;

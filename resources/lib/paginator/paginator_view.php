@@ -44,7 +44,7 @@
 		</li>
 	<?php endif; ?>
 	<?php if ($start > 2) : ?>
-		<li class="pg_disabled material">
+		<li class="pg-disabled material">
 			<span>...</span>
 		</li>
 	<?php endif; ?>
@@ -57,7 +57,7 @@
 	<?php endfor; ?>
 	
 	<?php if ($end < ($last-1)) : ?>
-		<li class="pg_disabled material">
+		<li class="pg-disabled material">
 			<span>...</span>
 		</li>
 	<?php endif; ?>
