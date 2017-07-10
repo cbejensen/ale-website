@@ -304,3 +304,36 @@ function signOutResponse(res)
 		window.location.href = '?controller=admin&action=home';
 	}
 }
+
+function addToExportList()
+{
+	var table	=	document.getElementById('list-table-body');
+	var selected	=	[];
+	Object.keys(table.childNodes).forEach(function(i) {
+		if (table.childNodes[i].id == 'list-header-row') {return;} // There may eventually be a select-all box here.
+		if (table.childNodes[i].childNodes[0].childNodes[0].checked === true) {
+			selected.push(tableRows[i-1].id); // The tableRows object doesn't include the header.
+		};
+	});
+
+	var url		=	'ajax_handler.php?controller=admin&action=addToExportList';
+	var json	=	encodeURIComponent(JSON.stringify(selected));
+	makeRequest(url, json, addToExportResponse);
+}
+
+function addToExportResponse(res)
+{
+	console.log(res);
+	var res	=	JSON.parse(res);
+	if (res.result === 0) {
+		buildAlert('Server Error', 'The server was unable to process your request at this time. Please try again.');
+	}
+	if (res.result === 1) {
+		buildAlert('Complete', 'The selected items have been added to the export list. The list can be found under the inventory section, under \'Export to Spreadsheet\'');
+	}
+}
+
+function exportToFile(format)
+{
+	window.location.href	=	'ajax_handler.php?controller=admin&action=getCSV&reqIsAjax=1&format=' + format;
+}

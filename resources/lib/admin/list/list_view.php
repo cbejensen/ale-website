@@ -27,13 +27,7 @@
 			var listOptions	=	<?php echo json_encode($list->options); ?>;
 		</script>
 		<table class="list-table" id="list-table">
-			<tbody id="list-table-body">
-			<?php
-				//$list->getHeaders();
-				//$list->getRows();
-				
-			?>
-			</tbody>
+			<tbody id="list-table-body"></tbody>
 		</table>
 		<script src="js/listView.js"></script>
 		<script>

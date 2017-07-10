@@ -78,7 +78,7 @@
 								Import from CSV</a>
 				 			</li>
 							<li>
-								<a href="?controller=public&action=products_services&page=waters_equipment&title=Export+To+Spreadsheet&section=products">
+								<a href="?controller=admin&action=showList&subsect=inventory&title=Export+to+File&ltype=exp&lscp=all&rp=1&srt_f=019&srt_d=asc">
 								Export to Spreadsheet</a>
 							</li>
 						</ul>

@@ -1,9 +1,11 @@
 <?php
-if (!isset($_POST['reqIsAjax']))
+if (!isset($_POST['reqIsAjax']) && !isset($_GET['reqIsAjax']))
 {
 	exit;
 }
-header('Content-Type: application/json');
+if ($_GET['action'] != 'getCSV') {
+	header('Content-Type: application/json');
+}
 require_once '../resources/config.php';
 
 if (isset($_GET['controller']) && isset($_GET['action']))

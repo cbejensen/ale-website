@@ -29,7 +29,7 @@ class DataList extends Paginator
 	public	$options		=	array();
 			
 	protected 	$fieldMap 	=	array();
-	public	$fields		=	array();
+	public		$fields		=	array();
 	public		$fieldMeta	=	array();
 	
 	public function __construct(&$conn)
@@ -519,6 +519,7 @@ class DataList extends Paginator
 		switch ($this->ltype)
 		{
 			case 'items':
+			case 'export':
 				$default_table	=	array('itemlist', 'aleAsset');
 				break;
 			case 'listings':

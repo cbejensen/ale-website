@@ -152,6 +152,10 @@ ul.dropDown li a {
 /*=================================================================================
 	2.0 - Lists
 =================================================================================*/
+td[id*="aleAsset"] {
+    text-align: right !important;
+    padding-right: 0.65rem !important;
+}
 .list-main {
 	width: 100%;
 	height: calc(100vh - 5.3rem - 1vh);

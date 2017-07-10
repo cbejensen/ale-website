@@ -139,7 +139,7 @@ class ItemList extends DataList
 	{
 		$this->tools[]	=	array(	
 				'name'	=>	'Export',
-				'action'=>	'doThis()'
+				'action'=>	'addToExportList()'
 		);
 		$this->tools[]	=	array(	
 				'name'	=>	'Delete',
@@ -201,7 +201,7 @@ class ItemList extends DataList
 		$this->url['title']		=	urlencode($title);
 	}
 	
-	private function setOptions()
+	protected function setOptions()
 	{
 		$options	=	ItemList::getOptions($this->conn);
 		foreach ($options as $key => $value)

@@ -248,6 +248,101 @@ class AdminController
 		}
 	}
 	
+	public function addToExportList()
+	{
+		try {
+			$_SESSION['item_export'] = AdminController::decodeJSON();
+			echo json_encode(['result'=>1]);
+		} catch (Exception $e) {
+			echo json_encode(['result'=>0]);
+		}
+	}
+	
+	public function getCSV()
+	{
+		AdminController::loadItemModel();
+		switch($_GET['format'])
+		{
+			case 'channelAdvisor':
+				$filename = date('Y_m_d') . ' ChannelAdvisor';
+				break;
+			case 'quickbooks':
+				$filename = date('Y_m_d') . ' ALE_quickbooks';
+				break;
+			case 'quickbooks_nov':
+				$filename = date('Y_m_d') . ' Novartis_quickbooks';
+				break;
+			case 'emp':
+				$filename = date('Y_m_d') . ' EMP_upload';
+				break;
+		}
+		header('Content-Type: text/csv; charset=utf-8');
+		header("Content-Disposition: attachment; filename=$filename.csv");
+		$output	=	fopen("php://output", 'w'); //$base/../output_test
+		
+		switch ($_GET['format'])
+		{
+			case 'channelAdvisor':
+				$labelRow 	= array(
+					'Auction Title',
+					'Inventory Number',
+					'Model Name',
+					'Model Number',
+					'Quantity',
+					'Starting Price',
+					'Buy It Now Price',
+					'Weight',
+					'Shipping',
+					'Manufacturer',
+					'Brand',
+					'Brand 2',
+					'Condition',
+					'Condition Is',
+					'Supplier Code',
+					'Testing Done',
+					'Cosmetic',
+					'Components Included',
+					'Serial Number',
+					'Condition Note',
+					'Column Intentionally Left Blank',
+					'MPN'
+				);
+				fputcsv($output, $labelRow);
+				foreach ($_SESSION['item_export'] as $item)
+				{
+					$asset	=	new InvItem($item, $this->conn);
+					($asset->data['brand'] != '') ? $b = $asset->data['brand'] . ' ' : $b = '';
+					$outRow	= array(
+							$asset->data['mnfr'] . ' ' . $b . $asset->data['model'] . ' ' . $asset->data['function_desc'] . ' ' . $asset->data['title_extn'],
+							$asset->data['aleAsset'],
+							$asset->data['model'],
+							$asset->data['addtl_model'],
+							$asset->data['quantity'],
+							$asset->data['price'],
+							$asset->data['price'],
+							$asset->data['weight'],
+							$asset->data['shipping_class'],
+							$asset->data['mnfr'],
+							$asset->data['brand'],
+							$asset->data['brand'],
+							$asset->data['item_condition'],
+							$asset->data['item_condition'],
+							'',
+							$asset->data['testing'],
+							$asset->data['cosmetic'],
+							$asset->data['components'],
+							$asset->data['serial_num'],
+							$asset->data['condition_note'],
+							'',
+							$asset->data['mpn']
+					);
+					fputcsv($output, $outRow);
+					//markAsOnEbay($row);
+				}
+				break;
+		}
+	}
+	
 	private function getListModel()
 	{
 		if (isset($_GET['ltype']))
@@ -258,6 +353,11 @@ class AdminController
 				case 'itm':
 					require_once ADMIN_PATH . '/list/models/items.php';
 					$list		=	new ItemList($this->conn);
+					break;
+				case 'exp':
+					require_once ADMIN_PATH . '/list/models/items.php';
+					require_once ADMIN_PATH . '/list/models/export.php';
+					$list		=	new ExportList($this->conn);
 					break;
 				case 'lis':
 					require_once ADMIN_PATH . '/list/models/listings.php';

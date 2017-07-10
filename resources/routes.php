@@ -15,7 +15,8 @@ $controllers	=	array(
 				'getInvAssetData',	'invAction',
 				'updateList',		'itemImport',
 				'submitItemImport',	'createBatch',
-				'addRecord'
+				'addRecord',		'addToExportList',
+				'getCSV'
 		]
 );
 
