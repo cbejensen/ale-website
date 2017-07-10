@@ -1,3 +1,16 @@
-RewriteEngine On
-RewriteCond %{HTTPS} on
-RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI}
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+Redirect 301	/estimates	https://atlanticlabequipment.com/?controller=public&action=estimates&section=estimates&title=Request%20a%20Quote&inst=AB%20SCIEX%20API%204000%20LC-MS/MS%20System%20
+Redirect 301	/premium-equipment	https://atlanticlabequipment.com/?controller=public&action=store&section=store&title=Products
+Redirect 301	/newly-arrived-equipment	https://atlanticlabequipment.com/?controller=public&action=store&page=new_arrivals&title=New%20Arrivals&section=store
+Redirect 301	/premium-equipment/#analytical-pop	https://atlanticlabequipment.com/index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=analytical
+Redirect 301	/specials	https://atlanticlabequipment.com/index.php?controller=public&action=store&section=store&title=Products
+Redirect 301	/premium-equipment/#dna-pop	https://atlanticlabequipment.com/index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=dna_seq
+Redirect 301	/premium-equipment/#tecan-pop	https://atlanticlabequipment.com/index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=tecan
+Redirect 301	/premium-equipment/#washers-pop	https://atlanticlabequipment.com/index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=washers
+Redirect 301	/premium-equipment/#sealers-pop	https://atlanticlabequipment.com/index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=sealers
+Redirect 301	/premium-equipment/#centrifuges-pop	https://atlanticlabequipment.com/index.php?controller=public&action=services&page=premium_equipment&title=Premium%20Equipemnt&section=services&subsection=centrifuges
+
+
