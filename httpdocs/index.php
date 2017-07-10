@@ -49,11 +49,35 @@ else
 	// Determine if admin
 	switch ($controller)
 	{
+		case 'admin':
 		case 'admin_pages':
 		case 'admin_lists':
 		case 'admin_inventory':
 		case 'admin_qb':
 			$section = 'al_db';
+			
+			if (isset($_GET['subsect']))
+			{
+				$sub	=	$_GET['subsect'];
+			} else $sub =	'home';
+			
+			switch ($sub)
+			{
+				case 'home':
+					$subsect = 'home';
+					break;
+				case 'inventory':
+					$subsect = 'inventory';
+					break;
+				case 'gen_listings':
+					$subsect	=	'gen_listings';
+					break;
+				case 'misc_records':
+					$subsect	=	'misc_records';
+					break;
+				default:
+					$subsect = 'home';
+			}
 			break;
 		default:
 			$section = 'home';
@@ -63,72 +87,8 @@ else
 
 
 // Assign Meta Description
-if (isset($_GET['action']) && $_GET['action'] == 'listing')
-{
-	$meta 	=	$title . ' for sale by Atlantic Lab Equipment.';
-}
-elseif (isset($_GET['subsection']))
-{
-	switch ($_GET['subsection'])
-	{
-		case 'tecan':
-			$meta	=	'Tecan Liquid Handlers: Atlantic Lab Equipment specializes in providing Premium Automation Solutions for the Tecan platform.';
-			break;
-		case 'other_lh':
-			$meta	=	'Atlantic Lab Equipment carries a variety of Liquid Handling platforms, including those by Beckman-Coulter, Hamilton, Agilent, and Eppendorf.';
-			break;
-		case 'analytical':
-			$meta	=	'ALE carries an array of Mass Spectrometers, HPLC, GC, and LC/MS Systems.';
-			break;
-		case 'dna_seq':
-			$meta	=	'ALE has a large selection of DNA sequencers. Manufacturers include Illumina and ABI.';
-			break;
-		case 'readers':
-			$meta	=	'ALE carries a selection of automation-ready plate readers for integration with your liquid handling platform.';
-			break;
-		case 'washers':
-			$meta	=	'ALE carries a selection of automation-ready plate washers for integration with your liquid handling platform.';
-			break;
-		case 'sealers':
-			$meta	=	'ALE carries a selection of automation-ready plate sealers for integration with your liquid handling platform.';
-			break;
-		case 'centrifuges':
-			$meta	=	'ALE carries a selection of automation-ready centrifuges for integration with your liquid handling platform.';
-			break;
-	}
-}
-elseif (isset($_GET['page']))
-{
-	switch ($_GET['page'])
-	{
-		case 'premium_equipment':
-			$meta	=	'A Selection of ALE\'s Premium Equipment. This instrumentation is automation-enabled and ready to be integrated with your lab\'s liquid handing platform.';
-		case 'new_arrivals':
-			$meta	=	'Our newest collection of equipment. We\'re always bringing in new instruments to help labs with automation.';
-	}
-} else {
-	switch ($section)
-	{
-		case 'contact':
-			$meta	=	'We want to hear from you! Ask us a question, make a service request, or leave us a comment!';
-			break;
-		case 'estimates':
-			$meta	=	'Need an Instrument? Request a Quote on Equipment today!';
-			break;
-		case 'store':
-			$meta	=	'ALE\'s Equipment catalog. Browse through our selection of Tecan Liquid Handlers, automation equipment, analytical systems, and DNA Sequencers.';
-			break;
-		case 'services':
-			$meta	=	'ALE provides Premium Automation Solutions - A service for laboratories to improve their throughput, efficiency, and reproducibility.';
-			break;
-		case 'home':
-			$meta	=	'Atlantic Lab Equipment: Specializing in Laboratory Automation and providing Premium Automation Solutions.';
-			break;
-		default:
-			$meta = 'ALE: Atlantic Lab Equipment. Premium Automation Solutions.';
-			break;
-	}
-}
+$meta	=	getMetaDescription($title, $section);
+
 
 // Call appropriate layout
 if ($section != 'al_db')

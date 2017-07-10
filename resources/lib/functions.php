@@ -1,15 +1,16 @@
 <?php
 function setDefaultUser()
 {
-	$userData	=	array(	'db'	=>	array(
-								'user'	=>	'guest',
-								'pass'	=>	'default_ale_guest'
-							),
-							'user'	=>	array(
-								'name'		=>	'Guest'
-							)
-					);
-	return $userData;
+	$user	=	array(
+			'db'	=>	array(
+					'user'	=>	'guest',
+					'pass'	=>	'default_ale_guest'
+			),
+			'user'	=>	array(
+					'name'	=>	'Guest'
+			)
+	);
+	return $user;
 }
 
 function db_connect($database, $userData = 0)
@@ -23,6 +24,12 @@ function db_connect($database, $userData = 0)
 		case NOV_DB:
 			require INC_PATH . '/db_login_novartis.php';
 			break;
+		case 'old_db':
+			require INC_PATH . '/2016_10_31.php';
+			break;
+		case 'remote_al_db':
+			require INC_PATH . '/remote_al_db.php';
+			break;
 		default: 
 			require INC_PATH . '/db_login.php';
 			break;
@@ -35,7 +42,7 @@ function db_connect($database, $userData = 0)
 							'message'	=>	'The server failed to connect. Please retry your request. If the problem persists, please report this error.',
 							'error'		=>	$conn->connect_error
 						);
-		handleError($errorData, $conn, 'mysql');
+		handleError($errorData, $conn, 'mysql', 0);
 		$conn	=	false;
 	}
 	return $conn;
@@ -50,7 +57,8 @@ function db_query($q, &$conn) {
 							'message'	=>	'Please retry your request. If the problem persists, please report this error.',
 							'error'		=>	$conn->error
 						);
-		handleError($errorData, $conn, 'mysql');
+		// Log the error, do not report to user.
+		handleError($errorData, $conn, 'mysql', 0);
 	}
 	return $result;
 }
@@ -75,16 +83,21 @@ function handleError($errorData, &$conn, $source = 0, $mode = 1)
 	error_log($errorData['title'] . ' ' . $errorData['error']);
 	
 	// If the request originated via Ajax, send the user a response
-	if (isset($_POST['reqIsAjax']) && $mode == 1)
+	if ($mode == 1) 
 	{
-		$result		=	0;
-		$title		=	$errorData['title'];
-		$message	=	$errorData['message'];
-		ajaxResponse_alert($result, $title, $message);
-	} elseif (!isset($_POST['reqIsAjax']) && $mode == 1) {
-		alertUser($errorData['title'], $errorData['message']);
-		// For a page request, exiting the script may not be the appropriate action.
-		//exit;
+		if (isset($_POST['reqIsAjax']))
+		{
+			$result		=	0;
+			$title		=	$errorData['title'];
+			$message	=	$errorData['message'];
+			ajaxResponse_alert($result, $title, $message);
+		} 
+		elseif (!isset($_POST['reqIsAjax'])) 
+		{
+			alertUser($errorData['title'], $errorData['message']);
+			// For a page request, exiting the script may not be the appropriate action.
+			//exit;
+		}
 	}
 }
 
@@ -113,8 +126,8 @@ function getGenListingTitle($id)
 	$conn		=	db_connect(AL_DB, $userData);
 	require_once PUBLIC_PATH . '/listing.php';
 	try {
-	$listing	=	new GenListing($id, $conn);
-	$r			=	$listing->title;
+		$listing	=	new GenListing($id, $conn);
+		$r			=	$listing->title;
 	} catch (Exception $e) {
 		// error - constructor method threw an exception	
 		$r	=	false;
@@ -182,11 +195,87 @@ function refValues($arr)
 	return $arr;
 }
 
+function getMetaDescription($title, $section)
+{
+	if (isset($_GET['action']) && $_GET['action'] == 'listing')
+	{
+		$meta 	=	$title . ' for sale by Atlantic Lab Equipment.';
+	}
+	elseif (isset($_GET['subsection']))
+	{
+		switch ($_GET['subsection'])
+		{
+			case 'tecan':
+				$meta	=	'Tecan Liquid Handlers: Atlantic Lab Equipment specializes in providing Premium Automation Solutions for the Tecan platform.';
+				break;
+			case 'other_lh':
+				$meta	=	'Atlantic Lab Equipment carries a variety of Liquid Handling platforms, including those by Beckman-Coulter, Hamilton, Agilent, and Eppendorf.';
+				break;
+			case 'analytical':
+				$meta	=	'ALE carries an array of Mass Spectrometers, HPLC, GC, and LC/MS Systems.';
+				break;
+			case 'dna_seq':
+				$meta	=	'ALE has a large selection of DNA sequencers. Manufacturers include Illumina and ABI.';
+				break;
+			case 'readers':
+				$meta	=	'ALE carries a selection of automation-ready plate readers for integration with your liquid handling platform.';
+				break;
+			case 'washers':
+				$meta	=	'ALE carries a selection of automation-ready plate washers for integration with your liquid handling platform.';
+				break;
+			case 'sealers':
+				$meta	=	'ALE carries a selection of automation-ready plate sealers for integration with your liquid handling platform.';
+				break;
+			case 'centrifuges':
+				$meta	=	'ALE carries a selection of automation-ready centrifuges for integration with your liquid handling platform.';
+				break;
+			default:
+				$meta	=	'';
+		}
+	}
+	elseif (isset($_GET['page']))
+	{
+		switch ($_GET['page'])
+		{
+			case 'premium_equipment':
+				$meta	=	'A Selection of ALE\'s Premium Equipment. This instrumentation is automation-enabled and ready to be integrated with your lab\'s liquid handing platform.';
+				break;
+			case 'new_arrivals':
+				$meta	=	'Our newest collection of equipment. We\'re always bringing in new instruments to help labs with automation.';
+				break;
+			default:
+				$meta	=	'';
+		}
+	} else {
+		switch ($section)
+		{
+			case 'contact':
+				$meta	=	'We want to hear from you! Ask us a question, make a service request, or leave us a comment!';
+				break;
+			case 'estimates':
+				$meta	=	'Need an Instrument? Request a Quote on Equipment today!';
+				break;
+			case 'store':
+				$meta	=	'ALE\'s Equipment catalog. Browse through our selection of Tecan Liquid Handlers, automation equipment, analytical systems, and DNA Sequencers.';
+				break;
+			case 'services':
+				$meta	=	'ALE provides Premium Automation Solutions - A service for laboratories to improve their throughput, efficiency, and reproducibility.';
+				break;
+			case 'home':
+				$meta	=	'Atlantic Lab Equipment: Specializing in Laboratory Automation and providing Premium Automation Solutions.';
+				break;
+			default:
+				$meta = 'ALE: Atlantic Lab Equipment. Premium Automation Solutions.';
+				break;
+		}
+	}
+	return $meta;
+}
+
 function mysql_entities_fix_string($conn, $string)
 {
 	return htmlentities(mysql_fix_string($conn, $string), ENT_QUOTES);
 }
-
 
 function mysql_fix_string($conn, $string)
 {

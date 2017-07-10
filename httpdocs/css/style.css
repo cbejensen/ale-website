@@ -407,7 +407,8 @@ ul.dropDown li a:hover {
     border-bottom-color: #245bac;
     margin-right: -2px;
 }
-.std-pg li a {
+.std-pg li a,
+.std-pg li span {
 	color: #656565;
 	padding: 0.5rem 1rem;
 	display: block;
@@ -421,8 +422,9 @@ ul.dropDown li a:hover {
    	cursor: default;
    	background-color: #e1e1e1;
 }
-.std-pg li.pg-disabled a {
-	color: #999;
+.std-pg li.pg-disabled a,
+.std-pg li.pg-disabled span {
+	color: #888;
 }
 .std-pg li.pg-active {
 	background-color: #2059AB;
@@ -535,6 +537,32 @@ ul.dropDown li a:hover {
     border-radius: 2px;
 /*     transition: 0.25s ease; */
 }
+.window-header {
+	background: linear-gradient(
+					to bottom,
+					#fff,
+					#e5e5e5 100%
+				);
+}
+.tertiary-button {
+	background: linear-gradient(
+					to bottom,
+					rgba(0,0,0, 0.02),
+					rgba(0,0,0, 0.1) 100%
+				);
+	text-align: center;
+	color: #777;
+/* 	letter-spacing: 0.05rem; */
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+.tertiary-button:hover {
+	background: linear-gradient(
+					to top,
+					rgba(0,0,0, 0.02),
+					rgba(0,0,0, 0.1) 100%
+				);
+}
 .gradient-button:hover {
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#2a6bca),color-stop(100%,#4d86da));
 	background: linear-gradient(
@@ -576,6 +604,26 @@ ul.dropDown li a:hover {
     border: 0px solid white;
     height: 1px;
 }
+.warning-button {
+	background: linear-gradient(
+					to bottom,
+					#D93232,
+					#AB2727 100%
+				);
+	text-align: center;
+	color: #fff;
+/* 	letter-spacing: 0.05rem; */
+	border: 1px solid #942323;
+	border-radius: 2px;
+	cursor: default;
+}
+.warning-button:hover {
+	background: linear-gradient(
+					to bottom,
+					#AB2727,
+					#D93232 100%
+				);
+}	
 .required:after {
 	content: '*';
 	color: red;
@@ -935,19 +983,166 @@ ul.dropDown li a:hover {
 	7.0 - Error Page
 =================================================================================*/
 .error-main {
-	padding: 10em 0 5em;
+	display: block;
+	width: 1000px;
+	margin: 5rem auto;
+	padding: 3rem 5rem;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	box-sizing: border-box;
 }
-.error-head {
-	font-size: 1.67rem;
-	margin: 0 0 1.67rem;
+.error-main h1 {
+	font-size: 2.25rem;
+	margin: 0 0 0.25rem;
+}
+.error-main h2 {
+	font-size: 1.15rem;
+	color: #565656;
+	font-style: italic;
 }
 .error-msg {
-	padding: 15em 5em;
+/* 	padding: 15em 5em; */
+	margin: 3rem 0;
+	font-size: 1.1rem;
+	color: #444;
 }
 
 
 /*=================================================================================
-	8.0 - Interface
+	8.0 - Login Page
+=================================================================================*/
+#ale-body-login {
+	background: #3365AB;
+	box-shadow: inset 0 0 50rem 10px rgba(0,0,0,0.3);
+}
+.login-main {
+	width: 100%;
+	position: relative;
+	top: 45%;
+	transform: translateY(-50%);
+	overflow: visible;
+}
+.login-main .logo {
+	display: block;
+	margin: 0 auto;
+/* 	box-shadow: inset 0 0 10px rgba(0,0,0,1); */
+/* 	border-radius: 50%; */
+}
+.img-overlay {
+	position: absolute;
+/* 	border: 1px solid #fff; */
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 129px;
+	height: 129px;
+	border-radius: 50%;
+	box-shadow: inset 0 0 10px 1px rgba(0,0,0,0.25);
+}
+.creds-wrap {
+	display: block;
+	margin: 2rem auto 0;
+	width: 18rem;
+	padding: 0.75rem;
+	background: #194C93;
+	border-radius: 5px;
+	box-shadow: inset 0 0 15px 3px rgba(0,0,0,0.2);
+	position: relative;
+}
+.creds-wrap input {
+	display: block;
+	width: 100%;
+	border: 1px solid #eee;
+	font-size: 0.9rem;
+	line-height: 1rem;
+	font-family: 'open sans', 'trebuchet ms', calibri, helvetica, arial, sans-serif;
+/* 	font-weight: bold; */
+	color: #565656;
+	background: #eee;
+/* 	padding: 1.25rem 2.5rem; */
+	padding-left: 2.5rem;
+	box-sizing: border-box;
+	height: 2.5rem;
+}
+.creds-wrap input:nth-child(2) {
+	border-bottom: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.creds-wrap input:nth-child(3) {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.creds-wrap input[type="password"] {
+/* 	font:small-caption; */
+/* 	font-size:16px */
+}
+.creds-submit {
+	display: block;
+/* 	height: 2rem; */
+	line-height: 2rem;
+	padding: 0;
+/* 	vertical-align: middle; */
+	margin-top: 0.65rem;
+	width: calc(100% + 2px);
+	position: relative;
+	right: 1px;
+	color: #eee;
+	font-family: 'trebuchet ms', 'open sans';
+	font-weight: bold;
+	cursor: default;
+}
+.creds-arrow {
+  width: 0; 
+  height: 0; 
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 13px solid #19437D;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.login-icon {
+	position: absolute;
+	display: block;
+	width: 1.5rem;
+	filter: invert(78%);
+	left: 1.25rem;
+}
+#l_user {
+	top: 1.4rem;
+	
+}
+#l_lock {
+	top: 3.8rem;
+}
+.login-error {
+/* 	border: 1px solid red; */
+	display: none;
+	position: absolute;
+	top: calc(100% + 0.65rem);
+	width: 18rem;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 0.5rem 0.5rem 0.5rem 0.85rem;
+	font-style: italic;
+	color: rgba(143,30,30, 1);
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+	background: rgba(252, 120, 120, 0.65);
+	border-radius: 2px;
+	line-height: 1rem;
+/* 	box-shadow: inset 0px 1px 10px 0px rgba(0,0,0,0.3); */
+}
+.login-error img {
+	width: 1rem;
+	margin-right: 0.25rem;
+	filter: brightness(60%);
+}
+
+
+/*=================================================================================
+	9.0 - Interface
 =================================================================================*/
 /*--------------------------------------------
 	Alert Box
@@ -968,10 +1163,12 @@ ul.dropDown li a:hover {
 .alertBox h2 {
 	font-size: 1.5rem;
 	font-weight: bold;
+	word-break: break-word;
 }
 .alertBox p {
 	margin: 1rem 0 2.5rem;
 	padding-right: 2.75rem;
+	word-break: break-word;
 }
 .alertBox input {
 	position: absolute;
@@ -985,7 +1182,7 @@ ul.dropDown li a:hover {
 	position: absolute;
     right: 0;
     top: 0;
-    color: #ddd;
+    color: #fff;
     background-color: #B22222;
     line-height: 1.25rem;
     font-size: 1rem;
@@ -993,10 +1190,12 @@ ul.dropDown li a:hover {
     width: 1.5rem;
     text-align: center;
     transition: 0.25s ease;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
 }
 .closeBtn:hover {
-	cursor: default;
-	box-shadow: inset 0 0 5px 6px rgba(255, 0, 0, 0.33);
+/* 	cursor: default; */
+/* 	box-shadow: inset 0 0 5px 6px rgba(255, 0, 0, 0.33); */
 }
 /*--------------------------------------------
 	Page Material (Boxes, Ads, Images, etc.)

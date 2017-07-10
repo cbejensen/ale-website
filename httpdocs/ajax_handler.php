@@ -1,10 +1,9 @@
 <?php
-
 if (!isset($_POST['reqIsAjax']))
 {
 	exit;
 }
-
+header('Content-Type: application/json');
 require_once '../resources/config.php';
 
 if (isset($_GET['controller']) && isset($_GET['action']))

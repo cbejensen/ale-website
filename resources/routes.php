@@ -1,31 +1,32 @@
 <?php
-
 // list of controllers and their actions -- allowed values
-$controllers	= array('public' 			=>	[	'home', 	'services',
-													'store',	'news',
-													'contact', 	'estimates', 
-													'error', 	'test',
-													'submitForm',
-													'listing'
-													],
-		
-						'admin_pages'		=> 	[	'dashboard',	'documentation',
-													''
-													],
-		
-						'admin_inventory'	=> 	[	'addManufacturer'
-													]
-						//''			=> ['', '']
+$controllers	=	array(
+		'public'	=>	[
+				'home',			'services',
+				'store',		'news',
+				'contact',		'estimates',
+				'error',		'test',
+				'submitForm',	'listing'
+		],
+		'admin'		=>	[
+				'hdome',			'showList',
+				'updateInvItem',	'getVendors',
+				'updateItemPhotos',	'imagePreprocess',
+				'getInvAssetData',	'invAction',
+				'updateList',		'itemImport',
+				'submitItemImport',	'createBatch',
+				'addRecord'
+		]
 );
 
 // check that requested controller and action are allowed
 if (array_key_exists($controller, $controllers))
 {
-	(in_array($action, $controllers[$controller])) ? call($controller, $action) : call('pages', 'error');
+	(in_array($action, $controllers[$controller])) ? call($controller, $action) : call('public', 'error');
 }
 else
 {
-	call('pages', 'error');
+	call('public', 'error');
 }
 // End of script
 
@@ -39,6 +40,21 @@ function call($controller, $action)
 		case 'public':
 			require_once PUBLIC_PATH . '/public_controller.php';
 			$controller	= new PublicController();
+			break;
+			
+		case 'admin':
+			require_once ADMIN_PATH . '/admin_controller.php';
+			try {
+				$controller	= new AdminController();
+			} catch (Exception $e) {
+				// if the controller cannot be constructed:
+				$error	=	array(
+						'title'		=>	'500: Internal Server Error',
+						'message'	=>	'You\'re likely seeing this error because of a problem with the server. We track these errors automatically, but if the problem persists please contact the administrator.'
+				);
+				require_once PUBLIC_PATH . '/view/pages/error.php';
+			}
+			
 			break;
 			
 		case 'admin_pages':
@@ -69,5 +85,18 @@ function call($controller, $action)
 	}
 
 	// call the action
-	$controller->{ $action }();
+	try 
+	{
+		$controller->{ $action }();
+	} 
+	catch (Exception $e) {
+		$errorData	=	array('title' => "Action: $action Threw an Exception:", 'error' => $e->getMessage());
+		ini_set('error_log', LOGS_PATH . '/app-errors.log');
+		error_log($errorData['title'] . ' ' . $errorData['error']);
+		$error	=	array(
+				'title'		=>	'500: Internal Server Error',
+				'message'	=>	'You\'re likely seeing this error because of a problem with the server. We track these errors automatically, but if the problem persists please contact the administrator.'
+		);
+		require_once PUBLIC_PATH . '/view/pages/error.php';
+	}
 }

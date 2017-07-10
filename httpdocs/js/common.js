@@ -79,50 +79,65 @@ function alertUser(reqResponse)
 	}
 }
 
+function addCloseButton(parent, parentID)
+{
+	// Add Close Button
+	var closeButton	= document.createElement('span');
+	closeButton.setAttribute('class', 'closeBtn warning-button'); //closeBtn
+	closeButton.setAttribute('id', 'modal-close');
+	closeButton.setAttribute('onclick', "closeDialog('" + parentID + "')");
+	var x = document.createTextNode('x');
+	closeButton.appendChild(x);
+	parent.appendChild(closeButton);
+}
+
 function buildAlert(title, message, actions)
 {
 	// Currently does not support additional user actions, other than 'Accept'
+	var elementExists = document.getElementById("alertBox");
 	
-	var actions		= 	actions || 0;
-	var body		=	document.getElementById('ale-body');
-	
-	// Create Alert Box
-	var alertBox	=	document.createElement('div');
-	alertBox.setAttribute('id', 'alertBox');
-	alertBox.setAttribute('class', 'alertBox material');
-	
-	// Add Close Button
-	var closeButton	= document.createElement('span');
-	closeButton.setAttribute('class', 'closeBtn');
-	closeButton.setAttribute('id', 'modal-close');
-	closeButton.setAttribute('onclick', "closeDialog('alertBox')");
-	var x = document.createTextNode('x');
-	closeButton.appendChild(x);
-	alertBox.appendChild(closeButton);
-	
-	// Add Title
-	var head		=	document.createElement('h2');
-	var t			=	document.createTextNode(title);
-	head.setAttribute('class', 'section-head');
-	head.appendChild(t);
-	alertBox.appendChild(head);
-	
-	// Add Message
-	var msg			=	document.createElement('p');
-	var m			=	document.createTextNode(message);
-	msg.appendChild(m);
-	alertBox.appendChild(msg);
-	
-	// Add Button(s)
-	var input		=	document.createElement('input');
-	input.setAttribute('class', 'gradient-button');
-	input.setAttribute('type', 'button');
-	input.setAttribute('id', 'acceptBtn');
-	input.setAttribute('value', 'Accept');
-	input.setAttribute('onclick', "closeDialog('alertBox')");
-	alertBox.appendChild(input);
-	
-	body.appendChild(alertBox);
+	if (elementExists == null) {
+		var actions		= 	actions || 0;
+		var body		=	document.getElementById('ale-body');
+		
+		// Create Alert Box
+		var alertBox	=	document.createElement('div');
+		alertBox.setAttribute('id', 'alertBox');
+		alertBox.setAttribute('class', 'alertBox material');
+		
+		// Add Close Button
+		var closeButton	= document.createElement('span');
+		closeButton.setAttribute('class', 'closeBtn warning-button');
+		closeButton.setAttribute('id', 'modal-close');
+		closeButton.setAttribute('onclick', "closeDialog('alertBox')");
+		var x = document.createTextNode('x');
+		closeButton.appendChild(x);
+		alertBox.appendChild(closeButton);
+		
+		// Add Title
+		var head		=	document.createElement('h2');
+		var t			=	document.createTextNode(title);
+		head.setAttribute('class', 'section-head');
+		head.appendChild(t);
+		alertBox.appendChild(head);
+		
+		// Add Message
+		var msg			=	document.createElement('p');
+		var m			=	document.createTextNode(message);
+		msg.appendChild(m);
+		alertBox.appendChild(msg);
+		
+		// Add Button(s)
+		var input		=	document.createElement('input');
+		input.setAttribute('class', 'gradient-button');
+		input.setAttribute('type', 'button');
+		input.setAttribute('id', 'acceptBtn');
+		input.setAttribute('value', 'Accept');
+		input.setAttribute('onclick', "closeDialog('alertBox')");
+		alertBox.appendChild(input);
+		
+		body.appendChild(alertBox);
+	}
 }
 
 function toggleMenu()

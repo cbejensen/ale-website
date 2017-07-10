@@ -43,9 +43,31 @@ if (!isset($_COOKIE['serp-limit']))
 }
 
 
+// Admin Cookies
+if ($_GET['controller'] == 'admin')
+{
+	if (!isset($_COOKIE['list-limit']))
+	{
+		if (isset($_GET['limit']) && is_numeric($_GET['limit'])) {
+			setListLimitCookie();
+		} else {
+			setListLimitCookie(25);
+		}
+	} else {
+		if (isset($_GET['limit']) && $_COOKIE['list-limit'] != $_GET['limit'])
+		{
+			if (is_numeric($_GET['limit'])) {
+				setListLimitCookie();
+			}
+		}
+	}
+}
+
+
 // Functions
 function setLoCookie()
 {
+	// Set SERP Layout preference
 	switch ($_GET['lo']) // input restriction
 	{
 		case 'grid':
@@ -65,9 +87,26 @@ function setLoCookie()
 
 function setLimitCookie()
 {
+	// Set SERP Items Per Page Limit preference
 	$limit	=	$_GET['limit'];
 	if (!setcookie('serp-limit', $limit, time()+60*60*24*30*2, '/'))
 	{
 		// send report that cookie could not be sent.
 	}
+}
+
+function setListLimitCookie($lim = null)
+{
+	($lim === null) ? $limit = $_GET['limit'] : $limit = $lim;
+	if (!setcookie('list-limit', $limit, time()+60*60*24*30*2, '/'))
+	{
+		// send report that cookie could not be sent.
+		ini_set('error_log', LOGS_PATH . '/app-errors.log');
+		error_log('List Limit cookie could not be set.');
+	}
+}
+
+function setAdminCookie($cookie, $index, $value = null)
+{
+	($value === null) ? $value = $_GET[''] : $value = 0;
 }

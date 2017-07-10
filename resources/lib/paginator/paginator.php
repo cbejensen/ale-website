@@ -2,57 +2,69 @@
 
 class Paginator {
 	
-	private $_conn;
-	private $_limit;
-	private $_page;
-	private $_query;
-	private $_total;
+	protected 	$conn;
+	public	 	$limit;
+	public		$page;
+	protected 	$query;
+	public	 	$total;
 
 	public function __construct($conn, $query)
 	{
-		$this->_conn	=	$conn;
-		$this->_query	=	$query;
-		$r		=	db_query($this->_query, $this->_conn);
-		$this->_total	=	$r->num_rows;
+		$this->conn		=	$conn;
+		$this->query	=	$query;
+		$r				=	db_query($this->query, $this->conn);
+		$this->total	=	$r->num_rows;
 	}
 
-	public function getPageData($limit = null, $page = null)
+	public function getPageData($limit = null, $page = null, $test = 0)
 	{
 		if ($limit === null) $limit = 20;
 		if ($page === null) $page = 1;
-		$this->_limit	=	$limit;
-		$this->_page	=	$page;
-		if ($this->_limit == 'all')
+		$this->limit	=	$limit;
+		$this->page		=	$page;
+		if ($this->limit == 'all')
 		{
-			$query	=	$this->_query;
+			$query	=	$this->query;
 		} else {
-			$query	=	$this->_query . " LIMIT " . (($this->_page - 1) * $this->_limit) . ", $this->_limit";
+			$query	=	$this->query . " LIMIT " . (($this->page - 1) * $this->limit) . ", $this->limit";
 		}
-		$r		=	db_query($query, $this->_conn);
+		$r			=	db_query($query, $this->conn);
+		if ($test === 1) {
+			$t			=	db_query($this->query, $this->conn);
+			$this->total=	$t->num_rows;
+		}
 		$results	=	array();
 		while ($row = $r->fetch_array(MYSQLI_ASSOC))
 		{
 			$results[]	=	$row;
 		}
-		$result		=	new stdClass();
-		$result->page	=	$this->_page;
-		$result->limit	=	$this->_limit;
-		$result->total	=	$this->_total;
+		// NULL to Empty String
+		foreach ($results as &$rrr)
+		{
+			foreach ($rrr as &$f)
+			{
+				if ($f === null) $f	=	'';
+			}
+		}
+		$result			=	new stdClass();
+		$result->page	=	$this->page;
+		$result->limit	=	$this->limit;
+		$result->total	=	$this->total;
+		$result->count	=	$r->num_rows;
 		$result->data	=	$results;
-
 		return $result;
 	}
 
 	public function createLinks($num_links, $list_class = null)
 	{
 		if ($list_class === null) $list_class = 'std-pg';
-		if ($this->_limit == 'all') {
+		if ($this->limit == 'all') {
 			return '';
 		}
-		$last	=	ceil($this->_total / $this->_limit);
-		$start	=	(($this->_page - $num_links) > 0) ? $this->_page - $num_links: 1;
-		$end	=	(($this->_page + $num_links) < $last) ? $this->_page + $num_links: $last;
-		$class	=	($this->_page	== 1) ? "pg-disabled" : '';
+		$last	=	ceil($this->total / $this->limit);
+		$start	=	(($this->page - $num_links) > 0) ? $this->page - $num_links: 1;
+		$end	=	(($this->page + $num_links) < $last) ? $this->page + $num_links: $last;
+		$class	=	($this->page	== 1) ? "pg-disabled" : '';
 		ob_start();
 		require LIB_PATH . '/paginator/paginator_view.php';
 		$html	=	ob_get_contents();
