@@ -54,7 +54,11 @@ function buildBreadcrumbs()
 	// Begin Page Num/# of Results
 	var span	=	document.createElement('span');
 	span.className	=	'serp-info';
-	var txt		=	document.createTextNode('Page '+current_page+' of '+totalResults+' results.');
+	if (typeof url.q == 'undefined') {
+		var txt	=	document.createTextNode('Page '+current_page+' of '+totalResults+' results.');
+	} else {
+		var txt		=	document.createTextNode('Page '+current_page+' of '+totalResults+' results for \''+url.q+'\'');
+	}
 	span.appendChild(txt);
 	div.appendChild(span);
 }

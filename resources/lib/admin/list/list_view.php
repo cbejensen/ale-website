@@ -19,7 +19,7 @@
 		<div class="admin-search-bar" id="search-bar">
 			<select id="search-field">
 				<option value="asset">ALE Asset</option>
-				<option value="nibr">NIBR</option>
+<!-- 				<option value="nibr">NIBR</option> -->
 				<option value="title">Title</option>
 				<option value="model">Model</option>
 				<option value="mnfr">Manufacturer</option>

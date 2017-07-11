@@ -679,15 +679,47 @@ class DataList extends Paginator
 							$where	.=	" itemlist.aleAsset LIKE '%$key%' OR";
 						}
 						break;
-					case 'nibr':
+// 					case 'nibr':
 					case 'title':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" manufacturers.mnfr LIKE '%$key%' OR";
+							$where	.=	" models.model LIKE '%$key%' OR
+										models.function_desc LIKE '%$key%' OR";
+							$where	.=	" brands.brand LIKE '%$key%' OR";
+							$where	.=	" itemlist.title_extn LIKE '%$key%' OR";
+						}
+						break;
 					case 'model':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" models.model LIKE '%$key%' OR
+							models.function_desc LIKE '%$key%' OR";
+						}
+						break;
 					case 'mnfr':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" manufacturers.mnfr LIKE '%$key%' OR";
+						}
+						break;
 					case 'brand':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" brands.brand LIKE '%$key%' OR";
+						}
+						break;
 // 					case 'location':
 					case 'vendor':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" vendors.vendor LIKE '%$key%' OR";
+						}
+						break;
 					case 'batch':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" inv_batch.batch_name LIKE '%$key%' OR";
+						}
+						break;
 					case 'track':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" item_track.track LIKE '%$key%' OR";
+						}
 				}
 			} else {
 				foreach ($tables as $tf) {
