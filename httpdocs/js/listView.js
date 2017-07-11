@@ -286,6 +286,6 @@ function searchList()
 		if (i == 'q') return;
 		newURL	+=	'&'+i+'='+url[i];
 	});
-	newURL	=	'?' + newURL.substring(1) + '&q=' + query;
+	newURL	=	'?' + newURL.substring(1) + '&q=' + query + '&qf=' + document.getElementById('search-field').value;
 	window.location.href	=	newURL;
 }

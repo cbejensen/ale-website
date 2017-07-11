@@ -11,7 +11,8 @@ class DataList extends Paginator
 {
 	public	$ltype, 
 			$lscope, 
-			$searchKey, 
+			$searchKey,
+			$searchField,
 			$srt_f,
 			$sortField,
 			$sortOrder,
@@ -439,11 +440,19 @@ class DataList extends Paginator
 		 */
 		if (isset($_GET['q']))
 		{
-			$q				=	mysql_entities_fix_string($this->conn, $_GET['q']);
+			$q					=	mysql_entities_fix_string($this->conn, $_GET['q']);
 			$this->searchKey	=	explode(' ', $q);
-			$this->url['q']	= urlencode($_GET['q']);
+			$this->url['q']		=	urlencode($_GET['q']);
 		} else {
 			$this->searchKey	=	null;
+		}
+		
+		if (isset($_GET['qf']))
+		{
+			$this->searchField	=	mysql_entities_fix_string($this->conn, $_GET['qf']);
+			$this->url['qf']	=	urlencode($_GET['qf']);
+		} else {
+			$this->searchField	=	null;
 		}
 	}
 	
@@ -663,29 +672,43 @@ class DataList extends Paginator
 		}
 		
 		if (isset($this->searchKey)) {
-			foreach ($tables as $tf)
-			{
-				switch ($tf)
-				{
-					case 'manufacturers':
-							foreach ($this->searchKey as $key)
-							{
+			if (isset($this->searchField)) {
+				switch ($this->searchField) {
+					case 'asset':
+						foreach ($this->searchKey as $key) {
+							$where	.=	" itemlist.aleAsset LIKE '%$key%' OR";
+						}
+						break;
+					case 'nibr':
+					case 'title':
+					case 'model':
+					case 'mnfr':
+					case 'brand':
+// 					case 'location':
+					case 'vendor':
+					case 'batch':
+					case 'track':
+				}
+			} else {
+				foreach ($tables as $tf) {
+					switch ($tf) {
+						case 'manufacturers':
+							foreach ($this->searchKey as $key) {
 								$where	.=	" manufacturers.mnfr LIKE '%$key%' OR";
 							}
-						break;
-					case 'models':
-							foreach ($this->searchKey as $key)
-							{
+							break;
+						case 'models':
+							foreach ($this->searchKey as $key) {
 								$where	.=	" models.model LIKE '%$key%' OR 
 											models.function_desc LIKE '%$key%' OR";
 							}
-						break;
-					case 'brands':
-							foreach ($this->searchKey as $key)
-							{
+							break;
+						case 'brands':
+							foreach ($this->searchKey as $key) {
 								$where	.=	" brands.brand LIKE '%$key%' OR";
 							}
-						break;
+							break;
+					}
 				}
 			}
 			$where			=	substr($where, 0, -3); // Remove last ' OR'

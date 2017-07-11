@@ -324,28 +324,56 @@ span.status-rm {
 	width: 20%;
 	min-width: 20rem;
 }
+.admin-search-bar input,
+.admin-search-bar select,
+.admin-search-bar span {
+	height: 2rem;
+	font-size: 0.8rem;
+	display: inline-block;
+}
 .admin-search-bar input {
-	border: 1px solid #ccc;
 	background: linear-gradient(
 					to top,
 					rgba(0,0,0, 0.01),
 					rgba(0,0,0, 0.06) 100%
 				);
-	border-radius: 2px;
-	display: inline-block;
-	height: 2rem;
-	border-top-right-radius: 0;
+	width: calc(100% - 8rem);
+	border: 1px solid #ccc;
+	border-left: 0;
+	border-radius: 0;
+}
+.admin-search-bar select {
+	width: 6rem;
+	color: #777;
+	border: 1px solid #ccc;
+    margin-right: -4px;
+    border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
-	font-size: 80%;
-	width: calc(100% - 2rem);
+	background: linear-gradient(
+					to top,
+					rgba(0,0,0, 0.01),
+					rgba(0,0,0, 0.06) 100%
+				);
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+.admin-search-bar select:focus {
+	outline: none;
+	color: #333;
 }
 .admin-search-bar span {
-	display: inline-block;
 	width: 2rem;
-	height: 2rem;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	border-left: 0;
+}
+.admin-search-bar img {
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    margin: 0 auto;
+    filter: invert(80%);
 }
 .toolbar-btns {
 	position: absolute;

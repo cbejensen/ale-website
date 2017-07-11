@@ -17,8 +17,21 @@
 		?>
 		</div>
 		<div class="admin-search-bar" id="search-bar">
+			<select id="search-field">
+				<option value="asset">ALE Asset</option>
+				<option value="nibr">NIBR</option>
+				<option value="title">Title</option>
+				<option value="model">Model</option>
+				<option value="mnfr">Manufacturer</option>
+				<option value="brand">Brand</option>
+<!-- 				<option value="loc">Location</option> -->
+				<option value="vendor">Vendor</option>
+				<option value="batch">Batch</option>
+				<option value="track">Track</option>
+			</select>
 			<input type="text" placeholder="Search" id="search-input" class="">
-			<span class="tertiary-button" onclick="searchList()"><span style="vertical-align: middle; line-height: 0.5rem; height: 0; cursor: default;">Go</span></span>
+			<span class="tertiary-button" onclick="searchList()"><img style="vertical-align: middle;" src="img/interface/67grey_search.png" alt="go"></span> 
+			<!-- <span style="vertical-align: middle; line-height: 0.5rem; height: 0; cursor: default;">Go</span> -->
 		</div>
 		<div class="toolbar-btns" id="toolbar-btns"></div>
 	</div>
