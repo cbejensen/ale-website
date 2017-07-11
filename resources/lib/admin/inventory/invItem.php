@@ -769,6 +769,10 @@ class InvItem
 	
 	public static function commitItem($aleAssets, &$conn)
 	{
+		global $_USER;
+		if (!$_USER || !$_USER->hasAccess(['itemlist.commit'])) {
+			throw new Exception('Not Authorized');
+		}
 		$conn->autocommit(false);
 		$conn->begin_transaction();
 		try {
