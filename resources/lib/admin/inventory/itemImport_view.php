@@ -25,7 +25,7 @@
 		<p>Format accepted: .csv</p>
 		<label>Batch Name:</label>
 		<select class="select-add-opt" id="batch-select"></select>
-		<div class="add-opt-btn gradient-button" onclick="addBatchDialog()"><img src="img/interface/add-g8a.png"></div>
+		<span class="add-opt-btn gradient-button" onclick="addBatchDialog()"><img src="img/interface/add-g8a.png"></span>
 		<label>CSV Spreadsheet:</label>
 		<input type="file" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv">
 	</div>
