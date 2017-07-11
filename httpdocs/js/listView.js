@@ -245,7 +245,9 @@ function commitInvItems()
 function commitInvItemsResponse(req)
 {
 	console.log(req);
+	var req	=	JSON.parse(req);
 	updateList('itm');
+	if (req[0] === 0) buildAlert(req[1], req[2]);
 }
 
 function getSelectedRows()
