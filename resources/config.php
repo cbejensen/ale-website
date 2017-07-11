@@ -3,7 +3,7 @@
 ini_set('error_reporting', E_ALL);
 ini_set('log_errors', 1);
 ini_set('error_log', '../resources/logs/app-errors.log');
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 ini_set('date.timezone', 'America/New_York');
 
 define('AL_DB',		'al_db');
