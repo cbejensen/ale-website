@@ -295,7 +295,7 @@ class InvItem
 			foreach ($array as $status)
 			{
 				if (empty($status)) continue;
-				if ($status == 8) continue;
+				if ($status['id'] == 8) continue;
 				$q		=	"INSERT INTO status (aleAsset, status) VALUES (?,?)";
 				$stmt	=	$this->conn->prepare($q);
 				if ($stmt === false)
