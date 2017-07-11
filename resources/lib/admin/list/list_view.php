@@ -33,6 +33,15 @@
 			<span class="tertiary-button" onclick="searchList()"><img style="vertical-align: middle;" src="img/interface/67grey_search.png" alt="go"></span> 
 			<!-- <span style="vertical-align: middle; line-height: 0.5rem; height: 0; cursor: default;">Go</span> -->
 		</div>
+		<script>
+			var searchInput	=	document.getElementById('search-input');
+			searchInput.onkeydown	=	function(event) {
+				if (event.key == 'Enter' || event.keyCode ==  13)
+				{
+					searchList();
+				}
+			}
+		</script>
 		<div class="toolbar-btns" id="toolbar-btns"></div>
 	</div>
 	<div class="list-wrap material">
