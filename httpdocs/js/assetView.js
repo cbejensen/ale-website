@@ -1602,6 +1602,10 @@ function addStatus()
 
 function removeStatus(i, statusName)
 {
+	if (statusName	== 'Incomplete') {
+		buildAlert('User Error', 'The incomplete status will be removed from this item when it is committed to the Item List.');
+		return;
+	}
 	var table	=	document.getElementById('status-table');
 	Object.keys(table.childNodes).forEach(function(j) {
 		if (!table.childNodes[j]) return;
