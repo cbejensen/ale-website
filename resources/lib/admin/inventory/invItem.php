@@ -512,9 +512,10 @@ class InvItem
 					emp_category.subcategory as emp_subcategory,	emp.nbv,
 					emp.category as emp_cat_id,
 					emp.img_url,			emp_prev_owners.prev_owner,						emp.src_building,
-					emp.src_floor,			emp.src_room
+					emp.src_floor,			emp.src_room, subitem_of.subitem_of
 					FROM itemlist
 					LEFT JOIN manufacturers ON itemlist.mnfrID = manufacturers.id
+					LEFT JOIN subitem_of ON manufacturers.subitem_of = subitem_of.id
 					LEFT JOIN models ON itemlist.modelID = models.id
 					LEFT JOIN brands ON itemlist.brandID = brands.id
 					LEFT JOIN inv_batch ON itemlist.batch = inv_batch.id

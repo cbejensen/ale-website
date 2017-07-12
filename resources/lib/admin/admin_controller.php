@@ -261,85 +261,26 @@ class AdminController
 	public function getCSV()
 	{
 		AdminController::loadItemModel();
-		switch($_GET['format'])
-		{
-			case 'channelAdvisor':
-				$filename = date('Y_m_d') . ' ChannelAdvisor';
-				break;
-			case 'quickbooks':
-				$filename = date('Y_m_d') . ' ALE_quickbooks';
-				break;
-			case 'quickbooks_nov':
-				$filename = date('Y_m_d') . ' Novartis_quickbooks';
-				break;
-			case 'emp':
-				$filename = date('Y_m_d') . ' EMP_upload';
-				break;
-		}
-		header('Content-Type: text/csv; charset=utf-8');
-		header("Content-Disposition: attachment; filename=$filename.csv");
-		$output	=	fopen("php://output", 'w'); //$base/../output_test
-		
-		switch ($_GET['format'])
-		{
-			case 'channelAdvisor':
-				$labelRow 	= array(
-					'Auction Title',
-					'Inventory Number',
-					'Model Name',
-					'Model Number',
-					'Quantity',
-					'Starting Price',
-					'Buy It Now Price',
-					'Weight',
-					'Shipping',
-					'Manufacturer',
-					'Brand',
-					'Brand 2',
-					'Condition',
-					'Condition Is',
-					'Supplier Code',
-					'Testing Done',
-					'Cosmetic',
-					'Components Included',
-					'Serial Number',
-					'Condition Note',
-					'Column Intentionally Left Blank',
-					'MPN'
-				);
-				fputcsv($output, $labelRow);
-				foreach ($_SESSION['item_export'] as $item)
-				{
-					$asset	=	new InvItem($item, $this->conn);
-					($asset->data['brand'] != '') ? $b = $asset->data['brand'] . ' ' : $b = '';
-					$outRow	= array(
-							$asset->data['mnfr'] . ' ' . $b . $asset->data['model'] . ' ' . $asset->data['function_desc'] . ' ' . $asset->data['title_extn'],
-							$asset->data['aleAsset'],
-							$asset->data['model'],
-							$asset->data['addtl_model'],
-							$asset->data['quantity'],
-							$asset->data['price'],
-							$asset->data['price'],
-							$asset->data['weight'],
-							$asset->data['shipping_class'],
-							$asset->data['mnfr'],
-							$asset->data['brand'],
-							$asset->data['brand'],
-							$asset->data['item_condition'],
-							$asset->data['item_condition'],
-							'',
-							$asset->data['testing'],
-							$asset->data['cosmetic'],
-							$asset->data['components'],
-							$asset->data['serial_num'],
-							$asset->data['condition_note'],
-							'',
-							$asset->data['mpn']
-					);
-					fputcsv($output, $outRow);
-					//markAsOnEbay($row);
-				}
-				break;
+		require_once ADMIN_PATH . '/inventory/exporter.php';
+		try {
+			switch($_GET['format'])
+			{
+				case 'channelAdvisor':
+					$exp	=	new ChAdvExporter($this->conn);
+					break;
+				case 'quickbooks':
+					$exp	=	new AleQbExporter($this->conn);
+					break;
+				case 'quickbooks_nov':
+					$exp	=	new NovQbExporter($this->conn);
+					break;
+				case 'emp':
+					$exp	=	new EmpExporter($this->conn);
+					break;
+			}
+			$exp->getCSV();
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
 		}
 	}
 	

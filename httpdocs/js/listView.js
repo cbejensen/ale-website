@@ -57,7 +57,7 @@ function buildBreadcrumbs()
 	if (typeof url.q == 'undefined') {
 		var txt	=	document.createTextNode('Page '+current_page+' of '+totalResults+' results.');
 	} else {
-		var txt		=	document.createTextNode('Page '+current_page+' of '+totalResults+' results for \''+url.q+'\'');
+		var txt		=	document.createTextNode('Page '+current_page+' of '+totalResults+' results for \''+decodeURIComponent(url.q)+'\'');
 	}
 	span.appendChild(txt);
 	div.appendChild(span);

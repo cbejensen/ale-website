@@ -279,11 +279,33 @@ span.status-rm {
 .list-main .std-pg {
 	margin-top: 0;
 }
-.list-main tr.inv-complete {
+.list-main tr.inv-complete:nth-child(even) {
+/* 	background: linear-gradient( */
+/* 					to bottom, */
+/* 					rgba(0, 87, 209, 0.0), */
+/* 					rgba(0, 87, 209, 0.00) 100% */
+/* 				); */
+	background: #fbfbfb;
+}
+.list-main tr.inv-complete:nth-child(even):hover {
 	background: linear-gradient(
 					to bottom,
-					rgba(0, 87, 209, 0.05),
-					rgba(0, 87, 209, 0.2) 100%
+					rgba(0, 87, 209, 0.08),
+					rgba(0, 87, 209, 0.13) 100%
+				);
+}
+.list-main tr.inv-complete:nth-child(odd) {
+	background: linear-gradient(
+					to bottom,
+					rgba(0, 87, 209, 0.00),
+					rgba(0, 87, 209, 0.05) 100%
+				);
+}
+.list-main tr.inv-complete:nth-child(odd):hover {
+	background: linear-gradient(
+					to bottom,
+					rgba(0, 87, 209, 0.08),
+					rgba(0, 87, 209, 0.13) 100%
 				);
 }
 .list-main tr.inv-complete td {
