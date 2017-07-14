@@ -17,7 +17,12 @@ $controllers	=	array(
 				'submitItemImport',	'createBatch',
 				'addRecord',		'addToExportList',
 				'getCSV'
-		]
+		],
+		'qb'		=>	[
+				'enqueueNewCustomer',	'enqueueCustomerQuery',
+				'enqueueItemQuery',		'enqueueVendorQuery',
+				'enqueueSubitemQuery',	'enqueueNewItem'
+		],
 );
 
 // check that requested controller and action are allowed
@@ -64,7 +69,7 @@ function call($controller, $action)
 			$controller = new InventoryController();
 			break;
 			
-		case 'admin_qb':
+		case 'qb':
 			// Validate user before proceeding
 			require_once LIB_PATH . '/admin/qb/qb_controller.php';
 			$controller = new QbController();

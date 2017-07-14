@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<QBWCXML>
+	<AppName>al.db v3.0 | ALE QB</AppName>
+	<AppID></AppID>
+	<AppURL>https://atlanticlabequipment.com/qwc.php</AppURL>
+	<AppDescription>Integrates al.db with ALE Quickbooks</AppDescription>
+	<AppSupport>https://atlanticlabequipment.com</AppSupport>
+	<UserName>ale_quickbooks</UserName>
+	<OwnerID>{90A44FB7-33D9-4815-AC85-AC86A7E7D1EB}</OwnerID>
+	<FileID>{57F3B9B6-86F1-4FCC-B1FF-967DE1813D20}</FileID>
+	<QBType>QBFS</QBType>
+	<Scheduler>
+		<RunEveryNMinutes>15</RunEveryNMinutes>
+	</Scheduler>
+	<IsReadOnly>false</IsReadOnly>
+</QBWCXML>
