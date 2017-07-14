@@ -9,7 +9,7 @@ $controllers	=	array(
 				'submitForm',	'listing'
 		],
 		'admin'		=>	[
-				'hdome',			'showList',
+				'home',				'showList',
 				'updateInvItem',	'getVendors',
 				'updateItemPhotos',	'imagePreprocess',
 				'getInvAssetData',	'invAction',
@@ -55,13 +55,6 @@ function call($controller, $action)
 				);
 				require_once PUBLIC_PATH . '/view/pages/error.php';
 			}
-			
-			break;
-			
-		case 'admin_pages':
-			// Validate user before proceeding - Use Trusted 3rd Party Library
-			require_once LIB_PATH . '/admin/pages/pages_controller.php';
-			$controller = new Admin_PagesController();
 			break;
 			
 		case 'admin_inventory':
@@ -69,13 +62,6 @@ function call($controller, $action)
 			require_once LIB_PATH . '/admin/inventory/inventory_controller.php';
 			require_once LIB_PATH . '/admin/inventory/inventory_model.php';
 			$controller = new InventoryController();
-			break;
-			
-		case 'admin_lists':
-			// Validate user before proceeding
-			require_once LIB_PATH . '/admin/lists/lists_controller.php';
-			require_once LIB_PATH . '/admin/lists/lists_model.php';
-			$controller = new ListsController();
 			break;
 			
 		case 'admin_qb':
