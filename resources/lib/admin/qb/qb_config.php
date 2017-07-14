@@ -10,12 +10,10 @@ if (function_exists('date_default_timezone_set'))
 
 //error_reporting(E_ALL | E_STRICT);
 
-//ini_set("log_errors", 1);
-//ini_set("error_log", "C:/php-error.log");
-//error_log( "Config.php loaded!" );
-
-//error_reporting(-1);
-//ini_set('display_errors', 'Off');
+ini_set('error_reporting', E_ALL);
+ini_set('log_errors', 1);
+ini_set('error_log', '../resources/logs/app-errors.log');
+ini_set('display_errors', 0);
 
 // Require the framework
 require_once dirname(__FILE__) . '/../../qb_integration/QuickBooks.php';
