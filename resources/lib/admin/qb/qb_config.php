@@ -23,7 +23,7 @@ $qbwc_user = 'ale_quickbooks';
 $qbwc_pass = 'ale_password';
 
 // * MAKE SURE YOU CHANGE THE DATABASE CONNECTION STRING BELOW TO A VALID MYSQL USERNAME/PASSWORD/HOSTNAME *
-$dsn = 'mysqli://admin:euphrates8@N@N@$@atlanticlabequipment.com:3306/al_db'; // 192.168.1.50:8080
+$dsn = 'mysqli://admin:euphrates8@N@N@$@atlanticlabequipment.com/al_db'; // 192.168.1.50:8080
 
 if (!QuickBooks_Utilities::initialized($dsn))
 {

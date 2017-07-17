@@ -1,6 +1,19 @@
 <?php
 
 // Require config file, main function library.
+define('AL_DB',		'al_db');
+define('NOV_DB', 	'novartis_qb_integration');
+
+define('LIB_PATH', '../resources/lib');
+define('RESOURCES_PATH', '../resources');
+define('TEMPLATE_PATH', '../resources/templates');
+define('INC_PATH', '../resources/inc');
+define('PUBLIC_PATH', '../resources/lib/public');
+define('ADMIN_PATH', '../resources/lib/admin');
+define('PAGE_PATH', '../resources/lib/public/view/pages');
+define('LOGS_PATH', '../resources/logs');
+define('SENTINEL_PATH', '../resources/lib/vendor/cartalyst/sentinel');
+
 require_once dirname(__FILE__) . '/../resources/lib/functions.php';
 require_once dirname(__FILE__) . '/../resources/lib/admin/qb/qb_config.php';
 
