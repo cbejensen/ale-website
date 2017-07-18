@@ -8,22 +8,28 @@ if (function_exists('date_default_timezone_set'))
 	date_default_timezone_set('America/New_York');
 }
 
-//error_reporting(E_ALL | E_STRICT);
-
-ini_set('error_reporting', E_ALL);
-ini_set('log_errors', 1);
-ini_set('error_log', '../resources/logs/app-errors.log');
-ini_set('display_errors', 0);
+// Require some callback functions
+require_once dirname(__FILE__) . '/../resources/lib/admin/qb/qb_functions.php';
 
 // Require the framework
 require_once dirname(__FILE__) . '/../../qb_integration/QuickBooks.php';
 
 // Your .QWC file username/password
-$qbwc_user = 'ale_quickbooks';
-$qbwc_pass = 'ale_password';
-
-// * MAKE SURE YOU CHANGE THE DATABASE CONNECTION STRING BELOW TO A VALID MYSQL USERNAME/PASSWORD/HOSTNAME *
-$dsn = 'mysqli://admin:euphrates8@N@N@$@atlanticlabequipment.com/al_db'; // 192.168.1.50:8080
+switch ($type)
+{
+    case 'ale':
+        $qbwc_user  =   'ale_quickbooks';
+        $qbwc_pass  =   'ale_password';
+        $dsn        =   'mysqli://admin:euphrates8@N@N@$@atlanticlabequipment.com/al_db';
+        break;
+    case 'nov':
+        $qbwc_user  =   'nov_quickbooks';
+        $qbwc_pass  =   'nov_password';
+        $dsn        =   'mysqli://admin:euphrates8@N@N@$@atlanticlabequipment.com/nov_qb';
+        break;
+    default:
+        exit;
+}
 
 if (!QuickBooks_Utilities::initialized($dsn))
 {

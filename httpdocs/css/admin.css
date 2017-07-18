@@ -263,7 +263,7 @@ table.list-table {
 ----------------------------------------------*/
 img.status-flag {
 	width: 1.15rem;
-	filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.65)) invert(0%);
+	filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.35)) invert(0%);
 /* 	padding: 0.63rem; */
 }
 span.status-rm {
