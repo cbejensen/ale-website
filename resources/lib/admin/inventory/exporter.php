@@ -76,6 +76,7 @@ class Exporter
 		{
 			$this->assets[]	=	new InvItem($asset, $this->conn);
 		}
+		error_log(print_r($this->assets, true));
 	}
 }
 
@@ -290,6 +291,18 @@ class NovQbExporter extends Exporter
 		}
 		foreach ($this->assets as $asset)
 		{
+			switch ($asset->data['track'])
+			{
+				case 'Novartis/ALOE':
+				case 'Novartis':
+				case 'EMP':
+					break;
+				case 'ALOE':
+				case 'Consignment':	
+				case 'ALE':
+				default:
+					continue;
+			}
 			$item	=	substr($asset->data['model'] . ' ' . $asset->data['function_desc'], 0, 18);
 			($asset->data['brand'] != '') ? $b = $asset->data['brand'] . ' ' : $b = '';
 			$outRow	= array(
