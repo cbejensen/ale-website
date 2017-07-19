@@ -301,8 +301,9 @@ class NovQbExporter extends Exporter
 				case 'Consignment':	
 				case 'ALE':
 				default:
-					continue;
+					$test	=	1;
 			}
+			if ($test === 1) continue;
 			$item	=	substr($asset->data['model'] . ' ' . $asset->data['function_desc'], 0, 18);
 			($asset->data['brand'] != '') ? $b = $asset->data['brand'] . ' ' : $b = '';
 			$outRow	= array(
