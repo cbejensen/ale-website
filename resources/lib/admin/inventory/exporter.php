@@ -290,7 +290,6 @@ class NovQbExporter extends Exporter
 		}
 		foreach ($this->assets as $asset)
 		{
-			error_log($asset->data['track']);
 			switch ($asset->data['track'])
 			{
 				case 'Novartis/ALOE':
@@ -301,7 +300,7 @@ class NovQbExporter extends Exporter
 				case 'Consignment':	
 				case 'ALE':
 				default:
-					continue;
+					continue 2;
 			}
 			$item	=	substr($asset->data['model'] . ' ' . $asset->data['function_desc'], 0, 18);
 			($asset->data['brand'] != '') ? $b = $asset->data['brand'] . ' ' : $b = '';
