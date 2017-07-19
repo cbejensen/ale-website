@@ -4,8 +4,8 @@ class QbController
 {
 	public function enqueueNewCustomer()
 	{
-		require_once 'lib/functions.php';
-		require_once 'inc/qb_config.php';
+		require_once LIB_PATH . '/functions.php';
+		require_once ADMIN_PATH . '/qb/qb_config.php';
 		
 		// Handle the form post
 		if (isset($_POST['submitted']))

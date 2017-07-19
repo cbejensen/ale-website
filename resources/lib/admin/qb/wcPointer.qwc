@@ -2,7 +2,7 @@
 <QBWCXML>
 	<AppName>al.db v3.0 | ALE QB</AppName>
 	<AppID></AppID>
-	<AppURL>https://atlanticlabequipment.com/qwc.php</AppURL>
+	<AppURL>https://atlanticlabequipment.com/qbwc.php?qb=ale</AppURL>
 	<AppDescription>Integrates al.db with ALE Quickbooks</AppDescription>
 	<AppSupport>https://atlanticlabequipment.com</AppSupport>
 	<UserName>ale_quickbooks</UserName>

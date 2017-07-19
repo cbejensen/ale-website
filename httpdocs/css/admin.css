@@ -1098,3 +1098,46 @@ img.import-result {
 	border: 1px solid #bbb;
 	border-radius: 2px;
 }
+
+/*=================================================================================
+	X.0 - Breadcrumbs
+=================================================================================*/
+.breadcrumb {
+	font-size: 0.75rem;
+	font-family: 'Open Sans', calibri, helvetica, arial, sans-serif;
+	line-height: 0.75rem;
+}
+a.breadcrumb {
+	color: #4B85D9;
+}
+a.breadcrumb:hover {
+	color: #2D6DCB;
+}
+.right-arrow {
+	width: 0; 
+	height: 0; 
+	border-top: 0.20rem solid transparent;
+	border-bottom: 0.20rem solid transparent;
+	border-left: 0.30rem solid #bbb;
+}
+.bc-arrow {
+/* 	width: 0.15rem;  */
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.bc-arrow-cont {
+	display: inline-block;
+	width: 0.75rem;
+	height: 0.75rem;
+}
+.bc-home {
+	filter: invert(60%);
+	heigth: 0.85rem;
+	width: 0.85rem;
+}
+.bc-home:hover {
+	filter: invert(25%);
+}

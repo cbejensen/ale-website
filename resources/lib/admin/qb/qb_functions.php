@@ -1,104 +1,76 @@
 <?php
 
 // Add customer to QB - REQUEST
-function _quickbooks_customer_add_request($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale)
-{
+function _quickbooks_customer_add_request(
+	$requestID, 		$user, 
+	$action, 		$ID, 
+	$extra, 		&$err, 
+	$last_action_time, 	$last_actionident_time, 
+	$version, 		$locale
+){
 
-	ini_set("log_errors", 1);
-	ini_set("error_log", "C:/xampp/htdocs/eclipse/atlanticlabs/logs/php-error.log");
 	error_log('Running _quickbooks_customer_add_request().......');
-	//error_log('This is the ID: ' . (int) $ID);
 
-
-	//$q = "SELECT * FROM my_customer_table WHERE id = " . (int) $ID;
-	$conn = db_connect();
-	$q = "SELECT * FROM my_customer_table WHERE id=" . (int) $ID;
-	$r = db_query($q, $conn);
-
-	//error_log('This is $q: ' . $q);
-	//error_log(print_r($r));
-
+	$conn	=	db_connect();
+	$q	=	"SELECT * FROM my_customer_table WHERE id=" . (int) $ID;
+	$r	=	db_query($q, $conn);
 	$r->data_seek(0);
-	$arr = $r->fetch_array(MYSQLI_ASSOC);
+	$arr	=	$r->fetch_array(MYSQLI_ASSOC);
 
-
-	//error_log('This is var $arr: ' . print_r($arr));
-
-
-	//$debug = mysql_query("SELECT * FROM my_customer_table WHERE id = " . (int) $ID);
-	//print_r($debug);
-
-	// Grab the data from our MySQL database
-	//$arr = mysql_fetch_assoc($debug);
-
-	$xml = '<?xml version="1.0" encoding="utf-8"?>
-		<?qbxml version="2.0"?>
-		<QBXML>
-			<QBXMLMsgsRq onError="stopOnError">
-				<CustomerAddRq requestID="' . $requestID . '">
-					<CustomerAdd>
-						<Name>' . $arr['name'] . '</Name>
-						<CompanyName>' . $arr['name'] . '</CompanyName>
-						<FirstName>' . $arr['fname'] . '</FirstName>
-						<LastName>' . $arr['lname'] . '</LastName>
-					</CustomerAdd>
-				</CustomerAddRq>
-			</QBXMLMsgsRq>
-		</QBXML>';
+	$xml	=	'<?xml version="1.0" encoding="utf-8"?>
+			<?qbxml version="2.0"?>
+			<QBXML>
+				<QBXMLMsgsRq onError="stopOnError">
+					<CustomerAddRq requestID="' . $requestID . '">
+						<CustomerAdd>
+							<Name>' 	. $arr['name'] 	. '</Name>
+							<CompanyName>' 	. $arr['name'] 	. '</CompanyName>
+							<FirstName>' 	. $arr['fname']	. '</FirstName>
+							<LastName>' 	. $arr['lname']	. '</LastName>
+						</CustomerAdd>
+					</CustomerAddRq>
+				</QBXMLMsgsRq>
+			</QBXML>';
 
 	return $xml;
-	/*
-	 <Name>TestCo</Name>
-	 <CompanyName>TestCo</CompanyName>
-	 <FirstName>Thom</FirstName>
-	 <LastName>Sthom</LastName>*/
 }
 
 // Add customer to QB - RESPONSE
-function _quickbooks_customer_add_response($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
-{
+function _quickbooks_customer_add_response(
+	$requestID,		$user, 
+	$action, 		$ID, 
+	$extra, 		&$err, 
+	$last_action_time,	$last_actionident_time, 
+	$xml, 			$idents
+){
 	$conn	=	db_connect();
-	$q		=	"UPDATE
-					my_customer_table
-				SET
-					quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "',
-					quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
-				WHERE
-					id = " . (int) $ID;
-	$r		=	db_query($q, $conn);
+	$q	=	"UPDATE
+			my_customer_table
+			SET
+			quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "',
+			quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
+			WHERE
+			id = " . (int) $ID;
+	$r	=	db_query($q, $conn);
 }
 
 // Customer Query - REQUEST
-function _quickbooks_customer_query_request($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale)
-{
-	ini_set("log_errors", 1);
-	ini_set("error_log", "C:/xampp/htdocs/eclipse/atlanticlabs/logs/php-error.log");
+function _quickbooks_customer_query_request(
+	$requestID,		$user, 
+	$action, 		$ID, 
+	$extra, 		&$err, 
+	$last_action_time,	$last_actionident_time, 
+	$version, 		$locale
+){
 	error_log('Running _quickbooks_customer_query_request().......');
-	//error_log('This is the ID: ' . (int) $ID);
 
-
-	//$q = "SELECT * FROM my_customer_table WHERE id = " . (int) $ID;
-	$conn = db_connect();
-	$q = "SELECT * FROM my_customer_queries WHERE id=" . (int) $ID;
-	$r = db_query($q, $conn);
-
-	//error_log('This is $q: ' . $q);
-	//error_log(print_r($r));
-
+	$conn	=	db_connect();
+	$q	=	"SELECT * FROM my_customer_queries WHERE id=" . (int) $ID;
+	$r	=	db_query($q, $conn);
 	$r->data_seek(0);
-	$arr = $r->fetch_array(MYSQLI_ASSOC);
+	$arr	=	$r->fetch_array(MYSQLI_ASSOC);
 
-
-	//error_log('This is var $arr: ' . print_r($arr));
-
-
-	//$debug = mysql_query("SELECT * FROM my_customer_table WHERE id = " . (int) $ID);
-	//print_r($debug);
-
-	// Grab the data from our MySQL database
-	//$arr = mysql_fetch_assoc($debug);
-
-	$xml = '<?xml version="1.0" encoding="utf-8"?>
+	$xml	=	'<?xml version="1.0" encoding="utf-8"?>
 			<?qbxml version="13.0"?>
 			<QBXML>
 				<QBXMLMsgsRq onError="stopOnError">
@@ -110,60 +82,43 @@ function _quickbooks_customer_query_request($requestID, $user, $action, $ID, $ex
 					</CustomerQueryRq>
 				</QBXMLMsgsRq>
 			</QBXML>';
-
 	return $xml;
 }
 
 // Customer Query - RESPONSE
-function _quickbooks_customer_query_response($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
-{
+function _quickbooks_customer_query_response(
+	$requestID,		$user, 
+	$action, 		$ID, 
+	$extra, 		&$err, 
+	$last_action_time, 	$last_actionident_time, 
+	$xml, 			$idents
+){
 	$conn	=	db_connect();
-	$q		=	"UPDATE
-					my_customer_queries
-				SET
-					quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "',
-					quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
-				WHERE
-					id = " . (int) $ID;
-	$r		=	db_query($q, $conn);
-
-	ini_set("log_errors", 1);
-	ini_set("error_log", "C:/xampp/htdocs/eclipse/atlanticlabs/logs/php-error.log");
-	error_log('The following is QB\'s XML Customer Query Response.......');
-	error_log($xml);
+	$q	=	"UPDATE
+			my_customer_queries
+			SET
+			quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "',
+			quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
+			WHERE
+			id = " . (int) $ID;
+	$r	=	db_query($q, $conn);
 }
 
 // Item Query - REQUEST unused?
-function _quickbooks_item_query_request($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale)
-{
-	ini_set("log_errors", 1);
-	ini_set("error_log", "C:/xampp/htdocs/eclipse/atlanticlabs/logs/php-error.log");
-	error_log('Running _quickbooks_item_query_request().......');
-	//error_log('This is the ID: ' . (int) $ID);
-
-
-	//$q = "SELECT * FROM my_customer_table WHERE id = " . (int) $ID;
-	$conn = db_connect();
-	$q = "SELECT * FROM qb_item_queries WHERE id=" . (int) $ID;
-	$r = db_query($q, $conn);
-
-	//error_log('This is $q: ' . $q);
-	//error_log(print_r($r));
-
+function _quickbooks_item_query_request(
+	$requestID, 		$user, 
+	$action, 		$ID, 
+	$extra, 		&$err, 
+	$last_action_time, 	$last_actionident_time, 
+	$version, 		$locale
+){
+	$conn	=	db_connect();
+	$q	=	"SELECT * FROM qb_item_queries WHERE id=" . (int) $ID;
+	$r	=	db_query($q, $conn);
 	$r->data_seek(0);
-	$arr = $r->fetch_array(MYSQLI_ASSOC);
-
-
-	//error_log('This is var $arr: ' . print_r($arr));
-
-
-	//$debug = mysql_query("SELECT * FROM my_customer_table WHERE id = " . (int) $ID);
-	//print_r($debug);
-
-	// Grab the data from our MySQL database
-	//$arr = mysql_fetch_assoc($debug);
-
-	$xml = '<?xml version="1.0" encoding="utf-8"?>
+	$arr	=	$r->fetch_array(MYSQLI_ASSOC);
+	
+	$xml	=	'<?xml version="1.0" encoding="utf-8"?>
 			<?qbxml version="13.0"?>
 			<QBXML>
 				<QBXMLMsgsRq onError="stopOnError">
@@ -175,27 +130,26 @@ function _quickbooks_item_query_request($requestID, $user, $action, $ID, $extra,
 					</ItemInventoryQueryRq>
 				</QBXMLMsgsRq>
 			</QBXML>';
-
 	return $xml;
 }
 
 // Item Query - RESPONSE unused?
-function _quickbooks_item_query_response($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
-{
+function _quickbooks_item_query_response(
+	$requestID,		$user, 
+	$action, 		$ID, 
+	$extra, 		&$err, 
+	$last_action_time, 	$last_actionident_time, 
+	$xml, 			$idents
+){
 	$conn	=	db_connect();
-	$q		=	"UPDATE
-					qb_item_queries
-				SET
-					quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "',
-					quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
-				WHERE
-					id = " . (int) $ID;
-	$r		=	db_query($q, $conn);
-
-	ini_set("log_errors", 1);
-	ini_set("error_log", "C:/xampp/htdocs/eclipse/atlanticlabs/logs/php-error.log");
-	error_log('The following is QB\'s XML Item Query Response.......');
-	error_log($xml);
+	$q	=	"UPDATE
+			qb_item_queries
+			SET
+			quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "',
+			quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
+			WHERE
+			id = " . (int) $ID;
+	$r	=	db_query($q, $conn);
 }
 
 // List Query, General Purpose - REQUEST

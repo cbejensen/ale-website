@@ -33,10 +33,14 @@ function buildBreadcrumbs()
 	var span	=	document.createElement('span');
 	Object.keys(crumbs).forEach(function(j){
 		if (j != 0) {
+			var cont	=	document.createElement('span');
 			var carat	=	document.createElement('span');
-			var txt		=	document.createTextNode('>');
-			carat.appendChild(txt);
-			span.appendChild(carat);
+		//	var txt		=	document.createTextNode('>');
+		//	carat.appendChild(txt);
+			cont.className	=	'breadcrumb bc-arrow-cont';
+			carat.className	=	'breadcrumb right-arrow bc-arrow';
+			cont.appendChild(carat);
+			span.appendChild(cont);
 		}
 		if (crumbs[j].src == '') {
 			var crumb	=	document.createElement('span');
@@ -45,8 +49,15 @@ function buildBreadcrumbs()
 			crumb.href	=	crumbs[j].src;
 		}
 		crumb.className	=	'breadcrumb';
-		var txt		=	document.createTextNode(crumbs[j].anchor);
-		crumb.appendChild(txt);
+		if (crumbs[j].anchor == 'Home') {
+			var content		=	document.createElement('img');
+			content.src		=	'img/interface/home-bc.png';
+			content.alt		=	'Home';
+			content.className	=	'breadcrumb bc-home';
+		} else {
+			var content	=	document.createTextNode(crumbs[j].anchor);
+		}
+		crumb.appendChild(content);
 		span.appendChild(crumb);
 	});
 	div.appendChild(span);

@@ -9,7 +9,7 @@ if (function_exists('date_default_timezone_set'))
 }
 
 // Require some callback functions
-require_once dirname(__FILE__) . '/../resources/lib/admin/qb/qb_functions.php';
+require_once dirname(__FILE__) . '/qb_functions.php';
 
 // Require the framework
 require_once dirname(__FILE__) . '/../../qb_integration/QuickBooks.php';

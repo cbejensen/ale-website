@@ -1,5 +1,8 @@
 <?php
 
+// Require main config file.
+require_once dirname(__FILE__) . '/../resources/config.php';
+
 // Init
 if (isset($_GET['qb'])) {
 	switch ($_GET['qb'])
@@ -17,9 +20,8 @@ if (isset($_GET['qb'])) {
 	exit;
 }
 
-// Require main config file, qb config file.
-require_once dirname(__FILE__) . '/resources/config.php';
-require_once dirname(__FILE__) . '/resources/lib/admin/qb/qb_config.php';
+// Require qb config file.
+require_once dirname(__FILE__) . '/../resources/lib/admin/qb/qb_config.php';
 
 // Map QuickBooks actions to handler functions
 $map = array(
