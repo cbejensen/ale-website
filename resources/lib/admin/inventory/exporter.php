@@ -76,7 +76,6 @@ class Exporter
 		{
 			$this->assets[]	=	new InvItem($asset, $this->conn);
 		}
-		error_log(print_r($this->assets, true));
 	}
 }
 
