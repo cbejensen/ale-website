@@ -251,7 +251,14 @@ class AdminController
 	public function addToExportList()
 	{
 		try {
-			$_SESSION['item_export'] = AdminController::decodeJSON();
+			$json	=	AdminController::decodeJSON();
+			if (isset($_SESSION['item_export'])) {
+				foreach ($json as $asset) {
+					$_SESSION['item_export'][]	=	$asset;
+				}
+			} else {
+				$_SESSION['item_export']	=	$json;
+			}
 			echo json_encode(['result'=>1]);
 		} catch (Exception $e) {
 			echo json_encode(['result'=>0]);
