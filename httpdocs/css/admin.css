@@ -174,13 +174,13 @@ td[id*="aleAsset"] {
 .list-toolbar {
 	width: 98%;
 	height: 10vh;
-/* 	min-height: 100px; */
+	min-height: 95px;
 	margin: 0vh auto 1vh;
 }
 .list-wrap {
 	overflow-y: scroll;
 	width: 98%;
-	max-height: 73vh;
+	    max-height: calc(100vh - 6.3rem - 7vh - 95px);
 /* 	padding-bottom: 5vh; */
 	border-radius: 2px;
 	margin: 0 auto;
