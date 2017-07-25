@@ -14,6 +14,14 @@ class ListingList extends DataList
 		$this->url['subsect']		=	'gen_listings';
 		$this->url['ltype']			=	'lis';
 		$this->ltype	=	'listings';
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'Home',
+				'src'		=>	'?controller=admin&action=home&subsect=home&title=Home'
+		);
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'General Listings',
+				'src'		=>	'?controller=admin&action=showList&subsect=gen_listings&title=All%20Listings&ltype=lis&lscp=all&rp=1&srt_f=037&srt_d=asc'
+		);
 		$this->initFields();
 		$this->setFilters();
 		$this->setPaginationOptions();
@@ -149,18 +157,38 @@ class ListingList extends DataList
 		{
 			case 'all':
 				$title	=	'All Listings';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'All Listings',
+						'src'		=>	''
+				);
 				break;
 			case 'complete':
 				$title	=	'Complete Listings';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'Complete Only',
+						'src'		=>	''
+				);
 				break;
 			case 'review':
 				$title	=	'Review Listings';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'Under Review',
+						'src'		=>	''
+				);
 				break;
 			case 'active':
 				$title	=	'Active Listings';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'All Active',
+						'src'		=>	''
+				);
 				break;
 			case 'inactive':
 				$title	=	'Inactive Listings';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'All Inactive',
+						'src'		=>	''
+				);
 				break;
 		}
 		$this->title 	=	$title;

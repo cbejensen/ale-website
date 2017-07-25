@@ -14,6 +14,18 @@ class MnfrList extends DataList
 		$this->url['subsect']		=	'misc_records';
 		$this->url['ltype']			=	'mnf';
 		$this->ltype	=	'mnfr';
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'Home',
+				'src'		=>	'?controller=admin&action=home&subsect=home&title=Home'
+		);
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'Misc. Records',
+				'src'		=>	''
+		);
+		$this->breadcrumbs[]	=	array(
+				'anchor'	=>	'Manufacturers',
+				'src'		=>	'?controller=admin&action=showList&subsect=misc_records&title=All%20Manufacturers&ltype=mnf&lscp=all&srt_f=019'
+		);
 		$this->initFields();
 		$this->setFilters();
 		$this->setPaginationOptions();
@@ -107,12 +119,24 @@ class MnfrList extends DataList
 		{
 			case 'all':
 				$title	=	'All Manufacturers';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'All Manufacturers',
+						'src'		=>	''
+				);
 				break;
 			case 'complete':
 				$title	=	'Complete Manufacturers';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'Complete Only',
+						'src'		=>	''
+				);
 				break;
 			case 'review':
 				$title	=	'Review Manufacturers';
+				$this->breadcrumbs[]	=	array(
+						'anchor'	=>	'Under Review',
+						'src'		=>	''
+				);
 				break;
 		}
 		$this->title 	=	$title;
