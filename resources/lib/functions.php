@@ -30,7 +30,7 @@ function db_connect($database, $userData = 0)
 		case 'remote_al_db':
 			require INC_PATH . '/remote_al_db.php';
 			break;
-		default: 
+		default:
 			require INC_PATH . '/db_login.php';
 			break;
 	}
@@ -81,9 +81,9 @@ function handleError($errorData, &$conn, $source = 0, $mode = 1)
 	}
 	ini_set('error_log', $log);
 	error_log($errorData['title'] . ' ' . $errorData['error']);
-	
+
 	// If the request originated via Ajax, send the user a response
-	if ($mode == 1) 
+	if ($mode == 1)
 	{
 		if (isset($_POST['reqIsAjax']))
 		{
@@ -91,8 +91,8 @@ function handleError($errorData, &$conn, $source = 0, $mode = 1)
 			$title		=	$errorData['title'];
 			$message	=	$errorData['message'];
 			ajaxResponse_alert($result, $title, $message);
-		} 
-		elseif (!isset($_POST['reqIsAjax'])) 
+		}
+		elseif (!isset($_POST['reqIsAjax']))
 		{
 			alertUser($errorData['title'], $errorData['message']);
 			// For a page request, exiting the script may not be the appropriate action.
@@ -129,7 +129,7 @@ function getGenListingTitle($id)
 		$listing	=	new GenListing($id, $conn);
 		$r			=	$listing->title;
 	} catch (Exception $e) {
-		// error - constructor method threw an exception	
+		// error - constructor method threw an exception
 		$r	=	false;
 	}
 	$conn->close();
@@ -199,7 +199,7 @@ function getMetaDescription($title, $section)
 {
 	if (isset($_GET['action']) && $_GET['action'] == 'listing')
 	{
-		$meta 	=	$title . ' for sale by Atlantic Lab Equipment.';
+		$meta 	=	$title . ' available for sale at Atlantic Lab Equipment. Call us and request a quote today!';
 	}
 	elseif (isset($_GET['subsection']))
 	{
@@ -256,13 +256,23 @@ function getMetaDescription($title, $section)
 				$meta	=	'Need an Instrument? Request a Quote on Equipment today!';
 				break;
 			case 'store':
-				$meta	=	'ALE\'s Equipment catalog. Browse through our selection of Tecan Liquid Handlers, automation equipment, analytical systems, and DNA Sequencers.';
+				if ($title == 'Premium Used Lab Equipment') {
+					$meta = 'ALE\'s Lab Equipment catalog. We offer a wide range of Tecan Liquid Handlers, automation equipment, analytical systems, and DNA Sequencers. Visit us & Shop now!';
+				} elseif ($title == 'All DNA Sequencers') {
+					$meta = 'Check out ALE\'s exclusive selection of DNA sequencers. Browse through our selection of ILLUMINA DNA Sequencer, Automatic equipment, analytical systems and more.';
+				} elseif ($title == 'All DNA Sequencers') {
+					$meta = 'All DNA Sequencers | ILLUMINA | Premium Lab Equipment & Automation';
+				} elseif ($title == 'All Analytical Equipment'){
+					$meta = 'Keep your laboratory equipment clean with our exclusive range of Microplate Washers. Explore our site or call us today for a free quote!';
+				} else {
+					$meta	=	'ALE\'s Equipment catalog. Browse through our selection of Tecan Liquid Handlers, automation equipment, analytical systems, and DNA Sequencers.';
+				}
 				break;
 			case 'services':
 				$meta	=	'ALE provides Premium Automation Solutions - A service for laboratories to improve their throughput, efficiency, and reproducibility.';
 				break;
 			case 'home':
-				$meta	=	'Atlantic Lab Equipment: Specializing in Laboratory Automation and providing Premium Automation Solutions.';
+				$meta	=	'Atlantic Lab Equipment - Specializing in Laboratory Automation and providing Premium Automation Solutions such as next generation DNA sequencing. Call today!';
 				break;
 			default:
 				$meta = 'ALE: Atlantic Lab Equipment. Premium Automation Solutions.';

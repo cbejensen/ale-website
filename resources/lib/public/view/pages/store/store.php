@@ -53,7 +53,7 @@
 <!-- 					</div> -->
 <!-- 				</li> -->
 				<li class="parent-category">
-					<a class="pa" id="dna-seq" href="?controller=public&action=store&section=store&title=All%20DNA%20Sequencers&category=67,1&sb=dna-seq">DNA Sequencers</a>
+					<a class="pa" id="dna-seq" href="?controller=public&action=store&section=store&title=All%20DNA%20Sequencers%20|%20ILLUMINA&category=67,1&sb=dna-seq">DNA Sequencers</a>
 				</li>
 <!-- 				<li class="parent-category"> -->
 <!--					<a class="pa" id="electr" onclick="expandCategory(this.id);">Electrophoresis</a>-->

@@ -23,7 +23,7 @@
 				LEFT JOIN brands ON general_listings.brandID = brands.id
 				LEFT JOIN ad_photos ON general_listings.id = ad_photos.listingID
 				AND ad_photos.display_order = 1 ";
-	
+
 	$conn	=	db_connect(AL_DB, $this->userData);
 	if (isset($_GET['category']))
 	{
@@ -97,21 +97,29 @@
 	$r		=	$pg->getPageData($limit, $rp);
 	$links	=	$pg->createLinks(4, $lc);
 ?>
+<p>HEY</p>
 <div class="store-results">
 
 	<?php if (!empty($oqs)) : ?>
-	<h1 class="section-head">Search Results for "<?php echo $oqs; ?>"</h1>
+		<h1 class="section-head">Search Results for "<?php echo $oqs; ?>"</h1>
 	<?php else : ?>
-	<h1 class="section-head"><?php echo $category_name; ?></h1>
+		<h1 class="section-head"><?php echo $category_name; ?></h1>
+		<?php if ($category_name == 'DNA Sequencers') : ?>
+			<p>Among the wide range of premium automation solutions that Atlantic Lab Equipment offers, we provide a wide range of ILLUMINA DNA sequencers. You can take a look at our Tecan Liquid Handlers, automation equipment, analytical systems, and DNA sequencers in order to establish the most state-of-the-art automated laboratory. If you have questions about these systems or how we can help you establish the right system just for you, feel free to contact us today to learn more about the comprehensive equipment and services offered by Atlantic Lab Equipment. We make it our goal to provide you better automated DNA sequencers at the most affordable prices.</p>
+		<?php elseif ($category_name == 'Microplate Washers') : ?>
+			<p>Are you looking for the best in automated analytic equipment and microplate washers for your laboratory? If the answer is yes, then Atlantic Lab Equipment can help you find your way. We provide highly advanced automated solutions that deliver premium results at an affordable price. We can help you save money and headaches on lesser machines by providing the tools and the services required to work best for you, and to help you be as productive and efficient as possible. If you have questions about our microplate washers, or about any other products or services that we provide, then feel free to contact us today to learn more and to get a quote today.</p>
+		<?php elseif ($category_name == 'Liquid Handlers') : ?>
+			<p>Liquid handlers are essential for any laboratory setting. Our automated liquid handling system can help provide your system the analytical equipment that it needs in order to function at full capacity, with the best and most affordable results. We help a wide range of chemical or biochemical laboratories to stay well-equipped in the best liquid handlers, enabling them to do their best work effectively and efficiently. If you have questions about our liquid handlers or about any of our other tools or services, feel free to contact us today to get a free quote and to get started toward the right automated laboratory equipment to suit your needs.</p>
+		<?php endif; ?>
 	<?php endif; ?>
-	
+
 	<?php if ($r->page == 1) : ?>
 		<h2><?php echo $r->total . ' results'; ?></h2>
 	<?php else : ?>
 		<h2><?php echo 'Page ' . $r->page . ' of ' . $r->total . ' results'; ?></h2>
 	<?php endif; ?>
-	
-	<?php 
+
+	<?php
 		Paginator::getSearchToolbar();
 		$ad_i	=	0;
 		$i		=	0;

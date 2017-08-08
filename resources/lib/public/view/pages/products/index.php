@@ -1,12 +1,12 @@
-<?php 
+<?php
 /*
  * This is the index of the Products and Services section of the site.
  * It should contain prompts and links to each of the subsections, which
  * are also accessible by the top nav menu.
- * 
+ *
  * The Premium Automation solutions have the top spot,
  * but there should be a number of listings/ads on the page as well.
- * 
+ *
  * Jack Brown
  * March 7, 2017
  */
@@ -14,10 +14,12 @@
 <script src="../resources/lib/public/js/public.js"></script>
 <main class="products-main site-main">
 	<h1 class="section-head pageContent">Premium Services</h1>
-	<p class="subhead page-subtitle pageContent">We offer a wide range of products and services, including our specialty service,
+	<p class="subhead page-subtitle  pageContent">We offer a wide range of products and services, including our specialty service,
 	developing Premium Automation Solutions for laboratories to help improve their throughput, efficiency,
 	and reproducibility.  We also have a large, dynamic selection of specialized laboratory equipment, as well as more
-	general lab apparatus.</p>
+	general lab apparatus.<br />
+	<br />
+	If you need premium services specializing in next generation sequencing, Atlantic Lab Equipment can help. We help enable, accommodate, and equip your laboratory with the equipment and services that you need. Integrated automation assists a liquid handling platform to maximize your effectiveness, output, and quality of both operations and the results. We also assist in installation and training, as well as specialized application development and service that includes our team providing hardware, templates, and software technical support. If you have questions about products and services, and how we can serve your team, then feel free to reach out to us and we will be able to help.</p>
 	<section class="auto-solutions-section">
 		<div class="auto-solutions-wrap pageContent">
 			<h2 class="section-head prem-auto-head">Premium Automation Solutions</h2>
@@ -32,7 +34,7 @@
 			<div class="auto-solutions-column">
 				<img class="material" src="img/content/system_integration.png" alt="Biotech Laboratory Automation via Equipment Integration">
 				<h3 class="section-head">Integrated Automation</h3>
-				<p>Integrating devices to your liquid handling platform can 
+				<p>Integrating devices to your liquid handling platform can
 				improve	your process flow and overall throughput in your lab.
 				ALE has experience integrating devices and are confident in our
 				ability to customize a solution for your needs.</p>
@@ -58,7 +60,7 @@
 				<a href="index.php?controller=public&action=services&page=automation_solutions&title=Automation%20Solutions&section=services#applications" class="gradient-button">Learn More</a>
 			</div>
 		</div>
-	</section><!-- 
+	</section><!--
 	<section class="premium-equipment-section material">
 		<div class="prem-equip-wrap pageContent">
 			<img src="" alt="">
@@ -93,7 +95,7 @@
 			<img id="rightArrow" class="right-arrow" src="img/interface/right-arrow.png" alt="Click here to browse the next equipment" onclick="moveFeaturedAds(1, 0)">
 		</div>
 	</section>
-	<?php 
+	<?php
 	/*
 	 * 	An ad section requires the following:
 	 * 		- section	->	.ads-section

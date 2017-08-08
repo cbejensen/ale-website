@@ -13,9 +13,9 @@
 <html lang="en">
 	<head>
 		<?php if ($section == 'home'): ?>
-		<title>Atlantic Lab Equipment | Premium Equipment &amp; Automation</title>
+		<title>Premium Equipment &amp; Automation | Next Generation DNA Sequencing</title>
 		<?php else: ?>
-		<title><?php echo $title; ?> | ALE: Premium Lab Equipment &amp; Automation</title>
+		<title><?php echo $title; ?> | ALE's Premium Lab Equipment &amp; Automation</title>
 		<?php endif; ?>
 		<!-- Separate stylesheets for development -->
 		<link rel="stylesheet" type="text/css" href="css/default.css" media="all">
@@ -55,12 +55,12 @@
 				<div id="logoBar_rightBG"></div>
 				<div class="logoBar_content pageContent">
 					<a href="index.php">
-					<img 
+					<img
 					srcset="img/interface/aleBanner-250w.png 250w,
 							img/interface/aleBanner.png 500w"
 					sizes="(max-width: 524px) 250px,
 							500px"
-					src="img/interface/aleBanner.png" 
+					src="img/interface/aleBanner.png"
 					alt="ale: Providing refurbished lab equipment, specializing in Laboratory Automation.">
 					</a>
 					<div class="header-info">
@@ -127,7 +127,7 @@
 <!-- 							</div> -->
 						</li>
 						<li id="navBtn_store" class="<?php if ($section == 'store') echo 'activeNavBtn'; ?>" onmouseover="moveArrow('store');">
-							<a href="?controller=public&action=store&section=store&title=Products" style="cursor: default;">Premium Equipment</a>
+							<a href="?controller=public&action=store&section=store&title=Premium%20Used%20Lab%20Equipment" style="cursor: default;">Premium Equipment</a>
 <!-- 							<div id="navDrop_store" class="dropDown"> -->
 <!-- 								<ul class="dropDown"> -->
 <!-- 									<li> -->
@@ -205,9 +205,9 @@
 				</div>
 			</nav>
 		</header>
-		
-		<?php 	
-			require_once RESOURCES_PATH . '/routes.php'; 
+
+		<?php
+			require_once RESOURCES_PATH . '/routes.php';
 		?>
 
 		<footer>
@@ -215,7 +215,7 @@
 				<div class="foot-main-container">
 				<div class="foot-section">
 					<h3>Sign Up for our Monthly Newsletter</h3>
-					<p>We keep an archive of all our email newsletters. 
+					<p>We keep an archive of all our email newsletters.
 					To view our past mailers, click the 'View Archive' button.</p>
 					<form action="https://atlanticlabequipment.com/newsletter.php" method="post" class="newsletter-form">
 						<label>First Name:</label>
@@ -232,7 +232,7 @@
 				<div class="foot-section">
 					<div class="foot-subsection">
 						<h3>Have a Question?</h3>
-						<p>We're always happy to help. Click below to send us a message. We'll 
+						<p>We're always happy to help. Click below to send us a message. We'll
 						get back to you as soon as we can.</p>
 						<a class="button-link secondary-button" href="?controller=public&action=contact&title=Contact%20Us&section=contact">Ask us Anything</a>
 					</div>
@@ -281,14 +281,14 @@
 							<li>
 								<a href="?controller=public&action=estimates&title=Request%20a%20Quote&section=estimates">Request a Quote</a>
 							</li>
-			            </ul>	
+			            </ul>
 					</nav>
 				</div>
 				</div>
 			</div>
 			<div class="google-maps">
 				<iframe style="border:0;"
-				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7X1orAXshhfLK7VkgAo7_FjbYLyz_4Ng&q=Atlantic+Lab+Equipment,Salem+MA&zoom=12" 
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA7X1orAXshhfLK7VkgAo7_FjbYLyz_4Ng&q=Atlantic+Lab+Equipment,Salem+MA&zoom=12"
 				allowfullscreen>
 				</iframe>
 			</div>

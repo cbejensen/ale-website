@@ -1,20 +1,22 @@
-<?php 
+<?php
 /*
  * This is the index of the Store section of the site.
  * It should contain prompts and links to each of the subsections, which
  * are also accessible by the top nav menu.
- * 
+ *
  * Jack Brown
  * April 13, 2017
  */
 ?>
 
 <header class="store-head">
-	<h1 class="section-head pageContent">Equipment Catalog</h1>
+	<!-- <h1 class="section-head pageContent">Equipment Catalog</h1>
 	<p class="subhead page-subtitle">We offer a wide range of products and services, including our specialty service,
 	developing Premium Automation Solutions for laboratories to help improve their throughput, efficiency,
 	and reproducibility.  We also have a large, dynamic selection of specialized laboratory equipment, as well as more
-	general lab apparatus.</p>
+	general lab apparatus.</p> -->
+	<h1 class="section-head pageContent">Lab Equipment</h1>
+	<p class="subhead page-subtitle">Welcome to our equipment catalog! Atlantic Lab Equipment helps set up your facility for success, equipping your team with the tools they need to conduct reliable tests. You are welcome to peruse our equipment catalog to equip your team. We provide premium automation solutions that help with handling liquids, including liquid handling automation and a wide range of other biotechnical equipment. We make sure that you have access to the most reliable products reinforced with excellent customer service to help stock your labs with the equipment that meets their needs. Contact us today if you have any questions about our lab equipment.</p>
 </header>
 <section class="new-equipment-ad-section ads-section">
 	<div class="new-equip-wrap">
